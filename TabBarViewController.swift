@@ -86,8 +86,8 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 			global.persistantSettings.setBool(true, forKey: "backgroundUpdatesNotice")
 		}
 		
-		if PFUser.currentUser()["name"] != nil {
-			lblName.text = (PFUser.currentUser()["name"] as! String)
+		if PFUser.currentUser()!["name"] != nil {
+			lblName.text = (PFUser.currentUser()!["name"] as! String)
 		}
 		
 		
@@ -134,7 +134,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 		tutorial.save()
 		amAtHome = false
 		closeSidebar()
-		performSegueWithIdentifier("customSegueGroups", sender: sender)
+		performSegueWithIdentifier("customSegueGroup", sender: sender)
 	}
 	
 	@IBAction func history(sender: AnyObject) {
@@ -250,7 +250,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 		}
 		PFUser.logOut()
 		var installation = PFInstallation.currentInstallation()
-		installation.setObject([], forKey: "channels")
+		installation.setObject([""], forKey: "channels")
 		installation.saveInBackgroundWithBlock(nil)
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}

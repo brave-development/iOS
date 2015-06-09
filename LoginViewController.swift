@@ -54,12 +54,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //        spinner.startAnimating()
         startLoading()
         var user = PFUser()
-        PFUser.logInWithUsernameInBackground(txtUsername.text.lowercaseString.trim(), password: txtPassword.text.trim(), block: {(user: PFUser!, error: NSError!) -> Void in
+        PFUser.logInWithUsernameInBackground(txtUsername.text.lowercaseString.trim(), password: txtPassword.text.trim(), block: {
+			(user: PFUser?, error: NSError?) -> Void in
             if (error != nil) {
                 println(error)
-//                self.btnLogin.enabled = false
-//                self.btnRegister.enabled = false
-                switch error.code {
+                switch error!.code {
                 case 100:
                     global.showAlert("Unsuccessful", message: "The network connection was lost")
                     self.btnLogin.enabled = true
@@ -72,7 +71,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     break
                 default:
                     if error?.localizedDescription != nil {
-                        global.showAlert("Unsuccessful", message: error.localizedDescription)
+                        global.showAlert("Unsuccessful", message: error!.localizedDescription)
                     } else {
                         global.showAlert("Unsuccessful", message: "Dunno, bra")
                     }
@@ -103,10 +102,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 		alert.addAction(UIAlertAction(title: "Reset", style: UIAlertActionStyle.Destructive, handler: {
 			_ in
 			PFUser.requestPasswordResetForEmailInBackground((alert.textFields?.first as! UITextField).text, block: {
-				(result: Bool, error: NSError!) -> Void in
+				(result: Bool, error: NSError?) -> Void in
 				if result == true {
 					global.showAlert("Email sent", message: "An email has been sent to the email address you supplied with password reset instructions")
-				} else if error.code == 125 {
+				} else if error!.code == 125 {
 					global.showAlert("Oops", message: "Email address not found")
 				}
 			})

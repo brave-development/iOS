@@ -35,13 +35,13 @@ class PanicHandler: UIViewController {
 			queryObject["responders"] = []
             
             queryObject.saveInBackgroundWithBlock({
-                (result: Bool, error: NSError!) -> Void in
+                (result: Bool, error: NSError?) -> Void in
                 if result == true {
                     self.updating = false
                     self.objectInUse = true
 					self.timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "getResponderCount", userInfo: nil, repeats: true)
                 } else if error != nil {
-                    global.showAlert("Error beginning location", message: "\(error.localizedDescription)\nWill try again in a few seconds")
+                    global.showAlert("Error beginning location", message: "\(error!.localizedDescription)\nWill try again in a few seconds")
                     self.updating = false
                 }
             })
@@ -57,12 +57,12 @@ class PanicHandler: UIViewController {
                 queryObject["location"] = PFGeoPoint(location: location)
                 queryObject["active"] = true
                 queryObject.saveInBackgroundWithBlock({
-                    (result: Bool, error: NSError!) -> Void in
+                    (result: Bool, error: NSError?) -> Void in
                     println("updatePanic - saveInBackground")
                     if result == true {
                         self.updating = false
                     } else if error != nil {
-                        global.showAlert("Error updating location", message: "\(error.localizedDescription)\nWill try again in a few seconds")
+                        global.showAlert("Error updating location", message: "\(error!.localizedDescription)\nWill try again in a few seconds")
                         self.updating = false
                     }
                 })
@@ -79,12 +79,12 @@ class PanicHandler: UIViewController {
 				updating = true
 				queryObject["details"] = details
 				queryObject.saveInBackgroundWithBlock({
-					(result: Bool, error: NSError!) -> Void in
+					(result: Bool, error: NSError?) -> Void in
 					println("updatePanic details - saveInBackground")
 					if result == true {
 						self.updating = false
 					} else if error != nil {
-						global.showAlert("Error updating details", message: "\(error.localizedDescription)\nWill try again in a few seconds")
+						global.showAlert("Error updating details", message: "\(error!.localizedDescription)\nWill try again in a few seconds")
 						self.updating = false
 					}
 				})
@@ -97,9 +97,9 @@ class PanicHandler: UIViewController {
 			updateResponderCountQuery = PFQuery(className: "Panics")
 			updateResponderCountQuery!.whereKey("objectId", equalTo: queryObject.objectId!)
 			updateResponderCountQuery!.getFirstObjectInBackgroundWithBlock({
-				(object: PFObject!, error: NSError!) -> Void in
+				(object: PFObject?, error: NSError?) -> Void in
 				if object != nil {
-					self.responderCount = (object["responders"] as! [String]).count
+					self.responderCount = (object!["responders"] as! [String]).count
 					self.updateResponderCountQuery = nil
 				} else {
 					println(error)
@@ -137,11 +137,11 @@ class PanicHandler: UIViewController {
         if queryObject != nil {
             queryObject["active"] = false
             queryObject.saveInBackgroundWithBlock({
-                (result: Bool, error: NSError!) -> Void in
+                (result: Bool, error: NSError?) -> Void in
                 if result == true {
                     println("END RUN CORRECTLY")
                 } else {
-                    println("END DIDNT FINISH - \(error.localizedDescription)")
+                    println("END DIDNT FINISH - \(error!.localizedDescription)")
                 }
             })
         }

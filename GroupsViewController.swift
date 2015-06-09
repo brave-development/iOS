@@ -35,7 +35,7 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 		if global.joinedGroups.count == 0 && global.referalGroup == nil { tutorial.addNewGroup = false }
 		
 		if global.referalGroup != nil {
-			if PFUser.currentUser()["numberOfGroups"] as! Int == global.joinedGroups.count {
+			if PFUser.currentUser()!["numberOfGroups"] as! Int == global.joinedGroups.count {
 				if checkIfAlreadyContainsGroup(global.referalGroup!) == false {
 					handlePurchaseReferal()
 				}
@@ -62,10 +62,10 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 			})
 		}
 		
-		if PFUser.currentUser()["numberOfGroups"] != nil {
-			if PFUser.currentUser()["numberOfGroups"] as! Int == global.joinedGroups.count {
+		if PFUser.currentUser()!["numberOfGroups"] != nil {
+			if PFUser.currentUser()!["numberOfGroups"] as! Int == global.joinedGroups.count {
 				handlePurchaseReferal()
-			} else if PFUser.currentUser()["numberOfGroups"] as! Int > global.joinedGroups.count {
+			} else if PFUser.currentUser()!["numberOfGroups"] as! Int > global.joinedGroups.count {
 				var storyboard = UIStoryboard(name: "Main", bundle: nil)
 				var vc: AddNewGroupViewController = storyboard.instantiateViewControllerWithIdentifier("addNewGroupViewController") as! AddNewGroupViewController
 				self.presentViewController(vc, animated: true, completion: nil)
@@ -90,8 +90,8 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 					global.shareGroup(global.referalGroup!, viewController: self)
 					global.persistantSettings.setInteger(self.slots, forKey: "numberOfGroups")
 					global.persistantSettings.synchronize()
-					PFUser.currentUser()["numberOfGroups"] = global.joinedGroups.count + 1
-					PFUser.currentUser().saveEventually()
+					PFUser.currentUser()!["numberOfGroups"] = global.joinedGroups.count + 1
+					PFUser.currentUser()!.saveEventually(nil)
 					
 					self.registerGroup()
 					
@@ -114,9 +114,9 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 		var query = PFQuery(className: "Groups")
 		query.whereKey("flatValue", equalTo: global.referalGroup!.formatGroupForFlatValue())
 		query.findObjectsInBackgroundWithBlock({
-			(object : [AnyObject]!, error : NSError!) -> Void in
-			if object.count > 0 {
-				let pfObject = object[0] as! PFObject
+			(object : [AnyObject]?, error : NSError?) -> Void in
+			if object!.count > 0 {
+				let pfObject = object![0] as! PFObject
 				dispatch_async(dispatch_get_main_queue(), {
 					let name = pfObject["name"] as! String
 					global.addGroup(name)

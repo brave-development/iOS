@@ -14,12 +14,23 @@ import ParseCrashReporting
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
+	
+	func crash() {
+		NSException(name: NSGenericException, reason: "Everything is ok. This is just a test crash.", userInfo: nil).raise()
+	}
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-//		ParseCrashReporting.enable()
+		ParseCrashReporting.enable()
         Parse.setApplicationId("cBZmGCzXfaQAyxqnTh6eF2kIqCUnSm1ET8wYL5O7", clientKey:"rno7DabpDMU293yi2TF4S3jKOlrZX2P27EW70C3G")
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
+		PFInstallation.currentInstallation().addUniqueObject("", forKey: "channels")
 		
+		dispatch_after(
+			dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC))),
+			dispatch_get_main_queue(),
+			{ () -> Void in
+//				self.crash()
+		});
 		
 		PFPurchase.addObserverForProduct("SoC.Panic.groupPurchaseConsumable", block: {
 			(transaction: SKPaymentTransaction!) -> Void in
@@ -54,9 +65,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if (PFInstallation.currentInstallation().badge != 0) {
             PFInstallation.currentInstallation().badge = 0
 			PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
-            PFInstallation.currentInstallation().saveEventually()
-        }
-        
+            PFInstallation.currentInstallation().saveEventually(nil)
+		} else {
+			PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
+			PFInstallation.currentInstallation().saveEventually(nil)
+		}
+		
         var notiType = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert
         
         var notiSettings:UIUserNotificationSettings
@@ -80,6 +94,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 	
 	func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
+		//
 		let queryArray = split(url.query!) {$0 == "&"} // Split into type, group, member
 		let type = split(queryArray[0]) {$0 == "="} // Split into "type" and "privateGroup"
 		global.referalType = type[1]
@@ -91,7 +106,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	}
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-//        println("Got remote notifs")
         var currentInstallation = PFInstallation.currentInstallation()
         currentInstallation.setDeviceTokenFromData(deviceToken)
         currentInstallation.saveInBackgroundWithBlock(nil)

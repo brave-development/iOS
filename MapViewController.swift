@@ -106,18 +106,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			queryPanics.whereKey("active", equalTo: true)
 			queryPanics.includeKey("user")
 			queryPanics.findObjectsInBackgroundWithBlock({
-				(objects : [AnyObject]!, error: NSError!) -> Void in
+				(objects : [AnyObject]?, error: NSError?) -> Void in
 				self.queryPanicsIsActive = true
 				if error == nil {
 					self.victimDetails = [:]
-					for object in objects {
+					for object in objects! {
 						let tempObject = object as! PFObject
 						self.victimDetails[(tempObject["user"] as! PFUser)["name"] as! String] = (tempObject)
 					}
 					self.updateAnnotations()
 				} else {
-					if error.localizedFailureReason != nil {
-						global.showAlert("", message: error.localizedFailureReason!)
+					if error!.localizedFailureReason != nil {
+						global.showAlert("", message: error!.localizedFailureReason!)
 					} else {
 						global.showAlert("", message: "Could not get the list of Panics. Please check your internet connection and try again")
 					}
@@ -152,11 +152,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			let location = CLLocationCoordinate2D(latitude: ((object as PFObject)["location"] as! PFGeoPoint).latitude, longitude: ((object as PFObject)["location"]as! PFGeoPoint).longitude)
 			if (object as PFObject)["details"] != nil {
 				let details = (object as PFObject)["details"] as! String
-				anno = AnnotationCustom(coordinate: location, title: name, id: id, object: (object as PFObject), details: details)
+				anno = AnnotationCustom(coordinate: location, title: name, id: id!, object: (object as PFObject), details: details)
 			} else {
-				anno = AnnotationCustom(coordinate: location, title: name, id: id, object: (object as PFObject))
+				anno = AnnotationCustom(coordinate: location, title: name, id: id!, object: (object as PFObject))
 			}
-			liveAnnotationIds[id] = anno
+			liveAnnotationIds[id!] = anno
         }
 		addAnnotations(liveAnnotationIds)
     }
@@ -249,7 +249,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			lblResponders.text = "0"
 		}
 		
-		lblTime.text = dateFormatter.stringFromDate(panicDetails.createdAt)
+		lblTime.text = dateFormatter.stringFromDate(panicDetails.createdAt!)
 		getAddress()
 		
 		if isResponding() == true {
@@ -278,8 +278,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	
 	func isResponding() -> Bool {
 		let responders = selectedVictim!["responders"] as! [String]
-		let currentUserObjectId = PFUser.currentUser().objectId
-		if find(responders, currentUserObjectId) != nil {
+		let currentUserObjectId = PFUser.currentUser()!.objectId
+		if find(responders, currentUserObjectId!) != nil {
 			return true
 		}
 		return false
@@ -329,21 +329,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	
 	@IBAction func respond(sender: AnyObject) {
 		if isResponding() == true {
-			selectedVictim!.removeObjectsInArray([PFUser.currentUser().objectId], forKey: "responders")
+			selectedVictim!.removeObjectsInArray([PFUser.currentUser()!.objectId!], forKey: "responders")
 			btnRespond.setTitle("Respond", forState: UIControlState.Normal)
 			btnRespond.backgroundColor = UIColor(red:0.18, green:0.8, blue:0.44, alpha:1)
 		} else {
-			selectedVictim!.addUniqueObject(PFUser.currentUser().objectId, forKey: "responders")
+			selectedVictim!.addUniqueObject(PFUser.currentUser()!.objectId!, forKey: "responders")
 			btnRespond.setTitle("Stop Responding", forState: UIControlState.Normal)
 			btnRespond.backgroundColor = UIColor(red:0.91, green:0.3, blue:0.24, alpha:1)
 		}
 		
 		selectedVictim!.saveInBackgroundWithBlock({
-			(result: Bool, error: NSError!) -> Void in
+			(result: Bool, error: NSError?) -> Void in
 			if result == true {
 				println("done")
 			} else if error != nil {
-				global.showAlert("Error becoming a responder", message: "\(error.localizedDescription)\nWill try again in a few seconds")
+				global.showAlert("Error becoming a responder", message: "\(error!.localizedDescription)\nWill try again in a few seconds")
 			}
 		})
 

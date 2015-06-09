@@ -59,13 +59,13 @@ class Global: UIViewController {
 	func getUserInformation() -> Bool {
 		
 		if PFUser.currentUser() != nil {
-			PFUser.currentUser().fetchInBackgroundWithBlock({
-				(object : PFObject!, error : NSError!) -> Void in
+			PFUser.currentUser()!.fetchInBackgroundWithBlock({
+				(object : PFObject?, error : NSError?) -> Void in
 				if error != nil {
 					println("getUserInformation - \(error)")
 				} else {
 					self.getGroups()
-					global.persistantSettings.setInteger(PFUser.currentUser()["numberOfGroups"] as! Int, forKey: "numberOfGroups")
+					global.persistantSettings.setInteger(PFUser.currentUser()!["numberOfGroups"] as! Int, forKey: "numberOfGroups")
 				}
 			})
 			
@@ -81,15 +81,15 @@ class Global: UIViewController {
 	
 	func getVictimInformation(victims : [PFUser : PFGeoPoint]) {
 		for (name, location) in victims {
-			if self.victimInformation[name.objectId] == nil && queryUsersBusy == false {
+			if self.victimInformation[name.objectId!] == nil && queryUsersBusy == false {
 				queryUsersBusy = true
-				queryUsers.getObjectInBackgroundWithId(name.objectId, block: {
-					(userObject : PFObject!, error : NSError!) -> Void in
+				queryUsers!.getObjectInBackgroundWithId(name.objectId!, block: {
+					(userObject : PFObject?, error : NSError?) -> Void in
 					if userObject != nil {
-						let victimUsername = userObject["username"] as! String
-						let victimName = userObject["name"] as! String
-						let victimCell = userObject["cellNumber"] as! String
-						self.victimInformation[name.objectId] = [victimUsername, victimName, victimCell]
+						let victimUsername = userObject!["username"] as! String
+						let victimName = userObject!["name"] as! String
+						let victimCell = userObject!["cellNumber"] as! String
+						self.victimInformation[name.objectId!] = [victimUsername, victimName, victimCell]
 					}
 					self.queryUsersBusy = false
 				})
@@ -104,7 +104,7 @@ class Global: UIViewController {
 			joinedGroups = persistantSettings.objectForKey("groups") as! [String]
 		}
 		
-		let user = PFUser.currentUser()
+		let user = PFUser.currentUser()!
 		if user["groups"] != nil {
 			joinedGroups = user["groups"] as! [String]
 		} else {
@@ -115,7 +115,7 @@ class Global: UIViewController {
 		for group in joinedGroups {
 			groupFormatted.append(group.lowercaseString.capitalizedString.stripCharactersInSet([" "]))
 		}
-		installation.setObject([], forKey: "channels")
+		installation.setObject([""], forKey: "channels")
 		installation.addUniqueObjectsFromArray(groupFormatted, forKey: "channels")
 		installation.saveInBackgroundWithBlock(nil)
 	}
@@ -123,14 +123,14 @@ class Global: UIViewController {
 	func getLocalHistory() {
 		panicHistoryLocal = []
 		var queryHistory = PFQuery(className: "Panics")
-		queryHistory.whereKey("user", equalTo: PFUser.currentUser())
+		queryHistory.whereKey("user", equalTo: PFUser.currentUser()!)
 		queryHistory.orderByDescending("createdAt")
 		queryHistory.includeKey("user")
 		queryHistory.limit = 50
 		queryHistory.findObjectsInBackgroundWithBlock({
-			(objects : [AnyObject]!, error : NSError!) -> Void in
+			(objects : [AnyObject]?, error : NSError?) -> Void in
 			if error == nil {
-				for objectRaw in objects {
+				for objectRaw in objects! {
 					let object = objectRaw as! PFObject
 					self.panicHistoryLocal.append(object)
 				}
@@ -166,21 +166,21 @@ class Global: UIViewController {
 		var incrementSubCountQuery = PFQuery(className: "Groups")
 		incrementSubCountQuery.whereKey("flatValue", equalTo: groupName.formatGroupForFlatValue())
 		incrementSubCountQuery.getFirstObjectInBackgroundWithBlock({
-			(object: PFObject!, error: NSError!) -> Void in
+			(object: PFObject?, error: NSError?) -> Void in
 			if object != nil {
 				if amount == 1 {
-					object.addUniqueObject(PFUser.currentUser().objectId, forKey: "subscriberObjects")
+					object!.addUniqueObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
 				} else {
-					object.removeObject(PFUser.currentUser().objectId, forKey: "subscriberObjects")
+					object!.removeObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
 				}
-				object.incrementKey("subscribers", byAmount: amount)
-				object.saveInBackgroundWithBlock(nil)
+				object!.incrementKey("subscribers", byAmount: amount)
+				object!.saveInBackgroundWithBlock(nil)
 			}
 		})
 	}
 	
 	func updateGroups() {
-		var user = PFUser.currentUser()
+		var user = PFUser.currentUser()!
 		user["groups"] = joinedGroups
 		user.saveInBackgroundWithBlock(nil)
 	}

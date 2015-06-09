@@ -56,20 +56,20 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
         let location = global.panicHistoryLocal[indexPath.row]["location"] as! PFGeoPoint
         
         dateFormatter.dateFormat = "dd MMMM yyyy"
-        
-        let dateString = dateFormatter.stringFromDate(dateStarted)
+		
+        let dateString = dateFormatter.stringFromDate(dateStarted!)
         
         dateFormatter.dateFormat = "HH:mm"
         
-        let startTimeString = dateFormatter.stringFromDate(dateStarted)
-        let endTimeString = dateFormatter.stringFromDate(dateEnded)
+        let startTimeString = dateFormatter.stringFromDate(dateStarted!)
+        let endTimeString = dateFormatter.stringFromDate(dateEnded!)
         
         var duration : String!
         
-        if round(abs(dateEnded.timeIntervalSinceDate(dateStarted))) < 60 {
+        if round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!))) < 60 {
             duration = "Less than 1 Min"
         } else {
-            let tempDurationString = NSString(format: "%.0f", round(abs(dateEnded.timeIntervalSinceDate(dateStarted)/60)))
+            let tempDurationString = NSString(format: "%.0f", round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!)/60)))
             duration = "\(tempDurationString) Mins"
         }
         

@@ -87,13 +87,13 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
         query.whereKey("flatValue", hasPrefix: searchBar.text.formatGroupForFlatValue())
         query.orderByDescending("name")
         query.findObjectsInBackgroundWithBlock({
-            (objects: [AnyObject]!, error: NSError!) -> Void in
+            (objects: [AnyObject]?, error: NSError?) -> Void in
             println("Running fetch")
-            if error == nil {
+            if error == nil && objects != nil {
                 println("Fetch returned something")
                 var tempGroupArray : [String] = []
                 self.groups = []
-                for groupRaw in objects {
+                for groupRaw in objects! {
                     var groupObject = groupRaw as! PFObject
                     var groupString : String = groupObject["name"] as! String
                     if groupObject["public"] as! Bool == false {
@@ -219,25 +219,28 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 			btnJoin.enabled = false
 			query.whereKey("flatValue", equalTo: searchBar.text.formatGroupForFlatValue())
 			query.findObjectsInBackgroundWithBlock({
-				(object : [AnyObject]!, error : NSError!) -> Void in
-				if object.count > 0 {
-					let pfObject = object[0] as! PFObject
-					dispatch_async(dispatch_get_main_queue(), {
-						let name = pfObject["name"] as! String
-						global.addGroup(name)
-						global.showAlert("Successful", message: "You have joined the group \(name)")
+				(object : [AnyObject]?, error : NSError?) -> Void in
+				if error == nil && object != nil {
+					if object!.count > 0 {
+						let pfObject = object?.first as! PFObject
+						dispatch_async(dispatch_get_main_queue(), {
+							let name = pfObject["name"] as! String
+							global.addGroup(name)
+							global.showAlert("Successful", message: "You have joined the group \(name)")
+							self.btnJoin.enabled = true
+							self.dismissViewControllerAnimated(true, completion: nil)
+						})
+					} else {
 						self.btnJoin.enabled = true
-						self.dismissViewControllerAnimated(true, completion: nil)
-					})
-				} else {
-					self.btnJoin.enabled = true
-					global.showAlert("", message: "The group '\(self.searchBar.text)' does not exist. Check the spelling or use the New tab to create it")
+						global.showAlert("", message: "The group '\(self.searchBar.text)' does not exist. Check the spelling or use the New tab to create it")
+					}
 				}
 			})
 			self.btnJoin.enabled = true
 		}
 	}
 	
+	// CHANGED
 	// Creates a new group
 	func createGroup() {
 		if checkIfAlreadyContainsGroup() == false {
@@ -251,13 +254,13 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 			var queryAddNewGroupCheckFlat = PFQuery(className: "Groups")
 			query.whereKey("flatValue", equalTo: searchBar.text.formatGroupForFlatValue())
 			query.findObjectsInBackgroundWithBlock({
-				(object : [AnyObject]!, error : NSError!) -> Void in
+				(object : [AnyObject]?, error : NSError?) -> Void in
 				if object != nil {
-					if object.count == 0 {
+					if object!.count == 0 {
 						var newGroupObject : PFObject = PFObject(className: "Groups")
 						newGroupObject["name"] = self.searchBar.text.lowercaseString.capitalizedString
 						newGroupObject["flatValue"] = self.searchBar.text.formatGroupForFlatValue()
-						newGroupObject["country"] = PFUser.currentUser()["country"] as! String
+						newGroupObject["country"] = PFUser.currentUser()!.objectForKey("country")
 						newGroupObject["admin"] = PFUser.currentUser()
 						if self.switchPrivate.on {
 							newGroupObject["public"] = false
@@ -265,7 +268,7 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 							newGroupObject["public"] = true
 						}
 						newGroupObject.saveInBackgroundWithBlock({
-							(result: Bool, error: NSError!) -> Void in
+							(result: Bool, error: NSError?) -> Void in
 							if result == true {
 								dispatch_async(dispatch_get_main_queue(), {
 									global.showAlert("Successful", message: "Group \(self.searchBar.text.lowercaseString.capitalizedString) created successfully. Please note - Private groups will not show up when someone searches for it. They will need to enter the groups name in the 'Private' tab and tap join.")
@@ -276,7 +279,7 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 									self.dismissViewControllerAnimated(true, completion: nil)
 								})
 							} else {
-								global.showAlert("Oops", message: error.localizedFailureReason!)
+								global.showAlert("Oops", message: error!.localizedFailureReason!)
 								self.btnJoin.enabled = true
 								//							self.searchBar.showsScopeBar = true
 								self.searchBar.sizeToFit()
@@ -284,9 +287,10 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 							}
 						})
 					} else {
-						let name = object[0]["name"] as! String
-						let country = object[0]["country"] as! String
-						let privateGroup = object[0]["public"] as! Bool
+						let pfObject = object?.first as! PFObject
+						let name = pfObject["name"] as! String
+						let country = pfObject["country"] as! String
+						let privateGroup = pfObject["public"] as! Bool
 						global.showAlert("Unseccessful", message: "Group '\(self.searchBar.text)' already exists\n\nName: \(name)\nCountry:\(country)\nPublic: \(privateGroup)")
 						self.btnJoin.enabled = true
 						//					self.searchBar.showsScopeBar = true

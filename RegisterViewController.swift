@@ -40,13 +40,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
             user["country"] = containerView.btnCountry.titleLabel?.text
 			user["email"] = containerView.txtEmail.text
 			user["numberOfGroups"] = 1
-            user.signUpInBackgroundWithBlock {(succeeded: Bool, error: NSError!) -> Void in
+            user.signUpInBackgroundWithBlock {
+				(succeeded: Bool, error: NSError?) -> Void in
                 if (error != nil) {
-                    if error.code == 202 {
+                    if error!.code == 202 {
                         global.showAlert("Unsuccessful", message: "Username \(self.containerView.txtUsername.text) already taken")
                         self.containerView.becomeFirstResponder()
                     } else {
-                        global.showAlert("Unsuccessful", message: error.description)
+                        global.showAlert("Unsuccessful", message: error!.description)
                     }
                     println(error)
 					self.spinner.stopAnimating()

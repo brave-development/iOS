@@ -32,7 +32,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.whiteColor()
         
-        let user = PFUser.currentUser()
+        let user = PFUser.currentUser()!
         
         if user["country"] != nil {
             btnCountry.setTitle((user["country"] as! String), forState: UIControlState.Normal)
@@ -42,7 +42,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
         if user["email"] != nil {
             txtEmail.text = user["email"] as! String
         }
-        btnCountry.setTitle((PFUser.currentUser()["country"] as! String), forState: UIControlState.Normal)
+        btnCountry.setTitle((user["country"] as! String), forState: UIControlState.Normal)
         txtPassword.text = ""
         txtPassword.text = ""
         txtPasswordConfirm.enabled = false
@@ -56,8 +56,8 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     }
     
 	override func viewDidAppear(animated: Bool) {
-		if PFUser.currentUser()["country"] != nil {
-			if btnCountry.titleLabel?.text != (PFUser.currentUser()["country"] as! String) {
+		if PFUser.currentUser()!["country"] != nil {
+			if btnCountry.titleLabel?.text != (PFUser.currentUser()!["country"] as! String) {
 				changed = true
 			}
 		}
@@ -66,7 +66,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     func didSelectCountry(country: String) {
         println("Got selected country")
         btnCountry.setTitle(country, forState: UIControlState.Normal)
-        if country != PFUser.currentUser()["country"] as! String {
+        if country != PFUser.currentUser()!["country"] as! String {
             changed = true
         }       
     }
@@ -151,20 +151,22 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
             saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
                 
                 var queryDeleteAccount = PFQuery(className: "Panics")
-                queryDeleteAccount.whereKey("user", equalTo: PFUser.currentUser())
+                queryDeleteAccount.whereKey("user", equalTo: PFUser.currentUser()!)
                 queryDeleteAccount.findObjectsInBackgroundWithBlock({
-                    (objects : [AnyObject]!, error : NSError!) -> Void in
-                    if objects.count > 0 {
-                        PFObject.deleteAllInBackground(objects, block: {
-                            (result : Bool, error : NSError!) -> Void in
-                            if result == true {
-                                PFUser.currentUser().deleteInBackgroundWithBlock(nil)
-                                self.tabbarViewController.back(self.tabbarViewController.btnLogout)
-                                global.showAlert("", message: "Thanks for using Panic. Goodbye.")
-                            }
-                        })
-                    }
-                })
+					(objects : [AnyObject]?, error : NSError?) -> Void in
+					if objects != nil {
+						if objects!.count > 0 {
+							PFObject.deleteAllInBackground(objects!, block: {
+								(result : Bool, error : NSError?) -> Void in
+								if result == true {
+									PFUser.currentUser()!.deleteInBackgroundWithBlock(nil)
+									self.tabbarViewController.back(self.tabbarViewController.btnLogout)
+									global.showAlert("", message: "Thanks for using Panic. Goodbye.")
+								}
+							})
+						}
+					}
+				})
             }))
             saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in
             }))
@@ -253,18 +255,18 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
         if changed == true {
             var saveAlert = UIAlertController(title: "Save?", message: "Do you want to save changes?", preferredStyle: UIAlertControllerStyle.Alert)
             saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
-                var user = PFUser.currentUser()
+                var user = PFUser.currentUser()!
                 if self.newPassword != nil { user.password = self.newPassword! }
                 user["name"] = self.txtName.text
                 user["cellNumber"] = self.txtCell.text
                 user["country"] = self.btnCountry.titleLabel?.text
                 if !self.txtEmail.text.isEmpty { user["email"] = self.txtEmail.text }
-                PFUser.currentUser().saveInBackgroundWithBlock({
-                    (result : Bool, error : NSError!) -> Void in
+                user.saveInBackgroundWithBlock({
+                    (result : Bool, error : NSError?) -> Void in
                     if result == true {
                         global.showAlert("", message: "Settings updated")
                     } else if error?.localizedDescription != nil {
-                        global.showAlert("", message: error.localizedDescription)
+                        global.showAlert("", message: error!.localizedDescription)
                     } else {
                         global.showAlert("", message: "There was an error updating you settings")
                     }

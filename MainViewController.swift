@@ -22,7 +22,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 	
     var tabbarViewController : TabBarViewController!
     var manager : CLLocationManager!
-    var pushQuery : PFQuery = PFInstallation.query()
+    var pushQuery : PFQuery = PFInstallation.query()!
     var pendingPushNotifications = false // Tracks the button status. Dont send push if Panic isnt active.
     var allowAddToPushQue = true // Tracks if a push has been sent. Should not allow another push to be qued if false.
 	var locationPermission = false
@@ -188,16 +188,16 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 					allowAddToPushQue = false
 					for group in global.joinedGroups {
 						var push = PFPush()
-						let userName = PFUser.currentUser()["name"] as! String
-						let userNumber = PFUser.currentUser()["cellNumber"] as! String
+						let userName = PFUser.currentUser()!["name"] as! String
+						let userNumber = PFUser.currentUser()!["cellNumber"] as! String
 						var tempQuery = PFInstallation.query()
-						tempQuery.whereKey("channels", equalTo: group.formatGroupForChannel())
-						tempQuery.whereKey("installationId", notEqualTo: PFInstallation.currentInstallation().installationId)
+						tempQuery!.whereKey("channels", equalTo: group.formatGroupForChannel())
+						tempQuery!.whereKey("installationId", notEqualTo: PFInstallation.currentInstallation().installationId)
 						push.setQuery(tempQuery)
 						push.expireAfterTimeInterval(18000) // 5 Hours
 						push.setData(["alert" : "\(userName) needs help! Contact them on \(userNumber) or view their location in the app.", "badge" : "Increment", "sound" : "default", "lat" : manager.location.coordinate.latitude, "long" : manager.location.coordinate.longitude])
 						push.sendPushInBackgroundWithBlock({
-							(result : Bool, error : NSError!) -> Void in
+							(result : Bool, error : NSError?) -> Void in
 							if result == true {
 								println("Push sent to group \(group.formatGroupForChannel())")
 							} else if error != nil {

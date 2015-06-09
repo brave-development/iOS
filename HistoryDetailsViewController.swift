@@ -48,19 +48,19 @@ class HistoryDetailsViewController: UIViewController, CLLocationManagerDelegate,
 	
 	override func viewDidAppear(animated: Bool) {
 		dateFormatter.dateFormat = "MMM dd, yyyy"
-		lblDate.text = dateFormatter.stringFromDate(placemarkObject.createdAt as NSDate)
+		lblDate.text = dateFormatter.stringFromDate(placemarkObject.createdAt! as NSDate)
 		
 		executeToggleDetails() 
 		
 		dateFormatter.dateFormat = "HH:mm"
-		lblTimes.text = "\(dateFormatter.stringFromDate(placemarkObject.createdAt as NSDate)) - \(dateFormatter.stringFromDate(placemarkObject.updatedAt as NSDate))"
+		lblTimes.text = "\(dateFormatter.stringFromDate(placemarkObject.createdAt! as NSDate)) - \(dateFormatter.stringFromDate(placemarkObject.updatedAt! as NSDate))"
 		let userObject : PFUser = placemarkObject["user"] as! PFUser
 		lblName.text = (userObject["name"] as! String)
 		lblContact.text = (userObject["cellNumber"] as! String)
 		let PFLocation = placemarkObject["location"] as! PFGeoPoint
 		let location = CLLocation(latitude: PFLocation.latitude, longitude: PFLocation.longitude)
 		
-		if userObject["name"] as! String == PFUser.currentUser()["name"] as! String {
+		if userObject["name"] as! String == PFUser.currentUser()!["name"] as! String {
 			btnReport.hidden = true
 		}
 		
@@ -68,7 +68,7 @@ class HistoryDetailsViewController: UIViewController, CLLocationManagerDelegate,
 		let anno = MKPointAnnotation()
 		anno.coordinate = CLLocationCoordinate2DMake(PFLocation.latitude, PFLocation.longitude)
 		anno.title = (userObject["name"] as! String) // Name
-		anno.subtitle = dateFormatter.stringFromDate(placemarkObject.createdAt as NSDate) // Cell
+		anno.subtitle = dateFormatter.stringFromDate(placemarkObject.createdAt! as NSDate) // Cell
 		map.addAnnotation(anno)
 		
 		// Getting address
@@ -134,7 +134,7 @@ class HistoryDetailsViewController: UIViewController, CLLocationManagerDelegate,
 	@IBAction func report(sender: AnyObject) {
 		mail = MFMailComposeViewController()
 		if(MFMailComposeViewController.canSendMail()) {
-			let currentUser = PFUser.currentUser()["name"] as! String
+			let currentUser = PFUser.currentUser()!["name"] as! String
 			mail.mailComposeDelegate = self
 			mail.setSubject("Panic - Report User")
 			mail.setToRecipients(["byroncoetsee@gmail.com"])
@@ -190,6 +190,7 @@ class HistoryDetailsViewController: UIViewController, CLLocationManagerDelegate,
 //		} else {
 //			return nil
 //		}
+	// remove this line... literally
 //	}
 	
 	func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!)

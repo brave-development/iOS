@@ -66,7 +66,7 @@ class PublicHistoryViewController: UIViewController, UITableViewDelegate, UIGest
         cell.backgroundColor = UIColor.clearColor()
 		
         if global.panicHistoryPublic.count > 0 {
-            let date = dateFormatter.stringFromDate(global.panicHistoryPublic[indexPath.row].createdAt)
+            let date = dateFormatter.stringFromDate(global.panicHistoryPublic[indexPath.row].createdAt!)
             let userObject : PFUser = global.panicHistoryPublic[indexPath.row]["user"] as! PFUser
             let name = userObject["name"] as! String
             let number = userObject["cellNumber"] as! String
@@ -100,10 +100,10 @@ class PublicHistoryViewController: UIViewController, UITableViewDelegate, UIGest
         queryHistory.limit = 20
         queryHistory.includeKey("user")
         queryHistory.findObjectsInBackgroundWithBlock({
-            (objects : [AnyObject]!, error : NSError!) -> Void in
+            (objects : [AnyObject]?, error : NSError?) -> Void in
             if error == nil {
 				global.panicHistoryPublic = []
-                for objectRaw in objects {
+                for objectRaw in objects! {
                     let object = objectRaw as! PFObject
                     global.panicHistoryPublic.append(object)
                 }
