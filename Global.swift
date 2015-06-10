@@ -34,6 +34,7 @@ extension String {
 class Global: UIViewController {
 	
 	var joinedGroups : [String] = [] // Array of groups the user belongs to
+	var joinedGroupsObject: [PFObject] = []
 	var victimInformation : [String : [String]] = [:]
 	var persistantSettings : NSUserDefaults = NSUserDefaults.standardUserDefaults()
 	var installation : PFInstallation = PFInstallation.currentInstallation()
@@ -115,9 +116,29 @@ class Global: UIViewController {
 		for group in joinedGroups {
 			groupFormatted.append(group.lowercaseString.capitalizedString.stripCharactersInSet([" "]))
 		}
+		getGroupDetails()
 		installation.setObject([""], forKey: "channels")
 		installation.addUniqueObjectsFromArray(groupFormatted, forKey: "channels")
 		installation.saveInBackgroundWithBlock(nil)
+	}
+	
+	func getGroupDetails() {
+		for group in joinedGroups {
+			var queryHistory = PFQuery(className: "Groups")
+			queryHistory.whereKey("flatValue", equalTo: group.formatGroupForFlatValue())
+			queryHistory.findObjectsInBackgroundWithBlock({
+				(objects : [AnyObject]?, error : NSError?) -> Void in
+				if error == nil {
+					for objectRaw in objects! {
+						let object = objectRaw as! PFObject
+						self.joinedGroupsObject.append(object)
+					}
+				} else {
+					println(error)
+				}
+				println("DONE getting local history")
+			})
+		}
 	}
 	
 	func getLocalHistory() {

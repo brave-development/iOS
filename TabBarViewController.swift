@@ -134,7 +134,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 		tutorial.save()
 		amAtHome = false
 		closeSidebar()
-		performSegueWithIdentifier("customSegueGroup", sender: sender)
+		performSegueWithIdentifier("customSegueGroups", sender: sender)
 	}
 	
 	@IBAction func history(sender: AnyObject) {

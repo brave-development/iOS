@@ -12,8 +12,15 @@ import Social
 
 class GroupsViewController: UIViewController, UITableViewDelegate {
 	
+	var total : Int = 0
+	var privateTotal : Int = 0
+	var publicTotal : Int = 0
+	
 	// Controls
 	
+	@IBOutlet weak var lblPrivateTotal: UILabel!
+	@IBOutlet weak var lblTotal: UILabel!
+	@IBOutlet weak var lblPublicTotal: UILabel!
     @IBOutlet weak var tblGroups: UITableView!
 	@IBOutlet weak var btnAdd: UIButton!
 	@IBOutlet weak var lblDescription: UILabel!
@@ -48,6 +55,10 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 			viewTutorial.hidden = false
 			animateTutorial()
 		}
+		
+		lblPrivateTotal.text = "\(privateTotal)"
+		lblPrivateTotal.text = "\(privateTotal)"
+		println(privateTotal + publicTotal)
 	}
     
     @IBAction func addGroup(sender: AnyObject) {
@@ -136,13 +147,22 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell(style: UITableViewCellStyle.Default, reuseIdentifier: "standard")
-        cell.backgroundColor = UIColor.clearColor()
-		cell.selectionStyle = UITableViewCellSelectionStyle.None
-        cell.textLabel?.textColor = UIColor.whiteColor()
-        cell.textLabel?.font = UIFont(name: "Heiti SC light", size: 16)
-        cell.textLabel?.text = global.joinedGroups[indexPath.row]
-        
+		let group = global.joinedGroupsObject[indexPath.row]
+		let subsCount = (group["subscriberObjects"] as? [String])!.count
+		
+		var cell = tblGroups.dequeueReusableCellWithIdentifier("NewCell", forIndexPath: indexPath) as! GroupsTableViewCell
+		cell.lblName.text = group["name"] as? String
+		cell.lblCountry.text = group["country"] as? String
+		cell.lblSubs.text = "\(subsCount)"
+		
+		if (group["public"] as? Bool) == true {
+			publicTotal += subsCount
+			cell.viewBar.backgroundColor = UIColor(red: 40/255, green: 185/255, blue: 38/255, alpha: 1)
+		} else {
+			privateTotal += subsCount
+			cell.viewBar.backgroundColor = UIColor(red: 14/255, green: 142/255, blue: 181/255, alpha: 1)
+		}
+		
         return cell
     }
     
@@ -197,6 +217,10 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 						})
 					})
 		})
+	}
+	
+	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return 80
 	}
 	
     func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
