@@ -201,12 +201,18 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
     
 	@IBAction func join(sender: AnyObject) {
 		if count(searchBar.text) > 2 {
-			if checkIfAlreadyContainsGroup() == false {
-				if searchBar.selectedScopeButtonIndex == 1 {
-					joinPrivateGroup()
-				} else if searchBar.selectedScopeButtonIndex == 2 {
-					createGroup()
+			let index = advance(searchBar.text.startIndex, 1)
+			let firstLetter = searchBar.text.substringToIndex(index)
+			if (firstLetter.stringByTrimmingCharactersInSet(NSCharacterSet.letterCharacterSet()) == "") {
+				if checkIfAlreadyContainsGroup() == false {
+					if searchBar.selectedScopeButtonIndex == 1 {
+						joinPrivateGroup()
+					} else if searchBar.selectedScopeButtonIndex == 2 {
+						createGroup()
+					}
 				}
+			} else {
+				global.showAlert("", message: "Group must begin with a letter")
 			}
 		} else {
 			global.showAlert("", message: "Groups require 3 or more characters in their name")

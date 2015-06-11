@@ -115,14 +115,16 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 	}
 	
     func manageLogin() {
-        global.getGroups()
-        global.getLocalHistory()
+//        global.getLocalHistory()
+//		global.getGroups()
         if global.getUserInformation() == true {
             var storyboard = UIStoryboard(name: "Main", bundle: nil)
             var vc: TabBarViewController = storyboard.instantiateViewControllerWithIdentifier("mainViewController") as! TabBarViewController
             vc.modalTransitionStyle = UIModalTransitionStyle.FlipHorizontal
             self.presentViewController(vc, animated: true, completion: nil)
-        }
+		} else {
+			// global.getGroups()
+		}
     }
     
     func startLoading () {

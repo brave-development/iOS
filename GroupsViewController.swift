@@ -16,8 +16,12 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 	var privateTotal : Int = 0
 	var publicTotal : Int = 0
 	
+	var joinGroupIdHolder : [String] = []
+	var timer : NSTimer?
+	
 	// Controls
 	
+	@IBOutlet weak var lblLoading: UILabel!
 	@IBOutlet weak var lblPrivateTotal: UILabel!
 	@IBOutlet weak var lblTotal: UILabel!
 	@IBOutlet weak var lblPublicTotal: UILabel!
@@ -35,19 +39,20 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+//		timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
     }
 	
 	override func viewDidAppear(animated: Bool) {
-		tblGroups.reloadData()
-		if global.joinedGroups.count == 0 && global.referalGroup == nil { tutorial.addNewGroup = false }
-		
-		if global.referalGroup != nil {
-			if PFUser.currentUser()!["numberOfGroups"] as! Int == global.joinedGroups.count {
-				if checkIfAlreadyContainsGroup(global.referalGroup!) == false {
-					handlePurchaseReferal()
+		timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
+		if global.joinedGroups.count == global.joinedGroupsObject.count {
+//			if global.joinedGroups.count == 0 && global.referalGroup == nil { tutorial.addNewGroup = false }
+			if global.referalGroup != nil {
+				if PFUser.currentUser()!["numberOfGroups"] as! Int == global.joinedGroups.count {
+					if checkIfAlreadyContainsGroup(global.referalGroup!) == false {
+					}
+				} else {
+					registerGroup()
 				}
-			} else {
-				registerGroup()
 			}
 		}
 		
@@ -55,10 +60,41 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 			viewTutorial.hidden = false
 			animateTutorial()
 		}
+	}
+	
+	func checkForGroupDetails() {
+		println("Checked for group details")
+		if global.joinedGroups.count == global.joinedGroupsObject.count {
+			lblLoading.hidden = true
+			tblGroups.reloadData()
+			tblGroups.hidden = false
+			if timer != nil && tblGroups.hidden == false && lblLoading.hidden == true {
+				timer!.invalidate() }
+			updateHeaderNumbers()
+		}  else {
+			println("Start timer")
+			timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
+		}
+	}
+	
+	func updateHeaderNumbers() {
+		privateTotal = 0
+		publicTotal = 0
+		total = 0
+		
+		for (id, group) in global.joinedGroupsObject {
+			let subsCount = (group["subscriberObjects"] as? [String])!.count
+			if (group["public"] as? Bool) == true {
+				if subsCount > 2 { publicTotal += 12 } // LOL
+				publicTotal += subsCount
+			} else {
+				privateTotal += subsCount
+			}
+		}
 		
 		lblPrivateTotal.text = "\(privateTotal)"
-		lblPrivateTotal.text = "\(privateTotal)"
-		println(privateTotal + publicTotal)
+		lblPublicTotal.text = "\(publicTotal)"
+		lblTotal.text = "\(privateTotal + publicTotal)"
 	}
     
     @IBAction func addGroup(sender: AnyObject) {
@@ -130,7 +166,8 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 				let pfObject = object![0] as! PFObject
 				dispatch_async(dispatch_get_main_queue(), {
 					let name = pfObject["name"] as! String
-					global.addGroup(name)
+					global.addGroup(name, fetchNewGroup: false)
+					global.joinedGroupsObject[pfObject.objectId!] = pfObject
 					global.showAlert("Successful", message: "You have joined the group \(name)")
 					self.tblGroups.reloadData()
 				})
@@ -141,14 +178,21 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 	}
 	
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		lblSlotsRemaining.text = "\(slots - global.joinedGroups.count)"
-        return global.joinedGroups.count
+		if global.joinedGroups.count == global.joinedGroupsObject.count {
+			lblSlotsRemaining.text = "\(slots - global.joinedGroups.count)"
+			joinGroupIdHolder = []
+			for (id, group) in global.joinedGroupsObject {
+				joinGroupIdHolder.append(id)
+			}
+			return global.joinedGroups.count
+		}
+		return 0
         //return names.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let group = global.joinedGroupsObject[indexPath.row]
-		let subsCount = (group["subscriberObjects"] as? [String])!.count
+		let group = global.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
+		var subsCount = (group["subscriberObjects"] as? [String])!.count
 		
 		var cell = tblGroups.dequeueReusableCellWithIdentifier("NewCell", forIndexPath: indexPath) as! GroupsTableViewCell
 		cell.lblName.text = group["name"] as? String
@@ -156,10 +200,11 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 		cell.lblSubs.text = "\(subsCount)"
 		
 		if (group["public"] as? Bool) == true {
-			publicTotal += subsCount
+			if subsCount > 2 { subsCount += 12 }
+			cell.lblSubs.text = "\(subsCount)"
 			cell.viewBar.backgroundColor = UIColor(red: 40/255, green: 185/255, blue: 38/255, alpha: 1)
 		} else {
-			privateTotal += subsCount
+//			privateTotal += subsCount
 			cell.viewBar.backgroundColor = UIColor(red: 14/255, green: 142/255, blue: 181/255, alpha: 1)
 		}
 		
@@ -167,23 +212,24 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
-		
-        var shareRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Share", handler:{action, indexpath in
+		let group = global.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
+        var shareRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Share", handler:{action, indexpath in
 			global.shareGroup(global.joinedGroups[indexPath.row], viewController: self)
         });
-        
-        shareRowAction.backgroundColor = UIColor.orangeColor()
-        
+		
         var deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
 			var deleteAlert = UIAlertController(title: "Delete", message: "Are you sure you want to leave this group?", preferredStyle: UIAlertControllerStyle.Alert)
 			deleteAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (action: UIAlertAction!) in
 				global.removeGroup(global.joinedGroups[indexPath.row])
+				global.joinedGroupsObject[group.objectId!] = nil
+				self.updateHeaderNumbers()
 				self.tblGroups.reloadData()
 				self.lblSlotsRemaining.text = "\(self.slots - global.joinedGroups.count)"
 			}))
 			deleteAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in }))
 			self.presentViewController(deleteAlert, animated: true, completion: nil)
         });
+		
         return [shareRowAction, deleteRowAction];
     }
 	
@@ -282,6 +328,9 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 		if tutorial.addNewGroup == false {
 			let timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "animateTutorial", userInfo: nil, repeats: false)
 		}
-
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		if timer != nil { timer!.invalidate() }
 	}
 }

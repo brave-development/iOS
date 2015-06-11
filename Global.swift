@@ -34,7 +34,7 @@ extension String {
 class Global: UIViewController {
 	
 	var joinedGroups : [String] = [] // Array of groups the user belongs to
-	var joinedGroupsObject: [PFObject] = []
+	var joinedGroupsObject: [String : PFObject] = [:]
 	var victimInformation : [String : [String]] = [:]
 	var persistantSettings : NSUserDefaults = NSUserDefaults.standardUserDefaults()
 	var installation : PFInstallation = PFInstallation.currentInstallation()
@@ -65,7 +65,8 @@ class Global: UIViewController {
 				if error != nil {
 					println("getUserInformation - \(error)")
 				} else {
-					self.getGroups()
+					global.getLocalHistory()
+					global.getGroups()
 					global.persistantSettings.setInteger(PFUser.currentUser()!["numberOfGroups"] as! Int, forKey: "numberOfGroups")
 				}
 			})
@@ -123,7 +124,9 @@ class Global: UIViewController {
 	}
 	
 	func getGroupDetails() {
+		println("RAN getGroupDetails... Shouldnt happen?")
 		for group in joinedGroups {
+			println("Running for loop again for some reason")
 			var queryHistory = PFQuery(className: "Groups")
 			queryHistory.whereKey("flatValue", equalTo: group.formatGroupForFlatValue())
 			queryHistory.findObjectsInBackgroundWithBlock({
@@ -131,12 +134,11 @@ class Global: UIViewController {
 				if error == nil {
 					for objectRaw in objects! {
 						let object = objectRaw as! PFObject
-						self.joinedGroupsObject.append(object)
+						self.joinedGroupsObject[object.objectId!] = object
 					}
 				} else {
 					println(error)
 				}
-				println("DONE getting local history")
 			})
 		}
 	}
@@ -162,11 +164,11 @@ class Global: UIViewController {
 		})
 	}
 	
-	func addGroup(groupName : String) {
+	func addGroup(groupName : String, fetchNewGroup : Bool = true) {
 		joinedGroups.append(groupName)
 		persistantSettings.setObject(joinedGroups, forKey: "groups")
 		persistantSettings.synchronize()
-		updateSubs(groupName, amount: 1)
+		updateSubs(groupName, amount: 1, fetchNewGroup: fetchNewGroup)
 		updateGroups()
 		installation.addUniqueObject(groupName.lowercaseString.capitalizedString.stripCharactersInSet([" "]), forKey: "channels")
 		installation.saveInBackgroundWithBlock(nil)
@@ -177,22 +179,26 @@ class Global: UIViewController {
 		joinedGroups.removeAtIndex(find(joinedGroups, groupName)!)
 		persistantSettings.setObject(joinedGroups, forKey: "groups")
 		persistantSettings.synchronize()
-		updateSubs(groupName, amount: -1)
+		updateSubs(groupName, amount: -1, fetchNewGroup : false)
 		updateGroups()
 		installation.removeObject(groupName.lowercaseString.capitalizedString.stripCharactersInSet([" "]), forKey: "channels")
 		installation.saveInBackgroundWithBlock(nil)
 	}
 	
-	func updateSubs(groupName: String, amount: Int) {
+	func updateSubs(groupName: String, amount: Int, fetchNewGroup : Bool) {
 		var incrementSubCountQuery = PFQuery(className: "Groups")
 		incrementSubCountQuery.whereKey("flatValue", equalTo: groupName.formatGroupForFlatValue())
 		incrementSubCountQuery.getFirstObjectInBackgroundWithBlock({
 			(object: PFObject?, error: NSError?) -> Void in
 			if object != nil {
 				if amount == 1 {
+					if fetchNewGroup == true {
+						self.joinedGroupsObject[object!.objectId!] = object!
+					}
 					object!.addUniqueObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
 				} else {
 					object!.removeObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
+//					self.joinedGroupsObject[object!.objectId!] = nil
 				}
 				object!.incrementKey("subscribers", byAmount: amount)
 				object!.saveInBackgroundWithBlock(nil)

@@ -1080,8 +1080,8 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background.png" translatesAutoresizingMaskIntoConstraints="NO" id="0of-h2-rE5">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wfV-nn-XAM">
-                                <rect key="frame" x="0.0" y="200" width="320" height="321"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wfV-nn-XAM">
+                                <rect key="frame" x="0.0" y="451" width="320" height="70"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewCell" rowHeight="80" id="OaQ-SS-5SJ" customClass="GroupsTableViewCell" customModule="Panic" customModuleProvider="target">
@@ -1340,6 +1340,12 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0p1-UK-Kn5">
+                                <rect key="frame" x="116" y="225" width="88" height="24"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -1364,11 +1370,13 @@
                             <constraint firstItem="KOY-WX-fgO" firstAttribute="top" secondItem="S7v-xg-9gG" secondAttribute="bottom" constant="70" id="NTa-I1-Tut"/>
                             <constraint firstItem="x7M-JQ-Xkc" firstAttribute="leading" secondItem="Gzk-XD-32m" secondAttribute="leading" id="R7b-Hw-V2D"/>
                             <constraint firstItem="bxb-fG-FRu" firstAttribute="top" secondItem="rMo-XZ-8Kq" secondAttribute="bottom" constant="13" id="UOe-CG-PSs"/>
-                            <constraint firstItem="wfV-nn-XAM" firstAttribute="top" secondItem="hK5-ZZ-peJ" secondAttribute="bottom" id="UZX-eT-YQt"/>
+                            <constraint firstItem="wfV-nn-XAM" firstAttribute="top" secondItem="hK5-ZZ-peJ" secondAttribute="bottom" constant="5" id="UZX-eT-YQt"/>
                             <constraint firstAttribute="bottom" secondItem="x7M-JQ-Xkc" secondAttribute="bottom" id="Vxa-pg-r72"/>
+                            <constraint firstAttribute="centerX" secondItem="0p1-UK-Kn5" secondAttribute="centerX" id="XHb-as-ztP"/>
                             <constraint firstItem="nCC-J1-ghm" firstAttribute="centerX" secondItem="KOY-WX-fgO" secondAttribute="centerX" id="YAu-wJ-CEG"/>
                             <constraint firstAttribute="trailing" secondItem="0of-h2-rE5" secondAttribute="trailing" id="c7b-mB-1vK"/>
                             <constraint firstAttribute="trailing" secondItem="hK5-ZZ-peJ" secondAttribute="trailing" id="cBw-ja-Oz4"/>
+                            <constraint firstItem="0p1-UK-Kn5" firstAttribute="top" secondItem="hK5-ZZ-peJ" secondAttribute="bottom" constant="25" id="cWT-2V-b5l"/>
                             <constraint firstItem="rwy-uM-8rT" firstAttribute="top" secondItem="x7M-JQ-Xkc" secondAttribute="bottom" id="d7y-eM-bwV"/>
                             <constraint firstItem="0of-h2-rE5" firstAttribute="top" secondItem="Gzk-XD-32m" secondAttribute="top" id="fWU-W6-AbK"/>
                             <constraint firstAttribute="centerX" secondItem="p6D-hL-Ts8" secondAttribute="centerX" constant="72" id="fzQ-Pi-BLV"/>
@@ -1387,8 +1395,8 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="CoK-wz-pCg"/>
-                                <exclude reference="GJk-eP-TQV"/>
                                 <exclude reference="nUz-0u-igQ"/>
+                                <exclude reference="GJk-eP-TQV"/>
                                 <exclude reference="4rU-MS-qSi"/>
                                 <exclude reference="d7y-eM-bwV"/>
                             </mask>
@@ -1399,6 +1407,7 @@
                         <outlet property="btnAdd" destination="rwy-uM-8rT" id="Jzd-DS-aCt"/>
                         <outlet property="imageTap" destination="0lz-KN-y0M" id="HsU-mR-lMt"/>
                         <outlet property="lblDescription" destination="kck-xU-vft" id="pPR-Q9-E7I"/>
+                        <outlet property="lblLoading" destination="0p1-UK-Kn5" id="SFP-KO-hXD"/>
                         <outlet property="lblPrivateTotal" destination="p6D-hL-Ts8" id="UiQ-q8-qdq"/>
                         <outlet property="lblPublicTotal" destination="Klp-xu-tyJ" id="tcK-M2-3Rg"/>
                         <outlet property="lblSlotsRemaining" destination="rMo-XZ-8Kq" id="7fF-9a-7or"/>
