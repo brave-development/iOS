@@ -39,19 +39,18 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//		timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
     }
 	
 	override func viewDidAppear(animated: Bool) {
-		timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
-		if global.joinedGroups.count == global.joinedGroupsObject.count {
-//			if global.joinedGroups.count == 0 && global.referalGroup == nil { tutorial.addNewGroup = false }
-			if global.referalGroup != nil {
-				if PFUser.currentUser()!["numberOfGroups"] as! Int == global.joinedGroups.count {
-					if checkIfAlreadyContainsGroup(global.referalGroup!) == false {
+		checkForGroupDetails()
+		if groupsHandler.gotGroupDetails {
+			if groupsHandler.referalGroup != nil {
+				if PFUser.currentUser()!["numberOfGroups"] as! Int == groupsHandler.joinedGroups.count {
+					if checkIfAlreadyContainsGroup(groupsHandler.referalGroup!) == false {
+						registerGroup()
 					}
 				} else {
-					registerGroup()
+					
 				}
 			}
 		}
@@ -64,7 +63,7 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 	
 	func checkForGroupDetails() {
 		println("Checked for group details")
-		if global.joinedGroups.count == global.joinedGroupsObject.count {
+		if groupsHandler.gotGroupDetails {
 			lblLoading.hidden = true
 			tblGroups.reloadData()
 			tblGroups.hidden = false
@@ -73,6 +72,7 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 			updateHeaderNumbers()
 		}  else {
 			println("Start timer")
+			lblLoading.hidden = false
 			timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
 		}
 	}
@@ -82,8 +82,11 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 		publicTotal = 0
 		total = 0
 		
-		for (id, group) in global.joinedGroupsObject {
-			let subsCount = (group["subscriberObjects"] as? [String])!.count
+		for (id, group) in groupsHandler.joinedGroupsObject {
+			var subsCount = 1
+			if group["subscriberObjects"] != nil {
+				subsCount = (group["subscriberObjects"] as? [String])!.count
+			}
 			if (group["public"] as? Bool) == true {
 				if subsCount > 2 { publicTotal += 12 } // LOL
 				publicTotal += subsCount
@@ -110,9 +113,9 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 		}
 		
 		if PFUser.currentUser()!["numberOfGroups"] != nil {
-			if PFUser.currentUser()!["numberOfGroups"] as! Int == global.joinedGroups.count {
+			if PFUser.currentUser()!["numberOfGroups"] as! Int == groupsHandler.joinedGroups.count {
 				handlePurchaseReferal()
-			} else if PFUser.currentUser()!["numberOfGroups"] as! Int > global.joinedGroups.count {
+			} else if PFUser.currentUser()!["numberOfGroups"] as! Int > groupsHandler.joinedGroups.count {
 				var storyboard = UIStoryboard(name: "Main", bundle: nil)
 				var vc: AddNewGroupViewController = storyboard.instantiateViewControllerWithIdentifier("addNewGroupViewController") as! AddNewGroupViewController
 				self.presentViewController(vc, animated: true, completion: nil)
@@ -134,13 +137,15 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 					NSLog("%s", "BOUGHT GROUP") /// =====
 					println("BOUGHT ADD GROUP")
 					++self.slots
-					global.shareGroup(global.referalGroup!, viewController: self)
 					global.persistantSettings.setInteger(self.slots, forKey: "numberOfGroups")
 					global.persistantSettings.synchronize()
-					PFUser.currentUser()!["numberOfGroups"] = global.joinedGroups.count + 1
+					PFUser.currentUser()!["numberOfGroups"] = groupsHandler.joinedGroups.count + 1
 					PFUser.currentUser()!.saveEventually(nil)
 					
-					self.registerGroup()
+					if groupsHandler.referalGroup != nil {
+						groupsHandler.shareGroup(groupsHandler.referalGroup!, viewController: self)
+						self.registerGroup()
+					}
 					
 				} else {
 					NSLog("%s", "\(error)") /// ========
@@ -159,39 +164,39 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 	
 	func registerGroup() {
 		var query = PFQuery(className: "Groups")
-		query.whereKey("flatValue", equalTo: global.referalGroup!.formatGroupForFlatValue())
+		query.whereKey("flatValue", equalTo: groupsHandler.referalGroup!.formatGroupForFlatValue())
 		query.findObjectsInBackgroundWithBlock({
 			(object : [AnyObject]?, error : NSError?) -> Void in
 			if object!.count > 0 {
 				let pfObject = object![0] as! PFObject
 				dispatch_async(dispatch_get_main_queue(), {
 					let name = pfObject["name"] as! String
-					global.addGroup(name, fetchNewGroup: false)
-					global.joinedGroupsObject[pfObject.objectId!] = pfObject
+					groupsHandler.addGroup(name)
+					groupsHandler.joinedGroupsObject[pfObject["flatValue"] as! String] = pfObject
 					global.showAlert("Successful", message: "You have joined the group \(name)")
 					self.tblGroups.reloadData()
 				})
 			} else {
-				global.showAlert("", message: "The group '\(global.referalGroup)' does not exist. Check the spelling or use the New tab to create it")
+				global.showAlert("", message: "The group '\(groupsHandler.referalGroup)' does not exist. Check the spelling or use the New tab to create it")
 			}
 		})
 	}
 	
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if global.joinedGroups.count == global.joinedGroupsObject.count {
-			lblSlotsRemaining.text = "\(slots - global.joinedGroups.count)"
+		if groupsHandler.gotGroupDetails {
+			lblSlotsRemaining.text = "\(slots - groupsHandler.joinedGroups.count)"
 			joinGroupIdHolder = []
-			for (id, group) in global.joinedGroupsObject {
+			for (id, group) in groupsHandler.joinedGroupsObject {
 				joinGroupIdHolder.append(id)
 			}
-			return global.joinedGroups.count
+			return groupsHandler.joinedGroups.count
 		}
 		return 0
         //return names.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let group = global.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
+		let group = groupsHandler.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
 		var subsCount = (group["subscriberObjects"] as? [String])!.count
 		
 		var cell = tblGroups.dequeueReusableCellWithIdentifier("NewCell", forIndexPath: indexPath) as! GroupsTableViewCell
@@ -212,19 +217,21 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
-		let group = global.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
+		let group = groupsHandler.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
         var shareRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Share", handler:{action, indexpath in
-			global.shareGroup(global.joinedGroups[indexPath.row], viewController: self)
+			groupsHandler.shareGroup(groupsHandler.joinedGroups[indexPath.row], viewController: self)
         });
 		
         var deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
 			var deleteAlert = UIAlertController(title: "Delete", message: "Are you sure you want to leave this group?", preferredStyle: UIAlertControllerStyle.Alert)
 			deleteAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (action: UIAlertAction!) in
-				global.removeGroup(global.joinedGroups[indexPath.row])
-				global.joinedGroupsObject[group.objectId!] = nil
+				println(groupsHandler.joinedGroups[indexPath.row])
+				println(group["flatValue"] as! String)
+				groupsHandler.removeGroup(groupsHandler.joinedGroups[find(groupsHandler.joinedGroups, group["name"] as! String)!])
+				groupsHandler.joinedGroupsObject[group["flatValue"] as! String] = nil
 				self.updateHeaderNumbers()
 				self.tblGroups.reloadData()
-				self.lblSlotsRemaining.text = "\(self.slots - global.joinedGroups.count)"
+				self.lblSlotsRemaining.text = "\(self.slots - groupsHandler.joinedGroups.count)"
 			}))
 			deleteAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in }))
 			self.presentViewController(deleteAlert, animated: true, completion: nil)

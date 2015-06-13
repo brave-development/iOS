@@ -68,16 +68,16 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
     }
 	
 	override func viewDidAppear(animated: Bool) {
-		if global.referalGroup != nil {
-			if global.referalType == "publicGroup" {
+		if groupsHandler.referalGroup != nil {
+			if groupsHandler.referalType == "publicGroup" {
 				searchBar.selectedScopeButtonIndex = 0
 			} else {
 				searchBar.selectedScopeButtonIndex = 1
 			}
-			searchBar.text = global.referalGroup
-			global.referalGroup = nil
-			global.referalType = nil
-			global.referalMember = nil
+			searchBar.text = groupsHandler.referalGroup
+			groupsHandler.referalGroup = nil
+			groupsHandler.referalType = nil
+			groupsHandler.referalMember = nil
 		}
 	}
 	
@@ -231,7 +231,7 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 						let pfObject = object?.first as! PFObject
 						dispatch_async(dispatch_get_main_queue(), {
 							let name = pfObject["name"] as! String
-							global.addGroup(name)
+							groupsHandler.addGroup(name)
 							global.showAlert("Successful", message: "You have joined the group \(name)")
 							self.btnJoin.enabled = true
 							self.dismissViewControllerAnimated(true, completion: nil)
@@ -281,7 +281,7 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 									self.btnJoin.enabled = true
 									self.searchBar.showsScopeBar = true
 									self.searchBar.sizeToFit()
-									global.addGroup(self.searchBar.text.lowercaseString.capitalizedString)
+									groupsHandler.addGroup(self.searchBar.text.lowercaseString.capitalizedString)
 									self.dismissViewControllerAnimated(true, completion: nil)
 								})
 							} else {
@@ -328,11 +328,11 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 	
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if searching == false {
-            global.addGroup(groups.objectAtIndex(indexPath.row) as! String)
+            groupsHandler.addGroup(groups.objectAtIndex(indexPath.row) as! String)
             global.showAlert("Successful", message: "You have joined the group \(groups.objectAtIndex(indexPath.row))")
             self.dismissViewControllerAnimated(true, completion: nil)
         } else {
-            global.addGroup(groupsDuringSearch.objectAtIndex(indexPath.row) as! String)
+            groupsHandler.addGroup(groupsDuringSearch.objectAtIndex(indexPath.row) as! String)
             global.showAlert("Successful", message: "You have joined the group \(groupsDuringSearch.objectAtIndex(indexPath.row))")
             self.dismissViewControllerAnimated(true, completion: nil)
         }

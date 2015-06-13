@@ -33,8 +33,6 @@ extension String {
 
 class Global: UIViewController {
 	
-	var joinedGroups : [String] = [] // Array of groups the user belongs to
-	var joinedGroupsObject: [String : PFObject] = [:]
 	var victimInformation : [String : [String]] = [:]
 	var persistantSettings : NSUserDefaults = NSUserDefaults.standardUserDefaults()
 	var installation : PFInstallation = PFInstallation.currentInstallation()
@@ -49,12 +47,6 @@ class Global: UIViewController {
 	var openedViaNotification = false
 	var notificationDictionary: NSDictionary?
 	
-	// Referals
-	
-	var referalType : String?
-	var referalGroup : String?
-	var referalMember : String?
-	
 	//
 	
 	func getUserInformation() -> Bool {
@@ -66,7 +58,7 @@ class Global: UIViewController {
 					println("getUserInformation - \(error)")
 				} else {
 					global.getLocalHistory()
-					global.getGroups()
+					groupsHandler.getGroups()
 					global.persistantSettings.setInteger(PFUser.currentUser()!["numberOfGroups"] as! Int, forKey: "numberOfGroups")
 				}
 			})
@@ -101,48 +93,6 @@ class Global: UIViewController {
 		}
 	}
 	
-	func getGroups() {
-		if persistantSettings.objectForKey("groups") != nil {
-			joinedGroups = persistantSettings.objectForKey("groups") as! [String]
-		}
-		
-		let user = PFUser.currentUser()!
-		if user["groups"] != nil {
-			joinedGroups = user["groups"] as! [String]
-		} else {
-			joinedGroups = []
-		}
-		
-		var groupFormatted : [String] = []
-		for group in joinedGroups {
-			groupFormatted.append(group.lowercaseString.capitalizedString.stripCharactersInSet([" "]))
-		}
-		getGroupDetails()
-		installation.setObject([""], forKey: "channels")
-		installation.addUniqueObjectsFromArray(groupFormatted, forKey: "channels")
-		installation.saveInBackgroundWithBlock(nil)
-	}
-	
-	func getGroupDetails() {
-		println("RAN getGroupDetails... Shouldnt happen?")
-		for group in joinedGroups {
-			println("Running for loop again for some reason")
-			var queryHistory = PFQuery(className: "Groups")
-			queryHistory.whereKey("flatValue", equalTo: group.formatGroupForFlatValue())
-			queryHistory.findObjectsInBackgroundWithBlock({
-				(objects : [AnyObject]?, error : NSError?) -> Void in
-				if error == nil {
-					for objectRaw in objects! {
-						let object = objectRaw as! PFObject
-						self.joinedGroupsObject[object.objectId!] = object
-					}
-				} else {
-					println(error)
-				}
-			})
-		}
-	}
-	
 	func getLocalHistory() {
 		panicHistoryLocal = []
 		var queryHistory = PFQuery(className: "Panics")
@@ -162,54 +112,6 @@ class Global: UIViewController {
 			}
 			println("DONE getting local history")
 		})
-	}
-	
-	func addGroup(groupName : String, fetchNewGroup : Bool = true) {
-		joinedGroups.append(groupName)
-		persistantSettings.setObject(joinedGroups, forKey: "groups")
-		persistantSettings.synchronize()
-		updateSubs(groupName, amount: 1, fetchNewGroup: fetchNewGroup)
-		updateGroups()
-		installation.addUniqueObject(groupName.lowercaseString.capitalizedString.stripCharactersInSet([" "]), forKey: "channels")
-		installation.saveInBackgroundWithBlock(nil)
-		shareGroup(groupName, viewController: self)
-	}
-	
-	func removeGroup(groupName : String) {
-		joinedGroups.removeAtIndex(find(joinedGroups, groupName)!)
-		persistantSettings.setObject(joinedGroups, forKey: "groups")
-		persistantSettings.synchronize()
-		updateSubs(groupName, amount: -1, fetchNewGroup : false)
-		updateGroups()
-		installation.removeObject(groupName.lowercaseString.capitalizedString.stripCharactersInSet([" "]), forKey: "channels")
-		installation.saveInBackgroundWithBlock(nil)
-	}
-	
-	func updateSubs(groupName: String, amount: Int, fetchNewGroup : Bool) {
-		var incrementSubCountQuery = PFQuery(className: "Groups")
-		incrementSubCountQuery.whereKey("flatValue", equalTo: groupName.formatGroupForFlatValue())
-		incrementSubCountQuery.getFirstObjectInBackgroundWithBlock({
-			(object: PFObject?, error: NSError?) -> Void in
-			if object != nil {
-				if amount == 1 {
-					if fetchNewGroup == true {
-						self.joinedGroupsObject[object!.objectId!] = object!
-					}
-					object!.addUniqueObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
-				} else {
-					object!.removeObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
-//					self.joinedGroupsObject[object!.objectId!] = nil
-				}
-				object!.incrementKey("subscribers", byAmount: amount)
-				object!.saveInBackgroundWithBlock(nil)
-			}
-		})
-	}
-	
-	func updateGroups() {
-		var user = PFUser.currentUser()!
-		user["groups"] = joinedGroups
-		user.saveInBackgroundWithBlock(nil)
 	}
 	
 	func setPanicNotification(enabled : Bool) {
@@ -243,64 +145,6 @@ class Global: UIViewController {
 		}
 		countries = countries.sorted{ $0.localizedCaseInsensitiveCompare($1) == NSComparisonResult.OrderedAscending }
 		println("Done getting countries")
-	}
-	
-	func getShortLink(groupName : String) -> NSString {
-		let apiEndpoint = "http://tinyurl.com/api-create.php?url=\(groupName.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!)"
-		let shortURL = NSString(contentsOfURL: NSURL(string: apiEndpoint)!, encoding: NSASCIIStringEncoding, error: nil)
-		let pasteboard = UIPasteboard.generalPasteboard()
-		pasteboard.string = (shortURL as! String)
-		return shortURL!
-	}
-	
-	func shareGroup(groupName : String, viewController : UIViewController) {
-		let shareGroup: dispatch_queue_t = dispatch_queue_create("shareGroup", nil)
-		dispatch_async(shareGroup, {
-//			let group = self.getShortLink(groupName)
-			dispatch_async(dispatch_get_main_queue(), {
-				var topController = UIApplication.sharedApplication().keyWindow?.rootViewController
-				if topController != nil {
-					while topController!.presentedViewController != nil {
-						topController = topController!.presentedViewController
-					}
-				} else { topController = viewController }
-				
-				if topController != nil {
-					var saveAlert = UIAlertController(title: "Share", message: "Share this so others can join the group as well", preferredStyle: UIAlertControllerStyle.Alert)
-					saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
-						var shareAlert = UIAlertController(title: "Post to", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-						shareAlert.addAction(UIAlertAction(title: "Facebook", style: .Default, handler: { (action: UIAlertAction!) in
-							
-							if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
-								var facebookSheet:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-								facebookSheet.setInitialText("Join my group '\(groupName)' on Panic! \nGet the app here: https://goo.gl/niOHXx")
-								topController!.presentViewController(facebookSheet, animated: true, completion: nil)
-							} else {
-								var alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
-								alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-								topController!.presentViewController(alert, animated: true, completion: nil)
-							}
-						}))
-						
-						shareAlert.addAction(UIAlertAction(title: "Twitter", style: .Default, handler: { (action: UIAlertAction!) in
-							if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
-								var twitterSheet:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-								twitterSheet.setInitialText("Join my group '\(groupName)' on Panic! \nGet the app here: https://goo.gl/niOHXx")
-								topController!.presentViewController(twitterSheet, animated: true, completion: nil)
-							} else {
-								var alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to share.", preferredStyle: UIAlertControllerStyle.Alert)
-								alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-								topController!.presentViewController(alert, animated: true, completion: nil)
-							}
-						}))
-						topController!.presentViewController(shareAlert, animated: true, completion: nil)
-					}))
-					saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in }))
-					topController!.presentViewController(saveAlert, animated: true, completion: nil)
-				} else {
-					global.showAlert("Hmm..", message: "Something went wrong. The link to your group has been copied to the clipboard - paste it in an SMS or anywhere else you would like to share it")
-				}
-			})})
 	}
 	
 	func checkInternetConnectivity() -> Bool{
@@ -357,71 +201,4 @@ class Global: UIViewController {
 		blurView.frame = self.view.bounds
 		return blurView
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-//	func test() {
-//		
-////		let post = PFObject(className: "Post")
-//		
-//		var votingObjects: [PFObject] = []
-//		
-//		override func viewDidLoad() {
-//			super.viewDidLoad()
-//			
-//			println(PFUser.currentUser())
-//			
-//			var query = PFQuery(className:"Post")
-//			query.orderByDescending("createdAt")
-//			query.limit = 15
-//			query.findObjectsInBackgroundWithBlock {
-//				(objects: [AnyObject]!, error: NSError!) -> Void in
-//				if error == nil  {
-//					println("Successfully retrieved \(objects!.count) scores.")
-//					println(objects!)
-//					for objectRaw in objects {
-//						let object = objectRaw as! PFObject
-//						self.panicHistoryLocal.append(object)
-//					}
-//					dispatch_async(dispatch_get_main_queue(), {
-//						self.tableView.reloadData() // Updating the tableView on the main thread - important. Do some research on Grand Central Dispatch :)
-//					})
-//				} else {
-//					// Error
-//				}
-//			}
-//		}
-//		
-//		func updateVote(increment: Bool, objectId : String) {
-//			// Create a pointer to an object of class Point with id dlkj83d
-//			var object = PFObject(withoutDataWithClassName: "Posts", objectId: objectId)
-//			
-//			// Increment the current value of the quantity key by 1
-//			if increment == true {
-//				object.incrementKey("count", byAmount: 1)
-//			} else {
-//				object.incrementKey("count", byAmount: -1)
-//			}
-//			
-//			// Save
-//			object.saveInBackgroundWithBlock(nil)
-//		}
-//	}
 }
-
-
-
-
-
-
-
-
-
-

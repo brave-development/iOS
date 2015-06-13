@@ -186,7 +186,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 			if pendingPushNotifications == true {
 				if allowAddToPushQue == true {
 					allowAddToPushQue = false
-					for group in global.joinedGroups {
+					for group in groupsHandler.joinedGroups {
 						var push = PFPush()
 						let userName = PFUser.currentUser()!["name"] as! String
 						let userNumber = PFUser.currentUser()!["cellNumber"] as! String

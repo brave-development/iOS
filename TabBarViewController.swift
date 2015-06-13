@@ -91,8 +91,8 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 		}
 		
 		
-		if global.referalGroup != nil {
-			global.showAlert(global.referalType!, message: global.referalGroup!)
+		if groupsHandler.referalGroup != nil {
+			global.showAlert(groupsHandler.referalType!, message: groupsHandler.referalGroup!)
 			contacts(btnGroups)
 		} else if tabBarButtons.count > 0 {
 			if global.openedViaNotification == true {

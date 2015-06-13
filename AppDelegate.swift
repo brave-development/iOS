@@ -97,10 +97,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		//
 		let queryArray = split(url.query!) {$0 == "&"} // Split into type, group, member
 		let type = split(queryArray[0]) {$0 == "="} // Split into "type" and "privateGroup"
-		global.referalType = type[1]
+		groupsHandler.referalType = type[1]
 		
-		if global.referalType == "privateGroup" || global.referalType == "publicGroup"{
-			global.referalGroup = queryArray[1]
+		if groupsHandler.referalType == "privateGroup" || groupsHandler.referalType == "publicGroup"{
+			groupsHandler.referalGroup = queryArray[1]
 		}
 		return true
 	}
