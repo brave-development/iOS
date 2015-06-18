@@ -60,15 +60,17 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestAlwaysAuthorization()
+		
+		btnPanic.backgroundColor = UIColor(white: 0, alpha: 0.3)
         
         btnPanic.layer.cornerRadius = 0.5 * btnPanic.bounds.size.width
         btnPanic.layer.borderWidth = 2
         btnPanic.layer.borderColor = UIColor.greenColor().CGColor
         
-        btnPanic.layer.shadowOpacity = 1.0
-        btnPanic.layer.shadowColor = UIColor.greenColor().CGColor
-        btnPanic.layer.shadowRadius = 4.0
-        btnPanic.layer.shadowOffset = CGSizeZero
+//        btnPanic.layer.shadowOpacity = 1.0
+//        btnPanic.layer.shadowColor = UIColor.greenColor().CGColor
+//        btnPanic.layer.shadowRadius = 4.0
+//        btnPanic.layer.shadowOffset = CGSizeZero
     }
     
     @IBAction func panicPressed(sender: AnyObject) {

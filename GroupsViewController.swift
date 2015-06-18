@@ -72,6 +72,7 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 			updateHeaderNumbers()
 		}  else {
 			println("Start timer")
+			println(groupsHandler.joinedGroupsObject)
 			lblLoading.hidden = false
 			timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
 		}

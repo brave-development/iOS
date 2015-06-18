@@ -29,11 +29,6 @@ class GroupsHandler: UIViewController {
 	
 	func getGroups() {
 		let user = PFUser.currentUser()!
-		
-//		if global.persistantSettings.objectForKey("groups") != nil {
-//			joinedGroups = global.persistantSettings.objectForKey("groups") as! [String]
-//		}
-		
 		if user["groups"] != nil {
 			for group in user["groups"] as! [String] {
 				if find(joinedGroups, group) == nil {
@@ -44,12 +39,11 @@ class GroupsHandler: UIViewController {
 			joinedGroups = []
 		}
 		
-		
-		
 		var groupFormatted : [String] = []
 		for group in joinedGroups {
 			groupFormatted.append(group.formatGroupForChannel())
 		}
+		updateGroups()
 		getGroupDetails(nil)
 		PFInstallation.currentInstallation().setObject([""], forKey: "channels")
 		PFInstallation.currentInstallation().addUniqueObjectsFromArray(groupFormatted, forKey: "channels")
@@ -64,6 +58,7 @@ class GroupsHandler: UIViewController {
 			groupArray = joinedGroups
 		} else {
 			groupArray = [groupName!]
+			joinedGroups.append(groupName!)
 		}
 		
 		for group in groupArray {
@@ -74,18 +69,15 @@ class GroupsHandler: UIViewController {
 				if error == nil {
 					for objectRaw in objects! {
 						let object = objectRaw as! PFObject
+						object.addUniqueObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
 						println(object["flatValue"] as! String)
 						self.joinedGroupsObject[object["flatValue"] as! String] = object
 					}
 				} else {
 					println(error)
-				}
-//				println()
-//				print(self.joinedGroups.count)
-//				print("--")
-//				print(self.joinedGroupsObject.count)
-//				println()
-				
+				} 
+				println(self.joinedGroups)
+				println(self.joinedGroupsObject)
 				if self.joinedGroups.count == self.joinedGroupsObject.count {
 					self.gotGroupDetails = true
 				}
@@ -105,36 +97,15 @@ class GroupsHandler: UIViewController {
 	func removeGroup(groupName : String) {
 		println(groupName)
 		PFUser.currentUser()?.removeObject(groupName, forKey: "groups")
-//		joinedGroups.removeAtIndex(find(joinedGroups, groupName)!)
+		joinedGroups.removeAtIndex(find(joinedGroups, groupName)!)
 		joinedGroupsObject[groupName.formatGroupForFlatValue()] = nil
 		updateGroups()
 		PFInstallation.currentInstallation().removeObject(groupName.formatGroupForChannel(), forKey: "channels")
 		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
 	}
 	
-//	func updateSubs(groupName: String, amount: Int, fetchNewGroup : Bool) {
-//		var incrementSubCountQuery = PFQuery(className: "Groups")
-//		incrementSubCountQuery.whereKey("flatValue", equalTo: groupName.formatGroupForFlatValue())
-//		incrementSubCountQuery.getFirstObjectInBackgroundWithBlock({
-//			(object: PFObject?, error: NSError?) -> Void in
-//			if object != nil {
-//				if amount == 1 {
-//					if fetchNewGroup == true {
-//						self.joinedGroupsObject[object!.objectId!] = object!
-//					}
-//					object!.addUniqueObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
-//				} else {
-//					object!.removeObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
-//					//					self.joinedGroupsObject[object!.objectId!] = nil
-//				}
-//				object!.incrementKey("subscribers", byAmount: amount)
-//				object!.saveInBackgroundWithBlock(nil)
-//			}
-//		})
-//	}
-	
 	func updateGroups() {
-		joinedGroups = PFUser.currentUser()!["groups"]! as! [String]
+		PFUser.currentUser()!["groups"] = joinedGroups
 		PFUser.currentUser()!.saveInBackgroundWithBlock(nil)
 		
 		global.persistantSettings.setObject(joinedGroups, forKey: "groups")
