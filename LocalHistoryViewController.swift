@@ -20,6 +20,8 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
     
     var records : [String : [AnyObject]]!
     let dateFormatter = NSDateFormatter()
+	
+	var segControl : HMSegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,8 +43,48 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 		if tblHistory.indexPathForSelectedRow() != nil {
 			tblHistory.deselectRowAtIndexPath(tblHistory.indexPathForSelectedRow()!, animated: true)
 		}
+		
+		segControl = HMSegmentedControl(sectionTitles: ["Others", "You", "Groups"])
+		segControl.frame = CGRectMake(0, 20, self.view.frame.width, 60)
+		segControl.addTarget(self, action: "changedSegment", forControlEvents: UIControlEvents.ValueChanged)
+		segControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown
+		segControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe
+		segControl.backgroundColor = UIColor.clearColor()
+		self.view.addSubview(segControl)
 	}
-    
+	
+	func changedSegment() {
+		fadeTableViewOut()
+		switch (segControl.selectedSegmentIndex) {
+		case 0:
+			break;
+			
+		case 1:
+			break;
+			
+		case 2:
+			break;
+			
+		default:
+			break;
+		}
+//		fadeTableViewIn()
+	}
+	
+	func fadeTableViewIn() {
+		self.tblHistory.hidden = false
+		UIView.animateWithDuration(0.3, animations: {
+			self.tblHistory.alpha = 1.0 })
+	}
+	
+	func fadeTableViewOut() {
+		UIView.animateWithDuration(0.3, animations: {
+			self.tblHistory.alpha = 0.0 }, completion: {
+				(finished: Bool) -> Void in
+				self.fadeTableViewIn()
+		})
+	}
+	
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return global.panicHistoryLocal.count
     }
