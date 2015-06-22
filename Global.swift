@@ -46,6 +46,7 @@ class Global: UIViewController {
 	var backgroundPanic = false
 	var openedViaNotification = false
 	var notificationDictionary: NSDictionary?
+	let dateFormatter = NSDateFormatter()
 	
 	//
 	
@@ -98,19 +99,42 @@ class Global: UIViewController {
 		var queryHistory = PFQuery(className: "Panics")
 		queryHistory.whereKey("user", equalTo: PFUser.currentUser()!)
 		queryHistory.orderByDescending("createdAt")
-		queryHistory.includeKey("user")
+//		queryHistory.includeKey("user")
 		queryHistory.limit = 50
 		queryHistory.findObjectsInBackgroundWithBlock({
 			(objects : [AnyObject]?, error : NSError?) -> Void in
 			if error == nil {
 				for objectRaw in objects! {
 					let object = objectRaw as! PFObject
+					object["user"] = PFUser.currentUser()
 					self.panicHistoryLocal.append(object)
 				}
 			} else {
 				println(error)
 			}
 			println("DONE getting local history")
+		})
+	}
+	
+	func getPublicHistory() {
+		var queryHistory = PFQuery(className: "Panics")
+		queryHistory.orderByDescending("createdAt")
+		queryHistory.limit = 20
+		queryHistory.includeKey("user")
+		queryHistory.findObjectsInBackgroundWithBlock({
+			(objects : [AnyObject]?, error : NSError?) -> Void in
+			if error == nil {
+				self.panicHistoryPublic = []
+				for objectRaw in objects! {
+					let object = objectRaw as! PFObject
+					if object["user"]!["name"] != nil {
+						global.panicHistoryPublic.append(object)
+					}
+				}
+			} else {
+				println(error)
+			}
+			println("DONE getting public history")
 		})
 	}
 	

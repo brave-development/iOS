@@ -94,7 +94,6 @@ class PublicHistoryViewController: UIViewController, UITableViewDelegate, UIGest
 	}
 	
     func getPublicHistory() {
-		
         var queryHistory = PFQuery(className: "Panics")
         queryHistory.orderByDescending("createdAt")
         queryHistory.limit = 20
@@ -118,7 +117,6 @@ class PublicHistoryViewController: UIViewController, UITableViewDelegate, UIGest
             }
             println("DONE getting public history")
         })
-        
     }
     
     override func didReceiveMemoryWarning() {

@@ -19,14 +19,37 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 	@IBOutlet weak var imageTap: UIView!
     
     var records : [String : [AnyObject]]!
-    let dateFormatter = NSDateFormatter()
-	
 	var segControl : HMSegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        dateFormatter.locale = NSLocale.currentLocale()
-		let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "reloadTable", userInfo: nil, repeats: false)
+		global.getPublicHistory()
+        global.dateFormatter.locale = NSLocale.currentLocale()
+		
+		let decrementSegIndexRecognizer = UISwipeGestureRecognizer(target: self, action: "decrementSegIndex")
+		decrementSegIndexRecognizer.direction = .Right
+		let incrementSegIndexRecognizer = UISwipeGestureRecognizer(target: self, action: "incrementSegIndex")
+		incrementSegIndexRecognizer.direction = .Left
+		tblHistory.addGestureRecognizer(decrementSegIndexRecognizer)
+		tblHistory.addGestureRecognizer(incrementSegIndexRecognizer)
+		
+		let statusBarSpacer = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 20))
+		statusBarSpacer.backgroundColor = UIColor(white: 0, alpha: 0.5)
+		self.view.addSubview(statusBarSpacer)
+		
+		segControl = HMSegmentedControl(sectionTitles: ["Others", "You"])
+		segControl.frame = CGRectMake(0, 20, self.view.frame.width, 50)
+		segControl.addTarget(self, action: "changedSegment", forControlEvents: UIControlEvents.ValueChanged)
+		segControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown
+		segControl.selectionIndicatorColor = UIColor(white: 1, alpha: 0.7)
+		segControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe
+		segControl.verticalDividerEnabled = true
+		segControl.verticalDividerColor = UIColor(white: 1, alpha: 0.3)
+		segControl.verticalDividerWidth = 1
+		segControl.backgroundColor = UIColor(white: 0, alpha: 0.5)
+		segControl.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.whiteColor()]
+		segControl.setSelectedSegmentIndex(0, animated: true)
+		self.view.addSubview(segControl)
     }
 	
 	override func viewDidAppear(animated: Bool) {
@@ -43,85 +66,134 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 		if tblHistory.indexPathForSelectedRow() != nil {
 			tblHistory.deselectRowAtIndexPath(tblHistory.indexPathForSelectedRow()!, animated: true)
 		}
-		
-		segControl = HMSegmentedControl(sectionTitles: ["Others", "You", "Groups"])
-		segControl.frame = CGRectMake(0, 20, self.view.frame.width, 60)
-		segControl.addTarget(self, action: "changedSegment", forControlEvents: UIControlEvents.ValueChanged)
-		segControl.selectionIndicatorLocation = HMSegmentedControlSelectionIndicatorLocationDown
-		segControl.selectionStyle = HMSegmentedControlSelectionStyleFullWidthStripe
-		segControl.backgroundColor = UIColor.clearColor()
-		self.view.addSubview(segControl)
 	}
 	
 	func changedSegment() {
-		fadeTableViewOut()
-		switch (segControl.selectedSegmentIndex) {
-		case 0:
-			break;
-			
-		case 1:
-			break;
-			
-		case 2:
-			break;
-			
-		default:
-			break;
-		}
-//		fadeTableViewIn()
-	}
-	
-	func fadeTableViewIn() {
-		self.tblHistory.hidden = false
-		UIView.animateWithDuration(0.3, animations: {
-			self.tblHistory.alpha = 1.0 })
-	}
-	
-	func fadeTableViewOut() {
 		UIView.animateWithDuration(0.3, animations: {
 			self.tblHistory.alpha = 0.0 }, completion: {
 				(finished: Bool) -> Void in
-				self.fadeTableViewIn()
+				self.reloadTable()
+				UIView.animateWithDuration(0.3, animations: {
+					self.tblHistory.alpha = 1.0 })
 		})
 	}
 	
+	func decrementSegIndex() {
+		if segControl.selectedSegmentIndex > 0 {
+			segControl.setSelectedSegmentIndex(UInt(segControl.selectedSegmentIndex - 1), animated: true)
+			changedSegment()
+		}
+	}
+	
+	func incrementSegIndex() {
+		if segControl.selectedSegmentIndex < segControl.sectionTitles.count - 1 {
+			segControl.setSelectedSegmentIndex(UInt(segControl.selectedSegmentIndex + 1), animated: true)
+			changedSegment()
+		}
+	}
+	
+	
+//	func fadeTableViewIn() {
+//		self.tblHistory.hidden = false
+//		UIView.animateWithDuration(0.3, animations: {
+//			self.tblHistory.alpha = 1.0 })
+//	}
+//	
+//	func fadeTableViewOut() {
+//		UIView.animateWithDuration(0.3, animations: {
+//			self.tblHistory.alpha = 0.0 }, completion: {
+//				(finished: Bool) -> Void in
+//				self.fadeTableViewIn()
+//		})
+//	}
+	
+//	func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//		let statusBarSpacer = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 20))
+//		statusBarSpacer.backgroundColor = UIColor.clearColor()
+//		return statusBarSpacer
+//	}
+	
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return global.panicHistoryLocal.count
+		if segControl != nil {
+			switch (segControl.selectedSegmentIndex) {
+			case 0:
+				return global.panicHistoryPublic.count
+				
+			case 1:
+				return global.panicHistoryLocal.count
+				
+			case 2:
+				return 6
+				
+			default:
+				return 20
+			}
+		}
+		return 0
+//        return global.panicHistoryLocal.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Default")
-        
-        let objectId = global.panicHistoryLocal[indexPath.row].objectId
-        let dateStarted = global.panicHistoryLocal[indexPath.row].createdAt
-        let dateEnded = global.panicHistoryLocal[indexPath.row].updatedAt
-        let location = global.panicHistoryLocal[indexPath.row]["location"] as! PFGeoPoint
-        
-        dateFormatter.dateFormat = "dd MMMM yyyy"
-		
-        let dateString = dateFormatter.stringFromDate(dateStarted!)
-        
-        dateFormatter.dateFormat = "HH:mm"
-        
-        let startTimeString = dateFormatter.stringFromDate(dateStarted!)
-        let endTimeString = dateFormatter.stringFromDate(dateEnded!)
-        
-        var duration : String!
-        
-        if round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!))) < 60 {
-            duration = "Less than 1 Min"
-        } else {
-            let tempDurationString = NSString(format: "%.0f", round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!)/60)))
-            duration = "\(tempDurationString) Mins"
-        }
-        
-        cell.textLabel?.text = dateString
-        cell.textLabel?.textColor = UIColor.whiteColor()
-        cell.detailTextLabel?.text = "\(startTimeString)  -  \(endTimeString)        \(duration)"
-        cell.detailTextLabel?.textColor = UIColor.whiteColor()
-        cell.backgroundColor = UIColor.clearColor()
-        
-        return cell
+		if segControl != nil {
+			switch (segControl.selectedSegmentIndex) {
+			case 0:
+				let object = global.panicHistoryPublic[indexPath.row]
+				var cell = tblHistory.dequeueReusableCellWithIdentifier("localHistoryCell", forIndexPath: indexPath) as! LocalHistoryTableViewCell
+				cell.type = "public"
+				cell.setup(object)
+				return cell
+				
+			case 1:
+				let object = global.panicHistoryLocal[indexPath.row]
+				var cell = tblHistory.dequeueReusableCellWithIdentifier("localHistoryCell", forIndexPath: indexPath) as! LocalHistoryTableViewCell
+				cell.type = "local"
+				cell.setup(object)
+				return cell
+				
+			case 2:
+				var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Default")
+				cell.backgroundColor = UIColor.clearColor()
+				cell.textLabel?.text = "No Data"
+				return cell
+				
+			default:
+				var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Default")
+				cell.backgroundColor = UIColor.clearColor()
+				return cell
+			}
+		}
+		var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Default")
+		return cell
+//        var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Default")
+//
+//        let objectId = global.panicHistoryLocal[indexPath.row].objectId
+//        let dateStarted = global.panicHistoryLocal[indexPath.row].createdAt
+//        let dateEnded = global.panicHistoryLocal[indexPath.row].updatedAt
+//        let location = global.panicHistoryLocal[indexPath.row]["location"] as! PFGeoPoint
+//        
+//        dateFormatter.dateFormat = "dd MMMM yyyy"
+//		
+//        let dateString = dateFormatter.stringFromDate(dateStarted!)
+//        
+//        dateFormatter.dateFormat = "HH:mm"
+//        
+//        let startTimeString = dateFormatter.stringFromDate(dateStarted!)
+//        let endTimeString = dateFormatter.stringFromDate(dateEnded!)
+//        
+//        var duration : String!
+//        
+//        if round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!))) < 60 {
+//            duration = "Less than 1 Min"
+//        } else {
+//            let tempDurationString = NSString(format: "%.0f", round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!)/60)))
+//            duration = "\(tempDurationString) Mins"
+//        }
+//        
+//        cell.textLabel?.text = dateString
+//        cell.textLabel?.textColor = UIColor.whiteColor()
+//        cell.detailTextLabel?.text = "\(startTimeString)  -  \(endTimeString)        \(duration)"
+//        cell.detailTextLabel?.textColor = UIColor.whiteColor()
+//        cell.backgroundColor = UIColor.clearColor()
     }
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -133,7 +205,21 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 	}
 	
 	func reloadTable() {
-		if global.panicHistoryLocal.count == 0 {
+		var count = 0
+		if segControl != nil {
+			switch (segControl.selectedSegmentIndex) {
+			case 0:
+				count = global.panicHistoryPublic.count
+				
+			case 1:
+				count = global.panicHistoryLocal.count
+				
+			default:
+				count = 0
+			}
+		}
+
+		if count == 0 {
 			let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "reloadTable", userInfo: nil, repeats: false)
 		} else {
 			tblHistory.reloadData()
