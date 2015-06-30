@@ -39,27 +39,29 @@ class RegisterTableViewController: UITableViewController, countryDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         tblDetails.separatorStyle = UITableViewCellSeparatorStyle.None
+		let backgroundColour = UIColor(white: 0, alpha: 0.3)
+		let placeholderTextColour = UIColor(white: 1, alpha: 1)
 		
-        viewName.backgroundColor = UIColor(white: 1, alpha: 0.1)
-        viewUsername.backgroundColor = UIColor(white: 1, alpha: 0.1)
-        viewCellNumber.backgroundColor = UIColor(white: 1, alpha: 0.1)
-		viewEmail.backgroundColor = UIColor(white: 1, alpha: 0.1)
-        viewCountry.backgroundColor = UIColor(white: 1, alpha: 0.1)
-        viewPassword.backgroundColor = UIColor(white: 1, alpha: 0.1)
-        viewConfirmPassword.backgroundColor = UIColor(white: 1, alpha: 0.1)
+        viewName.backgroundColor = backgroundColour
+        viewUsername.backgroundColor = backgroundColour
+        viewCellNumber.backgroundColor = backgroundColour
+		viewEmail.backgroundColor = backgroundColour
+        viewCountry.backgroundColor = backgroundColour
+        viewPassword.backgroundColor = backgroundColour
+        viewConfirmPassword.backgroundColor = backgroundColour
         
         txtName.attributedPlaceholder = NSAttributedString(string:"Name and Surname",
-            attributes:[NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+            attributes:[NSForegroundColorAttributeName: placeholderTextColour])
         txtUsername.attributedPlaceholder = NSAttributedString(string:"Username",
-            attributes:[NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+            attributes:[NSForegroundColorAttributeName: placeholderTextColour])
         txtCellNumber.attributedPlaceholder = NSAttributedString(string:"Contact Number",
-            attributes:[NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+            attributes:[NSForegroundColorAttributeName: placeholderTextColour])
 		txtEmail.attributedPlaceholder = NSAttributedString(string:"Email",
-			attributes:[NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+			attributes:[NSForegroundColorAttributeName: placeholderTextColour])
         txtPassword.attributedPlaceholder = NSAttributedString(string:"Password",
-            attributes:[NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+            attributes:[NSForegroundColorAttributeName: placeholderTextColour])
         txtConfirmPassword.attributedPlaceholder = NSAttributedString(string:"Confirm Password",
-            attributes:[NSForegroundColorAttributeName: UIColor.lightGrayColor()])
+            attributes:[NSForegroundColorAttributeName: placeholderTextColour])
         
     }
     

@@ -48,6 +48,9 @@ class Global: UIViewController {
 	var notificationDictionary: NSDictionary?
 	let dateFormatter = NSDateFormatter()
 	
+	var privateHistoryFetched : Bool = false
+	var publicHistoryFetched : Bool = false
+	
 	//
 	
 	func getUserInformation() -> Bool {
@@ -99,7 +102,6 @@ class Global: UIViewController {
 		var queryHistory = PFQuery(className: "Panics")
 		queryHistory.whereKey("user", equalTo: PFUser.currentUser()!)
 		queryHistory.orderByDescending("createdAt")
-//		queryHistory.includeKey("user")
 		queryHistory.limit = 50
 		queryHistory.findObjectsInBackgroundWithBlock({
 			(objects : [AnyObject]?, error : NSError?) -> Void in
@@ -112,6 +114,8 @@ class Global: UIViewController {
 			} else {
 				println(error)
 			}
+			self.privateHistoryFetched = true
+//			NSNotificationCenter.defaultCenter().postNotificationName("gotPublicHistory", object: nil)
 			println("DONE getting local history")
 		})
 	}
@@ -134,6 +138,8 @@ class Global: UIViewController {
 			} else {
 				println(error)
 			}
+			self.publicHistoryFetched = true
+//			NSNotificationCenter.defaultCenter().postNotificationName("gotPublicHistory", object: nil)
 			println("DONE getting public history")
 		})
 	}

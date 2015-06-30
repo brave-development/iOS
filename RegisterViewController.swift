@@ -46,14 +46,16 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
                     if error!.code == 202 {
                         global.showAlert("Unsuccessful", message: "Username \(self.containerView.txtUsername.text) already taken")
                         self.containerView.becomeFirstResponder()
-                    } else {
-                        global.showAlert("Unsuccessful", message: error!.description)
+					} else if error!.code == 125 {
+						global.showAlert("Unsuccessful", message: error!.localizedDescription + "or already taken.")
+					} else {
+                        global.showAlert("Unsuccessful", message: error!.localizedDescription)
                     }
                     println(error)
 					self.spinner.stopAnimating()
                 } else {
 					tutorial.reset()
-                    global.showAlert("Important", message: "Welcome " + self.containerView.txtName.text + ". You have been signed in and you will remain signed in, even if you close the app. To sign out, you can use the logout button in the main menu.\n\nIt is important to add groups (using the main menu) as soon as possible so people are notified if you use the Panic button.")
+                    global.showAlert("Important", message: "Welcome " + self.containerView.txtName.text + ". You have been signed in and you will remain signed in, even if you close the app. To sign out, you can use the logout button in settings.\n\nIt is important to add groups as soon as possible so people are notified if you use the Panic button.")
 					self.spinner.stopAnimating()
                     self.dismissViewControllerAnimated(true, completion: nil)
                     

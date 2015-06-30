@@ -106,7 +106,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 	
 	@IBAction func showInfoBackgroundUpdate(sender: AnyObject) {
 //		global.showAlert("Coming Soon!", message: "Enabling background updates will let Panic continue to broadcast your location, even when the app is closed and your iPhone is asleep.\n\nThis is disabled by default as it is very heavy on battery, can use a lot of data if left on for an extended period of time and because of the way iPhone handles background apps, can be unreliable (although rarely).\n\nThis feature will be implemented in the next update.")
-		global.showAlert("Background Update", message: "Enabling background updates will let Panic continue to broadcast your location, even when the app is in the background and/or your iPhone is asleep.\n\nThis is disabled by default as it is very heavy on battery, can use more data then expected if left on for an extended period of time and because of the way iPhone handles background apps, can be unreliable (although rarely).\n\nYou may use this feature, however just bear in mind the battery issue and be sure to deactive Panic before quitting the app from Task Switcher (double tapping the home button and swiping up.)")
+		global.showAlert("Background Update", message: "Enabling background updates will let Panic continue to broadcast your location, even when the app is in the background and/or your iPhone is asleep, during activation.\n\nThis is disabled by default as it can be heavy on battery, can use more data then expected if left on for an extended period of time and because of the way iPhone handles background apps, can be unreliable (although rarely)")
 	}
 	
 	@IBAction func reportBug(sender: AnyObject) {
@@ -144,6 +144,18 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 		global.showAlert("", message: "Tutorials have been re-enabled. Go back to the main Home screen to view them as you did the first time the app was opened.")
 	}
 	
+	@IBAction func logout(sender: AnyObject) {
+		global.showAlert("Note", message: "Logging out disables any Panic notifications. You therefore will not be notified when someone activates their Panic button.\n\nOn the other hand, closing the app with the home button, or even the app switcher, logs you out in a way that you still recieve notifications.")
+		if global.persistantSettings.objectForKey("groups") != nil {
+			global.persistantSettings.removeObjectForKey("groups")
+		}
+		PFUser.logOut()
+		var installation = PFInstallation.currentInstallation()
+		installation.setObject([""], forKey: "channels")
+		installation.saveInBackgroundWithBlock(nil)
+		self.tabbarViewController.back()
+	}
+	
     @IBAction func deleteAccount(sender: AnyObject) {
         var saveAlert = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete your account?\n\nThis will remove all your details, free up your username, remove all panic history and you will have to reregister if you want to use this app again.", preferredStyle: UIAlertControllerStyle.Alert)
         saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
@@ -160,7 +172,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 								(result : Bool, error : NSError?) -> Void in
 								if result == true {
 									PFUser.currentUser()!.deleteInBackgroundWithBlock(nil)
-									self.tabbarViewController.back(self.tabbarViewController.btnLogout)
+									self.tabbarViewController.back()
 									global.showAlert("", message: "Thanks for using Panic. Goodbye.")
 								}
 							})

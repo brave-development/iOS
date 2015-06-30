@@ -34,11 +34,18 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 	@IBOutlet weak var txtDetails: UITextView!
 	@IBOutlet weak var lblResponders: UILabel!
 	@IBOutlet weak var lblRespondersLabel: UILabel!
+	
+	// Menu button
+	
+	@IBOutlet weak var viewMenuButton: UIVisualEffectView!
+	
     
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		println(PFUser.currentUser())
+//		println(PFUser.currentUser())
+		viewMenuButton.layer.cornerRadius = 0.5 * viewMenuButton.bounds.size.width
+		viewMenuButton.clipsToBounds = true
 		
 		if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways) || (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse) {
 //			locationPermission = true
@@ -66,13 +73,12 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
         btnPanic.layer.cornerRadius = 0.5 * btnPanic.bounds.size.width
         btnPanic.layer.borderWidth = 2
         btnPanic.layer.borderColor = UIColor.greenColor().CGColor
-        
-//        btnPanic.layer.shadowOpacity = 1.0
-//        btnPanic.layer.shadowColor = UIColor.greenColor().CGColor
-//        btnPanic.layer.shadowRadius = 4.0
-//        btnPanic.layer.shadowOffset = CGSizeZero
     }
-    
+	
+	@IBAction func menuButton(sender: AnyObject) {
+		self.tabbarViewController.openSidebar(override: true)
+	}
+	
     @IBAction func panicPressed(sender: AnyObject) {
 		tabbarViewController.closeSidebar()
 		if tutorial.swipeToOpenMenu == true {
@@ -107,6 +113,13 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 		PFAnalytics.trackEventInBackground("Activate_Panic", dimensions: nil, block: nil)
 		UIApplication.sharedApplication().idleTimerDisabled = true
 		
+		UIView.animateWithDuration(0.3, animations: {
+			self.viewMenuButton.alpha = 0.0
+			}, completion: {
+				(result) in
+				self.viewMenuButton.hidden = true
+		})
+		
 		background.addGestureRecognizer(tapGesture)
 		panicHandler.panicIsActive = true
         tabbarViewController.panicIsActive = true
@@ -136,6 +149,12 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
     func deativatePanic() {
 		UIApplication.sharedApplication().idleTimerDisabled = false
 		background.removeGestureRecognizer(tapGesture)
+		
+		self.viewMenuButton.hidden = false
+		UIView.animateWithDuration(0.3, animations: {
+			self.viewMenuButton.alpha = 1.0
+		})
+		
 		panicHandler.panicIsActive = false
         pendingPushNotifications = false
         tabbarViewController.panicIsActive = false

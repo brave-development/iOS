@@ -55,12 +55,10 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "handlePush", name:"showMapBecauseOfHandleNotification", object: nil)
 		
 		profilePic.layer.cornerRadius = 0.5 * profilePic.bounds.size.width
-//		profilePic.layer.borderWidth = 2
-//		profilePic.layer.borderColor = UIColor.whiteColor().CGColor
 		profilePic.clipsToBounds = true
 		
 		tapRecognizer = UITapGestureRecognizer(target: self, action: "closeSidebar")
-		recognizer = UIScreenEdgePanGestureRecognizer(target: self, action:Selector("openSidebar"))
+		recognizer = UIScreenEdgePanGestureRecognizer(target: self, action:Selector("openSidebarGesture"))
 		let closeRecognizer = UISwipeGestureRecognizer(target: self, action: "closeSidebar")
 		closeRecognizer.direction = UISwipeGestureRecognizerDirection.Left
 		recognizer.edges = UIRectEdge.Left
@@ -82,7 +80,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 		if tutorial.panic == false {
 			setupTutorial()
 		} else if global.persistantSettings.objectForKey("backgroundUpdatesNotice") == nil {
-				global.showAlert("NEW: Background Updates", message: "Panic now supports background location updates in emergencies. This simply means the app no longer needs to remain open and your phone on for your location to be tracked.\nThis feature must be turned on from the settings menu within the app (via the side menu)")
+				global.showAlert("NEW: Background Updates", message: "Panic supports background location updates in emergencies. This simply means the app no longer needs to remain open and your phone awake for your location to be tracked.\nThis feature must be turned on from the settings menu within the app (via the side menu)")
 			global.persistantSettings.setBool(true, forKey: "backgroundUpdatesNotice")
 		}
 		
@@ -162,8 +160,12 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 		global.showAlert("", message: "Will show common emergency numbers. eg. Paramedic, Polic, Fire etc")
 	}
 	
-	func openSidebar() {
-		if (recognizer.state == UIGestureRecognizerState.Began) {
+	func openSidebarGesture() {
+		openSidebar()
+	}
+	
+	func openSidebar(override : Bool = false) {
+		if recognizer.state == UIGestureRecognizerState.Began || override == true {
 			sideBarIsOpen = true
 			if panicIsActive == false {
 				self.sidebarLeftLayout.constant = 0
@@ -243,15 +245,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 		}
 	}
 	
-	@IBAction func back(sender: AnyObject) {
-		global.showAlert("Note", message: "Logging out disables any Panic notifications. You therefore will not be notified when someone activates their Panic button.\n\nOn the other hand, closing the app with the home button, or even the app switcher, logs you out in a way that you still recieve notifications.")
-		if global.persistantSettings.objectForKey("groups") != nil {
-			global.persistantSettings.removeObjectForKey("groups")
-		}
-		PFUser.logOut()
-		var installation = PFInstallation.currentInstallation()
-		installation.setObject([""], forKey: "channels")
-		installation.saveInBackgroundWithBlock(nil)
+	func back() {
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
@@ -356,11 +350,11 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 		
 		switch (descriptionCount) {
 		case 1:
-			animateTextChange("In this state, your position is made available for others to track live on a map (which you can also do by tapping 'Map' in the bottom right corner of your screen after this tutorial). Notifications are also sent to people subscribed to the same groups you are, alerting them of your distress.")
+			animateTextChange("In this state, your position is made available for others to track live on the map. Notifications are also sent to people subscribed to the same groups you are, alerting them of your distress.")
 			break;
 			
 		case 2:
-			animateTextChange("When activating the Panic button, there is a 5 second time delay before notifications are sent out - this is to cater for accidental activations. This delay can be disabled in Settings by choosing to have a confirmation each time it is activated.")
+			animateTextChange("When activating the Panic button, there is a 5 second time delay before notifications are sent out - in case of accidental activations. This delay can be disabled in Settings by choosing to have a confirmation each time it is activated.")
 			break;
 			
 		case 3:

@@ -26,8 +26,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        txtUsername.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.1)
-        txtPassword.backgroundColor = UIColor(red: 255, green: 255, blue: 255, alpha: 0.1)
+        txtUsername.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        txtPassword.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         txtUsername.attributedPlaceholder = NSAttributedString(string:"Username",
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
         txtPassword.attributedPlaceholder = NSAttributedString(string:"Password",

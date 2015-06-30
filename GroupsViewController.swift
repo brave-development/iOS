@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import Social
 
-class GroupsViewController: UIViewController, UITableViewDelegate {
+class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureRecognizerDelegate {
 	
 	var total : Int = 0
 	var privateTotal : Int = 0
@@ -29,16 +29,22 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 	@IBOutlet weak var btnAdd: UIButton!
 	@IBOutlet weak var lblDescription: UILabel!
 	@IBOutlet weak var lblSlotsRemaining: UILabel!
+	@IBOutlet weak var imgRings: UIImageView!
+	@IBOutlet weak var spinner: UIActivityIndicatorView!
 	
 	// Tutorial
 	
 	@IBOutlet weak var viewTutorial: UIVisualEffectView!
+	@IBOutlet weak var viewBar: UIView!
 	@IBOutlet weak var imageTap: UIImageView!
 	
 	var slots = global.persistantSettings.integerForKey("numberOfGroups")
+	var purchaseRunning = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		let gesture = UITapGestureRecognizer(target: self, action: "ringsTapped")
+		imgRings.addGestureRecognizer(gesture)
     }
 	
 	override func viewDidAppear(animated: Bool) {
@@ -100,6 +106,10 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 		lblPublicTotal.text = "\(publicTotal)"
 		lblTotal.text = "\(privateTotal + publicTotal)"
 	}
+	
+	func addGroup() {
+		btnAdd.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+	}
     
     @IBAction func addGroup(sender: AnyObject) {
 		tutorial.addNewGroup = true
@@ -119,6 +129,7 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 			} else if PFUser.currentUser()!["numberOfGroups"] as! Int > groupsHandler.joinedGroups.count {
 				var storyboard = UIStoryboard(name: "Main", bundle: nil)
 				var vc: AddNewGroupViewController = storyboard.instantiateViewControllerWithIdentifier("addNewGroupViewController") as! AddNewGroupViewController
+				NSNotificationCenter.defaultCenter().postNotificationName("addSuccess", object: nil)
 				self.presentViewController(vc, animated: true, completion: nil)
 			}
 		}
@@ -127,6 +138,8 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 	func handlePurchaseReferal() {
 		var saveAlert = UIAlertController(title: "Purchase additional group slot", message: "You need to purchase extra group slots in order to join more groups", preferredStyle: UIAlertControllerStyle.Alert)
 		saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+			global.showAlert("Please wait", message: "Processing your request. Please be patient.")
+			self.beganPurchase()
 			PFPurchase.buyProduct("SoC.Panic.groupPurchaseConsumable", block: {
 				(error: NSError!) -> Void in
 				NSLog("%s", "IAP") ///====
@@ -142,12 +155,12 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 					global.persistantSettings.synchronize()
 					PFUser.currentUser()!["numberOfGroups"] = groupsHandler.joinedGroups.count + 1
 					PFUser.currentUser()!.saveEventually(nil)
-					
+					NSNotificationCenter.defaultCenter().postNotificationName("addSuccess", object: nil)
 					if groupsHandler.referalGroup != nil {
 						groupsHandler.shareGroup(groupsHandler.referalGroup!, viewController: self)
 						self.registerGroup()
 					}
-					
+					self.endPurchase()
 				} else {
 					NSLog("%s", "\(error)") /// ========
 					if error.localizedDescription != "" {
@@ -155,11 +168,14 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 					} else {
 						global.showAlert("Unsuccessful", message: "Your purchase was unsuccessful. Please try again. No money has been debited from your account.")
 					}
+					NSNotificationCenter.defaultCenter().postNotificationName("addSuccess", object: nil)
 					println("FAILED PURCHASE -- \(error)")
+					self.endPurchase()
 				}
 			})
 		}))
-		saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in }))
+		saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in
+		NSNotificationCenter.defaultCenter().postNotificationName("addSuccess", object: nil) }))
 		presentViewController(saveAlert, animated: true, completion: nil)
 	}
 	
@@ -183,6 +199,16 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 		})
 	}
 	
+	func beganPurchase() {
+		self.spinner.startAnimating()
+		purchaseRunning = true
+	}
+	
+	func endPurchase() {
+		self.spinner.stopAnimating()
+		purchaseRunning = false
+	}
+	
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if groupsHandler.gotGroupDetails {
 			lblSlotsRemaining.text = "\(slots - groupsHandler.joinedGroups.count)"
@@ -190,13 +216,18 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 			for (id, group) in groupsHandler.joinedGroupsObject {
 				joinGroupIdHolder.append(id)
 			}
-			return groupsHandler.joinedGroups.count
+			return groupsHandler.joinedGroups.count + 1
 		}
 		return 0
         //return names.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		if indexPath.row == groupsHandler.joinedGroups.count {
+			var cell = tblGroups.dequeueReusableCellWithIdentifier("AddCell", forIndexPath: indexPath) as! AddGroupTableViewCell
+			cell.parent = self
+			return cell
+		}
 		let group = groupsHandler.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
 		var subsCount = (group["subscriberObjects"] as? [String])!.count
 		
@@ -210,7 +241,6 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 			cell.lblSubs.text = "\(subsCount)"
 			cell.viewBar.backgroundColor = UIColor(red: 40/255, green: 185/255, blue: 38/255, alpha: 1)
 		} else {
-//			privateTotal += subsCount
 			cell.viewBar.backgroundColor = UIColor(red: 14/255, green: 142/255, blue: 181/255, alpha: 1)
 		}
 		
@@ -246,27 +276,27 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 		
 		// Fade out
 		UIView.animateWithDuration(0.3, animations: {
-			self.lblDescription.alpha = 0.0
+			self.lblTotal.alpha = 0.0
 			}, completion: {
 				
 				// Change text and fade in
 				(finished: Bool) -> Void in
-				self.lblDescription.text = "Swipe for more options"
+				self.lblTotal.text = "Swipe"
 				UIView.animateWithDuration(0.3, animations: {
-				self.lblDescription.alpha = 1.0
+				self.lblTotal.alpha = 1.0
 					}, completion: {
 						(finished: Bool) -> Void in
 						
 						// Fade out after 2 second delay
 						UIView.animateWithDuration(0.3, delay: 2, options: nil, animations: {
-							self.lblDescription.alpha = 0.0
+							self.lblTotal.alpha = 0.0
 							}, completion: {
 								(finished: Bool) -> Void in
-								self.lblDescription.text = currentLabelValue
+								self.updateHeaderNumbers()
 								
 								// Fade back in with original text
 								UIView.animateWithDuration(0.3, animations: {
-									self.lblDescription.alpha = 1.0
+									self.lblTotal.alpha = 1.0
 									})
 						})
 					})
@@ -307,6 +337,18 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 		}
 		return true
 	}
+	
+	func ringsTapped() {
+		// Fade out
+		UIView.animateWithDuration(0.2, animations: {
+			self.imgRings.alpha = 0.5
+			}, completion: {
+				(finished: Bool) -> Void in
+				UIView.animateWithDuration(0.2, animations: {
+					self.imgRings.alpha = 1.0
+				})
+		})
+	}
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -316,6 +358,9 @@ class GroupsViewController: UIViewController, UITableViewDelegate {
 	// Tutorial
 	
 	func animateTutorial() {
+		let gesture = UITapGestureRecognizer(target: self, action: "addGroup")
+		viewBar.addGestureRecognizer(gesture)
+		
 		self.imageTap.layer.shadowColor = UIColor.whiteColor().CGColor
 		self.imageTap.layer.shadowRadius = 5.0
 		self.imageTap.layer.shadowOffset = CGSizeZero

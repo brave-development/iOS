@@ -45,6 +45,9 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		switchPrivate.backgroundColor = UIColor(hue:0.39, saturation:1, brightness:0.87, alpha:1)
+		switchPrivate.layer.cornerRadius = 16.0
+		
 		searchBar.setShowsCancelButton(false, animated: true)
 		tblGroups.hidden = true
 		query = PFQuery(className: "Groups")
@@ -61,6 +64,7 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 		btnJoin.layer.cornerRadius = 0.5 * btnJoin.bounds.size.width
 		btnJoin.layer.borderWidth = 2
 		btnJoin.layer.borderColor = UIColor.whiteColor().CGColor
+		btnJoin.backgroundColor = UIColor(white: 0, alpha: 0.3)
 		
 		if tutorial.addNewGroupView == false {
 			viewTutorial.hidden = false
@@ -134,8 +138,8 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 			viewPrivate.hidden = true
 			btnJoin.setTitle("Join", forState: UIControlState.Normal)
 			animateChange(btnJoin, controlLayout: joinTopLayout, number: 170)
-			animateChange(btnJoin, controlLayout: joinHeightLayout, number: 55)
-			animateChange(btnJoin, controlLayout: joinWidthLayout, number: 55)
+			animateChange(btnJoin, controlLayout: joinHeightLayout, number: 65)
+			animateChange(btnJoin, controlLayout: joinWidthLayout, number: 65)
 			btnJoin.layer.cornerRadius = 0.5 * btnJoin.bounds.size.width
 			lblPublicInstruction.hidden = true
 			break;

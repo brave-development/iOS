@@ -17,14 +17,23 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 	
 	@IBOutlet weak var viewTutorial: UIView!
 	@IBOutlet weak var imageTap: UIView!
+	@IBOutlet weak var spinner: UIActivityIndicatorView!
+	@IBOutlet weak var lblNoHistory: UILabel!
     
     var records : [String : [AnyObject]]!
 	var segControl : HMSegmentedControl!
+	
+	// Tutorial
+	
+	@IBOutlet weak var lblTutorialTextTop: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 		global.getPublicHistory()
         global.dateFormatter.locale = NSLocale.currentLocale()
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "finishedGettingPublicHistory", name:"gotPublicHistory", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "finishedGettingPrivateHistory", name:"gotLocalHistory", object: nil)
 		
 		let decrementSegIndexRecognizer = UISwipeGestureRecognizer(target: self, action: "decrementSegIndex")
 		decrementSegIndexRecognizer.direction = .Right
@@ -54,6 +63,7 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 	
 	override func viewDidAppear(animated: Bool) {
 		
+		reloadTable()
 		// Showing tutorial screen
 		if tutorial.localHistory == false {
 			let tapRecognizer = UITapGestureRecognizer(target: self, action: "closeTutorial")
@@ -72,7 +82,9 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 		UIView.animateWithDuration(0.3, animations: {
 			self.tblHistory.alpha = 0.0 }, completion: {
 				(finished: Bool) -> Void in
+				self.tblHistory.scrollRectToVisible(CGRectMake(0, 0, 0, 0), animated: false)
 				self.reloadTable()
+//				self.tblHistory.scrollEnabled = false
 				UIView.animateWithDuration(0.3, animations: {
 					self.tblHistory.alpha = 1.0 })
 		})
@@ -92,27 +104,6 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 		}
 	}
 	
-	
-//	func fadeTableViewIn() {
-//		self.tblHistory.hidden = false
-//		UIView.animateWithDuration(0.3, animations: {
-//			self.tblHistory.alpha = 1.0 })
-//	}
-//	
-//	func fadeTableViewOut() {
-//		UIView.animateWithDuration(0.3, animations: {
-//			self.tblHistory.alpha = 0.0 }, completion: {
-//				(finished: Bool) -> Void in
-//				self.fadeTableViewIn()
-//		})
-//	}
-	
-//	func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//		let statusBarSpacer = UIView(frame: CGRectMake(0, 0, self.view.frame.width, 20))
-//		statusBarSpacer.backgroundColor = UIColor.clearColor()
-//		return statusBarSpacer
-//	}
-	
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if segControl != nil {
 			switch (segControl.selectedSegmentIndex) {
@@ -130,25 +121,28 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 			}
 		}
 		return 0
-//        return global.panicHistoryLocal.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		if segControl != nil {
 			switch (segControl.selectedSegmentIndex) {
 			case 0:
-				let object = global.panicHistoryPublic[indexPath.row]
-				var cell = tblHistory.dequeueReusableCellWithIdentifier("localHistoryCell", forIndexPath: indexPath) as! LocalHistoryTableViewCell
-				cell.type = "public"
-				cell.setup(object)
-				return cell
+				if indexPath.row < global.panicHistoryPublic.count {
+					let object = global.panicHistoryPublic[indexPath.row]
+					var cell = tblHistory.dequeueReusableCellWithIdentifier("localHistoryCell", forIndexPath: indexPath) as! LocalHistoryTableViewCell
+					cell.type = "public"
+					cell.setup(object)
+					return cell
+				}
 				
 			case 1:
-				let object = global.panicHistoryLocal[indexPath.row]
-				var cell = tblHistory.dequeueReusableCellWithIdentifier("localHistoryCell", forIndexPath: indexPath) as! LocalHistoryTableViewCell
-				cell.type = "local"
-				cell.setup(object)
-				return cell
+				if indexPath.row < global.panicHistoryLocal.count {
+					let object = global.panicHistoryLocal[indexPath.row]
+					var cell = tblHistory.dequeueReusableCellWithIdentifier("localHistoryCell", forIndexPath: indexPath) as! LocalHistoryTableViewCell
+					cell.type = "local"
+					cell.setup(object)
+					return cell
+				}
 				
 			case 2:
 				var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Default")
@@ -163,44 +157,26 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 			}
 		}
 		var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Default")
+		cell.backgroundColor = UIColor.clearColor()
 		return cell
-//        var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Default")
-//
-//        let objectId = global.panicHistoryLocal[indexPath.row].objectId
-//        let dateStarted = global.panicHistoryLocal[indexPath.row].createdAt
-//        let dateEnded = global.panicHistoryLocal[indexPath.row].updatedAt
-//        let location = global.panicHistoryLocal[indexPath.row]["location"] as! PFGeoPoint
-//        
-//        dateFormatter.dateFormat = "dd MMMM yyyy"
-//		
-//        let dateString = dateFormatter.stringFromDate(dateStarted!)
-//        
-//        dateFormatter.dateFormat = "HH:mm"
-//        
-//        let startTimeString = dateFormatter.stringFromDate(dateStarted!)
-//        let endTimeString = dateFormatter.stringFromDate(dateEnded!)
-//        
-//        var duration : String!
-//        
-//        if round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!))) < 60 {
-//            duration = "Less than 1 Min"
-//        } else {
-//            let tempDurationString = NSString(format: "%.0f", round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!)/60)))
-//            duration = "\(tempDurationString) Mins"
-//        }
-//        
-//        cell.textLabel?.text = dateString
-//        cell.textLabel?.textColor = UIColor.whiteColor()
-//        cell.detailTextLabel?.text = "\(startTimeString)  -  \(endTimeString)        \(duration)"
-//        cell.detailTextLabel?.textColor = UIColor.whiteColor()
-//        cell.backgroundColor = UIColor.clearColor()
     }
 	
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		println("Selected cell")
 		var storyboard = UIStoryboard(name: "Main", bundle: nil)
 		var vc: HistoryDetailsViewController = storyboard.instantiateViewControllerWithIdentifier("historyDetailsViewController")as! HistoryDetailsViewController
-		vc.placemarkObject = global.panicHistoryLocal[indexPath.row]
+		switch (segControl.selectedSegmentIndex) {
+		case 0:
+			vc.placemarkObject = global.panicHistoryPublic[indexPath.row]
+			break
+			
+		case 1:
+			vc.placemarkObject = global.panicHistoryLocal[indexPath.row]
+			break
+			
+		default:
+			break
+		}
 		self.presentViewController(vc, animated: true, completion: nil)
 	}
 	
@@ -209,10 +185,27 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 		if segControl != nil {
 			switch (segControl.selectedSegmentIndex) {
 			case 0:
-				count = global.panicHistoryPublic.count
+				lblTutorialTextTop.text = "Last 20 Panic activations by other people."
+				lblNoHistory.hidden = true
+				if global.publicHistoryFetched == true {
+					count = global.panicHistoryPublic.count
+					spinner.stopAnimating()
+				} else {
+					spinner.startAnimating()
+				}
 				
 			case 1:
-				count = global.panicHistoryLocal.count
+				lblTutorialTextTop.text = "Last 50 of your own Panic activations."
+				spinner.stopAnimating()
+				if global.privateHistoryFetched == true {
+					count = global.panicHistoryLocal.count
+					if count == 0 {
+						lblNoHistory.hidden = false
+						count = 1
+					} else {
+						lblNoHistory.hidden = true
+					}
+				}
 				
 			default:
 				count = 0
@@ -220,6 +213,7 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 		}
 
 		if count == 0 {
+			println("Starting timer")
 			let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "reloadTable", userInfo: nil, repeats: false)
 		} else {
 			tblHistory.reloadData()

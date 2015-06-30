@@ -40,11 +40,9 @@ class PanicHandler: UIViewController {
 				{
                     self.updating = false
                     self.objectInUse = true
-					println(self.queryObject.objectId)
+//					println(self.queryObject.objectId)
 					self.timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "getResponderCount", userInfo: nil, repeats: true)
-                }
-				else if error != nil
-				{
+                } else if error != nil {
                     global.showAlert("Error beginning location", message: "\(error!.localizedDescription)\nWill try again in a few seconds")
                     self.updating = false
                 }

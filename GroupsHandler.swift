@@ -37,6 +37,7 @@ class GroupsHandler: UIViewController {
 			}
 		} else {
 			joinedGroups = []
+			gotGroupDetails = true
 		}
 		
 		var groupFormatted : [String] = []
@@ -56,6 +57,7 @@ class GroupsHandler: UIViewController {
 		var groupArray : [String] = []
 		if groupName == nil {
 			groupArray = joinedGroups
+			if groupArray.isEmpty { gotGroupDetails = true }
 		} else {
 			groupArray = [groupName!]
 			joinedGroups.append(groupName!)

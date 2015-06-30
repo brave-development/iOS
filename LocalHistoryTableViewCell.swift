@@ -13,8 +13,8 @@ class LocalHistoryTableViewCell: UITableViewCell {
 	
 	@IBOutlet weak var lblDuration: UILabel!
 	@IBOutlet weak var lblArea: UILabel!
-	@IBOutlet weak var lblPublicCount: UILabel!
-	@IBOutlet weak var lblPrivateCount: UILabel!
+	@IBOutlet weak var lblLowerInformation: UILabel!
+	@IBOutlet weak var imgLowerInformation: UIImageView!
 	
 	@IBOutlet weak var lblTimeHour: UILabel!
 	@IBOutlet weak var lblTimeMinute: UILabel!
@@ -77,12 +77,30 @@ class LocalHistoryTableViewCell: UITableViewCell {
 		
 		if type == "public" {
 			imgLocation.image = UIImage(named: "UserIcon")
+			imgLowerInformation.image = UIImage(named: "WriteIcon")
 			lblArea.text = object["user"]!["name"]! as? String
+			if object["details"] != nil {
+				lblLowerInformation.text = object["details"] as? String
+			} else {
+				lblLowerInformation.text = ""
+			}
 		} else if type == "group" {
 			lblArea.text = "Group Name"
 		} else {
 			imgLocation.image = UIImage(named: "Location")
-			lblArea.text = "Somewhere"
+			imgLowerInformation.image = UIImage(named: "RespondersIcon")
+			if object["responders"] != nil {
+				let responders = object["responders"]! as! [String]
+				lblLowerInformation.text = "\(responders.count)"
+			} else {
+				lblLowerInformation.text = "0"
+			}
+			if object["location"] != nil {
+				let location = CLLocationCoordinate2D(latitude: (object["location"] as! PFGeoPoint).latitude, longitude: (object["location"]as! PFGeoPoint).longitude)
+				lblArea.text = "\(round(location.latitude * 100)/100), \(round(location.longitude * 100)/100)"
+			} else {
+				lblArea.text = "Not available"
+			}
 		}
 	}
 
