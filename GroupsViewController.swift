@@ -330,7 +330,7 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 	}
 	
 	func checkIfAlreadyContainsGroup(groupName : String) -> Bool {
-		for channel in global.installation.channels as! [String] {
+		for channel in PFInstallation.currentInstallation().channels as! [String] {
 			if channel.formatGroupForFlatValue() == groupName.formatGroupForFlatValue() {
 				return true
 			}

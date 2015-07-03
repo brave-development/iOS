@@ -313,7 +313,7 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 	}
 	
 	func checkIfAlreadyContainsGroup() -> Bool {
-		for channel in global.installation.channels as! [String] {
+		for channel in PFInstallation.currentInstallation().channels as! [String] {
 			println(channel.formatGroupForFlatValue())
 			println(searchBar.text.formatGroupForFlatValue())
 			if channel.formatGroupForFlatValue() == searchBar.text.formatGroupForFlatValue() {

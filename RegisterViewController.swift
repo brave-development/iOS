@@ -25,7 +25,8 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		PFAnalytics.trackEventInBackground("Showed_Register", dimensions: nil, block: nil)
         containerView = self.childViewControllers[0] as! RegisterTableViewController
 	}
     

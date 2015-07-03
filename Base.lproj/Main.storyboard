@@ -40,7 +40,7 @@
                                     <constraint firstAttribute="height" constant="27" id="M38-Q4-GZ6"/>
                                     <constraint firstAttribute="width" constant="46" id="iWA-KZ-UjE"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="17"/>
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -50,16 +50,21 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2GP-AI-Vqy">
-                                <rect key="frame" x="129" y="485" width="62" height="25"/>
+                                <rect key="frame" x="130" y="485" width="61" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Abc-nD-fX6"/>
                                     <constraint firstAttribute="width" constant="62" id="tTW-LU-l4B"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="11"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="16"/>
                                 <state key="normal" title="Register">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="tTW-LU-l4B"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="register:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="DI8-w4-Zym"/>
                                 </connections>
@@ -75,7 +80,7 @@
                                             <constraint firstAttribute="height" constant="40" id="uIX-7a-gaW"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="next"/>
                                         <connections>
                                             <outlet property="delegate" destination="vXZ-lx-hvc" id="psz-tm-KxW"/>
@@ -89,7 +94,7 @@
                                             <constraint firstAttribute="width" constant="246" id="Tnz-1T-yAJ"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="13"/>
+                                        <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES"/>
                                         <connections>
                                             <outlet property="delegate" destination="vXZ-lx-hvc" id="mgt-zs-WdY"/>
@@ -113,16 +118,21 @@
                                 </constraints>
                             </activityIndicatorView>
                             <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrF-Ts-mIm">
-                                <rect key="frame" x="110" y="518" width="100" height="25"/>
+                                <rect key="frame" x="108" y="518" width="104" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="chF-Py-t8u"/>
                                     <constraint firstAttribute="width" constant="100" id="i00-6V-S6K"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="11"/>
+                                <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
                                 <state key="normal" title="Reset Password">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="i00-6V-S6K"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="resetPassword:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="UxK-Yr-OMA"/>
                                 </connections>
@@ -208,7 +218,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="PSR-df-5K0"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="16"/>
                                             <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Groups" image="contactsIcon.png">
@@ -224,7 +234,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="vdU-1Q-YYz"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="16"/>
                                             <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <inset key="titleEdgeInsets" minX="11" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Home" image="homeIcon.png">
@@ -239,7 +249,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="32" id="ycf-bq-Yf0"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="16"/>
                                             <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="History" image="history2.png">
@@ -255,7 +265,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="31" id="UOW-gj-ozG"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="16"/>
                                             <inset key="contentEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <inset key="titleEdgeInsets" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Settings" image="settings.png">
@@ -273,6 +283,24 @@
                                                 <constraint firstAttribute="height" constant="2" id="NRh-Oc-QOU"/>
                                             </constraints>
                                         </progressView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWH-f2-5vG">
+                                            <rect key="frame" x="67" y="528" width="80" height="32"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="50" id="9ff-O9-xnJ"/>
+                                                <constraint firstAttribute="height" constant="32" id="Q7W-sY-CgM"/>
+                                            </constraints>
+                                            <state key="normal" title="Feedback">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="9ff-O9-xnJ"/>
+                                                </mask>
+                                            </variation>
+                                            <connections>
+                                                <action selector="feedback:" destination="fCA-iG-EaX" eventType="touchUpInside" id="GaH-yr-EeN"/>
+                                            </connections>
+                                        </button>
                                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ltF-dN-15P">
                                             <rect key="frame" x="157" y="528" width="50" height="32"/>
                                             <constraints>
@@ -299,19 +327,6 @@
                                             <connections>
                                                 <action selector="publicHistory:" destination="fCA-iG-EaX" eventType="touchUpInside" id="J8u-RP-ZeO"/>
                                                 <segue destination="kRS-yU-8os" kind="custom" identifier="customSeguePublicHistory" customClass="CustomNavigationSegue" customModule="Panic" id="2N1-hG-55M"/>
-                                            </connections>
-                                        </button>
-                                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RWH-f2-5vG">
-                                            <rect key="frame" x="82" y="528" width="50" height="32"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="50" id="9ff-O9-xnJ"/>
-                                                <constraint firstAttribute="height" constant="32" id="Q7W-sY-CgM"/>
-                                            </constraints>
-                                            <state key="normal" image="phone.png">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="emergancyNumbers:" destination="fCA-iG-EaX" eventType="touchUpInside" id="cjx-rh-zya"/>
                                             </connections>
                                         </button>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="fY9-tr-FyS">
@@ -382,6 +397,7 @@
                                                 <constraint firstAttribute="height" constant="30" id="SYZ-Zg-uNy"/>
                                                 <constraint firstAttribute="width" constant="46" id="V0Y-dl-oV6"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <state key="normal" title="Panic">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -396,6 +412,7 @@
                                                 <constraint firstAttribute="width" constant="46" id="5zr-6d-wFT"/>
                                                 <constraint firstAttribute="height" constant="30" id="Te0-BG-kYM"/>
                                             </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                             <state key="normal" title="Map">
                                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -3483,7 +3500,6 @@
         <image name="homeIcon.png" width="27" height="27"/>
         <image name="logo" width="512" height="512"/>
         <image name="logout.png" width="20" height="20"/>
-        <image name="phone.png" width="32" height="32"/>
         <image name="plus@2.png" width="60" height="60"/>
         <image name="settings.png" width="20" height="20"/>
         <image name="swipeRight.png" width="32" height="32"/>

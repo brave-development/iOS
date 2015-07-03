@@ -8,8 +8,9 @@
 
 import UIKit
 import Parse
+import MessageUI
 
-class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
+class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
 	
 	// Controls
 	
@@ -50,6 +51,8 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		PFAnalytics.trackEventInBackground("Logged_in", dimensions: nil, block: nil)
 		
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "showMapBecauseOfNotification", name:"openedViaNotification", object: nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: "handlePush", name:"showMapBecauseOfHandleNotification", object: nil)
@@ -156,8 +159,30 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 		performSegueWithIdentifier("customSeguePublicHistory", sender: sender)
 	}
 	
-	@IBAction func emergancyNumbers(sender: AnyObject) {
-		global.showAlert("", message: "Will show common emergency numbers. eg. Paramedic, Polic, Fire etc")
+	@IBAction func feedback(sender: AnyObject) {
+		var mail = MFMailComposeViewController()
+		if(MFMailComposeViewController.canSendMail()) {
+			
+			mail.mailComposeDelegate = self
+			mail.setSubject("Panic - Feedback")
+			mail.setToRecipients(["byron@panic-sec.org"])
+//			mail.setMessageBody("", isHTML: true)
+			self.presentViewController(mail, animated: true, completion: nil)
+		}
+		else {
+			global.showAlert("Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
+		}
+	}
+	
+	func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+		switch(result.value){
+		case MFMailComposeResultSent.value:
+			println("Email sent")
+			
+		default:
+			println("Whoops")
+		}
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 	func openSidebarGesture() {
@@ -286,7 +311,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 	func animateGroupsButton() {
 		
 		self.btnGroups.layer.shadowColor = UIColor.whiteColor().CGColor
-		self.btnGroups.layer.shadowRadius = 5.0
+		self.btnGroups.layer.shadowRadius = 6.0
 		self.btnGroups.layer.shadowOffset = CGSizeZero
 		self.btnGroups.layer.shadowOpacity = 0.0
 		self.btnGroups.layer.opacity = 0.4
@@ -295,18 +320,18 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 		animateShadow.fromValue = 0.0
 		animateShadow.toValue = 1.0
 		animateShadow.autoreverses = true
-		animateShadow.duration = 1
+		animateShadow.duration = 0.5
 		
 		var animateButton = CABasicAnimation(keyPath: "opacity")
 		animateButton.fromValue = 0.4
 		animateButton.toValue = 1.0
 		animateButton.autoreverses = true
-		animateButton.duration = 1
+		animateButton.duration = 0.5
 		
 		self.btnGroups.layer.addAnimation(animateShadow, forKey: "shadowOpacity")
 		self.btnGroups.layer.addAnimation(animateButton, forKey: "opacity")
 		if tutorial.groupsButton == false {
-			let timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "animateGroupsButton", userInfo: nil, repeats: false)
+			let timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "animateGroupsButton", userInfo: nil, repeats: false)
 		} else {
 			self.btnGroups.layer.opacity = 1.0
 		}
@@ -368,6 +393,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate {
 					self.viewTutorialPanic.hidden = true
 					self.viewTutorialPanic.alpha = 1.0
 			})
+			PFAnalytics.trackEventInBackground("Finished_Panic_Tut", dimensions: nil, block: nil)
 			tutorial.panic = true
 			tutorial.save()
 			break;

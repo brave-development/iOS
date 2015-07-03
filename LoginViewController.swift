@@ -20,12 +20,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var spinner: UIActivityIndicatorView!
     
     var selectedTextField : UITextField!
-//    var manager = CLLocationManager()
     @IBOutlet weak var bottomLayout : NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+		
+		PFAnalytics.trackEventInBackground("Showed_Login", dimensions: nil, block: nil)
+		
         txtUsername.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         txtPassword.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         txtUsername.attributedPlaceholder = NSAttributedString(string:"Username",
@@ -41,6 +42,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             manageLogin()
             stopLoading()
         } else {
+			PFInstallation.currentInstallation().setObject(["", "not_logged_in"], forKey: "channels")
+			PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
             spinner.stopAnimating()
         }
     }
