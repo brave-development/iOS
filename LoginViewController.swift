@@ -18,6 +18,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+	@IBOutlet weak var viewDarken: UIView!
     
     var selectedTextField : UITextField!
     @IBOutlet weak var bottomLayout : NSLayoutConstraint!
@@ -26,6 +27,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
 		
 		PFAnalytics.trackEventInBackground("Showed_Login", dimensions: nil, block: nil)
+		
+		viewDarken.backgroundColor = UIColor.clearColor()
+		let layer = drawing.gradient(viewDarken, colours: [UIColor.clearColor().CGColor, UIColor.blackColor().CGColor])
+		viewDarken.layer.insertSublayer(layer, atIndex: 0)
 		
         txtUsername.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         txtPassword.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
@@ -97,7 +102,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 	
 	@IBAction func resetPassword(sender: AnyObject) {
-		var alert = UIAlertController(title: "Reset Password", message: "Enter the email address associated with the account. You will recieve an email with reset instructions", preferredStyle: UIAlertControllerStyle.Alert)
+		var alert = UIAlertController(title: "Reset Password", message: "Enter the email address associated with the account. You will receive an email with reset instructions", preferredStyle: UIAlertControllerStyle.Alert)
 		alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
 			textField.placeholder = "Email:"
 			textField.keyboardType = UIKeyboardType.EmailAddress

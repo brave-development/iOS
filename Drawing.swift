@@ -8,6 +8,8 @@
 
 import UIKit
 
+var drawing = Drawing()
+
 class Drawing: NSObject {
 	
 	func verticalLine(imageView: UIImageView, circles: Bool = false, dashed: Bool = false, colour: UIColor = UIColor.blackColor(), customWidth: CGFloat = 2) -> UIImage {

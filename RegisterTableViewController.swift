@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RegisterTableViewController: UITableViewController, countryDelegate {
+class RegisterTableViewController: UITableViewController, countryDelegate, UITextFieldDelegate {
     
     @IBOutlet var tblDetails: UITableView!
 
@@ -34,10 +34,24 @@ class RegisterTableViewController: UITableViewController, countryDelegate {
     @IBOutlet weak var txtConfirmPassword: UITextField!
     
     var countrySelected = false
-    
-    
+	var textFields : [UITextField] = []
+	
     override func viewDidLoad() {
         super.viewDidLoad()
+		textFields.append(txtName)
+		textFields.append(txtUsername)
+		textFields.append(txtCellNumber)
+		textFields.append(txtEmail)
+		textFields.append(txtPassword)
+		textFields.append(txtConfirmPassword)
+		
+		txtName.delegate = self
+		txtUsername.delegate = self
+		txtCellNumber.delegate = self
+		txtEmail.delegate = self
+		txtPassword.delegate = self
+		txtConfirmPassword.delegate = self
+		
         tblDetails.separatorStyle = UITableViewCellSeparatorStyle.None
 		let backgroundColour = UIColor(white: 0, alpha: 0.3)
 		let placeholderTextColour = UIColor(white: 1, alpha: 1)
@@ -83,6 +97,18 @@ class RegisterTableViewController: UITableViewController, countryDelegate {
         btnCountry.setTitle(country, forState: UIControlState.Normal)
         countrySelected = true
     }
+	
+	func textFieldShouldReturn(textField: UITextField) -> Bool {
+		let index = find(textFields, textField)
+		if index != nil {
+			if textFields.count - 1 > index {
+				textFields[index! + 1].becomeFirstResponder()
+			} else if textFields.count - 1 == index {
+				textField.resignFirstResponder()
+			}
+		}
+		return true
+	}
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

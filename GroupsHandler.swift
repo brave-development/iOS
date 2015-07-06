@@ -72,14 +72,14 @@ class GroupsHandler: UIViewController {
 					for objectRaw in objects! {
 						let object = objectRaw as! PFObject
 						object.addUniqueObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
-						println(object["flatValue"] as! String)
+//						println(object["flatValue"] as! String)
 						self.joinedGroupsObject[object["flatValue"] as! String] = object
 					}
 				} else {
 					println(error)
 				} 
-				println(self.joinedGroups)
-				println(self.joinedGroupsObject)
+//				println(self.joinedGroups)
+//				println(self.joinedGroupsObject)
 				if self.joinedGroups.count == self.joinedGroupsObject.count {
 					self.gotGroupDetails = true
 				}

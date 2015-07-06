@@ -145,7 +145,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 	}
 	
 	@IBAction func logout(sender: AnyObject) {
-		global.showAlert("Note", message: "Logging out disables any Panic notifications. You therefore will not be notified when someone activates their Panic button.\n\nOn the other hand, closing the app with the home button, or even the app switcher, logs you out in a way that you still recieve notifications.")
+		global.showAlert("Note", message: "Logging out disables any Panic notifications. You will not be notified when someone activates their Panic button.\n\nOn the other hand, closing the app with the home button, or even the app switcher, logs you out in a way that you still receive notifications.")
 		if global.persistantSettings.objectForKey("groups") != nil {
 			global.persistantSettings.removeObjectForKey("groups")
 		}
@@ -157,7 +157,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 	}
 	
     @IBAction func deleteAccount(sender: AnyObject) {
-        var saveAlert = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete your account?\n\nThis will remove all your details, free up your username, remove all panic history and you will have to reregister if you want to use this app again.", preferredStyle: UIAlertControllerStyle.Alert)
+        var saveAlert = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete your account?\n\nThis will remove all your details, free up your username, remove all Panic history and you will have to reregister if you want to use this app again.", preferredStyle: UIAlertControllerStyle.Alert)
         saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
             var saveAlert = UIAlertController(title: "Final Confirmation", message: "Permenently delete account?", preferredStyle: UIAlertControllerStyle.Alert)
             saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in

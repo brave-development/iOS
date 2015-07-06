@@ -61,17 +61,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		if global.persistantSettings.objectForKey("backgroundPanic") != nil {
 			global.backgroundPanic = global.persistantSettings.boolForKey("backgroundPanic")
 		}
-        
-        if (PFInstallation.currentInstallation().badge != 0) {
-            PFInstallation.currentInstallation().badge = 0
-			PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
-            PFInstallation.currentInstallation().saveEventually(nil)
-		} else {
-			PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
-			PFInstallation.currentInstallation().saveEventually(nil)
-		}
 		
-        var notiType = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert
+		PFInstallation.currentInstallation().badge = 0
+		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
+		PFInstallation.currentInstallation().saveEventually(nil)
+		
+		var notiType = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert
         
         var notiSettings:UIUserNotificationSettings
         notiSettings = UIUserNotificationSettings(forTypes:notiType, categories: nil)
@@ -83,9 +78,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			if launchOptions!["UIApplicationLaunchOptionsRemoteNotificationKey"] == nil {
 				println("Got nothing")
 			} else {
-				global.notificationDictionary = launchOptions!["UIApplicationLaunchOptionsRemoteNotificationKey"] as? NSDictionary
-				global.openedViaNotification = true
-				println("Got notif")
+				println("Got notif - \(launchOptions)")
+				if launchOptions!["UIApplicationLaunchOptionsRemoteNotificationKey"]!["lat"] != nil {
+					global.notificationDictionary = launchOptions!["UIApplicationLaunchOptionsRemoteNotificationKey"] as? NSDictionary
+					global.openedViaNotification = true
+				}
 			}
 		} else {
 			println("Launch options empty")
@@ -116,9 +113,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			if ( application.applicationState == UIApplicationState.Inactive || application.applicationState == UIApplicationState.Background  )
 			{
 				//opened from a push notification when the app was on background
-				global.notificationDictionary = userInfo
-				global.openedViaNotification = true
-//				NSNotificationCenter.defaultCenter().postNotificationName("showMapBecauseOfHandleNotification", object: nil)
+				println("Got notif userInfo - \(userInfo)")
+				if userInfo["lat"] != nil {
+					println("Should open map")
+					global.notificationDictionary = userInfo
+					global.openedViaNotification = true
+					NSNotificationCenter.defaultCenter().postNotificationName("showMapBecauseOfHandleNotification", object: nil)
+				}
 			} else {
 				global.notificationDictionary = userInfo
 				NSNotificationCenter.defaultCenter().postNotificationName("showMapBecauseOfHandleNotification", object: nil)

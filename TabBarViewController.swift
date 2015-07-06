@@ -89,6 +89,8 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		
 		if PFUser.currentUser()!["name"] != nil {
 			lblName.text = (PFUser.currentUser()!["name"] as! String)
+		} else {
+			lblName.text = "Panic User"
 		}
 		
 		
@@ -255,6 +257,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		
 		let cancelAction = UIAlertAction(title: "Dont respond", style: .Cancel) { (action) in
 			global.notificationDictionary = [:]
+			global.openedViaNotification = false
 		}
 		alertController.addAction(cancelAction)
 		

@@ -24,6 +24,10 @@
                                     <outletCollection property="gestureRecognizers" destination="dYY-fh-JDM" appends="YES" id="nla-7n-z8P"/>
                                 </connections>
                             </imageView>
+                            <view alpha="0.69999999999999973" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B1u-ls-qfe">
+                                <rect key="frame" x="0.0" y="387" width="320" height="181"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Panic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-e7-o1F">
                                 <rect key="frame" x="104" y="130" width="113" height="51"/>
                                 <constraints>
@@ -117,7 +121,7 @@
                                     <constraint firstAttribute="width" constant="20" id="tXQ-DP-M7l"/>
                                 </constraints>
                             </activityIndicatorView>
-                            <button opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrF-Ts-mIm">
+                            <button opaque="NO" alpha="0.69999999999999973" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrF-Ts-mIm">
                                 <rect key="frame" x="108" y="518" width="104" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="chF-Py-t8u"/>
@@ -125,8 +129,8 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
                                 <state key="normal" title="Reset Password">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" red="0.98989898989898994" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <variation key="default">
                                     <mask key="constraints">
@@ -167,6 +171,7 @@
                         <outlet property="spinner" destination="da7-nT-cOy" id="xlO-U7-eNM"/>
                         <outlet property="txtPassword" destination="oaH-Fd-aDe" id="WWq-VN-95C"/>
                         <outlet property="txtUsername" destination="DY6-w9-oQe" id="5XA-2Y-zVf"/>
+                        <outlet property="viewDarken" destination="B1u-ls-qfe" id="QKP-K7-6s3"/>
                         <outlet property="viewTextFields" destination="qjF-3i-aXm" id="Qh4-Ri-4o6"/>
                     </connections>
                 </viewController>
@@ -470,7 +475,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="100" id="2jD-c1-7OT"/>
                                             </constraints>
-                                            <string key="text">First, we need to subscribe you to a group. Subscribing to a group will allow other subscribers to recieve your notifications when you are in trouble.</string>
+                                            <string key="text">First, we need to subscribe you to a group. Subscribing to a group will allow other subscribers to receive your notifications when you are in trouble.</string>
                                             <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -983,7 +988,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type at least 3 characters to search" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G3m-bG-fNG">
-                                <rect key="frame" x="70" y="244" width="180" height="80"/>
+                                <rect key="frame" x="70" y="158" width="180" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="3oh-mH-7xY"/>
                                     <constraint firstAttribute="width" constant="180" id="fv5-n2-MlQ"/>
@@ -1071,6 +1076,7 @@
                             <constraint firstAttribute="trailing" secondItem="b2X-ns-bhj" secondAttribute="trailing" id="ROQ-H9-ko7"/>
                             <constraint firstAttribute="bottom" secondItem="bwg-LW-GN7" secondAttribute="bottom" constant="40" id="Rnr-iW-iMP"/>
                             <constraint firstItem="cHb-mT-ieH" firstAttribute="leading" secondItem="TF4-f1-ADb" secondAttribute="leading" id="V0a-bd-ACT"/>
+                            <constraint firstItem="G3m-bG-fNG" firstAttribute="top" secondItem="pbm-7W-qWc" secondAttribute="bottom" constant="50" id="jN0-RC-chF"/>
                             <constraint firstAttribute="centerX" secondItem="WuS-KV-jEe" secondAttribute="centerX" id="lGM-hT-73J"/>
                             <constraint firstItem="bwg-LW-GN7" firstAttribute="top" secondItem="TF4-f1-ADb" secondAttribute="top" id="lXm-PW-7vk"/>
                             <constraint firstAttribute="trailing" secondItem="j7c-iO-R9A" secondAttribute="trailing" id="mhT-Ij-f8w"/>
@@ -1090,6 +1096,7 @@
                         <variation key="default">
                             <mask key="constraints">
                                 <exclude reference="xQu-my-HHe"/>
+                                <exclude reference="pXG-5X-SV6"/>
                             </mask>
                         </variation>
                     </view>
@@ -3130,7 +3137,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8gf-gT-gsf" id="Cfk-ez-Row">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yjc-uz-5Ex">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Name" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yjc-uz-5Ex">
                                                     <rect key="frame" x="8" y="4" width="304" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="n7c-nC-jnR"/>
@@ -3161,7 +3168,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e7k-qM-p5f" id="qoq-Dk-Jkf">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yAE-s6-24v">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="yAE-s6-24v">
                                                     <rect key="frame" x="8" y="4" width="304" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="U16-C9-gi5"/>
@@ -3192,7 +3199,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="SZe-Q7-MHM" id="YMm-eH-LXH">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Cell Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0mW-Su-AYZ">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Cell Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0mW-Su-AYZ">
                                                     <rect key="frame" x="8" y="4" width="304" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="Sup-g0-Mog"/>
@@ -3224,7 +3231,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OZu-DP-mOV" id="guO-8U-zan">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1rA-bG-nhD">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="4" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1rA-bG-nhD">
                                                     <rect key="frame" x="8" y="4" width="304" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="zDj-dQ-WcL"/>
@@ -3290,7 +3297,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Qer-NX-bKI" id="lhv-Eu-Idv">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aKt-Gq-GC5">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="5" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aKt-Gq-GC5">
                                                     <rect key="frame" x="8" y="4" width="304" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="9sC-6E-xbU"/>
@@ -3321,7 +3328,7 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="a1L-6H-eQ1" id="lFT-hk-CjQ">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xCQ-X8-JAL">
+                                                <textField opaque="NO" clipsSubviews="YES" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Confirm Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xCQ-X8-JAL">
                                                     <rect key="frame" x="8" y="4" width="304" height="35"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="35" id="7Gf-7M-D6U"/>
