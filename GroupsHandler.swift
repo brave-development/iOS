@@ -52,7 +52,7 @@ class GroupsHandler: UIViewController {
 	}
 	
 	// Pass nil for all groups
-	func getGroupDetails(groupName : String?) {
+	func getGroupDetails(groupName : String?, remove : Bool = false) {
 		self.gotGroupDetails = false
 		var groupArray : [String] = []
 		if groupName == nil {
@@ -72,14 +72,12 @@ class GroupsHandler: UIViewController {
 					for objectRaw in objects! {
 						let object = objectRaw as! PFObject
 						object.addUniqueObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
-//						println(object["flatValue"] as! String)
+						object.saveInBackgroundWithBlock(nil)
 						self.joinedGroupsObject[object["flatValue"] as! String] = object
 					}
 				} else {
 					println(error)
-				} 
-//				println(self.joinedGroups)
-//				println(self.joinedGroupsObject)
+				}
 				if self.joinedGroups.count == self.joinedGroupsObject.count {
 					self.gotGroupDetails = true
 				}
@@ -90,7 +88,7 @@ class GroupsHandler: UIViewController {
 	func addGroup(groupName : String) {
 		PFUser.currentUser()?.addUniqueObject(groupName, forKey: "groups")
 		getGroupDetails(groupName)
-		updateGroups()
+		updateGroups(group: groupName, add: true)
 		PFInstallation.currentInstallation().addUniqueObject(groupName.formatGroupForChannel(), forKey: "channels")
 		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
 		shareGroup(groupName, viewController: self)
@@ -101,14 +99,33 @@ class GroupsHandler: UIViewController {
 		PFUser.currentUser()?.removeObject(groupName, forKey: "groups")
 		joinedGroups.removeAtIndex(find(joinedGroups, groupName)!)
 		joinedGroupsObject[groupName.formatGroupForFlatValue()] = nil
-		updateGroups()
+		updateGroups(group: groupName, add: false)
 		PFInstallation.currentInstallation().removeObject(groupName.formatGroupForChannel(), forKey: "channels")
 		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
 	}
 	
-	func updateGroups() {
+	func updateGroups(group : String = "", add: Bool = true) {
 		PFUser.currentUser()!["groups"] = joinedGroups
 		PFUser.currentUser()!.saveInBackgroundWithBlock(nil)
+		
+		if group != "" {
+			PFQuery(className: "Groups").whereKey("flatValue", equalTo: group.formatGroupForFlatValue()).getFirstObjectInBackgroundWithBlock({
+				(object: PFObject?, error: NSError?) -> Void in
+				if object != nil {
+					if add == true {
+						object!.addUniqueObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
+					} else {
+						object!.removeObject(PFUser.currentUser()!.objectId!, forKey: "subscriberObjects")
+					}
+					if object!["subscriberObjects"] != nil {
+						let count = (object!["subscriberObjects"] as! [String]).count
+						object!["subscribers"] = count
+					}
+					object!.saveInBackgroundWithBlock(nil)
+					object!.saveEventually(nil)
+				}
+			})
+		}
 		
 		global.persistantSettings.setObject(joinedGroups, forKey: "groups")
 		global.persistantSettings.synchronize()
