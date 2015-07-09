@@ -35,7 +35,6 @@ class Global: UIViewController {
 	
 	var victimInformation : [String : [String]] = [:]
 	var persistantSettings : NSUserDefaults = NSUserDefaults.standardUserDefaults()
-//	var installation : PFInstallation = PFInstallation.currentInstallation()
 	var panicHistoryLocal : [PFObject] = []
 	var panicHistoryPublic : [PFObject] = []
 	let queryUsers = PFUser.query()

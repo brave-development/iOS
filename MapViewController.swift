@@ -364,7 +364,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func locationManager(manager: CLLocationManager!, didChangeAuthorizationStatus status: CLAuthorizationStatus)
     {
 		if global.didChangeAuthStatus(manager, status: status) == true {
-			  locationAllowed()
+			locationAllowed()
+			NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "getActivePanics", userInfo: nil, repeats: false)
 		} else {
 			 locationNotAllowed(false)
 		}

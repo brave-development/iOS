@@ -26,6 +26,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	@IBOutlet weak var profilePic: UIImageView!
 	@IBOutlet weak var lblName: UILabel!
 	@IBOutlet weak var btnGroups: UIButton!
+	@IBOutlet weak var lblNumberOfPanics: UILabel!
 	
 	// Tutorial
 	
@@ -48,6 +49,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	var recognizer : UIScreenEdgePanGestureRecognizer!
 	var amAtHome: Bool = true
 	var tapRecognizer : UITapGestureRecognizer!
+	var getActivePanicsTimer : NSTimer?
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -71,6 +73,10 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		placeholderView.addGestureRecognizer(recognizer)
 		placeholderView.addGestureRecognizer(tapRecognizer)
 		placeholderView.addGestureRecognizer(closeRecognizer)
+		
+		lblNumberOfPanics.layer.cornerRadius = 0.5 * lblNumberOfPanics.frame.width
+		lblNumberOfPanics.clipsToBounds = true
+		getActivePanics()
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -112,6 +118,33 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	func showMapBecauseOfNotification() {
 		home(btnHome)
 		performSegueWithIdentifier("customSegueMap", sender: tabBarButtons[0])
+	}
+	
+	// Get active panics, count them and show the number on the tabbar
+	func getActivePanics() {
+		println("Getting victims from mapViewController")
+		var queryPanics = PFQuery(className: "Panics")
+		queryPanics.whereKey("active", equalTo: true)
+		queryPanics.findObjectsInBackgroundWithBlock({
+			(objects : [AnyObject]?, error: NSError?) -> Void in
+			if objects != nil {
+				dispatch_async(dispatch_get_main_queue(), {
+					self.lblNumberOfPanics.text = "\(objects!.count)"
+					println(objects)
+					if objects!.count > 0 {
+						self.lblNumberOfPanics.hidden = false
+					} else {
+						self.lblNumberOfPanics.hidden = true
+					}
+				})
+			} else {
+				dispatch_async(dispatch_get_main_queue(), {
+					self.lblNumberOfPanics.hidden = true
+				})
+			}
+			println(self)
+			self.getActivePanicsTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "getActivePanics", userInfo: nil, repeats: false)
+		})
 	}
 	
 	@IBAction func home(sender: AnyObject) {
@@ -295,7 +328,10 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 			senderBtn.titleLabel?.textColor = UIColor.whiteColor()
 			
 			if (segue.identifier != "customSegueMain" && segue.identifier != "customSegueMap") {
+				getActivePanicsTimer?.invalidate()
 				hideTabbar()
+			} else {
+				getActivePanics()
 			}
 		}
 	}

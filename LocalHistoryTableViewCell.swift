@@ -73,7 +73,7 @@ class LocalHistoryTableViewCell: UITableViewCell {
 		}
 		
 		lblDateDay.text = "\(components.day)"
-		lblDateMonth.text = "\(global.dateFormatter.monthSymbols[components.month] as! String)"
+		lblDateMonth.text = "\(global.dateFormatter.monthSymbols[components.month - 1] as! String)"
 		
 		if type == "public" {
 			imgLocation.image = UIImage(named: "UserIcon")

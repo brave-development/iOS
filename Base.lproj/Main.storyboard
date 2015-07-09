@@ -411,6 +411,13 @@
                                                 <segue destination="kdS-kf-ljO" kind="custom" identifier="customSegueMain" customClass="CustomNavigationSegue" customModule="Panic" id="A8p-ZM-wzM"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="icd-ef-pXV" userLabel="NumberOfPanics">
+                                            <rect key="frame" x="290" y="5" width="20" height="20"/>
+                                            <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYK-nb-1w5">
                                             <rect key="frame" x="258" y="8" width="46" height="30"/>
                                             <constraints>
@@ -439,8 +446,8 @@
                                 </constraints>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k6h-DD-MaM" userLabel="Tutorial Visual Effect View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k6h-DD-MaM" userLabel="Tutorial Visual Effect View">
+                                <rect key="frame" x="0.0" y="-600" width="320" height="568"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ja1-tu-CQU">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -505,8 +512,8 @@
                                     </mask>
                                 </variation>
                             </visualEffectView>
-                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="1lQ-Q4-5R8" userLabel="Panic Tutorial Visual Effect View">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleAspectFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1lQ-Q4-5R8" userLabel="Panic Tutorial Visual Effect View">
+                                <rect key="frame" x="0.0" y="-600" width="320" height="568"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="zTe-Fk-gIg">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -652,6 +659,7 @@
                         <outlet property="layoutLeftSwipeRight" destination="yG6-Yj-ncU" id="UK7-Cd-rJl"/>
                         <outlet property="lblDescription" destination="XgX-Bc-9dL" id="lX0-5S-O1F"/>
                         <outlet property="lblName" destination="asr-cq-A2K" id="z5N-Oq-Dyp"/>
+                        <outlet property="lblNumberOfPanics" destination="icd-ef-pXV" id="WNG-Jt-pjQ"/>
                         <outlet property="placeholderView" destination="CLV-mR-3J3" id="EMn-sg-pGQ"/>
                         <outlet property="profilePic" destination="fY9-tr-FyS" id="dcG-TF-ME1"/>
                         <outlet property="sidebarLeftLayout" destination="vrH-dK-eEB" id="3rK-HA-djb"/>
@@ -2995,11 +3003,11 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="I seem to have landed myself in a small pickle..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsLetterSpacingToFitWidth="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0c-zE-CXN">
-                                            <rect key="frame" x="8" y="125" width="250" height="36"/>
+                                            <rect key="frame" x="8" y="125" width="250" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="70" id="nqm-xh-Gmp"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="15"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                             <variation key="default">
@@ -3009,7 +3017,7 @@
                                             </variation>
                                         </label>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="8" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wqW-i2-3cu">
-                                            <rect key="frame" x="125" y="203" width="17" height="30"/>
+                                            <rect key="frame" x="125" y="163" width="17" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="30" id="NNA-Qv-3VR"/>
                                             </constraints>
@@ -3018,7 +3026,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Responders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRJ-GM-2Fh">
-                                            <rect key="frame" x="146" y="208" width="68" height="20"/>
+                                            <rect key="frame" x="146" y="168" width="68" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="xsm-Sw-k5C"/>
                                             </constraints>
@@ -3026,8 +3034,8 @@
                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="12:30pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kiu-ed-rsf">
-                                            <rect key="frame" x="99" y="339" width="68" height="20"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="12:30pm" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kiu-ed-rsf">
+                                            <rect key="frame" x="99" y="163" width="68" height="20"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="20" id="F2t-1D-jpO"/>
                                             </constraints>
@@ -3035,8 +3043,8 @@
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="8 Davies walk, Hout Bay" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2vc-rc-1eO">
-                                            <rect key="frame" x="8" y="367" width="250" height="18"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="8 Davies walk, Hout Bay" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" minimumFontSize="8" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2vc-rc-1eO">
+                                            <rect key="frame" x="8" y="191" width="250" height="194"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
