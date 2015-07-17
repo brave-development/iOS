@@ -41,14 +41,27 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
+		println("DEVICE TOKEN: \(PFInstallation.currentInstallation().deviceToken)")
         var user = PFUser.currentUser()
         if user != nil {
             startLoading()
             manageLogin()
             stopLoading()
         } else {
-			PFInstallation.currentInstallation().setObject(["", "not_logged_in"], forKey: "channels")
-			PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
+			println(PFInstallation.currentInstallation().objectId)
+			if PFInstallation.currentInstallation().objectId == nil {
+				println("Creating new installation and adding groups... \(PFInstallation.currentInstallation())")
+				PFInstallation.currentInstallation().saveInBackgroundWithBlock({
+					(result: Bool, error: NSError?) -> Void in
+					if result == true {
+						PFInstallation.currentInstallation().setObject(["", "not_logged_in"], forKey: "channels")
+						PFInstallation.currentInstallation().badge = 0
+						PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
+						PFInstallation.currentInstallation().saveEventually(nil)
+						println("Created new installation and added groups... \(PFInstallation.currentInstallation())")
+					}
+				})
+			}
             spinner.stopAnimating()
         }
     }

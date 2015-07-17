@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		ParseCrashReporting.enable()
         Parse.setApplicationId("cBZmGCzXfaQAyxqnTh6eF2kIqCUnSm1ET8wYL5O7", clientKey:"rno7DabpDMU293yi2TF4S3jKOlrZX2P27EW70C3G")
         PFAnalytics.trackAppOpenedWithLaunchOptionsInBackground(launchOptions, block: nil)
-		PFInstallation.currentInstallation().addUniqueObject("", forKey: "channels")
+		println(PFInstallation.currentInstallation())
 		
 		dispatch_after(
 			dispatch_time(DISPATCH_TIME_NOW, Int64(10.0 * Double(NSEC_PER_SEC))),
@@ -63,13 +63,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 		
 		PFInstallation.currentInstallation().badge = 0
-		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
 		PFInstallation.currentInstallation().saveEventually(nil)
 		
 		var notiType = UIUserNotificationType.Badge | UIUserNotificationType.Sound | UIUserNotificationType.Alert
         
-        var notiSettings:UIUserNotificationSettings
-        notiSettings = UIUserNotificationSettings(forTypes:notiType, categories: nil)
+        var notiSettings:UIUserNotificationSettings = UIUserNotificationSettings(forTypes:notiType, categories: nil)
         
         UIApplication.sharedApplication().registerUserNotificationSettings(notiSettings)
         UIApplication.sharedApplication().registerForRemoteNotifications()
@@ -101,12 +99,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 		return true
 	}
+	
+	func application(application: UIApplication, didRegisterUserNotificationSettings notificationSettings: UIUserNotificationSettings) {
+		UIApplication.sharedApplication().registerForRemoteNotifications()
+	}
     
     func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
-        var currentInstallation = PFInstallation.currentInstallation()
-        currentInstallation.setDeviceTokenFromData(deviceToken)
-        currentInstallation.saveInBackgroundWithBlock(nil)
+		global.persistantSettings.setObject(deviceToken, forKey: "deviceToken")
+        PFInstallation.currentInstallation().setDeviceTokenFromData(deviceToken)
+		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
     }
+	
+	func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+		println(error)
+	}
     
     func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject]) {
 		if (panicHandler.panicIsActive == false && !userInfo.isEmpty) {

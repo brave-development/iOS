@@ -26,7 +26,6 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	@IBOutlet weak var profilePic: UIImageView!
 	@IBOutlet weak var lblName: UILabel!
 	@IBOutlet weak var btnGroups: UIButton!
-	@IBOutlet weak var lblNumberOfPanics: UILabel!
 	
 	// Tutorial
 	
@@ -49,7 +48,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	var recognizer : UIScreenEdgePanGestureRecognizer!
 	var amAtHome: Bool = true
 	var tapRecognizer : UITapGestureRecognizer!
-	var getActivePanicsTimer : NSTimer?
+	var badge: CustomBadge!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -74,9 +73,19 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		placeholderView.addGestureRecognizer(tapRecognizer)
 		placeholderView.addGestureRecognizer(closeRecognizer)
 		
-		lblNumberOfPanics.layer.cornerRadius = 0.5 * lblNumberOfPanics.frame.width
-		lblNumberOfPanics.clipsToBounds = true
-		getActivePanics()
+		badge = CustomBadge(string: "1000")
+		badge.setTranslatesAutoresizingMaskIntoConstraints(false)
+		badge.backgroundColor = UIColor.clearColor()
+		self.tabbarView.addSubview(badge)
+		
+		// Naming relative to badge
+		let leftConstraint = NSLayoutConstraint(item: badge, attribute: NSLayoutAttribute.Right, relatedBy: NSLayoutRelation.Equal, toItem: tabBarButtons[0], attribute: NSLayoutAttribute.Left, multiplier: 1, constant: -10)
+		let bottomConstraint = NSLayoutConstraint(item: badge, attribute: NSLayoutAttribute.Top, relatedBy: NSLayoutRelation.Equal, toItem: tabBarButtons[0], attribute: NSLayoutAttribute.Top, multiplier: 1, constant: -badge.frame.height + 10)
+		
+		tabbarView.addConstraint(leftConstraint)
+		tabbarView.addConstraint(bottomConstraint)
+		
+		panicHandler.getActivePanics()
 	}
 	
 	override func viewDidAppear(animated: Bool) {
@@ -118,33 +127,6 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	func showMapBecauseOfNotification() {
 		home(btnHome)
 		performSegueWithIdentifier("customSegueMap", sender: tabBarButtons[0])
-	}
-	
-	// Get active panics, count them and show the number on the tabbar
-	func getActivePanics() {
-		println("Getting victims from mapViewController")
-		var queryPanics = PFQuery(className: "Panics")
-		queryPanics.whereKey("active", equalTo: true)
-		queryPanics.findObjectsInBackgroundWithBlock({
-			(objects : [AnyObject]?, error: NSError?) -> Void in
-			if objects != nil {
-				dispatch_async(dispatch_get_main_queue(), {
-					self.lblNumberOfPanics.text = "\(objects!.count)"
-					println(objects)
-					if objects!.count > 0 {
-						self.lblNumberOfPanics.hidden = false
-					} else {
-						self.lblNumberOfPanics.hidden = true
-					}
-				})
-			} else {
-				dispatch_async(dispatch_get_main_queue(), {
-					self.lblNumberOfPanics.hidden = true
-				})
-			}
-			println(self)
-			self.getActivePanicsTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "getActivePanics", userInfo: nil, repeats: false)
-		})
 	}
 	
 	@IBAction func home(sender: AnyObject) {
@@ -201,7 +183,6 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 			mail.mailComposeDelegate = self
 			mail.setSubject("Panic - Feedback")
 			mail.setToRecipients(["byron@panic-sec.org"])
-//			mail.setMessageBody("", isHTML: true)
 			self.presentViewController(mail, animated: true, completion: nil)
 		}
 		else {
@@ -279,7 +260,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	}
 	func hideTabbar() {
 		
-		self.tabbarBottomLayout.constant = -48
+		self.tabbarBottomLayout.constant = -tabbarView.frame.height
 		UIView.animateWithDuration(0.3, animations: {
 			self.tabbarView.layoutIfNeeded() })
 	}
@@ -328,10 +309,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 			senderBtn.titleLabel?.textColor = UIColor.whiteColor()
 			
 			if (segue.identifier != "customSegueMain" && segue.identifier != "customSegueMap") {
-				getActivePanicsTimer?.invalidate()
 				hideTabbar()
-			} else {
-				getActivePanics()
 			}
 		}
 	}

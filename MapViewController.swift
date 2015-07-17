@@ -365,7 +365,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     {
 		if global.didChangeAuthStatus(manager, status: status) == true {
 			locationAllowed()
-			NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "getActivePanics", userInfo: nil, repeats: false)
 		} else {
 			 locationNotAllowed(false)
 		}
@@ -416,6 +415,16 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 				self.detailsTimer.invalidate()
 		})
 	}
+	
+	func updateActivePanics() {
+		//		if panicHandler.activePanicCount > 0 {
+		//			tabbarViewController.badge.hidden = false
+		//		} else {
+		//			tabbarViewController.badge.hidden = true
+		//		}
+//		tabbarViewController.badge.autoBadgeSizeWithString("\(panicHandler.activePanicCount)")
+		println("Updated panic count from Map")
+	}
     
     func freeMem() {
         map.mapType = MKMapType.Hybrid
@@ -425,6 +434,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     override func viewWillDisappear(animated: Bool) {
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: "updatedActivePanics", object: nil)
         viewIsActive = false
     }
     

@@ -51,6 +51,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 //			locationPermission = true
 		}
 		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateActivePanics", name: "updatedActivePanics", object: nil)
+		
 		tapGesture = UITapGestureRecognizer(target: self, action: "resignKeyboard")
 		
 		txtDetails.backgroundColor = UIColor(white: 1, alpha: 0.2)
@@ -243,6 +245,21 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 	
 	func resignKeyboard() {
 		txtDetails.resignFirstResponder()
+	}
+	
+	func updateActivePanics() {
+//		if panicHandler.activePanicCount > 0 {
+//			tabbarViewController.badge.hidden = false
+//		} else {
+//			tabbarViewController.badge.hidden = true
+//		}
+		tabbarViewController.badge.autoBadgeSizeWithString("\(panicHandler.activePanicCount)")
+		println("Updated panic count from Main")
+	}
+	
+	override func viewWillDisappear(animated: Bool) {
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: "updatedActivePanics", object: nil)
+		println("Main disappearing...")
 	}
 	
     // LOCATION FUNCTIONS *******************

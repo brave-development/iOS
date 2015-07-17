@@ -22,6 +22,8 @@ class PanicHandler: UIViewController {
 	var updateResponderCountQuery: PFQuery?
 	var responderCount = 0
 	var timer: NSTimer?
+	var getActivePanicsTimer : NSTimer?
+	var activePanicCount = 0
     
     func beginPanic (location : CLLocation) {
         if updating == false && queryObject == nil {
@@ -150,4 +152,25 @@ class PanicHandler: UIViewController {
         objectInUse = false
         queryObject = nil
     }
+	
+	// Get active panics, count them and show the number on the tabbar
+	func getActivePanics() {
+		println("Getting victims from mapViewController")
+		var queryPanics = PFQuery(className: "Panics")
+		queryPanics.whereKey("active", equalTo: true)
+		queryPanics.findObjectsInBackgroundWithBlock({
+			(objects : [AnyObject]?, error: NSError?) -> Void in
+			if objects != nil {
+				dispatch_async(dispatch_get_main_queue(), {
+					self.activePanicCount = objects!.count
+					NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "updatedActivePanics", object: nil))
+					println(objects)
+				})
+			} else {
+				self.activePanicCount = 0
+			}
+			println(self)
+			self.getActivePanicsTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "getActivePanics", userInfo: nil, repeats: false)
+		})
+	}
 }

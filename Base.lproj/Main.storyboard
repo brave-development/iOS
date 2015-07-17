@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
@@ -24,9 +24,12 @@
                                     <outletCollection property="gestureRecognizers" destination="dYY-fh-JDM" appends="YES" id="nla-7n-z8P"/>
                                 </connections>
                             </imageView>
-                            <view alpha="0.69999999999999973" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B1u-ls-qfe">
-                                <rect key="frame" x="0.0" y="387" width="320" height="181"/>
+                            <view alpha="0.69999999999999973" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="B1u-ls-qfe">
+                                <rect key="frame" x="0.0" y="388" width="320" height="180"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="180" id="Lja-8d-wNl"/>
+                                </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Panic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-e7-o1F">
                                 <rect key="frame" x="104" y="130" width="113" height="51"/>
@@ -145,13 +148,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="qjF-3i-aXm" secondAttribute="trailing" constant="16" id="3RZ-it-O8q"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="B1u-ls-qfe" secondAttribute="bottom" id="5WO-66-rKm"/>
                             <constraint firstAttribute="centerX" secondItem="tvr-sb-QJd" secondAttribute="centerX" id="95R-ki-6xW"/>
                             <constraint firstAttribute="centerX" secondItem="cnS-e7-o1F" secondAttribute="centerX" id="G1e-Lb-g9G"/>
+                            <constraint firstItem="B1u-ls-qfe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="OJq-uL-1Vn"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qjF-3i-aXm" secondAttribute="bottom" constant="152" id="Sba-lg-But"/>
                             <constraint firstAttribute="centerX" secondItem="da7-nT-cOy" secondAttribute="centerX" id="Sh3-Rx-PTC"/>
                             <constraint firstItem="WrF-Ts-mIm" firstAttribute="top" secondItem="2GP-AI-Vqy" secondAttribute="bottom" constant="8" id="UTN-3x-VJn"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="lZh-fR-Il8" secondAttribute="bottom" id="Xn1-fD-4Gk"/>
                             <constraint firstAttribute="bottom" secondItem="2GP-AI-Vqy" secondAttribute="bottom" constant="58" id="cqf-Qe-piu"/>
+                            <constraint firstAttribute="trailing" secondItem="B1u-ls-qfe" secondAttribute="trailing" id="hyb-kB-nGa"/>
                             <constraint firstItem="2GP-AI-Vqy" firstAttribute="top" secondItem="tvr-sb-QJd" secondAttribute="bottom" constant="8" id="iH5-I4-vZv"/>
                             <constraint firstItem="lZh-fR-Il8" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="jcw-4h-SSd"/>
                             <constraint firstItem="qjF-3i-aXm" firstAttribute="top" secondItem="cnS-e7-o1F" secondAttribute="bottom" constant="115" id="ltQ-Kx-dVi"/>
@@ -411,13 +417,6 @@
                                                 <segue destination="kdS-kf-ljO" kind="custom" identifier="customSegueMain" customClass="CustomNavigationSegue" customModule="Panic" id="A8p-ZM-wzM"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="6" translatesAutoresizingMaskIntoConstraints="NO" id="icd-ef-pXV" userLabel="NumberOfPanics">
-                                            <rect key="frame" x="290" y="5" width="20" height="20"/>
-                                            <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYK-nb-1w5">
                                             <rect key="frame" x="258" y="8" width="46" height="30"/>
                                             <constraints>
@@ -643,9 +642,9 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="8gn-CL-VLl"/>
                                 <exclude reference="N6a-pg-fa3"/>
                                 <exclude reference="dBv-E4-8Hc"/>
+                                <exclude reference="8gn-CL-VLl"/>
                             </mask>
                         </variation>
                     </view>
@@ -659,7 +658,6 @@
                         <outlet property="layoutLeftSwipeRight" destination="yG6-Yj-ncU" id="UK7-Cd-rJl"/>
                         <outlet property="lblDescription" destination="XgX-Bc-9dL" id="lX0-5S-O1F"/>
                         <outlet property="lblName" destination="asr-cq-A2K" id="z5N-Oq-Dyp"/>
-                        <outlet property="lblNumberOfPanics" destination="icd-ef-pXV" id="WNG-Jt-pjQ"/>
                         <outlet property="placeholderView" destination="CLV-mR-3J3" id="EMn-sg-pGQ"/>
                         <outlet property="profilePic" destination="fY9-tr-FyS" id="dcG-TF-ME1"/>
                         <outlet property="sidebarLeftLayout" destination="vrH-dK-eEB" id="3rK-HA-djb"/>
@@ -1103,8 +1101,8 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="xQu-my-HHe"/>
                                 <exclude reference="pXG-5X-SV6"/>
+                                <exclude reference="xQu-my-HHe"/>
                             </mask>
                         </variation>
                     </view>
