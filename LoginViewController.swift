@@ -28,10 +28,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 		
 		PFAnalytics.trackEventInBackground("Showed_Login", dimensions: nil, block: nil)
 		
-		viewDarken.backgroundColor = UIColor.clearColor()
-		let layer = drawing.gradient(viewDarken, colours: [UIColor.clearColor().CGColor, UIColor.blackColor().CGColor])
-		viewDarken.layer.insertSublayer(layer, atIndex: 0)
-		
         txtUsername.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         txtPassword.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         txtUsername.attributedPlaceholder = NSAttributedString(string:"Username",
@@ -41,6 +37,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidAppear(animated: Bool) {
+		viewDarken.backgroundColor = UIColor.clearColor()
+		let layer = drawing.gradient(viewDarken, colours: [UIColor.clearColor().CGColor, UIColor.blackColor().CGColor])
+		viewDarken.layer.insertSublayer(layer, atIndex: 0)
+		
 		println("DEVICE TOKEN: \(PFInstallation.currentInstallation().deviceToken)")
         var user = PFUser.currentUser()
         if user != nil {
@@ -94,7 +94,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     if error?.localizedDescription != nil {
                         global.showAlert("Unsuccessful", message: error!.localizedDescription)
                     } else {
-                        global.showAlert("Unsuccessful", message: "Dunno, bra")
+                        global.showAlert("Unsuccessful", message: "Dunno, brah")
                     }
                     self.btnLogin.enabled = true
                     self.btnRegister.enabled = true

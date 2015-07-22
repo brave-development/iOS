@@ -150,9 +150,8 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 			global.persistantSettings.removeObjectForKey("groups")
 		}
 		PFUser.logOut()
-		var installation = PFInstallation.currentInstallation()
-		installation.setObject([""], forKey: "channels")
-		installation.saveInBackgroundWithBlock(nil)
+		PFInstallation.currentInstallation().setObject(["", "logged_out"], forKey: "channels")
+		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
 		self.tabbarViewController.back()
 	}
 	
@@ -172,6 +171,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 								(result : Bool, error : NSError?) -> Void in
 								if result == true {
 									PFUser.currentUser()!.deleteInBackgroundWithBlock(nil)
+									if PFUser.currentUser() != nil { PFUser.logOut() }
 									self.tabbarViewController.back()
 									global.showAlert("", message: "Thanks for using Panic. Goodbye.")
 								}

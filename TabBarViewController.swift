@@ -98,7 +98,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		if tutorial.panic == false {
 			setupTutorial()
 		} else if global.persistantSettings.objectForKey("backgroundUpdatesNotice") == nil {
-				global.showAlert("NEW: Background Updates", message: "Panic supports background location updates in emergencies. This simply means the app no longer needs to remain open and your phone awake for your location to be tracked.\nThis feature must be turned on from the settings menu within the app (via the side menu)")
+				global.showAlert("NEW: Background Updates", message: "Panic supports background location updates in emergencies. This simply means the app no longer needs to remain open and your phone awake for your location to be tracked in an emergency.\nThis feature must be turned on from the settings menu within the app (via the side menu)")
 			global.persistantSettings.setBool(true, forKey: "backgroundUpdatesNotice")
 		}
 		
@@ -392,11 +392,11 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		
 		switch (descriptionCount) {
 		case 1:
-			animateTextChange("In this state, your position is made available for others to track live on the map. Notifications are also sent to people subscribed to the same groups you are, alerting them of your distress.")
+			animateTextChange("Your position would now be made available for others to track live on the map. Notifications are also sent to people subscribed to the same groups you are, alerting them of your distress.")
 			break;
 			
 		case 2:
-			animateTextChange("When activating the Panic button, there is a 5 second time delay before notifications are sent out - in case of accidental activations. This delay can be disabled in Settings by choosing to have a confirmation each time it is activated.")
+			animateTextChange("When activating the Panic button, there is a 5 second delay before notifications are sent out - in case of accidental activations. This delay can be disabled in Settings.")
 			break;
 			
 		case 3:

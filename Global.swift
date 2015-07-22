@@ -130,6 +130,7 @@ class Global: UIViewController {
 				self.panicHistoryPublic = []
 				for objectRaw in objects! {
 					let object = objectRaw as! PFObject
+					// check for no user - delete record. means user no longer exists.
 					if object["user"]!["name"] != nil {
 						global.panicHistoryPublic.append(object)
 					}

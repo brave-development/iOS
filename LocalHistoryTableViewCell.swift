@@ -33,6 +33,8 @@ class LocalHistoryTableViewCell: UITableViewCell {
 	
 	func setup(object : PFObject) {
 		
+		println(object)
+		
 		let dateStarted = object.createdAt
 		let dateEnded = object.updatedAt
 		let location = object["location"] as! PFGeoPoint
@@ -78,11 +80,15 @@ class LocalHistoryTableViewCell: UITableViewCell {
 		if type == "public" {
 			imgLocation.image = UIImage(named: "UserIcon")
 			imgLowerInformation.image = UIImage(named: "WriteIcon")
-			lblArea.text = object["user"]!["name"]! as? String
-			if object["details"] != nil {
-				lblLowerInformation.text = object["details"] as? String
+			if object["user"] != nil {
+				lblArea.text = object["user"]!["name"]! as? String
+				if object["details"] != nil {
+					lblLowerInformation.text = object["details"] as? String
+				} else {
+					lblLowerInformation.text = ""
+				}
 			} else {
-				lblLowerInformation.text = ""
+				deletePanicRecord(object.objectId!)
 			}
 		} else if type == "group" {
 			lblArea.text = "Group Name"
@@ -102,6 +108,20 @@ class LocalHistoryTableViewCell: UITableViewCell {
 				lblArea.text = "Not available"
 			}
 		}
+	}
+	
+	func deletePanicRecord(objectid : String) {
+		var object = PFQuery(className: "Panics")
+		object.whereKey("objectid", equalTo: objectid)
+		object.findObjectsInBackgroundWithBlock({
+			(objects : [AnyObject]?, error: NSError?) -> Void in
+			if error == nil && objects != nil {
+				println("Deleting some records for objectId \(objectid)")
+				PFObject.deleteAllInBackground(objects, block: nil)
+			} else {
+				println(error)
+			}
+		})
 	}
 
     override func setSelected(selected: Bool, animated: Bool) {

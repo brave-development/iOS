@@ -445,7 +445,7 @@
                                 </constraints>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
-                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k6h-DD-MaM" userLabel="Tutorial Visual Effect View">
+                            <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="k6h-DD-MaM" userLabel="Swipe Tutorial Visual Effect View">
                                 <rect key="frame" x="0.0" y="-600" width="320" height="568"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Ja1-tu-CQU">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
@@ -556,7 +556,7 @@
                                                 <action selector="panicPressed:" destination="fCA-iG-EaX" eventType="touchUpInside" id="s2r-qR-fp8"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Panic Tutorial" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LH-ZI-E7L">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="5" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8LH-ZI-E7L">
                                             <rect key="frame" x="8" y="68" width="304" height="90"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="90" id="BqM-yX-QRH"/>
