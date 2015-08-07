@@ -37,7 +37,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			println("PURCHASED FROM APPDELEGATE")
 		})
 		
-        var populateCountries: dispatch_queue_t = dispatch_queue_create("populateCountries", nil)
+        let populateCountries: dispatch_queue_t = dispatch_queue_create("populateCountries", nil)
         
         dispatch_async(populateCountries, {
             global.getCountries()

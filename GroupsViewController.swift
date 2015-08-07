@@ -230,19 +230,10 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 		}
 		let group = groupsHandler.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
 		var subsCount = (group["subscriberObjects"] as? [String])!.count
-		
-		var cell = tblGroups.dequeueReusableCellWithIdentifier("NewCell", forIndexPath: indexPath) as! GroupsTableViewCell
-		cell.lblName.text = group["name"] as? String
-		cell.lblCountry.text = group["country"] as? String
-		cell.lblSubs.text = "\(subsCount)"
-		
-		if (group["public"] as? Bool) == true {
-			if subsCount > 2 { subsCount += 12 }
-			cell.lblSubs.text = "\(subsCount)"
-			cell.viewBar.backgroundColor = UIColor(red: 40/255, green: 185/255, blue: 38/255, alpha: 1)
-		} else {
-			cell.viewBar.backgroundColor = UIColor(red: 14/255, green: 142/255, blue: 181/255, alpha: 1)
-		}
+		var cell = tblGroups.dequeueReusableCellWithIdentifier("newCell", forIndexPath: indexPath) as! GroupsTableViewCell
+		cell.object = group
+		cell.subsCount = subsCount
+		cell.setup()
 		
         return cell
     }

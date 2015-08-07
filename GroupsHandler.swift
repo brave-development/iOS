@@ -178,6 +178,8 @@ class GroupsHandler: UIViewController {
 								topController!.presentViewController(alert, animated: true, completion: nil)
 							}
 						}))
+						shareAlert.addAction(UIAlertAction(title: "Cancel", style: .Destructive, handler: { (action: UIAlertAction!) in
+						}))
 						topController!.presentViewController(shareAlert, animated: true, completion: nil)
 					}))
 					saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in }))
@@ -186,5 +188,35 @@ class GroupsHandler: UIViewController {
 					global.showAlert("Hmm..", message: "Something went wrong. The link to your group has been copied to the clipboard - paste it in an SMS or anywhere else you would like to share it")
 				}
 			})})
+	}
+	
+	// Used to create a group with user = Panic
+	func createGroup(groupName: String, country: String) {
+		var query = PFQuery(className: "Groups")
+		query.whereKey("flatValue", equalTo: groupName.formatGroupForFlatValue())
+		query.findObjectsInBackgroundWithBlock({
+			(object : [AnyObject]?, error : NSError?) -> Void in
+			if object != nil {
+				println("NO GROUP FOUND. CREATING - '\(groupName)'")
+				var newGroupObject : PFObject = PFObject(className: "Groups")
+				newGroupObject["name"] = groupName
+				newGroupObject["flatValue"] = groupName.formatGroupForFlatValue()
+				newGroupObject["country"] = country
+				newGroupObject["admin"] = PFUser.objectWithoutDataWithObjectId("qP9SOINr4X")
+				newGroupObject["public"] = true
+				newGroupObject.saveInBackgroundWithBlock({
+					(result: Bool, error: NSError?) -> Void in
+					if result == true {
+						println("GROUP CREATED")
+					} else {
+						println(error)
+					}
+					println(error)
+				})
+			} else {
+				println("FOUND GROUP")
+			}
+
+		})
 	}
 }

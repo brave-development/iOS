@@ -1155,7 +1155,7 @@
                                 <rect key="frame" x="0.0" y="252" width="320" height="269"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="NewCell" rowHeight="80" id="OaQ-SS-5SJ" customClass="GroupsTableViewCell" customModule="Panic" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newCell" rowHeight="80" id="OaQ-SS-5SJ" customClass="GroupsTableViewCell" customModule="Panic" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OaQ-SS-5SJ" id="Bbs-kB-FSF">
                                             <autoresizingMask key="autoresizingMask"/>
@@ -1195,6 +1195,9 @@
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0mO-GG-xYX">
+                                                    <rect key="frame" x="161" y="4" width="159" height="71"/>
+                                                </imageView>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="dv7-f5-tIy" firstAttribute="leading" secondItem="Bbs-kB-FSF" secondAttribute="leading" id="1pe-TS-XJD"/>
@@ -1216,6 +1219,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
+                                            <outlet property="imgBackground" destination="0mO-GG-xYX" id="hq8-U0-ykO"/>
                                             <outlet property="lblCountry" destination="Z1l-KV-0to" id="zd6-zs-PJJ"/>
                                             <outlet property="lblName" destination="h4v-f9-5bI" id="NwX-uL-Vcp"/>
                                             <outlet property="lblSubs" destination="fX7-EH-Nna" id="fM4-pT-H9C"/>

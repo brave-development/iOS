@@ -61,10 +61,12 @@ class CountriesViewController: UIViewController, UITableViewDelegate, CLLocation
                     if placemarks.count > 0 {
                         self.foundCountryTracker = true
                         let pm = placemarks[0] as! CLPlacemark
-                        println(pm.country)
-                        if find(global.countries, pm.country) != nil {
-                            
-                            let position = NSIndexPath(forRow: find(global.countries, pm.country)!, inSection: 0)
+						if pm.subLocality != nil {
+							groupsHandler.createGroup(pm.subLocality, country: pm.country)
+						} else if pm.subAdministrativeArea != nil {
+							groupsHandler.createGroup(pm.subAdministrativeArea, country: pm.country)
+						}
+							if let position = NSIndexPath(forRow: find(global.countries, pm.country)!, inSection: 0) {
                             if self.tblCountries != nil {
                                 self.tblCountries.scrollToRowAtIndexPath(position, atScrollPosition: UITableViewScrollPosition.Middle, animated: true)
                             }
