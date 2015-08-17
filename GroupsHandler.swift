@@ -16,6 +16,8 @@ class GroupsHandler: UIViewController {
 	
 	var joinedGroups : [String] = []
 	var joinedGroupsObject: [String : PFObject] = [:]
+	var nearbyGroups : [String] = []
+	var nearbyGroupObjects : [String : PFObject] = [:]
 	
 	// Referals
 	
@@ -26,6 +28,8 @@ class GroupsHandler: UIViewController {
 	// Trackers
 	
 	var gotGroupDetails : Bool = false
+	var gotNearbyGroupDetails : Bool = false
+	var imagesFetched = false
 	
 	func getGroups() {
 		let user = PFUser.currentUser()!
@@ -51,8 +55,35 @@ class GroupsHandler: UIViewController {
 		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
 	}
 	
+	func getNearbyGroups(location : CLLocation) {
+		if nearbyGroupObjects.isEmpty {
+			var queryHistory = PFQuery(className: "Groups")
+			queryHistory.whereKey("location", nearGeoPoint: PFGeoPoint(location: location), withinKilometers: 50)
+			queryHistory.whereKey("public", equalTo: true)
+			queryHistory.limit = 2
+			queryHistory.findObjectsInBackgroundWithBlock({
+				(objects : [AnyObject]?, error : NSError?) -> Void in
+				if error == nil {
+					self.nearbyGroups = []
+					for objectRaw in objects! {
+						let object = objectRaw as! PFObject
+						self.nearbyGroups.append(object["flatValue"] as! String)
+						self.nearbyGroupObjects[object["flatValue"] as! String] = object
+					}
+					println(self.nearbyGroups)
+				} else {
+					println(error)
+				}
+				if self.nearbyGroups.count == self.nearbyGroupObjects.count {
+					self.gotNearbyGroupDetails = true
+				}
+			})
+			println(location)
+		}
+	}
+	
 	// Pass nil for all groups
-	func getGroupDetails(groupName : String?, remove : Bool = false) {
+	func getGroupDetails(groupName : String?) {
 		self.gotGroupDetails = false
 		var groupArray : [String] = []
 		if groupName == nil {

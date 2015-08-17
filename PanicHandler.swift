@@ -164,12 +164,12 @@ class PanicHandler: UIViewController {
 				dispatch_async(dispatch_get_main_queue(), {
 					self.activePanicCount = objects!.count
 					NSNotificationCenter.defaultCenter().postNotification(NSNotification(name: "updatedActivePanics", object: nil))
-					println(objects)
+//					println(objects)
 				})
 			} else {
 				self.activePanicCount = 0
 			}
-			println(self)
+//			println(self)
 			self.getActivePanicsTimer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "getActivePanics", userInfo: nil, repeats: false)
 		})
 	}

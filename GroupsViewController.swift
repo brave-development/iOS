@@ -9,14 +9,16 @@
 import UIKit
 import Parse
 import Social
+import CoreLocation
 
-class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureRecognizerDelegate {
+class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
 	
 	var total : Int = 0
 	var privateTotal : Int = 0
 	var publicTotal : Int = 0
 	
 	var joinGroupIdHolder : [String] = []
+	var nearbyGroupIdHolder : [String] = []
 	var timer : NSTimer?
 	
 	// Controls
@@ -40,11 +42,25 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 	
 	var slots = global.persistantSettings.integerForKey("numberOfGroups")
 	var purchaseRunning = false
+	var manager: CLLocationManager!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 		let gesture = UITapGestureRecognizer(target: self, action: "ringsTapped")
 		imgRings.addGestureRecognizer(gesture)
+		
+//		btnAdd.clipsToBounds = true
+		btnAdd.layer.cornerRadius = 0.5 * btnAdd.frame.width
+		btnAdd.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.9)
+		btnAdd.layer.shadowColor = UIColor.blackColor().CGColor
+		btnAdd.layer.shadowOffset = CGSizeZero
+		btnAdd.layer.shadowOpacity = 0.6
+		btnAdd.layer.shadowRadius = 3
+		
+		manager = CLLocationManager()
+		manager.desiredAccuracy = kCLLocationAccuracyBest
+		manager.delegate = self
+		manager.startUpdatingLocation()
     }
 	
 	override func viewDidAppear(animated: Bool) {
@@ -67,21 +83,40 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 		}
 	}
 	
+	// NEED TO REWRITE -- LOOKS LIKE KAK
 	func checkForGroupDetails() {
 		println("Checked for group details")
+		populateDataSource()
 		if groupsHandler.gotGroupDetails {
-			lblLoading.hidden = true
 			tblGroups.reloadData()
+			lblLoading.hidden = true
 			tblGroups.hidden = false
-			if timer != nil && tblGroups.hidden == false && lblLoading.hidden == true {
-				timer!.invalidate() }
-			updateHeaderNumbers()
-		}  else {
-			println("Start timer")
-			println(groupsHandler.joinedGroupsObject)
-			lblLoading.hidden = false
-			timer = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
 		}
+		
+		if groupsHandler.gotGroupDetails == false || groupsHandler.gotNearbyGroupDetails == false {
+			NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
+		}
+		
+		
+//		if groupsHandler.gotGroupDetails {
+//			lblLoading.hidden = true
+//			populateDataSource()
+//			tblGroups.reloadData()
+//			tblGroups.hidden = false
+//			if timer != nil && tblGroups.hidden == false && lblLoading.hidden == true {
+//				if groupsHandler.gotNearbyGroupDetails {
+//					//					timer!.invalidate()
+//				} else {
+//					NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
+//				}
+//			}
+//			//			updateHeaderNumbers()
+//		}  else {
+//			println("Start timer")
+////			println(groupsHandler.joinedGroupsObject)
+//			lblLoading.hidden = false
+//			NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
+//		}
 	}
 	
 	func updateHeaderNumbers() {
@@ -209,100 +244,171 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 		purchaseRunning = false
 	}
 	
+	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+		if groupsHandler.nearbyGroups.count == 0 { return 1 }
+		return 2
+	}
+	
+	func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+		var view = UIView(frame: CGRectMake(0, 0, tblGroups.frame.width, 40))
+		let label = UILabel(frame: view.bounds)
+		label.textAlignment = NSTextAlignment.Center
+		label.font = UIFont(name: "Arial", size: 11)
+		view.backgroundColor = UIColor(white: 1, alpha: 0.95)
+		
+		if section == 0 {
+			label.text = "YOUR GROUPS"
+//			view.backgroundColor = UIColor.clearColor()
+		} else {
+			label.text = "SUGGESTED"
+//			view.backgroundColor = UIColor(white: 1, alpha: 0.95)
+		}
+		view.addSubview(label)
+		return view
+	}
+	
+	func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//		if section == 0 { return 0 }
+		return 40
+	}
+	
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if groupsHandler.gotGroupDetails {
+		if section == 0{
+			return joinGroupIdHolder.count
+		} else {
+			return nearbyGroupIdHolder.count
+		}
+	}
+	
+	func populateDataSource() {
+//		if groupsHandler.gotGroupDetails {
 			lblSlotsRemaining.text = "\(slots - groupsHandler.joinedGroups.count)"
 			joinGroupIdHolder = []
 			for (id, group) in groupsHandler.joinedGroupsObject {
 				joinGroupIdHolder.append(id)
 			}
-			return groupsHandler.joinedGroups.count + 1
+		
+		nearbyGroupIdHolder = []
+		for (id, group) in groupsHandler.nearbyGroupObjects {
+			nearbyGroupIdHolder.append(id)
 		}
-		return 0
-        //return names.count
-    }
-    
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		if indexPath.row == groupsHandler.joinedGroups.count {
-			var cell = tblGroups.dequeueReusableCellWithIdentifier("AddCell", forIndexPath: indexPath) as! AddGroupTableViewCell
-			cell.parent = self
-			return cell
-		}
-		let group = groupsHandler.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
-		var subsCount = (group["subscriberObjects"] as? [String])!.count
+	}
+	
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		
+		var group: PFObject!
 		var cell = tblGroups.dequeueReusableCellWithIdentifier("newCell", forIndexPath: indexPath) as! GroupsTableViewCell
+		
+		if indexPath.section == 0 {
+			if indexPath.row == groupsHandler.joinedGroups.count {
+				var cell = tblGroups.dequeueReusableCellWithIdentifier("AddCell", forIndexPath: indexPath) as! AddGroupTableViewCell
+				cell.parent = self
+				return cell
+			}
+			group = groupsHandler.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
+		} else {
+			group = groupsHandler.nearbyGroupObjects[nearbyGroupIdHolder[indexPath.row]]!
+		}
+		var subsCount: Int!
+		if group["subscriberObjects"] != nil {
+			subsCount = (group["subscriberObjects"] as? [String])!.count
+		} else {
+			subsCount = 0
+		}
+		cell.indexPath = indexPath
 		cell.object = group
 		cell.subsCount = subsCount
+		cell.parent = self
 		cell.setup()
 		
-        return cell
+		return cell
     }
     
-    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
-		let group = groupsHandler.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
-        var shareRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Share", handler:{action, indexpath in
-			groupsHandler.shareGroup(groupsHandler.joinedGroups[indexPath.row], viewController: self)
-        });
-		
-        var deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
-			var deleteAlert = UIAlertController(title: "Delete", message: "Are you sure you want to leave this group?", preferredStyle: UIAlertControllerStyle.Alert)
-			deleteAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (action: UIAlertAction!) in
-				println(groupsHandler.joinedGroups[indexPath.row])
-				println(group["flatValue"] as! String)
-				groupsHandler.removeGroup(groupsHandler.joinedGroups[find(groupsHandler.joinedGroups, group["name"] as! String)!])
-				groupsHandler.joinedGroupsObject[group["flatValue"] as! String] = nil
-				self.updateHeaderNumbers()
-				self.tblGroups.reloadData()
-				self.lblSlotsRemaining.text = "\(self.slots - groupsHandler.joinedGroups.count)"
-			}))
-			deleteAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in }))
-			self.presentViewController(deleteAlert, animated: true, completion: nil)
-        });
-		
-        return [shareRowAction, deleteRowAction];
-    }
+//    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [AnyObject]? {
+//		let group = groupsHandler.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
+//        var shareRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Normal, title: "Share", handler:{action, indexpath in
+//			groupsHandler.shareGroup(groupsHandler.joinedGroups[indexPath.row], viewController: self)
+//        });
+//		
+//        var deleteRowAction = UITableViewRowAction(style: UITableViewRowActionStyle.Default, title: "Delete", handler:{action, indexpath in
+//			var deleteAlert = UIAlertController(title: "Delete", message: "Are you sure you want to leave this group?", preferredStyle: UIAlertControllerStyle.Alert)
+//			deleteAlert.addAction(UIAlertAction(title: "Yes", style: .Destructive, handler: { (action: UIAlertAction!) in
+//				println(groupsHandler.joinedGroups[indexPath.row])
+//				println(group["flatValue"] as! String)
+//				groupsHandler.removeGroup(groupsHandler.joinedGroups[find(groupsHandler.joinedGroups, group["name"] as! String)!])
+//				groupsHandler.joinedGroupsObject[group["flatValue"] as! String] = nil
+//				self.updateHeaderNumbers()
+//				self.tblGroups.reloadData()
+//				self.lblSlotsRemaining.text = "\(self.slots - groupsHandler.joinedGroups.count)"
+//			}))
+//			deleteAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in }))
+//			self.presentViewController(deleteAlert, animated: true, completion: nil)
+//        });
+//		
+//        return [shareRowAction, deleteRowAction];
+//    }
 	
-	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		let currentLabelValue = lblDescription.text
-		
-		// Fade out
-		UIView.animateWithDuration(0.3, animations: {
-			self.lblTotal.alpha = 0.0
-			}, completion: {
-				
-				// Change text and fade in
-				(finished: Bool) -> Void in
-				self.lblTotal.text = "Swipe"
-				UIView.animateWithDuration(0.3, animations: {
-				self.lblTotal.alpha = 1.0
-					}, completion: {
-						(finished: Bool) -> Void in
-						
-						// Fade out after 2 second delay
-						UIView.animateWithDuration(0.3, delay: 2, options: nil, animations: {
-							self.lblTotal.alpha = 0.0
-							}, completion: {
-								(finished: Bool) -> Void in
-								self.updateHeaderNumbers()
-								
-								// Fade back in with original text
-								UIView.animateWithDuration(0.3, animations: {
-									self.lblTotal.alpha = 1.0
-									})
-						})
-					})
-		})
+//	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+//		let currentLabelValue = lblDescription.text
+//		
+//		// Fade out
+//		UIView.animateWithDuration(0.3, animations: {
+//			self.lblTotal.alpha = 0.0
+//			}, completion: {
+//				
+//				// Change text and fade in
+//				(finished: Bool) -> Void in
+//				self.lblTotal.text = "Swipe"
+//				UIView.animateWithDuration(0.3, animations: {
+//				self.lblTotal.alpha = 1.0
+//					}, completion: {
+//						(finished: Bool) -> Void in
+//						
+//						// Fade out after 2 second delay
+//						UIView.animateWithDuration(0.3, delay: 2, options: nil, animations: {
+//							self.lblTotal.alpha = 0.0
+//							}, completion: {
+//								(finished: Bool) -> Void in
+//								self.updateHeaderNumbers()
+//								
+//								// Fade back in with original text
+//								UIView.animateWithDuration(0.3, animations: {
+//									self.lblTotal.alpha = 1.0
+//									})
+//						})
+//					})
+//		})
+//	}
+	
+//	func tableView(tableView: UITableView, willDisplayCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//		if cell is GroupsTableViewCell {
+//			(cell as! GroupsTableViewCell).offset()
+//		}
+//	}
+//	
+//	func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath) {
+//		if cell is GroupsTableViewCell {
+//			(cell as! GroupsTableViewCell).offset()
+//		}
+//	}
+	
+	func scrollViewDidScroll(scrollView: UIScrollView) {
+		for cell in tblGroups.visibleCells() {
+			if cell is GroupsTableViewCell {
+				(cell as! GroupsTableViewCell).offset()
+			}
+		}
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-		return 80
+		return 260
 	}
 	
-    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
-        
-    }
-    
-    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) { }
+//    func tableView(tableView: UITableView, moveRowAtIndexPath sourceIndexPath: NSIndexPath, toIndexPath destinationIndexPath: NSIndexPath) {
+//        
+//    }
+//    
+//    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) { }
 	
 	func animateTextChange(newString : String) {
 		UIView.animateWithDuration(0.3, delay: 0.0, options: UIViewAnimationOptions.CurveEaseOut, animations: {
@@ -339,6 +445,13 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 					self.imgRings.alpha = 1.0
 				})
 		})
+	}
+	
+	func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
+		if manager.location.horizontalAccuracy < 1001 {
+			groupsHandler.getNearbyGroups(manager.location)
+			manager.stopUpdatingLocation()
+		}
 	}
     
     override func didReceiveMemoryWarning() {
