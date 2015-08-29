@@ -30,6 +30,7 @@ class GroupsHandler: UIViewController {
 	var gotGroupDetails : Bool = false
 	var gotNearbyGroupDetails : Bool = false
 	var imagesFetched = false
+	var purchaseRunning = false
 	
 	func getGroups() {
 		let user = PFUser.currentUser()!
@@ -55,11 +56,16 @@ class GroupsHandler: UIViewController {
 		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
 	}
 	
-	func getNearbyGroups(location : CLLocation) {
-		if nearbyGroupObjects.isEmpty {
+	func getNearbyGroups(location : CLLocation, refresh: Bool = false) {
+		if nearbyGroupObjects.isEmpty || refresh == true {
+			nearbyGroupObjects = [:]
+			nearbyGroups = []
+			gotNearbyGroupDetails = false
+			let currentGroups = PFUser.currentUser()!["groups"] as! [String]
 			var queryHistory = PFQuery(className: "Groups")
 			queryHistory.whereKey("location", nearGeoPoint: PFGeoPoint(location: location), withinKilometers: 50)
 			queryHistory.whereKey("public", equalTo: true)
+			queryHistory.whereKey("name", notContainedIn: currentGroups)
 			queryHistory.limit = 2
 			queryHistory.findObjectsInBackgroundWithBlock({
 				(objects : [AnyObject]?, error : NSError?) -> Void in
@@ -70,7 +76,7 @@ class GroupsHandler: UIViewController {
 						self.nearbyGroups.append(object["flatValue"] as! String)
 						self.nearbyGroupObjects[object["flatValue"] as! String] = object
 					}
-					println(self.nearbyGroups)
+					NSNotificationCenter.defaultCenter().postNotificationName("gotNearbyGroups", object: nil)
 				} else {
 					println(error)
 				}
@@ -116,13 +122,54 @@ class GroupsHandler: UIViewController {
 		}
 	}
 	
+	func handlePurchase(parent: GroupsViewController) {
+		var saveAlert = UIAlertController(title: "Purchase additional group slot", message: "You need to purchase extra group slots in order to join more groups", preferredStyle: UIAlertControllerStyle.Alert)
+		saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+			NSNotificationCenter.defaultCenter().postNotificationName("purchaseStarted", object: nil)
+			self.purchaseRunning = true
+			global.showAlert("Please wait", message: "Processing your request. Please be patient.")
+			PFPurchase.buyProduct("SoC.Panic.groupPurchaseConsumable", block: {
+				(error: NSError!) -> Void in
+				if error == nil {
+					
+//					PFAnalytics.trackEventInBackground("Group_Purchases", dimensions: nil, block: nil)
+//					
+					println("BOUGHT ADD GROUP")
+					global.persistantSettings.synchronize()
+					PFUser.currentUser()!["numberOfGroups"] = groupsHandler.joinedGroups.count + 1
+					PFUser.currentUser()!.saveEventually(nil)
+					NSNotificationCenter.defaultCenter().postNotificationName("purchaseSuccessful", object: nil)
+					if groupsHandler.referalGroup != nil {
+						groupsHandler.shareGroup(groupsHandler.referalGroup!, viewController: self)
+					}
+				} else {
+					NSNotificationCenter.defaultCenter().postNotificationName("purchaseFail", object: nil)
+					if error.localizedDescription != "" {
+						global.showAlert("Unsuccessful", message: error.localizedDescription)
+					} else {
+						global.showAlert("Unsuccessful", message: "Your purchase was unsuccessful. Please try again. No money has been debited from your account.")
+					}
+					println("FAILED PURCHASE -- \(error)")
+				}
+				NSNotificationCenter.defaultCenter().postNotificationName("purchaseEnded", object: nil)
+				self.purchaseRunning = false
+			})
+		}))
+		saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in }))
+		parent.presentViewController(saveAlert, animated: true, completion: nil)
+	}
+	
 	func addGroup(groupName : String) {
-		PFUser.currentUser()?.addUniqueObject(groupName, forKey: "groups")
-		getGroupDetails(groupName)
-		updateGroups(group: groupName, add: true)
-		PFInstallation.currentInstallation().addUniqueObject(groupName.formatGroupForChannel(), forKey: "channels")
-		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
-		shareGroup(groupName, viewController: self)
+		if joinedGroups.count <= PFUser.currentUser()!["numberOfGroups"] as! Int {
+			PFUser.currentUser()?.addUniqueObject(groupName, forKey: "groups")
+			getGroupDetails(groupName)
+			updateGroups(group: groupName, add: true)
+			PFInstallation.currentInstallation().addUniqueObject(groupName.formatGroupForChannel(), forKey: "channels")
+			PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
+			shareGroup(groupName, viewController: self)
+		} else {
+			
+		}
 	}
 	
 	func removeGroup(groupName : String) {

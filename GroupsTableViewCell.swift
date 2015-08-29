@@ -16,10 +16,12 @@ class GroupsTableViewCell: UITableViewCell {
 	var subsCount: Int = 0
 	private var gradient: CAGradientLayer?
 	var parent: GroupsViewController!
-	var indexPath: NSIndexPath!
+	let OffsetSpeed: CGFloat = 35.0
+	var imgBackground: UIImageView!
 
-	@IBOutlet weak var viewBar: UIView! 
-	@IBOutlet weak var imgBackground: UIImageView!
+	
+	@IBOutlet weak var btnMore: UIButton!
+	@IBOutlet weak var imgLock: UIImageView!
 	@IBOutlet weak var lblName: UILabel!
 	@IBOutlet weak var lblCountry: UILabel!
 	@IBOutlet weak var lblSubs: UILabel!
@@ -27,41 +29,57 @@ class GroupsTableViewCell: UITableViewCell {
 	
     override func awakeFromNib() {
         super.awakeFromNib()
+		self.clipsToBounds = true
     }
 	
 	func setup() {
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "purchaseStarted", name: "purchaseStarted", object: nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "purchaseEnded", name: "purchaseEnded", object: nil)
+		let yOffset = ((parent.tblGroups.contentOffset.y - self.frame.origin.y) / 320) * OffsetSpeed
+		if imgBackground != nil {
+			imgBackground.frame = CGRectMake(0, yOffset, self.frame.width, 320)
+		} else {
+			imgBackground = UIImageView(frame: CGRectMake(0, yOffset, self.frame.width, 320))
+			self.insertSubview(imgBackground, atIndex: 0)
+		}
+		imgBackground.contentMode = UIViewContentMode.ScaleAspectFill 
 		setImage()
-		
-		self.clipsToBounds = true
 		
 		let groupName = object!["name"] as! String
 		
 		lblName.text = groupName
+		
+		if object!["subscriberObjects"] != nil {
+			subsCount = (object!["subscriberObjects"] as? [String])!.count
+		}
+		
 		if object?["description"] != nil {
 			lblCountry.text = object?["description"] as? String
 		} else {
 			lblCountry.text = object?["country"] as? String
 		}
-		lblSubs.text = "\(subsCount)"
 		
-//		if (object!["public"] as? Bool) == true {
-//			if subsCount > 2 { subsCount += 12 }
-//			lblSubs.text = "\(subsCount)"
-//			viewBar.backgroundColor = UIColor(red: 40/255, green: 185/255, blue: 38/255, alpha: 1)
-//		} else {
-//			viewBar.backgroundColor = UIColor(red: 14/255, green: 142/255, blue: 181/255, alpha: 1)
-//		}
+		if (object!["public"] as? Bool) == true {
+			imgLock.hidden = true
+//			if subsCount > 2 { subsCount = subsCount + Int(floor(subsCount*0.3)) }
+		} else {
+			imgLock.hidden = false
+		}
+		
+		lblSubs.text = "\(subsCount)"
 		
 		imgBackground.clipsToBounds = true
 		
+		btnMore = drawing.buttonBorderCircle(btnMore, borderWidth: 1, borderColour: UIColor.whiteColor().CGColor)
+		btnMore.backgroundColor = UIColor(white: 0, alpha: 0.3)
+		
+		if groupsHandler.purchaseRunning == true { purchaseStarted() }
 		btnLeave.layer.cornerRadius = 5
 		btnLeave.layer.borderColor = UIColor.whiteColor().CGColor
 		btnLeave.layer.borderWidth = 1
 		btnLeave.clipsToBounds = true
-		btnLeave.backgroundColor = UIColor(white: 0, alpha: 0.2)
+		btnLeave.backgroundColor = UIColor(white: 0, alpha: 0.3)
 		
-//		println(lblName.text!)
-//		println(find(groupsHandler.joinedGroups, groupName))
 		if find(groupsHandler.joinedGroups, groupName) == nil {
 			btnLeave.setTitle("JOIN", forState: .Normal)
 			alreadyJoined = false
@@ -76,6 +94,37 @@ class GroupsTableViewCell: UITableViewCell {
 		}
 	}
 	
+	@IBAction func more(sender: AnyObject) {
+		var options = UIAlertController(title: "Options", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
+		
+		// EDIT
+		let editAction = UIAlertAction(title: "Edit", style: .Default) { (_) in
+		}
+		
+		// REPORT
+		let reportAction = UIAlertAction(title: "Report", style: .Default) { (_) in
+		}
+		
+		// LEAVE / JOIN
+		let leaveJoinAction = UIAlertAction(title: btnLeave.titleLabel!.text!.capitalizedString, style: .Default) { (_) in
+			self.btnLeave.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+		}
+		
+		// HIDE
+//		let deleteAction = UIAlertAction(title: "Hide", style: .Destructive) { (_) in
+//		}
+		
+		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
+		
+		options.addAction(editAction)
+		options.addAction(reportAction)
+		options.addAction(leaveJoinAction)
+//		options.addAction(deleteAction)
+		options.addAction(cancelAction)
+		
+		self.parent.presentViewController(options, animated: true, completion: nil)
+	}
+	
 	@IBAction func joinLeave(sender: AnyObject) {
 		let groupName = self.object!["name"] as! String
 		if alreadyJoined == true {
@@ -87,12 +136,45 @@ class GroupsTableViewCell: UITableViewCell {
 				if groupsHandler.joinedGroupsObject.count == 0 {
 					self.parent.tblGroups.reloadData()
 				} else {
-					self.parent.tblGroups.deleteRowsAtIndexPaths([self.indexPath], withRowAnimation: .Automatic)
+					let indexPath = self.parent.tblGroups.indexPathForCell(self)
+					self.parent.tblGroups.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Automatic)
 				}
 			}))
 			deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .Default, handler: { (action: UIAlertAction!) in }))
 			self.parent.presentViewController(deleteAlert, animated: true, completion: nil)
+		} else {
+			if groupsHandler.joinedGroups.count >= PFUser.currentUser()!["numberOfGroups"] as! Int {
+				NSNotificationCenter.defaultCenter().addObserver(self, selector: "purchaseSuccessful", name: "purchaseSuccessful", object: nil)
+				NSNotificationCenter.defaultCenter().addObserver(self, selector: "purchaseFail", name: "purchaseFail", object: nil)
+				groupsHandler.handlePurchase(parent)
+			} else {
+				purchaseSuccessful()
+			}
 		}
+	}
+	
+	func purchaseSuccessful() {
+		groupsHandler.addGroup(lblName.text!)
+		groupsHandler.getNearbyGroups(parent.manager.location, refresh: true)
+		parent.populateDataSource()
+		parent.checkForGroupDetails()
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: "purchaseSuccess", object: nil)
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: "purchaseFail", object: nil)
+	}
+	
+	func purchaseFail() {
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: "purchaseSuccess", object: nil)
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: "purchaseFail", object: nil)
+	}
+	
+	func purchaseStarted() {
+		btnLeave.alpha = 0.3
+		btnLeave.enabled = false
+	}
+	
+	func purchaseEnded() {
+		btnLeave.alpha = 1
+		btnLeave.enabled = true
 	}
 	
 	func getImage() {
@@ -111,7 +193,6 @@ class GroupsTableViewCell: UITableViewCell {
 				}
 			}
 		})
-		//		}
 	}
 	
 	func setImage() {
@@ -132,7 +213,6 @@ class GroupsTableViewCell: UITableViewCell {
 	}
 	
 	func offset() {
-		let OffsetSpeed: CGFloat = 35.0
 		var yOffset = ((parent.tblGroups.contentOffset.y - self.frame.origin.y) / self.imgBackground.frame.height) * OffsetSpeed
 		imgBackground.frame = CGRectOffset(self.imgBackground.bounds, 0, yOffset)
 	}
