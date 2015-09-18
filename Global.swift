@@ -63,6 +63,7 @@ class Global: UIViewController {
 					global.getLocalHistory()
 					groupsHandler.getGroups()
 					global.persistantSettings.setInteger(PFUser.currentUser()!["numberOfGroups"] as! Int, forKey: "numberOfGroups")
+					PFInstallation.currentInstallation().addUniqueObject("panic_global", forKey: "channels")
 				}
 			})
 			

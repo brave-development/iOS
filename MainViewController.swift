@@ -210,24 +210,26 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 				if allowAddToPushQue == true {
 					allowAddToPushQue = false
 					for group in groupsHandler.joinedGroups {
-						var push = PFPush()
-						let userName = PFUser.currentUser()!["name"] as! String
-						let userNumber = PFUser.currentUser()!["cellNumber"] as! String
-						var tempQuery = PFInstallation.query()
-						tempQuery!.whereKey("channels", equalTo: group.formatGroupForChannel())
-						tempQuery!.whereKey("installationId", notEqualTo: PFInstallation.currentInstallation().installationId)
-						push.setQuery(tempQuery)
-						push.expireAfterTimeInterval(18000) // 5 Hours
-						push.setData(["alert" : "\(userName) needs help! Contact them on \(userNumber) or view their location in the app.", "badge" : "Increment", "sound" : "default", "lat" : manager.location.coordinate.latitude, "long" : manager.location.coordinate.longitude])
-						push.sendPushInBackgroundWithBlock({
-							(result : Bool, error : NSError?) -> Void in
-							if result == true {
-								println("Push sent to group \(group.formatGroupForChannel())")
-							} else if error != nil {
-								println(error)
-							}
-						})
+						sendNotification(group)
+//						var push = PFPush()
+//						let userName = PFUser.currentUser()!["name"] as! String
+//						let userNumber = PFUser.currentUser()!["cellNumber"] as! String
+//						var tempQuery = PFInstallation.query()
+//						tempQuery!.whereKey("channels", equalTo: group.formatGroupForChannel())
+//						tempQuery!.whereKey("installationId", notEqualTo: PFInstallation.currentInstallation().installationId)
+//						push.setQuery(tempQuery)
+//						push.expireAfterTimeInterval(18000) // 5 Hours
+//						push.setData(["alert" : "\(userName) needs help! Contact them on \(userNumber) or view their location in the app.", "badge" : "Increment", "sound" : "default", "lat" : manager.location.coordinate.latitude, "long" : manager.location.coordinate.longitude])
+//						push.sendPushInBackgroundWithBlock({
+//							(result : Bool, error : NSError?) -> Void in
+//							if result == true {
+//								println("Push sent to group \(group.formatGroupForChannel())")
+//							} else if error != nil {
+//								println(error)
+//							}
+//						})
 					}
+					sendNotification(nil)
 				}
 				allowAddToPushQue = true
 				pendingPushNotifications = false
@@ -239,6 +241,30 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 		}
     }
 	
+	func sendNotification(group: String?) {
+		var push = PFPush()
+		let userName = PFUser.currentUser()!["name"] as! String
+		let userNumber = PFUser.currentUser()!["cellNumber"] as! String
+		var tempQuery = PFInstallation.query()
+		if group != nil {
+			tempQuery!.whereKey("channels", equalTo: group!.formatGroupForChannel())
+		} else {
+			tempQuery!.whereKey("channels", equalTo: "panic_global")
+		}
+		tempQuery!.whereKey("installationId", notEqualTo: PFInstallation.currentInstallation().installationId)
+		push.setQuery(tempQuery)
+		push.expireAfterTimeInterval(18000) // 5 Hours
+		push.setData(["alert" : "\(userName) needs help! Contact them on \(userNumber) or view their location in the app.", "badge" : "Increment", "sound" : "default", "lat" : manager.location.coordinate.latitude, "long" : manager.location.coordinate.longitude])
+		push.sendPushInBackgroundWithBlock({
+			(result : Bool, error : NSError?) -> Void in
+			if result == true {
+				println("Push sent to group \(group?.formatGroupForChannel())")
+			} else if error != nil {
+				println(error)
+			}
+		})
+	}
+	
 	func textViewDidEndEditing(textView: UITextView) {
 		panicHandler.updateDetails(textView.text)
 	}
@@ -248,11 +274,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 	}
 	
 	func updateActivePanics() {
-//		if panicHandler.activePanicCount > 0 {
-//			tabbarViewController.badge.hidden = false
-//		} else {
-//			tabbarViewController.badge.hidden = true
-//		}
 		tabbarViewController.badge.autoBadgeSizeWithString("\(panicHandler.activePanicCount)")
 		println("Updated panic count from Main")
 	}

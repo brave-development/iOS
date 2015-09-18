@@ -320,7 +320,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	@IBAction func call(sender: AnyObject) {
 		let victimInfo = selectedVictim!["user"] as! PFUser
 		let cell = victimInfo["cellNumber"] as? String
-		println(cell!)
+//		println(cell!)
 		if cell != nil {
 			var url = NSURL(string: "tel://\(cell!)")
 			UIApplication.sharedApplication().openURL(url!)

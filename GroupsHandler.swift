@@ -63,13 +63,14 @@ class GroupsHandler: UIViewController {
 			gotNearbyGroupDetails = false
 			let currentGroups = PFUser.currentUser()!["groups"] as! [String]
 			var queryHistory = PFQuery(className: "Groups")
-			queryHistory.whereKey("location", nearGeoPoint: PFGeoPoint(location: location), withinKilometers: 50)
+			queryHistory.whereKey("location", nearGeoPoint: PFGeoPoint(location: location), withinKilometers: 5000)
 			queryHistory.whereKey("public", equalTo: true)
 			queryHistory.whereKey("name", notContainedIn: currentGroups)
 			queryHistory.limit = 2
 			queryHistory.findObjectsInBackgroundWithBlock({
 				(objects : [AnyObject]?, error : NSError?) -> Void in
 				if error == nil {
+					println(objects)
 					self.nearbyGroups = []
 					for objectRaw in objects! {
 						let object = objectRaw as! PFObject
@@ -174,10 +175,12 @@ class GroupsHandler: UIViewController {
 	
 	func removeGroup(groupName : String) {
 		println(groupName)
-		PFUser.currentUser()?.removeObject(groupName, forKey: "groups")
 		joinedGroups.removeAtIndex(find(joinedGroups, groupName)!)
 		joinedGroupsObject[groupName.formatGroupForFlatValue()] = nil
 		updateGroups(group: groupName, add: false)
+		println(PFInstallation.currentInstallation().objectForKey("channels"))
+		println(groupName)
+		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
 		PFInstallation.currentInstallation().removeObject(groupName.formatGroupForChannel(), forKey: "channels")
 		PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
 	}
@@ -266,6 +269,62 @@ class GroupsHandler: UIViewController {
 					global.showAlert("Hmm..", message: "Something went wrong. The link to your group has been copied to the clipboard - paste it in an SMS or anywhere else you would like to share it")
 				}
 			})})
+	}
+	
+	
+	// CREATE GROUP
+	func createGroup(groupObject: PFObject, parent: CreateGroupViewController) {
+		if checkIfAlreadyContainsGroup(groupObject) == false {
+			var error : NSErrorPointer?
+			var query = PFQuery(className: "Groups")
+			var queryAddNewGroupCheckFlat = PFQuery(className: "Groups")
+			if checkIfGroupExists(groupObject) == false {
+				groupObject.saveInBackgroundWithBlock({
+					(result: Bool, error: NSError?) -> Void in
+					if result == true {
+						dispatch_async(dispatch_get_main_queue(), {
+							let name = groupObject["name"] as! String
+							global.showAlert("Successful", message: "Successfully created and joined the group \(name).")
+							groupsHandler.addGroup(name)
+							NSNotificationCenter.defaultCenter().postNotificationName("gotNearbyGroups", object: nil)
+							parent.dismissViewControllerAnimated(true, completion: nil)
+						})
+					} else {
+						global.showAlert("Oops", message: error!.localizedFailureReason!)
+					}
+				})
+			}
+		} else {
+			global.showAlert("Hmm...", message: "You already belong to this group.")
+		}
+	}
+	
+	func checkIfAlreadyContainsGroup(group: PFObject) -> Bool {
+		for channel in PFInstallation.currentInstallation().channels as! [String] {
+			if (group["name"] as! String).formatGroupForFlatValue() == channel {
+				return true
+			}
+		}
+		return false
+	}
+	
+	func checkIfGroupExists(group: PFObject) -> Bool {
+		var query = PFQuery(className: "Groups")
+		query.whereKey("flatValue", equalTo: (group["name"] as! String).formatGroupForFlatValue())
+		let objects = query.findObjects()
+		
+		if objects != nil {
+			if objects!.count == 0 {
+				return false
+			} else {
+				let pfObject = objects!.first as! PFObject
+				let name = pfObject["name"] as! String
+				let country = pfObject["country"] as! String
+				let privateGroup = pfObject["public"] as! Bool
+				global.showAlert("Unsuccessful", message: "Group '\(name)' already exists in \(country)")
+			}
+		}
+		return true
 	}
 	
 	// Used to create a group with user = Panic

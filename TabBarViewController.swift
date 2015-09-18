@@ -98,7 +98,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		if tutorial.panic == false {
 			setupTutorial()
 		} else if global.persistantSettings.objectForKey("backgroundUpdatesNotice") == nil {
-				global.showAlert("NEW: Background Updates", message: "Panic supports background location updates in emergencies. This simply means the app no longer needs to remain open and your phone awake for your location to be tracked in an emergency.\nThis feature must be turned on from the settings menu within the app (via the side menu)")
+				// Startup notice goes here... shows only once
 			global.persistantSettings.setBool(true, forKey: "backgroundUpdatesNotice")
 		}
 		

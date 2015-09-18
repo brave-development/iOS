@@ -255,7 +255,7 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 	func createGroup() {
 		if checkIfAlreadyContainsGroup() == false {
 			var error : NSErrorPointer?
-			let tempGroupsArray : [String] = groups as! [String] // Used because you cannot run contains() on an NSArray. Converted to [String]
+			let tempGroupsArray : [String] = groups as! [String] // Used because you cannot run contains() on an
 			if query != nil { query.cancel() }
 			btnJoin.enabled = false
 			switchPrivate.enabled = false

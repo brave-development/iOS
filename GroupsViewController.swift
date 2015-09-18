@@ -10,8 +10,9 @@ import UIKit
 import Parse
 import Social
 import CoreLocation
+//import VCFloatingActionButton
 
-class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate {
+class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate, floatMenuDelegate {
 	
 	var total : Int = 0
 	var privateTotal : Int = 0
@@ -33,7 +34,6 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 	
 	@IBOutlet weak var lblLoading: UILabel!
 	@IBOutlet weak var tblGroups: UITableView!
-	@IBOutlet weak var btnAdd: UIButton!
 	@IBOutlet weak var spinner: UIActivityIndicatorView!
 	
 	// Tutorial
@@ -49,15 +49,30 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		viewTutorial.hidden = true
+		
+		let buttonRect = CGRectMake(self.view.frame.width - 100, self.view.frame.height - 100, 65, 65)
+		let floatingButton = VCFloatingActionButton(frame: buttonRect, normalImage: UIImage(named: "plus"), andPressedImage: UIImage(named: "cross"), withScrollview: tblGroups)
+		floatingButton.normalImageView.frame = CGRectMake(floatingButton.normalImageView.frame.width/2 - 10, floatingButton.normalImageView.frame.height/2 - 10, 20, 20)
+		floatingButton.pressedImageView.frame = CGRectMake(floatingButton.pressedImageView.frame.width/2 - 10, floatingButton.pressedImageView.frame.height/2 - 10, 20, 20)
+		floatingButton.layer.cornerRadius  = 0.5 * floatingButton.frame.width
+		floatingButton.layer.shadowColor = UIColor.blackColor().CGColor
+		floatingButton.layer.shadowOffset = CGSizeZero
+		floatingButton.layer.shadowOpacity = 0.6
+		floatingButton.layer.shadowRadius = 3
+		floatingButton.backgroundColor = UIColor.redColor()
+		floatingButton.delegate = self
+		floatingButton.hideWhileScrolling = true
+		
+		let optionsImages: [String] = ["create", "privateGroup", "RespondersIcon"]
+		let optionsTitles = ["Create your own", "Join Private Group", "Join a Community"]
+		floatingButton.labelArray = optionsTitles
+		floatingButton.imageArray = optionsImages
+		
+		self.view.addSubview(floatingButton)
+		
 		layoutNotificationTop.constant = -viewNotificationBar.frame.height
 		viewNotificationBar.layoutIfNeeded()
-		
-		btnAdd.layer.cornerRadius = 0.5 * btnAdd.frame.width
-		btnAdd.backgroundColor = UIColor(red: 1, green: 0, blue: 0, alpha: 0.9)
-		btnAdd.layer.shadowColor = UIColor.blackColor().CGColor
-		btnAdd.layer.shadowOffset = CGSizeZero
-		btnAdd.layer.shadowOpacity = 0.6
-		btnAdd.layer.shadowRadius = 3
 		
 		manager = CLLocationManager()
 		manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -81,7 +96,7 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 		
 		if tutorial.addNewGroup == false {
 			viewTutorial.hidden = false
-			animateTutorial()
+//			animateTutorial()
 		}
 	}
 	
@@ -107,11 +122,11 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 //		btnAdd.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
 //	}
 //	
-//	func purchaseFail() {
-//		btnAdd.enabled = true
-//	}
+	//	func purchaseFail() {
+	//		btnAdd.enabled = true
+	//	}
 	
-	@IBAction func addGroup(sender: AnyObject) {
+	func addGroup() {
 		tutorial.addNewGroup = true
 		tutorial.save()
 		println("Set addNewGroups to TRUE")
@@ -125,7 +140,6 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 		
 		if PFUser.currentUser()!["numberOfGroups"] != nil {
 			if PFUser.currentUser()!["numberOfGroups"] as! Int == tblGroups.numberOfRowsInSection(0) {
-				btnAdd.enabled = false
 				groupsHandler.handlePurchase(self)
 			} else if PFUser.currentUser()!["numberOfGroups"] as! Int > groupsHandler.joinedGroups.count {
 				var storyboard = UIStoryboard(name: "Main", bundle: nil)
@@ -155,16 +169,6 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 		})
 	}
 	
-//	func beganPurchase() {
-//		self.spinner.startAnimating()
-//		purchaseRunning = true
-//	}
-//	
-//	func endPurchase() {
-//		self.spinner.stopAnimating()
-//		purchaseRunning = false
-//	}
-	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		if groupsHandler.nearbyGroups.count == 0 { return 1 }
 		return 2
@@ -192,6 +196,7 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 	
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if section == 0{
+			if joinGroupIdHolder.count == 0 { return 1 }
 			return joinGroupIdHolder.count
 		} else {
 			return nearbyGroupIdHolder.count
@@ -211,6 +216,11 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 	}
 	
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		
+		if joinGroupIdHolder.count == 0 && indexPath.section == 0 {
+			let cellNoGroups = tblGroups.dequeueReusableCellWithIdentifier("noGroups", forIndexPath: indexPath) as! UITableViewCell
+			return cellNoGroups
+		}
 		
 		var group: PFObject!
 		var cell = tblGroups.dequeueReusableCellWithIdentifier("newCell", forIndexPath: indexPath) as! GroupsTableViewCell
@@ -236,14 +246,36 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 	
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		for cell in tblGroups.visibleCells() {
-			if cell is GroupsTableViewCell {
+			if cell is GroupsTableViewCell && cell.frame.size.height != 60 {
 				(cell as! GroupsTableViewCell).offset()
 			}
 		}
 	}
 	
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		if joinGroupIdHolder.count == 0 && indexPath.section == 0 { return 60 }
 		return 260
+	}
+	
+	func didSelectMenuOptionAtIndex(row: Int) {
+		switch(row) {
+		case 0:
+			//create
+			let vc = storyboard?.instantiateViewControllerWithIdentifier("createNewGroupViewController") as! CreateGroupViewController
+//			self.definesPresentationContext = true
+			vc.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+			self.presentViewController(vc, animated: true, completion: nil)
+			addGroup()
+			break
+			
+		case 1:
+			//join private
+			addGroup()
+			break
+			
+		default:
+			break
+		}
 	}
 	
 	func checkIfAlreadyContainsGroup(groupName : String) -> Bool {
@@ -292,15 +324,10 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 	
 	func animateTutorial() {
 		let gesture = UITapGestureRecognizer(target: self, action: "addGroup")
-		viewBar.addGestureRecognizer(gesture)
 		
 		self.imageTap.layer.shadowColor = UIColor.whiteColor().CGColor
 		self.imageTap.layer.shadowRadius = 5.0
 		self.imageTap.layer.shadowOffset = CGSizeZero
-		
-		self.btnAdd.layer.shadowColor = UIColor.whiteColor().CGColor
-		self.btnAdd.layer.shadowRadius = 5.0
-		self.btnAdd.layer.shadowOffset = CGSizeZero
 		
 		var animate = CABasicAnimation(keyPath: "shadowOpacity")
 		animate.fromValue = 0.0
@@ -309,7 +336,6 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 		animate.duration = 1
 		
 		self.imageTap.layer.addAnimation(animate, forKey: "shadowOpacity")
-		self.btnAdd.layer.addAnimation(animate, forKey: "shadowOpacity")
 		
 		if tutorial.addNewGroup == false {
 			let timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "animateTutorial", userInfo: nil, repeats: false)

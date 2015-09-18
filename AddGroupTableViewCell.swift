@@ -29,7 +29,7 @@ class AddGroupTableViewCell: UITableViewCell {
 	
 	func addGroup() {
 		if parent.purchaseRunning == false {
-			parent.btnAdd.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
+//			parent.btnAdd.sendActionsForControlEvents(UIControlEvents.TouchUpInside)
 		} else {
 			global.showAlert("Please wait", message: "Processing your request. Please be patient.")
 		}

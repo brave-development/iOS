@@ -99,6 +99,11 @@ class GroupsTableViewCell: UITableViewCell {
 		
 		// EDIT
 		let editAction = UIAlertAction(title: "Edit", style: .Default) { (_) in
+			let vc = self.parent.storyboard?.instantiateViewControllerWithIdentifier("createNewGroupViewController") as! CreateGroupViewController
+//			vc.fillData(self.object!)
+			vc.group = self.object!
+			vc.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+			self.parent.presentViewController(vc, animated: true, completion: nil)
 		}
 		
 		// REPORT
@@ -131,7 +136,7 @@ class GroupsTableViewCell: UITableViewCell {
 			var deleteAlert = UIAlertController(title: "Leave \(groupName)?", message: "Are you sure you want to leave this group?", preferredStyle: UIAlertControllerStyle.Alert)
 			deleteAlert.addAction(UIAlertAction(title: "Leave", style: .Destructive, handler: { (action: UIAlertAction!) in
 				groupsHandler.removeGroup(groupName)
-				groupsHandler.joinedGroupsObject[self.object?["flatValue"] as! String] = nil
+//				groupsHandler.joinedGroupsObject[self.object?["flatValue"] as! String] = nil
 				self.parent.populateDataSource()
 				if groupsHandler.joinedGroupsObject.count == 0 {
 					self.parent.tblGroups.reloadData()
@@ -178,21 +183,35 @@ class GroupsTableViewCell: UITableViewCell {
 	}
 	
 	func getImage() {
-		let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
-		let groupName = self.object!["flatValue"] as! String
+		var imageFile: UIImage?
 		let getImageDispatch: dispatch_queue_t = dispatch_queue_create("getImageDispatch", nil)
 		dispatch_async(getImageDispatch, {
-			if self.object!["image"] != nil {
+			if self.object!["imageFile"] != nil {
+				
+				let image: PFFile = self.object!["imageFile"] as! PFFile
+				image.getDataInBackgroundWithBlock {
+					(imageData: NSData?, error: NSError?) -> Void in
+					if error == nil {
+						self.finishedDownload(UIImage(data:imageData!)!)
+					}
+				}
+			} else if self.object!["image"] != nil {
 				let imageUrl: String = self.object!["image"] as! String
 				let url = NSURL(string: imageUrl)
-				if let data = NSData(contentsOfURL: url!){
-					let image = UIImage(data: data)
-					self.imgBackground.image = image
-					let destinationPath = documentsPath.stringByAppendingPathComponent("\(groupName).jpg")
-					UIImageJPEGRepresentation(image,1.0).writeToFile(destinationPath, atomically: true)
+				if let imageData = NSData(contentsOfURL: url!){
+					self.finishedDownload(UIImage(data:imageData)!)
 				}
 			}
 		})
+	}
+	
+	func finishedDownload(image: UIImage) {
+		let groupName = self.object!["flatValue"] as! String
+		let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
+		
+		imgBackground.image = image
+		let destinationPath = documentsPath.stringByAppendingPathComponent("\(groupName).jpg")
+		UIImageJPEGRepresentation(image,1.0).writeToFile(destinationPath, atomically: true)
 	}
 	
 	func setImage() {
@@ -207,6 +226,14 @@ class GroupsTableViewCell: UITableViewCell {
 		if (checkValidation.fileExistsAtPath(getImagePath)) {
 			let image = UIImage(contentsOfFile: getImagePath)
 			self.imgBackground.image = image
+			let fileAttrs = NSFileManager.defaultManager().attributesOfItemAtPath(getImagePath, error: nil)
+			if fileAttrs != nil {
+				let modDate = fileAttrs![NSFileModificationDate] as! NSDate
+				if NSDate().timeIntervalSinceDate(modDate) > 86400 {
+					println("Fetching new image for \(groupName)")
+					getImage()
+				}
+			}
 		} else {
 			getImage()
 		}
