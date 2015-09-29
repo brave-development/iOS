@@ -62,7 +62,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		profilePic.clipsToBounds = true
 		
 		tapRecognizer = UITapGestureRecognizer(target: self, action: "closeSidebar")
-		recognizer = UIScreenEdgePanGestureRecognizer(target: self, action:Selector("openSidebarGesture"))
+		recognizer = UIScreenEdgePanGestureRecognizer(target: self, action:Selector("openSidebarGesture:"))
 		let closeRecognizer = UISwipeGestureRecognizer(target: self, action: "closeSidebar")
 		closeRecognizer.direction = UISwipeGestureRecognizerDirection.Left
 		recognizer.edges = UIRectEdge.Left
@@ -72,6 +72,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		placeholderView.addGestureRecognizer(recognizer)
 		placeholderView.addGestureRecognizer(tapRecognizer)
 		placeholderView.addGestureRecognizer(closeRecognizer)
+		viewSidebar.addGestureRecognizer(closeRecognizer)
 		
 		badge = CustomBadge(string: "1000")
 		badge.setTranslatesAutoresizingMaskIntoConstraints(false)
@@ -89,7 +90,6 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	}
 	
 	override func viewDidAppear(animated: Bool) {
-		
 		if tutorial.swipeToOpenMenu == false {
 			viewSwipeRight.hidden = false
 			animateSwipeRight()
@@ -201,8 +201,22 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
-	func openSidebarGesture() {
-		openSidebar()
+	func openSidebarGesture(gesture: UIGestureRecognizer) {
+		let point = gesture.locationInView(self.view)
+		if point.x <= viewSidebar.frame.width {
+			switch (gesture.state) {
+			case .Ended:
+				if point.x >= viewSidebar.frame.width/2 { openSidebar(override: true) }
+				else { closeSidebar() }
+				break
+				
+			default:
+				self.sidebarLeftLayout.constant = point.x - viewSidebar.frame.width
+				self.viewSidebar.layoutIfNeeded()
+				self.view.layoutIfNeeded()
+				break
+			}
+		}
 	}
 	
 	func openSidebar(override : Bool = false) {
@@ -213,6 +227,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 				tapRecognizer.enabled = true
 				UIView.animateWithDuration(0.3, animations: {
 					self.viewSidebar.layoutIfNeeded()
+					self.view.layoutIfNeeded()
 					self.hideTabbar()
 					if self.amAtHome == true {
 						tutorial.swipeToOpenMenu = true
@@ -240,10 +255,11 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	
 	func closeSidebar() {
 		sideBarIsOpen = false
-		self.sidebarLeftLayout.constant = -self.viewSidebar.frame.width - 1
+		sidebarLeftLayout.constant = -viewSidebar.frame.width - 1
 		tapRecognizer.enabled = false
 		UIView.animateWithDuration(0.3, animations: {
 			self.viewSidebar.layoutIfNeeded()
+			self.view.layoutIfNeeded()
 			if (self.amAtHome == true) {
 				self.showTabbar()
 			}
@@ -285,6 +301,10 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		self.presentViewController(alertController, animated: true) {
 			// ...
 		}
+	}
+	
+	func updateViews() {
+		
 	}
 	
 	func back() {

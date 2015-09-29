@@ -270,7 +270,48 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 			
 		case 1:
 			//join private
-			addGroup()
+			var inputTextField: UITextField?
+			let codePrompt = UIAlertController(title: "Enter Code", message: "Enter the code given to you by another group member", preferredStyle: UIAlertControllerStyle.Alert)
+			codePrompt.addAction(UIAlertAction(title: "Join", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+				self.showNotificationBar(text: "Trying to join group...")
+				let query = PFQuery(className: "Groups")
+				query.getObjectInBackgroundWithId(inputTextField!.text, block: {
+					(result, error) -> Void in
+					if error == nil {
+						if result != nil {
+							let group = result! as PFObject
+							groupsHandler.addGroup(group["name"] as! String)
+							dispatch_async(dispatch_get_main_queue(), { self.hideNotificationBar() })
+						}
+					} else {
+						if error!.code == 101 {
+							global.showAlert("No group found", message: "No group with that code has been found. Codes are case sensitive.")
+						} else {
+							println(error)
+						}
+					}
+				})
+			}))
+			codePrompt.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
+				textField.placeholder = "Group Code"
+				inputTextField = textField
+			})
+			
+			codePrompt.addAction(UIAlertAction(title: "Help", style: UIAlertActionStyle.Default, handler: { (action) -> Void in
+				global.showAlert("Joining a Private Group", message: "Someone needs to share the groups private code with you in order for you to join. This code can be found by either tapping the small lock in the group or by tapping the (•••) button and selecting 'share'.")
+			}))
+			
+			codePrompt.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Destructive, handler: nil))
+			
+			presentViewController(codePrompt, animated: true, completion: nil)
+//			addGroup()
+			break
+			
+		case 2:
+			let vc = storyboard?.instantiateViewControllerWithIdentifier("addPublicGroupViewController") as! AddPublicGroupViewController
+			vc.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+			vc.parent = self
+			self.presentViewController(vc, animated: true, completion: nil)
 			break
 			
 		default:

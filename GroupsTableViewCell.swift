@@ -92,18 +92,25 @@ class GroupsTableViewCell: UITableViewCell {
 			gradient = drawing.gradient(contentView, colours: [UIColor.clearColor().CGColor, UIColor.blackColor().CGColor], locations: [0.0 , 1.0], opacity: 0.5)
 			contentView.layer.insertSublayer(gradient, atIndex: 1)
 		}
+		
+		let lockTapGesture = UITapGestureRecognizer(target: self, action: "shareCode")
+		imgLock.addGestureRecognizer(lockTapGesture)
+		imgLock.userInteractionEnabled = true
 	}
 	
 	@IBAction func more(sender: AnyObject) {
 		var options = UIAlertController(title: "Options", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
 		
 		// EDIT
-		let editAction = UIAlertAction(title: "Edit", style: .Default) { (_) in
-			let vc = self.parent.storyboard?.instantiateViewControllerWithIdentifier("createNewGroupViewController") as! CreateGroupViewController
-//			vc.fillData(self.object!)
-			vc.group = self.object!
-			vc.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
-			self.parent.presentViewController(vc, animated: true, completion: nil)
+		if (object!["admin"] as? PFUser)?.objectId == PFUser.currentUser()?.objectId || (object!["admin"] as? PFUser)?.objectId! ==  "3ryzx2MVKU" {
+			let editAction = UIAlertAction(title: "Edit", style: .Default) { (_) in
+				let vc = self.parent.storyboard?.instantiateViewControllerWithIdentifier("createNewGroupViewController") as! CreateGroupViewController
+				//			vc.fillData(self.object!)
+				vc.group = self.object!
+				vc.modalPresentationStyle = UIModalPresentationStyle.OverCurrentContext
+				self.parent.presentViewController(vc, animated: true, completion: nil)
+			}
+			options.addAction(editAction)
 		}
 		
 		// REPORT
@@ -121,7 +128,15 @@ class GroupsTableViewCell: UITableViewCell {
 		
 		let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in }
 		
-		options.addAction(editAction)
+		// SHARE - if private
+		if object!["public"] as! Bool == false {
+			let reportAction = UIAlertAction(title: "Share Code", style: .Default) { (_) in
+				self.shareCode()
+			}
+			options.addAction(reportAction)
+		}
+		
+//		options.addAction(editAction)
 		options.addAction(reportAction)
 		options.addAction(leaveJoinAction)
 //		options.addAction(deleteAction)
@@ -158,6 +173,10 @@ class GroupsTableViewCell: UITableViewCell {
 		}
 	}
 	
+	func shareCode() {
+		global.showAlert(self.object!.objectId!, message: "Share this code with others wanting to join this group")
+	}
+	
 	func purchaseSuccessful() {
 		groupsHandler.addGroup(lblName.text!)
 		groupsHandler.getNearbyGroups(parent.manager.location, refresh: true)
@@ -187,20 +206,22 @@ class GroupsTableViewCell: UITableViewCell {
 		let getImageDispatch: dispatch_queue_t = dispatch_queue_create("getImageDispatch", nil)
 		dispatch_async(getImageDispatch, {
 			if self.object!["imageFile"] != nil {
-				
 				let image: PFFile = self.object!["imageFile"] as! PFFile
 				image.getDataInBackgroundWithBlock {
 					(imageData: NSData?, error: NSError?) -> Void in
-					if error == nil {
-						self.finishedDownload(UIImage(data:imageData!)!)
-					}
+					if error == nil { self.finishedDownload(UIImage(data:imageData!)!) }
 				}
-			} else if self.object!["image"] != nil {
-				let imageUrl: String = self.object!["image"] as! String
+			} else if let imageUrl: String = self.object!["image"] as? String {
 				let url = NSURL(string: imageUrl)
 				if let imageData = NSData(contentsOfURL: url!){
 					self.finishedDownload(UIImage(data:imageData)!)
 				}
+			} else {
+				dispatch_async(dispatch_get_main_queue(), {
+					self.imgBackground.backgroundColor = UIColor(white: 1, alpha: 0.7)
+					self.imgBackground.image = UIImage(named: "noImage")
+					self.imgBackground.contentMode = UIViewContentMode.Center
+				})
 			}
 		})
 	}

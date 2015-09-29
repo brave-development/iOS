@@ -312,6 +312,8 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
 		}
 	}
 	
+	
+	// TODO: Should go in groupsHandler
 	func checkIfAlreadyContainsGroup() -> Bool {
 		for channel in PFInstallation.currentInstallation().channels as! [String] {
 			println(channel.formatGroupForFlatValue())

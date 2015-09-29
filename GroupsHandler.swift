@@ -204,6 +204,7 @@ class GroupsHandler: UIViewController {
 					}
 					object!.saveInBackgroundWithBlock(nil)
 					object!.saveEventually(nil)
+					NSNotificationCenter.defaultCenter().postNotificationName("gotNearbyGroups", object: nil)
 				}
 			})
 		}
