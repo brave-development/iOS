@@ -33,7 +33,9 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 		query = PFQuery(className: "Groups")
 		searchBar.delegate = self
 		hideNotificationBar()
-//		fetchGroups()
+		tableView.layer.shadowOffset = CGSizeZero
+		tableView.layer.shadowRadius = 10
+		tableView.layer.shadowOpacity = 1
     }
 	
 	func fetchGroups() {
@@ -89,6 +91,7 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 	}
 	
 	func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+		if section == 1 { return 0 } // REMOVE FOR A VIEW
 		return 40
 	}
 	
@@ -124,6 +127,10 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 	
 	 func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		if searchGroups.count == 0 && indexPath.section == 0 {
+			if count(searchBar.text) >= 3 {
+				let cellNoGroupsFound = tableView.dequeueReusableCellWithIdentifier("noGroupsFound", forIndexPath: indexPath) as! UITableViewCell
+				return cellNoGroupsFound
+			}
 			let cellNoGroups = tableView.dequeueReusableCellWithIdentifier("noGroups", forIndexPath: indexPath) as! UITableViewCell
 			return cellNoGroups
 		}
@@ -150,16 +157,16 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 		return cell
 	}
 	
-//	func scrollViewDidScroll(scrollView: UIScrollView) {
-//		for cell in tableView.visibleCells() {
-//			if cell is GroupsTableViewCell && cell.frame.size.height != 60 {
-//				(cell as! GroupsTableViewCell).offset()
-//			}
-//		}
-//	}
+	func scrollViewDidScroll(scrollView: UIScrollView) {
+		for cell in tableView.visibleCells() {
+			if cell is GroupsTableViewCell && cell.frame.size.height != 60 {
+				(cell as! GroupsTableViewCell).offset(tableView.contentOffset.y)
+			}
+		}
+	}
 	
 	func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-		if count(searchBar.text) == 3 { fetchGroups() }
+		if count(searchBar.text) >= 3 { fetchGroups() }
 		
 //		var pred: NSPredicate = NSPredicate(format: "SELF contains[c] %@", searchText)
 //		groupsDuringSearch = groups.filteredArrayUsingPredicate(pred)

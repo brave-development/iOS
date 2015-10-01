@@ -74,6 +74,10 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 		layoutNotificationTop.constant = -viewNotificationBar.frame.height
 		viewNotificationBar.layoutIfNeeded()
 		
+		tblGroups.layer.shadowOffset = CGSizeZero
+		tblGroups.layer.shadowRadius = 10
+		tblGroups.layer.shadowOpacity = 1
+		
 		manager = CLLocationManager()
 		manager.desiredAccuracy = kCLLocationAccuracyBest
 		manager.delegate = self
@@ -94,10 +98,10 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 			}
 		}
 		
-		if tutorial.addNewGroup == false {
-			viewTutorial.hidden = false
+//		if tutorial.addNewGroup == false {
+//			viewTutorial.hidden = false
 //			animateTutorial()
-		}
+//		}
 	}
 	
 	func checkForGroupDetails() {
@@ -247,7 +251,7 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 	func scrollViewDidScroll(scrollView: UIScrollView) {
 		for cell in tblGroups.visibleCells() {
 			if cell is GroupsTableViewCell && cell.frame.size.height != 60 {
-				(cell as! GroupsTableViewCell).offset()
+				(cell as! GroupsTableViewCell).offset(tblGroups.contentOffset.y)
 			}
 		}
 	}

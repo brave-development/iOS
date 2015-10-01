@@ -8,8 +8,9 @@
 
 import UIKit
 import Parse
+import MessageUI
 
-class GroupsTableViewCell: UITableViewCell {
+class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate {
 	
 	var alreadyJoined = true
 	var object: PFObject?
@@ -115,6 +116,18 @@ class GroupsTableViewCell: UITableViewCell {
 		
 		// REPORT
 		let reportAction = UIAlertAction(title: "Report", style: .Default) { (_) in
+			var mail = MFMailComposeViewController()
+			if(MFMailComposeViewController.canSendMail()) {
+				
+				mail.mailComposeDelegate = self
+				mail.setSubject("Panic - Report Group")
+				mail.setToRecipients(["byron@panic-sec.org"])
+				mail.setBccRecipients(["byroncoetsee@gmail.com", "wprenison@gmail.com"])
+				self.parent.presentViewController(mail, animated: true, completion: nil)
+			}
+			else {
+				global.showAlert("Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
+			}
 		}
 		
 		// LEAVE / JOIN
@@ -260,8 +273,19 @@ class GroupsTableViewCell: UITableViewCell {
 		}
 	}
 	
-	func offset() {
-		var yOffset = ((parent.tblGroups.contentOffset.y - self.frame.origin.y) / self.imgBackground.frame.height) * OffsetSpeed
+	func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+		switch(result.value){
+		case MFMailComposeResultSent.value:
+			println("Email sent")
+			
+		default:
+			println("Whoops")
+		}
+		parent.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
+	func offset(tableViewContentOffsetY: CGFloat) {
+		var yOffset = ((tableViewContentOffsetY - self.frame.origin.y) / self.imgBackground.frame.height) * OffsetSpeed
 		imgBackground.frame = CGRectOffset(self.imgBackground.bounds, 0, yOffset)
 	}
 

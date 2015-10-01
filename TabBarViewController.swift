@@ -190,17 +190,6 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		}
 	}
 	
-	func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
-		switch(result.value){
-		case MFMailComposeResultSent.value:
-			println("Email sent")
-			
-		default:
-			println("Whoops")
-		}
-		self.dismissViewControllerAnimated(true, completion: nil)
-	}
-	
 	func openSidebarGesture(gesture: UIGestureRecognizer) {
 		let point = gesture.locationInView(self.view)
 		if point.x <= viewSidebar.frame.width {
@@ -216,6 +205,8 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 				self.view.layoutIfNeeded()
 				break
 			}
+		} else {
+			openSidebar(override: true)
 		}
 	}
 	
@@ -313,6 +304,17 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	
 	override func shouldAutorotate() -> Bool {
 		return true
+	}
+	
+	func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+		switch(result.value){
+		case MFMailComposeResultSent.value:
+			println("Email sent")
+			
+		default:
+			println("Whoops")
+		}
+		self.dismissViewControllerAnimated(true, completion: nil)
 	}
 	
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

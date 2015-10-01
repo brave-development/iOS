@@ -77,7 +77,7 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 		imgBackground.layer.shadowOffset = CGSizeZero
 		imgBackground.layer.shadowRadius = 4
 		imgBackground.layer.shadowOpacity = 0.4
-		imgBackground.contentMode = .ScaleAspectFill
+//		imgBackground.contentMode = .ScaleAspectFill
 		
 		btnLeave.layer.cornerRadius = 5
 		btnLeave.layer.borderColor = UIColor.whiteColor().CGColor
@@ -110,6 +110,7 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
     }
 	
 	func fillData() {
+		imgBackground.contentMode = .ScaleAspectFill
 		txtName.text = group!["name"] as! String
 		txtName.hidden = true
 		lblName.text = txtName.text
@@ -144,6 +145,7 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 			
 			imgBackground.image = pickedImage
 			imgBackground.alpha = 1
+			imgBackground.contentMode = .ScaleAspectFill
 			viewContent.layer.borderWidth = 0.0
 			btnLeave.backgroundColor = UIColor(white: 0, alpha: 0.3)
 			imageChosen = true

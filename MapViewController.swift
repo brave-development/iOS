@@ -217,7 +217,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             view.image = UIImage(named: "panic")
             view.enabled = true
             view.canShowCallout = true
-            view.centerOffset = CGPointMake(0, 0)
+            view.centerOffset = CGPointMake(0, -25)
+			view.frame = CGRectMake(0, 0, 50, 50)
+			
             return view
         } else {
             return nil
