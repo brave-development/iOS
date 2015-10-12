@@ -442,6 +442,10 @@ class AddNewGroupViewController: UIViewController, UITextFieldDelegate, UITableV
     @IBAction func hideKeyboard(sender: AnyObject) {
         searchBar.resignFirstResponder()
     }
+	
+	func backBecauseOfGroupJoined() {
+		
+	}
     
     @IBAction func back(sender: AnyObject) {
 		if query != nil { query.cancel() }

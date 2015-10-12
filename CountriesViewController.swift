@@ -82,10 +82,10 @@ class CountriesViewController: UIViewController, UITableViewDelegate, CLLocation
     
     func locationManager(manager: CLLocationManager!, didUpdateLocations locations: [AnyObject]!) {
         println("Updated location... Accuracy = \(manager.location.horizontalAccuracy)")
-//        if manager.location.horizontalAccuracy < 3000 {
+        if manager.location.horizontalAccuracy < 5001 {
             getCountry(manager.location)
             manager.stopUpdatingLocation()
-//        }
+        }
     }
     
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {

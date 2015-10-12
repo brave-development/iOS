@@ -11,6 +11,7 @@ import Parse
 
 class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
 	
+	@IBOutlet weak var btnBack: UIButton!
 	var searchGroups : [String : PFObject] = [:]
 	var searchedGroupsIdHolder : [String] = []
 	var nearbyGroupIdHolder : [String] = []
@@ -36,6 +37,7 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 		tableView.layer.shadowOffset = CGSizeZero
 		tableView.layer.shadowRadius = 10
 		tableView.layer.shadowOpacity = 1
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: "backBecauseOfGroupJoined", name: "didJoinGroup", object: nil)
     }
 	
 	func fetchGroups() {
@@ -213,6 +215,9 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 		})
 	}
 	
+	func backBecauseOfGroupJoined() {
+		btnBack.sendActionsForControlEvents(.TouchUpInside)
+	}
 	
 	@IBAction func close(sender: AnyObject) {
 		self.dismissViewControllerAnimated(true, completion: nil)

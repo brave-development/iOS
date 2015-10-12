@@ -140,9 +140,9 @@ class GroupsHandler: UIViewController {
 					PFUser.currentUser()!["numberOfGroups"] = groupsHandler.joinedGroups.count + 1
 					PFUser.currentUser()!.saveEventually(nil)
 					NSNotificationCenter.defaultCenter().postNotificationName("purchaseSuccessful", object: nil)
-					if groupsHandler.referalGroup != nil {
-						groupsHandler.shareGroup(groupsHandler.referalGroup!, viewController: self)
-					}
+//					if groupsHandler.referalGroup != nil {
+//						groupsHandler.shareGroup(groupsHandler.referalGroup!, viewController: self)
+//					}
 				} else {
 					NSNotificationCenter.defaultCenter().postNotificationName("purchaseFail", object: nil)
 					if error.localizedDescription != "" {
@@ -167,7 +167,7 @@ class GroupsHandler: UIViewController {
 			updateGroups(group: groupName, add: true)
 			PFInstallation.currentInstallation().addUniqueObject(groupName.formatGroupForChannel(), forKey: "channels")
 			PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
-			shareGroup(groupName, viewController: self)
+			global.shareGroup("I just joined the group \(groupName) using Panic. Help me make our communities safer, as well as ourselves!", viewController: self)
 		} else {
 			
 		}
@@ -213,65 +213,13 @@ class GroupsHandler: UIViewController {
 		global.persistantSettings.synchronize()
 	}
 	
-	func getShortLink(groupName : String) -> NSString {
-		let apiEndpoint = "http://tinyurl.com/api-create.php?url=\(groupName.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!)"
-		let shortURL = NSString(contentsOfURL: NSURL(string: apiEndpoint)!, encoding: NSASCIIStringEncoding, error: nil)
-		let pasteboard = UIPasteboard.generalPasteboard()
-		pasteboard.string = (shortURL as! String)
-		return shortURL!
-	}
-	
-	func shareGroup(groupName : String, viewController : UIViewController) {
-		let shareGroup: dispatch_queue_t = dispatch_queue_create("shareGroup", nil)
-		dispatch_async(shareGroup, {
-			dispatch_async(dispatch_get_main_queue(), {
-				var topController = UIApplication.sharedApplication().keyWindow?.rootViewController
-				if topController != nil {
-					while topController!.presentedViewController != nil {
-						topController = topController!.presentedViewController
-					}
-				} else { topController = viewController }
-				
-				if topController != nil {
-					var saveAlert = UIAlertController(title: "Share", message: "Share this so others can join the group as well", preferredStyle: UIAlertControllerStyle.Alert)
-					saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
-						var shareAlert = UIAlertController(title: "Post to", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-						shareAlert.addAction(UIAlertAction(title: "Facebook", style: .Default, handler: { (action: UIAlertAction!) in
-							
-							if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
-								var facebookSheet:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-								facebookSheet.setInitialText("Join my group '\(groupName)' on Panic! \nGet the app here: https://goo.gl/niOHXx")
-								topController!.presentViewController(facebookSheet, animated: true, completion: nil)
-							} else {
-								var alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
-								alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-								topController!.presentViewController(alert, animated: true, completion: nil)
-							}
-						}))
-						
-						shareAlert.addAction(UIAlertAction(title: "Twitter", style: .Default, handler: { (action: UIAlertAction!) in
-							if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
-								var twitterSheet:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
-								twitterSheet.setInitialText("Join my group '\(groupName)' on Panic! \nGet the app here: https://goo.gl/niOHXx")
-								topController!.presentViewController(twitterSheet, animated: true, completion: nil)
-							} else {
-								var alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to share.", preferredStyle: UIAlertControllerStyle.Alert)
-								alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-								topController!.presentViewController(alert, animated: true, completion: nil)
-							}
-						}))
-						shareAlert.addAction(UIAlertAction(title: "Cancel", style: .Destructive, handler: { (action: UIAlertAction!) in
-						}))
-						topController!.presentViewController(shareAlert, animated: true, completion: nil)
-					}))
-					saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in }))
-					topController!.presentViewController(saveAlert, animated: true, completion: nil)
-				} else {
-					global.showAlert("Hmm..", message: "Something went wrong. The link to your group has been copied to the clipboard - paste it in an SMS or anywhere else you would like to share it")
-				}
-			})})
-	}
-	
+//	func getShortLink(groupName : String) -> NSString {
+//		let apiEndpoint = "http://tinyurl.com/api-create.php?url=\(groupName.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!)"
+//		let shortURL = NSString(contentsOfURL: NSURL(string: apiEndpoint)!, encoding: NSASCIIStringEncoding, error: nil)
+//		let pasteboard = UIPasteboard.generalPasteboard()
+//		pasteboard.string = (shortURL as! String)
+//		return shortURL!
+//	}
 	
 	// CREATE GROUP
 	func createGroup(groupObject: PFObject, parent: CreateGroupViewController) {
@@ -334,7 +282,7 @@ class GroupsHandler: UIViewController {
 		query.whereKey("flatValue", equalTo: groupName.formatGroupForFlatValue())
 		query.findObjectsInBackgroundWithBlock({
 			(object : [AnyObject]?, error : NSError?) -> Void in
-			if object != nil {
+			if object == nil {
 				println("NO GROUP FOUND. CREATING - '\(groupName)'")
 				var newGroupObject : PFObject = PFObject(className: "Groups")
 				newGroupObject["name"] = groupName

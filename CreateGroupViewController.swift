@@ -174,13 +174,6 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 	
 	@IBAction func finish(sender: AnyObject) {
 		if validate() == true {
-			spinner.startAnimating()
-			btnClose.enabled = false
-			btnFinish.enabled = false
-			txtName.userInteractionEnabled = false
-			txtDescription.userInteractionEnabled = false
-			btnEditBackground.enabled = false
-			btnLock.enabled = false
 			if group != nil {
 				editGroup()
 			} else {
@@ -196,6 +189,14 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 		var saveAlert = UIAlertController(title: "Are you sure?", message: message, preferredStyle: UIAlertControllerStyle.Alert)
 		saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
 			// Clicked YES
+			self.spinner.startAnimating()
+			self.btnClose.enabled = false
+			self.btnFinish.enabled = false
+			self.txtName.userInteractionEnabled = false
+			self.txtDescription.userInteractionEnabled = false
+			self.btnEditBackground.enabled = false
+			self.btnLock.enabled = false
+			
 			var image: PFFile = PFFile(data: UIImageJPEGRepresentation(self.imgBackground.image!, 0.7) , contentType: "image")
 			var newGroupObject : PFObject = PFObject(className: "Groups")
 			newGroupObject["name"] = self.txtName.text.trim().lowercaseString.capitalizedString
@@ -217,6 +218,14 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 	}
 	
 	func editGroup() {
+		self.spinner.startAnimating()
+		self.btnClose.enabled = false
+		self.btnFinish.enabled = false
+		self.txtName.userInteractionEnabled = false
+		self.txtDescription.userInteractionEnabled = false
+		self.btnEditBackground.enabled = false
+		self.btnLock.enabled = false
+		
 		let groupName = group!["flatValue"] as! String
 		let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
 		let destinationPath = documentsPath.stringByAppendingPathComponent("\(groupName).jpg")
@@ -248,7 +257,7 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 	func validate() -> Bool {
 		var message: String = ""
 		if count(txtName.text.trim()) < 3 || txtName.text == "Group Name" { message = message + "Name must be 3 or more characters\n" }
-		if count(txtDescription.text.trim()) < 10 || txtDescription.text == "Group Description" { message = message + "Description must be 3 or more characters\n" }
+		if count(txtDescription.text.trim()) < 10 || txtDescription.text == "Group Description" { message = message + "Description must be 10 or more characters\n" }
 		if imageChosen == false { message = message + "Please choose an image\n"; tooltipPicture.show() }
 		
 		if count(message.trim()) > 0 {

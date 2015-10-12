@@ -680,7 +680,7 @@
                                     </mask>
                                 </variation>
                             </visualEffectView>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999973" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo: Kyle Jones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeY-TU-GhK">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Photo: Kyle Jones" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DeY-TU-GhK">
                                 <rect key="frame" x="227" y="501" width="85" height="12"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                 <color key="textColor" red="0.98039215690000003" green="0.98039215690000003" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1649,6 +1649,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="btnBack" destination="If1-VY-3f2" id="Ydh-BY-lLh"/>
                         <outlet property="layoutBackTop" destination="v64-Rd-nMo" id="V28-8a-cnO"/>
                         <outlet property="layoutNotificationTop" destination="45y-dm-d18" id="Pf5-Ur-lK8"/>
                         <outlet property="layoutSearchBarTop" destination="GBz-S0-kuU" id="TaC-zd-G4i"/>

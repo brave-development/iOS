@@ -210,6 +210,67 @@ class Global: UIViewController {
 		alert.show()
 	}
 	
+	func shareGroup(text : String, viewController : UIViewController?) {
+//		NSNotificationCenter.defaultCenter().postNotificationName("didJoinGroup", object: nil)
+		var topController = UIApplication.sharedApplication().keyWindow?.rootViewController
+		if topController != nil {
+			while topController!.presentedViewController != nil {
+				topController = topController!.presentedViewController
+			}
+		} else { topController = viewController } //shareToWhatsapp()
+		
+		if topController != nil {
+			var shareAlert = UIAlertController(title: "Let others know", message: "The more people that join your communities and groups, the safer you all become... ", preferredStyle: UIAlertControllerStyle.Alert)
+			
+			//WHATSAPP
+			shareAlert.addAction(UIAlertAction(title: "Whatsapp", style: .Default, handler: { (action: UIAlertAction!) in
+				global.shareToWhatsapp(text)
+			}))
+			
+			//FACEBOOK
+			shareAlert.addAction(UIAlertAction(title: "Facebook", style: .Default, handler: { (action: UIAlertAction!) in
+				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeFacebook){
+					var facebookSheet:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+					facebookSheet.setInitialText(text)
+					topController!.presentViewController(facebookSheet, animated: true, completion: nil)
+				} else {
+					var alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
+					alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+					topController!.presentViewController(alert, animated: true, completion: nil)
+				}
+			}))
+			
+			//TWITTER
+			shareAlert.addAction(UIAlertAction(title: "Twitter", style: .Default, handler: { (action: UIAlertAction!) in
+				if SLComposeViewController.isAvailableForServiceType(SLServiceTypeTwitter){
+					var twitterSheet:SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeTwitter)
+					twitterSheet.setInitialText(text)
+					topController!.presentViewController(twitterSheet, animated: true, completion: nil)
+				} else {
+					var alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to share.", preferredStyle: UIAlertControllerStyle.Alert)
+					alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+					topController!.presentViewController(alert, animated: true, completion: nil)
+				}
+			}))
+			shareAlert.addAction(UIAlertAction(title: "Cancel", style: .Destructive, handler: { (action: UIAlertAction!) in
+			}))
+			topController!.presentViewController(shareAlert, animated: true, completion: nil)
+		} else {
+			global.showAlert("Hmm..", message: "Something went wrong... Awkward")
+		}
+	}
+	
+	func shareToWhatsapp(message: String) {
+		let whatsappUrlString = "whatsapp://send?text=\(message)"
+		let whatsappUrl = NSURL(string: whatsappUrlString.stringByAddingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!)
+		
+		if UIApplication.sharedApplication().canOpenURL(whatsappUrl!) {
+			UIApplication.sharedApplication().openURL(whatsappUrl!)
+		} else {
+			global.showAlert("Whatsapp not installed", message: "")
+		}
+	}
+	
 	func didChangeAuthStatus(manager: CLLocationManager, status: CLAuthorizationStatus) -> Bool {
 		if status != CLAuthorizationStatus.NotDetermined {
 			if (status == CLAuthorizationStatus.AuthorizedAlways) || (status == CLAuthorizationStatus.AuthorizedWhenInUse) {

@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import Social
 
 class RegisterViewController: UIViewController, UITextFieldDelegate {
     
@@ -56,10 +57,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 					self.spinner.stopAnimating()
                 } else {
 					tutorial.reset()
-                    global.showAlert("Important", message: "Welcome " + self.containerView.txtName.text + ". You have been signed in and you will remain signed in, even if you close the app. To sign out, you can use the logout button in settings.\n\nIt is important to add groups as soon as possible so people are notified if you use the Panic button.")
 					self.spinner.stopAnimating()
-                    self.dismissViewControllerAnimated(true, completion: nil)
-                    
+					self.dismissViewControllerAnimated(true, completion: {
+						global.shareGroup("I just downloaded Panic! Help me make our community a safer place.\nGet the app here: http://goo.gl/M25QIw", viewController: nil)
+					})
+					
                 }
             }
         }
