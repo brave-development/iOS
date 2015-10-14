@@ -128,13 +128,13 @@ class GroupsHandler: UIViewController {
 		saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
 			NSNotificationCenter.defaultCenter().postNotificationName("purchaseStarted", object: nil)
 			self.purchaseRunning = true
-			global.showAlert("Please wait", message: "Processing your request. Please be patient.")
+			global.showAlert(NSLocalizedString("please_wait_title", value: "Please wait", comment: ""), message: NSLocalizedString("please_wait_text", value: "Processing your request. Please be patient.", comment: ""))
 			PFPurchase.buyProduct("SoC.Panic.groupPurchaseConsumable", block: {
 				(error: NSError!) -> Void in
 				if error == nil {
 					
-//					PFAnalytics.trackEventInBackground("Group_Purchases", dimensions: nil, block: nil)
-//					
+					PFAnalytics.trackEventInBackground("Group_Purchases", dimensions: nil, block: nil)
+//
 					println("BOUGHT ADD GROUP")
 					global.persistantSettings.synchronize()
 					PFUser.currentUser()!["numberOfGroups"] = groupsHandler.joinedGroups.count + 1
@@ -146,9 +146,9 @@ class GroupsHandler: UIViewController {
 				} else {
 					NSNotificationCenter.defaultCenter().postNotificationName("purchaseFail", object: nil)
 					if error.localizedDescription != "" {
-						global.showAlert("Unsuccessful", message: error.localizedDescription)
+						global.showAlert(NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: ""), message: error.localizedDescription)
 					} else {
-						global.showAlert("Unsuccessful", message: "Your purchase was unsuccessful. Please try again. No money has been debited from your account.")
+						global.showAlert(NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: ""), message: NSLocalizedString("error_purchase_text", value: "Your purchase was unsuccessful. Please try again. No money has been debited from your account.", comment: ""))
 					}
 					println("FAILED PURCHASE -- \(error)")
 				}
@@ -167,7 +167,7 @@ class GroupsHandler: UIViewController {
 			updateGroups(group: groupName, add: true)
 			PFInstallation.currentInstallation().addUniqueObject(groupName.formatGroupForChannel(), forKey: "channels")
 			PFInstallation.currentInstallation().saveInBackgroundWithBlock(nil)
-			global.shareGroup("I just joined the group \(groupName) using Panic. Help me make our communities safer, as well as ourselves!", viewController: self)
+			global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Panic. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
 		} else {
 			
 		}
@@ -233,7 +233,7 @@ class GroupsHandler: UIViewController {
 					if result == true {
 						dispatch_async(dispatch_get_main_queue(), {
 							let name = groupObject["name"] as! String
-							global.showAlert("Successful", message: "Successfully created and joined the group \(name).")
+							global.showAlert(NSLocalizedString("successful", value: "Successful", comment: ""), message: String(format: NSLocalizedString("joined_group_text", value: "Successfully created and joined the group %@.", comment: ""), arguments: [name]))
 							groupsHandler.addGroup(name)
 							NSNotificationCenter.defaultCenter().postNotificationName("gotNearbyGroups", object: nil)
 							parent.dismissViewControllerAnimated(true, completion: nil)
@@ -244,7 +244,7 @@ class GroupsHandler: UIViewController {
 				})
 			}
 		} else {
-			global.showAlert("Hmm...", message: "You already belong to this group.")
+			global.showAlert("Hmm...", message: NSLocalizedString("already_joined_group", value: "You already belong to this group.", comment: ""))
 		}
 	}
 	
@@ -270,7 +270,7 @@ class GroupsHandler: UIViewController {
 				let name = pfObject["name"] as! String
 				let country = pfObject["country"] as! String
 				let privateGroup = pfObject["public"] as! Bool
-				global.showAlert("Unsuccessful", message: "Group '\(name)' already exists in \(country)")
+				global.showAlert(NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: ""), message: String(format: NSLocalizedString("group_already_exists", value: "Group '%@' already exists in %@", comment: ""), arguments: [name, country]))
 			}
 		}
 		return true

@@ -119,7 +119,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 					if error!.localizedFailureReason != nil {
 						global.showAlert("", message: error!.localizedFailureReason!)
 					} else {
-						global.showAlert("", message: "Could not get the list of Panics. Please check your internet connection and try again")
+						global.showAlert("", message: NSLocalizedString("could_not_get_panic_history", value: "Could not get the list of Panics. Please check your internet connection and try again", comment: ""))
 					}
 				}
 				self.queryPanicsIsActive = false
@@ -255,10 +255,10 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 		getAddress()
 		
 		if isResponding() == true {
-			btnRespond.setTitle("Stop Responding", forState: UIControlState.Normal)
+			btnRespond.setTitle(NSLocalizedString("stop_responding", value: "Stop Responding", comment: ""), forState: UIControlState.Normal)
 			btnRespond.backgroundColor = UIColor(red:0.91, green:0.3, blue:0.24, alpha:1)
 		} else {
-			btnRespond.setTitle("Respond", forState: UIControlState.Normal)
+			btnRespond.setTitle(NSLocalizedString("respond", value: "Respond", comment: ""), forState: UIControlState.Normal)
 			btnRespond.backgroundColor = UIColor(red:0.18, green:0.8, blue:0.44, alpha:1)
 		}
 	}
@@ -332,11 +332,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	@IBAction func respond(sender: AnyObject) {
 		if isResponding() == true {
 			selectedVictim!.removeObjectsInArray([PFUser.currentUser()!.objectId!], forKey: "responders")
-			btnRespond.setTitle("Respond", forState: UIControlState.Normal)
+			btnRespond.setTitle(NSLocalizedString("respond", value: "Respond", comment: ""), forState: UIControlState.Normal)
 			btnRespond.backgroundColor = UIColor(red:0.18, green:0.8, blue:0.44, alpha:1)
 		} else {
 			selectedVictim!.addUniqueObject(PFUser.currentUser()!.objectId!, forKey: "responders")
-			btnRespond.setTitle("Stop Responding", forState: UIControlState.Normal)
+			btnRespond.setTitle(NSLocalizedString("stop_responding", value: "Stop Responding", comment: ""), forState: UIControlState.Normal)
 			btnRespond.backgroundColor = UIColor(red:0.91, green:0.3, blue:0.24, alpha:1)
 		}
 		
@@ -345,7 +345,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			if result == true {
 				println("done")
 			} else if error != nil {
-				global.showAlert("Error becoming a responder", message: "\(error!.localizedDescription)\nWill try again in a few seconds")
+				global.showAlert("", message: String(format: NSLocalizedString("error_becoming_a_responder", value: "%@\nWill try again in a few seconds.", comment: ""), arguments: [error!.localizedDescription]))
 			}
 		})
 
@@ -380,7 +380,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 global.showAlert(error.localizedDescription, message: error.localizedFailureReason!)
             } else {
                 println("didFailWithError - \(error)")
-                global.showAlert("Location Error", message: "Location Services are unavailable at the moment.\n\nPossible reasons:\nInternet Connection\nIndoors\nLocation Permission")
+                global.showAlert(NSLocalizedString("location_error_title", value: "Location Error", comment: ""), message: NSLocalizedString("location_error_text", value: "Location Services are unavailable at the moment.\n\nPossible reasons:\nInternet Connection\nIndoors\nLocation Permission", comment: ""))
             }
         })
     }

@@ -186,7 +186,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 			self.presentViewController(mail, animated: true, completion: nil)
 		}
 		else {
-			global.showAlert("Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
+			global.showAlert(NSLocalizedString("error_email_title", value: "Could Not Send Email", comment: ""), message: NSLocalizedString("error_email_text", value: "Your device could not send e-mail.  Please check e-mail configuration and try again.", comment: ""))
 		}
 	}
 	
@@ -239,7 +239,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 					}
 				}
 			} else {
-				global.showAlert("Not available", message: "Menus are unavailable while Panic is active")
+				global.showAlert("", message: NSLocalizedString("menu_not_available", value: "Menus are unavailable while Panic is active", comment: ""))
 			}
 		}
 	}
@@ -274,15 +274,15 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	
 	func handlePush() {
 		let message = global.notificationDictionary!["aps"]!["alert"] as! String
-		let alertController = UIAlertController(title: "Someone needs help", message: message, preferredStyle: .Alert)
+		let alertController = UIAlertController(title: NSLocalizedString("someone_needs_help", value: "Someone needs help", comment: "Popup which shows when someone else activates and the current user is busy within the app"), message: message, preferredStyle: .Alert)
 		
-		let cancelAction = UIAlertAction(title: "Dont respond", style: .Cancel) { (action) in
+		let cancelAction = UIAlertAction(title: NSLocalizedString("dont_respond", value: "Dont respond", comment: ""), style: .Cancel) { (action) in
 			global.notificationDictionary = [:]
 			global.openedViaNotification = false
 		}
 		alertController.addAction(cancelAction)
 		
-		let destroyAction = UIAlertAction(title: "Respond", style: .Destructive) {
+		let destroyAction = UIAlertAction(title: NSLocalizedString("respond", value: "Respond", comment: ""), style: .Destructive) {
 			(action) in
 			global.openedViaNotification = true
 			self.showMapBecauseOfNotification()
@@ -388,7 +388,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	func setupTutorial() {
 		btnPanic.setTitle("Activate", forState: UIControlState.Normal)
 		descriptionCount = 0
-		lblDescription.text = "Tap the Panic button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live."
+		lblDescription.text = NSLocalizedString("main_tut_1", value: "Tap the Panic button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live.", comment: "First part of main tutorial")
 		viewTutorialPanic.hidden = false
 		btnPanic.layer.cornerRadius = 0.5 * btnPanic.bounds.size.width
 		btnPanic.layer.borderWidth = 2
@@ -414,15 +414,15 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		
 		switch (descriptionCount) {
 		case 1:
-			animateTextChange("Your position would now be made available for others to track live on the map. Notifications are also sent to people subscribed to the same groups you are, alerting them of your distress.")
+			animateTextChange(NSLocalizedString("main_tut_2", value: "Your position would now be made available for others to track live on the map. Notifications are also sent to people subscribed to the same groups you are, alerting them of your distress.", comment: ""))
 			break;
 			
 		case 2:
-			animateTextChange("When activating the Panic button, there is a 5 second delay before notifications are sent out - in case of accidental activations. This delay can be disabled in Settings.")
+			animateTextChange(NSLocalizedString("main_tut_3", value: "When activating the Panic button, there is a 5 second delay before notifications are sent out - in case of accidental activations. This delay can be disabled in Settings.", comment: ""))
 			break;
 			
 		case 3:
-			animateTextChange("Tap one more time to finish")
+			animateTextChange(NSLocalizedString("main_tut_4", value: "Tap one more time to finish", comment: ""))
 			break;
 			
 		case 4:

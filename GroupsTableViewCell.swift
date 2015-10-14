@@ -126,7 +126,7 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 				self.parent.presentViewController(mail, animated: true, completion: nil)
 			}
 			else {
-				global.showAlert("Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
+				global.showAlert(NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: "tester"), message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
 			}
 		}
 		
@@ -161,10 +161,9 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 	@IBAction func joinLeave(sender: AnyObject) {
 		let groupName = self.object!["name"] as! String
 		if alreadyJoined == true {
-			var deleteAlert = UIAlertController(title: "Leave \(groupName)?", message: "Are you sure you want to leave this group?", preferredStyle: UIAlertControllerStyle.Alert)
+			var deleteAlert = UIAlertController(title: String(format: NSLocalizedString("leave_group_confirmation_title", value: "Leave %@?", comment: "tester2"), groupName), message: "Are you sure you want to leave this group?", preferredStyle: UIAlertControllerStyle.Alert)
 			deleteAlert.addAction(UIAlertAction(title: "Leave", style: .Destructive, handler: { (action: UIAlertAction!) in
 				groupsHandler.removeGroup(groupName)
-//				groupsHandler.joinedGroupsObject[self.object?["flatValue"] as! String] = nil
 				self.parent.populateDataSource()
 				if groupsHandler.joinedGroupsObject.count == 0 {
 					self.parent.tblGroups.reloadData()

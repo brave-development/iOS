@@ -84,7 +84,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
     @IBAction func panicPressed(sender: AnyObject) {
 		tabbarViewController.closeSidebar()
 		if tutorial.swipeToOpenMenu == true {
-			if (btnPanic.titleLabel?.text == "Activate") {
+			if (btnPanic.titleLabel?.text == NSLocalizedString("activate", value: "Activate", comment: "Button title to activate the panic button")) {
 				println("Location permission \(locationPermission)")
 				if locationPermission == true {
 					
@@ -93,17 +93,17 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 					
 					if global.panicConfirmation == true {
 						
-						var saveAlert = UIAlertController(title: "Activate?", message: "Activate Panic and send notifications?", preferredStyle: UIAlertControllerStyle.Alert)
-						saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+						var saveAlert = UIAlertController(title: NSLocalizedString("activate", value: "Activate", comment: "confirmation to activate the panic button"), message: NSLocalizedString("activate_confirmation_text", value: "Activate Panic and send notifications?", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+						saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
 							self.activatePanic()
 						}))
-						saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in }))
+						saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in }))
 						presentViewController(saveAlert, animated: true, completion: nil)
 					} else {
 						activatePanic()
 					}
 				} else {
-					global.showAlert("Location Not Allowed", message: "Please enable location services for Panic by going to Settings > Privacy > Location Services.")
+					global.showAlert(NSLocalizedString("location_not_allowed_title", value: "Location Not Allowed", comment: ""), message: NSLocalizedString("location_not_allowed_text", value: "Please enable location services for Panic by going to Settings > Privacy > Location Services.", comment: ""))
 				}
 			} else {
 				deativatePanic()
@@ -126,7 +126,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 		panicHandler.panicIsActive = true
         tabbarViewController.panicIsActive = true
         manager.startUpdatingLocation()
-        btnPanic.setTitle("Deactivate", forState: UIControlState.Normal)
+        btnPanic.setTitle(NSLocalizedString("deactivate", value: "Deactivate", comment: ""), forState: UIControlState.Normal)
         btnPanic.layer.borderColor = UIColor.redColor().CGColor
         btnPanic.layer.shadowColor = UIColor.redColor().CGColor
 		buttonGlow()
@@ -168,7 +168,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
             self.tabbarViewController.showTabbar() })
         panicHandler.endPanic()
         manager.stopUpdatingLocation()
-        btnPanic.setTitle("Activate", forState: UIControlState.Normal)
+        btnPanic.setTitle(NSLocalizedString("activate", value: "Activate", comment: "Button title to activate the panic button"), forState: UIControlState.Normal)
         btnPanic.layer.borderColor = UIColor.greenColor().CGColor
         btnPanic.layer.shadowColor = UIColor.greenColor().CGColor
 		UIView.animateWithDuration(0.5, animations: {
@@ -211,23 +211,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 					allowAddToPushQue = false
 					for group in groupsHandler.joinedGroups {
 						sendNotification(group)
-//						var push = PFPush()
-//						let userName = PFUser.currentUser()!["name"] as! String
-//						let userNumber = PFUser.currentUser()!["cellNumber"] as! String
-//						var tempQuery = PFInstallation.query()
-//						tempQuery!.whereKey("channels", equalTo: group.formatGroupForChannel())
-//						tempQuery!.whereKey("installationId", notEqualTo: PFInstallation.currentInstallation().installationId)
-//						push.setQuery(tempQuery)
-//						push.expireAfterTimeInterval(18000) // 5 Hours
-//						push.setData(["alert" : "\(userName) needs help! Contact them on \(userNumber) or view their location in the app.", "badge" : "Increment", "sound" : "default", "lat" : manager.location.coordinate.latitude, "long" : manager.location.coordinate.longitude])
-//						push.sendPushInBackgroundWithBlock({
-//							(result : Bool, error : NSError?) -> Void in
-//							if result == true {
-//								println("Push sent to group \(group.formatGroupForChannel())")
-//							} else if error != nil {
-//								println(error)
-//							}
-//						})
 					}
 					sendNotification(nil)
 				}
@@ -254,7 +237,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 		tempQuery!.whereKey("installationId", notEqualTo: PFInstallation.currentInstallation().installationId)
 		push.setQuery(tempQuery)
 		push.expireAfterTimeInterval(18000) // 5 Hours
-		push.setData(["alert" : "\(userName) needs help! Contact them on \(userNumber) or view their location in the app.", "badge" : "Increment", "sound" : "default", "lat" : manager.location.coordinate.latitude, "long" : manager.location.coordinate.longitude])
+		let panicMessage = String(format: NSLocalizedString("panic_notification_message", value: "%@ needs help! Contact them on %@ or view their location in the app.", comment: ""), arguments: [userName, userNumber])
+		push.setData(["alert" : panicMessage, "badge" : "Increment", "sound" : "default", "lat" : manager.location.coordinate.latitude, "long" : manager.location.coordinate.longitude])
 		push.sendPushInBackgroundWithBlock({
 			(result : Bool, error : NSError?) -> Void in
 			if result == true {

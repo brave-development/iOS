@@ -43,12 +43,12 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 	func fetchGroups() {
 		if query != nil { query.cancel() }
 //		searchBar.addSubview(searchSpinner)
-		showNotificationBar(text: "Searching groups")
+		showNotificationBar(text: NSLocalizedString("searching_groups", value: "Searching groups", comment: ""))
 		query.whereKey("flatValue", hasPrefix: searchBar.text.formatGroupForFlatValue())
 		query.orderByDescending("flatValue")
 		query.findObjectsInBackgroundWithBlock({
 			(objects: [AnyObject]?, error: NSError?) -> Void in
-			println("Running fetch - AddPublicViewController - 34")
+			println("Running fetch - AddPublicViewController - 51")
 			if error == nil && objects != nil {
 				println("Fetch returned something")
 //				var tempGroupArray : [String] = []
@@ -68,24 +68,12 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 //					self.searchSpinner.removeFromSuperview()
 				})
 			} else {
-				global.showAlert("Error fetching groups", message: "There was an error retrieving the list of groups. Possibly check you internet connection.")
+				global.showAlert(NSLocalizedString("error_fetching_groups_title", value: "Error fetching groups", comment: ""), message: NSLocalizedString("error_fetching_groups_text", value: "There was an error retrieving the list of groups. Possibly check you internet connection.", comment: ""))
 //				self.viewLoading.hidden = true
 //				self.searchSpinner.removeFromSuperview()
 			}
 		})
 	}
-	
-//	func populateDataSource() {
-//		searchedGroupsIdHolder = []
-//		for (id, group) in groupsHandler.joinedGroupsObject {
-//			searchedGroupsIdHolder.append(id)
-//		}
-//		
-//		nearbyGroupIdHolder = []
-//		for (id, group) in groupsHandler.nearbyGroupObjects {
-//			nearbyGroupIdHolder.append(id)
-//		}
-//	}
 	
 	func numberOfSectionsInTableView(tableView: UITableView) -> Int {
 		if searchGroups.count == 0 { return 1 }
@@ -105,9 +93,9 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 		view.backgroundColor = UIColor(white: 1, alpha: 0.95)
 		
 		if section == 0 {
-			label.text = "RESULTS"
+			label.text = NSLocalizedString("results", value: "RESULTS", comment: "")
 		} else {
-			label.text = "NEARBY"
+			label.text = NSLocalizedString("nearby", value: "NEARBY", comment: "")
 		}
 		view.addSubview(label)
 		return view

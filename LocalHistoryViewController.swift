@@ -147,7 +147,7 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 			case 2:
 				var cell = UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "Default")
 				cell.backgroundColor = UIColor.clearColor()
-				cell.textLabel?.text = "No Data"
+				cell.textLabel?.text = NSLocalizedString("no_data", value: "No Data", comment: "")
 				return cell
 				
 			default:
@@ -185,7 +185,7 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 		if segControl != nil {
 			switch (segControl.selectedSegmentIndex) {
 			case 0:
-				lblTutorialTextTop.text = "Last 20 Panic activations by other people."
+				lblTutorialTextTop.text = NSLocalizedString("public_panics_20", value: "Last 20 Panic activations by other people.", comment: "")
 				lblNoHistory.hidden = true
 				if global.publicHistoryFetched == true {
 					count = global.panicHistoryPublic.count
@@ -195,7 +195,7 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 				}
 				
 			case 1:
-				lblTutorialTextTop.text = "Last 50 of your own Panic activations."
+				lblTutorialTextTop.text = NSLocalizedString("private_panics_50", value: "Last 50 of your own Panic activations.", comment: "")
 				spinner.stopAnimating()
 				if global.privateHistoryFetched == true {
 					count = global.panicHistoryLocal.count

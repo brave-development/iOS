@@ -30,9 +30,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 		
         txtUsername.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
         txtPassword.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
-        txtUsername.attributedPlaceholder = NSAttributedString(string:"Username",
+        txtUsername.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("username", value: "Username", comment: ""),
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
-        txtPassword.attributedPlaceholder = NSAttributedString(string:"Password",
+        txtPassword.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("password", value: "Password", comment: ""),
             attributes:[NSForegroundColorAttributeName: UIColor.whiteColor()])
     }
     
@@ -79,22 +79,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 			(user: PFUser?, error: NSError?) -> Void in
             if (error != nil) {
                 println(error)
+				let unsuccessful = NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: "")
                 switch error!.code {
                 case 100:
-                    global.showAlert("Unsuccessful", message: "The network connection was lost")
+                    global.showAlert(unsuccessful, message: NSLocalizedString("error_network_connection", value: "The network connection was lost", comment: ""))
                     self.btnLogin.enabled = true
                     self.btnRegister.enabled = true
                     break
                 case 101:
-                    global.showAlert("Unsuccessful", message: "Invalid login credentials")
+                    global.showAlert(unsuccessful, message: NSLocalizedString("error_invalid_login", value: "Invalid login credentials", comment: ""))
                     self.btnLogin.enabled = true
                     self.btnRegister.enabled = true
                     break
                 default:
                     if error?.localizedDescription != nil {
-                        global.showAlert("Unsuccessful", message: error!.localizedDescription)
+                        global.showAlert(unsuccessful, message: error!.localizedDescription)
                     } else {
-                        global.showAlert("Unsuccessful", message: "Dunno, brah")
+                        global.showAlert(unsuccessful, message: "Dunno, brah")
                     }
                     self.btnLogin.enabled = true
                     self.btnRegister.enabled = true
@@ -115,23 +116,23 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
 	
 	@IBAction func resetPassword(sender: AnyObject) {
-		var alert = UIAlertController(title: "Reset Password", message: "Enter the email address associated with the account. You will receive an email with reset instructions", preferredStyle: UIAlertControllerStyle.Alert)
+		var alert = UIAlertController(title: NSLocalizedString("reset_password_title", value: "Reset Password", comment: ""), message: NSLocalizedString("reset_password_text", value: "Enter the email address associated with the account. You will receive an email with reset instructions", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
 		alert.addTextFieldWithConfigurationHandler({(textField: UITextField!) in
-			textField.placeholder = "Email:"
+			textField.placeholder = NSLocalizedString("email", value: "Email:", comment: "")
 			textField.keyboardType = UIKeyboardType.EmailAddress
 		})
-		alert.addAction(UIAlertAction(title: "Reset", style: UIAlertActionStyle.Destructive, handler: {
+		alert.addAction(UIAlertAction(title: NSLocalizedString("reset", value: "Reset", comment: ""), style: UIAlertActionStyle.Destructive, handler: {
 			_ in
 			PFUser.requestPasswordResetForEmailInBackground((alert.textFields?.first as! UITextField).text, block: {
 				(result: Bool, error: NSError?) -> Void in
 				if result == true {
-					global.showAlert("Email sent", message: "An email has been sent to the email address you supplied with password reset instructions")
+					global.showAlert(NSLocalizedString("email_sent_title", value: "Email sent", comment: ""), message: NSLocalizedString("email_sent_text", value: "An email has been sent to the email address you supplied with password reset instructions", comment: ""))
 				} else if error!.code == 125 {
-					global.showAlert("Oops", message: "Email address not found")
+					global.showAlert("Oops", message: NSLocalizedString("email_address_not_found", value: "Email address not found", comment: ""))
 				}
 			})
 		}))
-		alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+		alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: ""), style: UIAlertActionStyle.Default, handler: nil))
 		self.presentViewController(alert, animated: true, completion: nil)
 	}
 	

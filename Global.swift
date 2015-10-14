@@ -220,7 +220,7 @@ class Global: UIViewController {
 		} else { topController = viewController } //shareToWhatsapp()
 		
 		if topController != nil {
-			var shareAlert = UIAlertController(title: "Let others know", message: "The more people that join your communities and groups, the safer you all become... ", preferredStyle: UIAlertControllerStyle.Alert)
+			var shareAlert = UIAlertController(title: NSLocalizedString("share_title", value: "Let others know", comment: ""), message: NSLocalizedString("share_text", value: "The more people that join your communities and groups, the safer you all become... ", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
 			
 			//WHATSAPP
 			shareAlert.addAction(UIAlertAction(title: "Whatsapp", style: .Default, handler: { (action: UIAlertAction!) in
@@ -234,7 +234,7 @@ class Global: UIViewController {
 					facebookSheet.setInitialText(text)
 					topController!.presentViewController(facebookSheet, animated: true, completion: nil)
 				} else {
-					var alert = UIAlertController(title: "Accounts", message: "Please login to a Facebook account to share.", preferredStyle: UIAlertControllerStyle.Alert)
+					var alert = UIAlertController(title: "Accounts", message: NSLocalizedString("facebook_share_login", value: "Please login to a Facebook account to share.", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
 					alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
 					topController!.presentViewController(alert, animated: true, completion: nil)
 				}
@@ -247,12 +247,12 @@ class Global: UIViewController {
 					twitterSheet.setInitialText(text)
 					topController!.presentViewController(twitterSheet, animated: true, completion: nil)
 				} else {
-					var alert = UIAlertController(title: "Accounts", message: "Please login to a Twitter account to share.", preferredStyle: UIAlertControllerStyle.Alert)
+					var alert = UIAlertController(title: "Accounts", message: NSLocalizedString("twitter_share_login", value: "Please login to a Twitter account to share.", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
 					alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
 					topController!.presentViewController(alert, animated: true, completion: nil)
 				}
 			}))
-			shareAlert.addAction(UIAlertAction(title: "Cancel", style: .Destructive, handler: { (action: UIAlertAction!) in
+			shareAlert.addAction(UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: ""), style: .Destructive, handler: { (action: UIAlertAction!) in
 			}))
 			topController!.presentViewController(shareAlert, animated: true, completion: nil)
 		} else {
@@ -267,7 +267,7 @@ class Global: UIViewController {
 		if UIApplication.sharedApplication().canOpenURL(whatsappUrl!) {
 			UIApplication.sharedApplication().openURL(whatsappUrl!)
 		} else {
-			global.showAlert("Whatsapp not installed", message: "")
+			global.showAlert(NSLocalizedString("whatsapp_not_installed", value: "Whatsapp not installed", comment: ""), message: "")
 		}
 	}
 	
@@ -276,7 +276,7 @@ class Global: UIViewController {
 			if (status == CLAuthorizationStatus.AuthorizedAlways) || (status == CLAuthorizationStatus.AuthorizedWhenInUse) {
 				return true
 			} else {
-				global.showAlert("Location Not Allowed", message: "Please enable location services for Panic by going to Settings > Privacy > Location Services.\nWithout location services, no one will be able to respond to your emergency.")
+				global.showAlert(NSLocalizedString("location_not_allowed_title", value: "Location Not Allowed", comment: ""), message: NSLocalizedString("location_not_aloowed_text", value: "Please enable location services for Panic by going to Settings > Privacy > Location Services.\nWithout location services, no one will be able to respond to your emergency.", comment: ""))
 				return false
 			}
 		}

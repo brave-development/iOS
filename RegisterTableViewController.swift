@@ -64,17 +64,17 @@ class RegisterTableViewController: UITableViewController, countryDelegate, UITex
         viewPassword.backgroundColor = backgroundColour
         viewConfirmPassword.backgroundColor = backgroundColour
         
-        txtName.attributedPlaceholder = NSAttributedString(string:"Name and Surname",
+        txtName.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("name_surname", value: "Name and Surname", comment: "Asking for ..."),
             attributes:[NSForegroundColorAttributeName: placeholderTextColour])
-        txtUsername.attributedPlaceholder = NSAttributedString(string:"Username",
+        txtUsername.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("username", value: "Username", comment: "Asking for..."),
             attributes:[NSForegroundColorAttributeName: placeholderTextColour])
-        txtCellNumber.attributedPlaceholder = NSAttributedString(string:"Contact Number",
+        txtCellNumber.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("contact_number", value: "Contact Number", comment: "Asking for..."),
             attributes:[NSForegroundColorAttributeName: placeholderTextColour])
-		txtEmail.attributedPlaceholder = NSAttributedString(string:"Email",
+		txtEmail.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("email", value: "Email", comment: "Asking for..."),
 			attributes:[NSForegroundColorAttributeName: placeholderTextColour])
-        txtPassword.attributedPlaceholder = NSAttributedString(string:"Password",
+        txtPassword.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("password", value: "Password", comment: "Asking for..."),
             attributes:[NSForegroundColorAttributeName: placeholderTextColour])
-        txtConfirmPassword.attributedPlaceholder = NSAttributedString(string:"Confirm Password",
+        txtConfirmPassword.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("password_confirm", value: "Confirm Password", comment: "Asking for..."),
             attributes:[NSForegroundColorAttributeName: placeholderTextColour])
         
     }

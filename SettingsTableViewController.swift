@@ -92,7 +92,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 			if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedAlways {
 				global.setBackgroundUpdate(true)
 			} else {
-				global.showAlert("Oops", message: "To use this feature, you will need to grant Panic permission to use your location in the background. To do this, go to iPhone Settings > Privacy > Location Services > Panic > 'Always'")
+				global.showAlert("Oops", message:NSLocalizedString("location_not_allowed", value: "To use this feature, you will need to grant Panic permission to use your location in the background. To do this, go to iPhone Settings > Privacy > Location Services > Panic > 'Always'", comment: "") )
 			}
 		} else {
 			global.setBackgroundUpdate(false)
@@ -101,12 +101,11 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     
     // Show popup with information about panicConfirmation
     @IBAction func showInfoPanicConfirmation(sender: AnyObject) {
-        global.showAlert("Panic Confirmation", message: "Enabling this will remove the 5 second delay before sending notifications, however you will have to manually select 'Yes' each time you activate Panic.")
+        global.showAlert(NSLocalizedString("confirmation_info_title", value: "Panic Confirmation", comment: ""), message: NSLocalizedString("confirmation_info_text", value: "Enabling this will remove the 5 second delay before sending notifications, however you will have to manually select 'Yes' each time you activate Panic.", comment: ""))
     }
 	
 	@IBAction func showInfoBackgroundUpdate(sender: AnyObject) {
-//		global.showAlert("Coming Soon!", message: "Enabling background updates will let Panic continue to broadcast your location, even when the app is closed and your iPhone is asleep.\n\nThis is disabled by default as it is very heavy on battery, can use a lot of data if left on for an extended period of time and because of the way iPhone handles background apps, can be unreliable (although rarely).\n\nThis feature will be implemented in the next update.")
-		global.showAlert("Background Update", message: "Enabling background updates will let Panic continue to broadcast your location, even when the app is in the background and/or your iPhone is asleep, during activation.\n\nThis is disabled by default as it can be heavy on battery, can use more data then expected if left on for an extended period of time and because of the way iPhone handles background apps, can be unreliable (although rarely)")
+		global.showAlert(NSLocalizedString("background_update_info_title", value: "Background Update", comment: ""), message: NSLocalizedString("background_update_info_text", value: "Enabling background updates will let Panic continue to broadcast your location, even when the app is in the background and/or your iPhone is asleep, during activation.\n\nThis is disabled by default as it can be heavy on battery, can use more data then expected if left on for an extended period of time and because of the way iPhone handles background apps, can be unreliable (although rarely)", comment: ""))
 	}
 	
 	@IBAction func reportBug(sender: AnyObject) {
@@ -120,12 +119,12 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 			self.presentViewController(mail, animated: true, completion: nil)
 		}
 		else {
-			global.showAlert("Could Not Send Email", message: "Your device could not send e-mail.  Please check e-mail configuration and try again.")
+			global.showAlert(NSLocalizedString("error_could_not_send_email_title", value: "Could Not Send Email", comment: ""), message: NSLocalizedString("error_could_not_send_email_text", value: "Your device could not send e-mail.  Please check e-mail configuration and try again.", comment: ""))
 		}
 	}
 	
 	@IBAction func reportUser(sender: AnyObject) {
-		global.showAlert("Report a user", message: "To report a user, go to Public History, tap on the Panic associated to that user and use the report button there.")
+		global.showAlert(NSLocalizedString("report_user_title", value: "Report a user", comment: ""), message:NSLocalizedString("report_user_text", value: "To report a user, go to Public History, tap on the Panic associated to that user and use the report button there.", comment: "") )
 	}
 	
 	func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
@@ -141,11 +140,11 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 	
 	@IBAction func tutorialReset(sender: AnyObject) {
 		tutorial.reset()
-		global.showAlert("", message: "Tutorials have been re-enabled. Go back to the main Home screen to view them as you did the first time the app was opened.")
+		global.showAlert("", message: NSLocalizedString("tutorials_reset_text", value: "Tutorials have been re-enabled. Go back to the main Home screen to view them as you did the first time the app was opened.", comment: ""))
 	}
 	
 	@IBAction func logout(sender: AnyObject) {
-		global.showAlert("Note", message: "Logging out disables any Panic notifications. You will not be notified when someone activates their Panic button.\n\nOn the other hand, closing the app with the home button, or even the app switcher, logs you out in a way that you still receive notifications.")
+		global.showAlert("Note", message: NSLocalizedString("logout_message", value: "Logging out disables any Panic notifications. You will not be notified when someone activates their Panic button.\n\nOn the other hand, closing the app with the home button, or even the app switcher, logs you out in a way that you still receive notifications.", comment: ""))
 		if global.persistantSettings.objectForKey("groups") != nil {
 			global.persistantSettings.removeObjectForKey("groups")
 		}
@@ -156,10 +155,10 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 	}
 	
     @IBAction func deleteAccount(sender: AnyObject) {
-        var saveAlert = UIAlertController(title: "Confirmation", message: "Are you sure you want to delete your account?\n\nThis will remove all your details, free up your username, remove all Panic history and you will have to reregister if you want to use this app again.", preferredStyle: UIAlertControllerStyle.Alert)
-        saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
-            var saveAlert = UIAlertController(title: "Final Confirmation", message: "Permenently delete account?", preferredStyle: UIAlertControllerStyle.Alert)
-            saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+        var saveAlert = UIAlertController(title: NSLocalizedString("delete_account_confirmation_1_title", value: "Confirmation", comment: ""), message: NSLocalizedString("delete_account_confirmation_1_text", value: "Are you sure you want to delete your account?\n\nThis will remove all your details, free up your username, remove all Panic history and you will have to reregister if you want to use this app again.", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+        saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
+            var saveAlert = UIAlertController(title: NSLocalizedString("delete_account_confirmation_2_title", value: "Final Confirmation", comment: ""), message: NSLocalizedString("delete_account_confirmation_2_text", value: "Permenently delete account?", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+            saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
                 
                 var queryDeleteAccount = PFQuery(className: "Panics")
                 queryDeleteAccount.whereKey("user", equalTo: PFUser.currentUser()!)
@@ -180,11 +179,11 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 					}
 				})
             }))
-            saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in
+            saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
             }))
             self.presentViewController(saveAlert, animated: true, completion: nil)
         }))
-        saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in
+        saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
         }))
         self.presentViewController(saveAlert, animated: true, completion: nil)
     }
@@ -217,14 +216,14 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
         switch (textField) {
         case txtName:
             if count(txtName.text) < 5 {
-                global.showAlert("", message: "Your name cannot be less than 5 characters. Please fill in your full name.")
+                global.showAlert("", message: NSLocalizedString("error_name_5_chars", value: "Your name cannot be less than 5 characters. Please fill in your full name.", comment: ""))
                 return false
             }
             break;
         
         case txtCell:
             if count(txtCell.text) < 10 {
-                global.showAlert("Note", message: "Setting your mobile number incorrectly will prevent others from contacting you in an emergency")
+                global.showAlert("Note", message: NSLocalizedString("number_change_warning", value: "Setting your mobile number incorrectly will prevent others from contacting you in an emergency", comment: ""))
             }
             return true
             
@@ -233,14 +232,14 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
             var emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
             let result = emailTest.evaluateWithObject(txtEmail.text)
             if result == false {
-                global.showAlert("", message: "Invalid email address")
+                global.showAlert("", message: NSLocalizedString("email_address_invalid", value: "Invalid email address", comment: ""))
             }
             return result
             
         case txtPassword:
             if txtPassword.text.isEmpty || count(txtPassword.text) < 6 {
                 if count(txtPassword.text) != 0 {
-                    global.showAlert("", message: "Password must be 6 or more characters")
+                    global.showAlert("", message: NSLocalizedString("password_6_chars", value: "Password must be 6 or more characters", comment: ""))
                 }
                 txtPasswordConfirm.text = ""
                 txtPasswordConfirm.enabled = false
@@ -251,7 +250,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
             
         case txtPasswordConfirm:
             if txtPassword.text != txtPasswordConfirm.text {
-                global.showAlert("", message: "Passwords do not match")
+                global.showAlert("", message: NSLocalizedString("pass_dont_match", value: "Passwords do not match", comment: "") )
                 return false
             }
             newPassword = txtPasswordConfirm.text
@@ -265,8 +264,8 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     
     override func viewWillDisappear(animated: Bool) {
         if changed == true {
-            var saveAlert = UIAlertController(title: "Save?", message: "Do you want to save changes?", preferredStyle: UIAlertControllerStyle.Alert)
-            saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+            var saveAlert = UIAlertController(title: NSLocalizedString("save", value: "Save", comment: ""), message: NSLocalizedString("save_changes_confirmation_text", value: "Do you want to save changes?", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+            saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
                 var user = PFUser.currentUser()!
                 if self.newPassword != nil { user.password = self.newPassword! }
                 user["name"] = self.txtName.text
@@ -276,16 +275,16 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
                 user.saveInBackgroundWithBlock({
                     (result : Bool, error : NSError?) -> Void in
                     if result == true {
-                        global.showAlert("", message: "Settings updated")
+                        global.showAlert("", message: NSLocalizedString("settings_updated", value: "Settings updated", comment: ""))
                     } else if error?.localizedDescription != nil {
                         global.showAlert("", message: error!.localizedDescription)
                     } else {
-                        global.showAlert("", message: "There was an error updating you settings")
+                        global.showAlert("", message: NSLocalizedString("error_updating_settings", value: "There was an error updating you settings", comment: ""))
                     }
                 })
             }))
             
-            saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in
+            saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
 //                global.showAlert("", message: "Not Saved")
             }))
             presentViewController(saveAlert, animated: true, completion: nil)

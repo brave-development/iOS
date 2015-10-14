@@ -128,7 +128,7 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 		}
 		
 		setImage()
-		btnFinish.setTitle("Save", forState: UIControlState.Normal)
+		btnFinish.setTitle(NSLocalizedString("save", value: "Save", comment: ""), forState: UIControlState.Normal)
 	}
 	
 	@IBAction func choseBackground(sender: AnyObject) {
@@ -165,10 +165,10 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 		
 		if publicGroup == true {
 			btnLock.setImage(UIImage(named: "unlock"), forState: .Normal)
-			tooltipLock.setText("Open community")
+			tooltipLock.setText(NSLocalizedString("open_comm", value: "Open community", comment: ""))
 		} else {
 			btnLock.setImage(UIImage(named: "lock"), forState: .Normal)
-			tooltipLock.setText("Closed group")
+			tooltipLock.setText(NSLocalizedString("closed_group", value: "Closed group", comment: ""))
 		}
 	}
 	
@@ -184,10 +184,10 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 	}
 	
 	func newGroup() {
-		var message: String = "This group is set to private. It will therfore NOT SHOW in any searches or nearby suggestions."  // If set to PRIVATE
-		if self.publicGroup == true { message = "This group is set to public. It will therfor SHOW in all searches and nearby suggestions and anyone will be able to join it" }
-		var saveAlert = UIAlertController(title: "Are you sure?", message: message, preferredStyle: UIAlertControllerStyle.Alert)
-		saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+		var message: String = NSLocalizedString("group_set_to_private_text", value: "This group is set to private. It will therfore NOT SHOW in any searches or nearby suggestions.", comment: "")  // If set to PRIVATE
+		if self.publicGroup == true { message = NSLocalizedString("group_set_to_public_text", value: "This group is set to public. It will therfor SHOW in all searches and nearby suggestions and anyone will be able to join it", comment: "")}
+		var saveAlert = UIAlertController(title: NSLocalizedString("are_you_sure", value: "Are you sure?", comment: ""), message: message, preferredStyle: UIAlertControllerStyle.Alert)
+		saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
 			// Clicked YES
 			self.spinner.startAnimating()
 			self.btnClose.enabled = false
@@ -211,7 +211,7 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 			newGroupObject["imageFile"] = image
 			groupsHandler.createGroup(newGroupObject, parent: self)
 		}))
-		saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in
+		saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
 			self.tooltipLock.show()
 		}))
 		presentViewController(saveAlert, animated: true, completion: nil)
@@ -246,19 +246,24 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 		group!.saveInBackgroundWithBlock({
 			(result: Bool, error: NSError?) -> Void in
 			if error != nil {
-				global.showAlert("", message: "Something went wrong during the update. Please try again.")
+				global.showAlert("", message: NSLocalizedString("error_update_failed", value: "Something went wrong during the update. Please try again.", comment: ""))
 			} else {
-				global.showAlert("", message: "Updated successfully")
+				global.showAlert("", message: NSLocalizedString("update_successful", value: "Updated successfully", comment: ""))
 				self.dismissViewControllerAnimated(true, completion: nil)
 			}
 		})
 	}
 	
+	//
+	let groupNameLocalized = NSLocalizedString("group_name", value: "Group Name", comment: "")
+	let groupDescriptionLocalized = NSLocalizedString("group_description", value: "Group Description", comment: "")
+	//
+	
 	func validate() -> Bool {
 		var message: String = ""
-		if count(txtName.text.trim()) < 3 || txtName.text == "Group Name" { message = message + "Name must be 3 or more characters\n" }
-		if count(txtDescription.text.trim()) < 10 || txtDescription.text == "Group Description" { message = message + "Description must be 10 or more characters\n" }
-		if imageChosen == false { message = message + "Please choose an image\n"; tooltipPicture.show() }
+		if count(txtName.text.trim()) < 3 || txtName.text == groupNameLocalized { message = message + NSLocalizedString("error_name_3_chars", value: "Name must be 3 or more characters", comment: "") + "\n" }
+		if count(txtDescription.text.trim()) < 10 || txtDescription.text == groupDescriptionLocalized { message = message + NSLocalizedString("error_description_10_chars", value: "Description must be 10 or more characters", comment: "") + "\n" }
+		if imageChosen == false { message = message + NSLocalizedString("error_choose_image", value: "Please choose an image", comment: "") + "\n"; tooltipPicture.show() }
 		
 		if count(message.trim()) > 0 {
 			global.showAlert("", message: message)
@@ -274,11 +279,11 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 	func textViewDidBeginEditing(textView: UITextView) {
 		switch (textView.tag) {
 		case 0:
-			if txtName.text == "Group Name" { txtName.text = "" }
+			if txtName.text == groupNameLocalized { txtName.text = "" }
 			break
 			
 		case 1:
-			if txtDescription.text == "Group Description" { txtDescription.text = "" }
+			if txtDescription.text == groupDescriptionLocalized { txtDescription.text = "" }
 			break
 			
 		default:
@@ -289,11 +294,11 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 	func textViewDidEndEditing(textView: UITextView) {
 		switch (textView.tag) {
 		case 0:
-			if txtName.text == "" { txtName.text = "Group Name" }
+			if txtName.text == "" { txtName.text = groupNameLocalized }
 			break
 			
 		case 1:
-			if txtDescription.text == "" { txtDescription.text = "Group Description" }
+			if txtDescription.text == "" { txtDescription.text = groupDescriptionLocalized }
 			break
 			
 		default:
@@ -360,13 +365,13 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 	}
 	
 	@IBAction func close(sender: AnyObject) {
-		if txtName.text != "Group Name" || txtDescription.text != "Group Description" || imageChosen == true {
-			var saveAlert = UIAlertController(title: "Are you sure?", message: "You will loose the current information", preferredStyle: UIAlertControllerStyle.Alert)
-			saveAlert.addAction(UIAlertAction(title: "Yes", style: .Default, handler: { (action: UIAlertAction!) in
+		if txtName.text != groupNameLocalized || txtDescription.text != groupDescriptionLocalized || imageChosen == true {
+			var saveAlert = UIAlertController(title: NSLocalizedString("are_you_sure_title", value: "Are you sure?", comment: ""), message: NSLocalizedString("are_you_sure_text", value: "You will loose the current information", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+			saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
 				// Clicked YES
 				self.dismissViewControllerAnimated(true, completion: nil)
 			}))
-			saveAlert.addAction(UIAlertAction(title: "No", style: .Default, handler: { (action: UIAlertAction!) in }))
+			saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in }))
 			presentViewController(saveAlert, animated: true, completion: nil)
 		} else {
 			self.dismissViewControllerAnimated(true, completion: nil)

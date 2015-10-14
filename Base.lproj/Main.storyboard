@@ -31,8 +31,8 @@
                                     <constraint firstAttribute="height" constant="180" id="Lja-8d-wNl"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Panic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-e7-o1F">
-                                <rect key="frame" x="104" y="130" width="113" height="51"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Panic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-e7-o1F">
+                                <rect key="frame" x="120" y="130" width="82" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="CTs-uJ-rGr"/>
                                     <constraint firstAttribute="width" constant="113" id="wMC-Pk-azQ"/>
@@ -40,9 +40,14 @@
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="wMC-Pk-azQ"/>
+                                    </mask>
+                                </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvr-sb-QJd">
-                                <rect key="frame" x="137" y="450" width="46" height="27"/>
+                                <rect key="frame" x="138" y="450" width="45" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="M38-Q4-GZ6"/>
                                     <constraint firstAttribute="width" constant="46" id="iWA-KZ-UjE"/>
@@ -52,6 +57,11 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="iWA-KZ-UjE"/>
+                                    </mask>
+                                </variation>
                                 <connections>
                                     <action selector="login:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="N5Q-sf-Fm0"/>
                                 </connections>

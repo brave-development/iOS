@@ -48,7 +48,7 @@ class LocalHistoryTableViewCell: UITableViewCell {
 		var duration : String!
 		
 		if round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!))) < 60 {
-			duration = "1 Minute or less"
+			duration = NSLocalizedString("1_min", value: "1 Minute or less", comment: "")
 		} else if round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!))) < 3600{
 			let tempDurationString = NSString(format: "%.0f", round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!)/60)))
 			duration = "\(tempDurationString) Minutes "
@@ -57,7 +57,7 @@ class LocalHistoryTableViewCell: UITableViewCell {
 			let minutes = round(abs(dateEnded!.timeIntervalSinceDate(dateStarted!)/60) - abs(hours * 60))
 			let tempDurationString = NSString(format: "%.0f", hours)
 			let tempDurationStringMins = NSString(format: "%.0f", abs(minutes))
-			duration = "\(tempDurationString) Hours \(tempDurationStringMins) Minutes"
+			duration = String(format: NSLocalizedString("duration_h_m", value: "%@ Hours %@ Minutes", comment: ""), arguments: [tempDurationString, tempDurationStringMins])
 		}
 		
 		lblDuration.text = duration
@@ -91,7 +91,7 @@ class LocalHistoryTableViewCell: UITableViewCell {
 				deletePanicRecord(object.objectId!)
 			}
 		} else if type == "group" {
-			lblArea.text = "Group Name"
+			lblArea.text = NSLocalizedString("group_name", value: "Group Name", comment: "")
 		} else {
 			imgLocation.image = UIImage(named: "Location")
 			imgLowerInformation.image = UIImage(named: "RespondersIcon")
@@ -105,7 +105,7 @@ class LocalHistoryTableViewCell: UITableViewCell {
 				let location = CLLocationCoordinate2D(latitude: (object["location"] as! PFGeoPoint).latitude, longitude: (object["location"]as! PFGeoPoint).longitude)
 				lblArea.text = "\(round(location.latitude * 100)/100), \(round(location.longitude * 100)/100)"
 			} else {
-				lblArea.text = "Not available"
+				lblArea.text = NSLocalizedString("not_available", value: "Not available", comment: "")
 			}
 		}
 	}

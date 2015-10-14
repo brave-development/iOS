@@ -42,10 +42,9 @@ class PanicHandler: UIViewController {
 				{
                     self.updating = false
                     self.objectInUse = true
-//					println(self.queryObject.objectId)
 					self.timer = NSTimer.scheduledTimerWithTimeInterval(5, target: self, selector: "getResponderCount", userInfo: nil, repeats: true)
                 } else if error != nil {
-                    global.showAlert("Error beginning location", message: "\(error!.localizedDescription)\nWill try again in a few seconds")
+                    global.showAlert(NSLocalizedString("error_beginning_location_title", value: "Error beginning location", comment: ""), message: "\(error!.localizedDescription)\n" + NSLocalizedString("error_beginning_location_text", value: "Will try again in a few seconds", comment: ""))
                     self.updating = false
                 }
             })
@@ -66,7 +65,7 @@ class PanicHandler: UIViewController {
                     if result == true {
                         self.updating = false
                     } else if error != nil {
-                        global.showAlert("Error updating location", message: "\(error!.localizedDescription)\nWill try again in a few seconds")
+                        global.showAlert(NSLocalizedString("error_updating_location_title", value: "Error updating location", comment: ""), message: "\(error!.localizedDescription)\n" + NSLocalizedString("error_updating_location_text", value: "Will try again in a few seconds", comment: ""))
                         self.updating = false
                     }
                 })
@@ -88,7 +87,7 @@ class PanicHandler: UIViewController {
 					if result == true {
 						self.updating = false
 					} else if error != nil {
-						global.showAlert("Error updating details", message: "\(error!.localizedDescription)\nWill try again in a few seconds")
+						global.showAlert(NSLocalizedString("error_updating_details_title", value: "Error updating details", comment: ""), message: "\(error!.localizedDescription)\n" + NSLocalizedString("error_updating_details_text", value: "Will try again in a few seconds", comment: ""))
 						self.updating = false
 					}
 				})
