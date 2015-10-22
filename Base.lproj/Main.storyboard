@@ -3596,8 +3596,8 @@
                                     <outlet property="delegate" destination="1kK-cU-hBn" id="hcd-gY-ABt"/>
                                 </connections>
                             </mapView>
-                            <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IZV-Ty-psE">
-                                <rect key="frame" x="27" y="28" width="266" height="465"/>
+                            <visualEffectView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IZV-Ty-psE">
+                                <rect key="frame" x="-240" y="10" width="266" height="465"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="BKT-Jh-BSd">
                                     <rect key="frame" x="0.0" y="0.0" width="266" height="465"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3742,11 +3742,28 @@
                                 </view>
                                 <blurEffect style="dark"/>
                             </visualEffectView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nqd-aR-Bo6">
+                                <rect key="frame" x="255" y="453" width="55" height="55"/>
+                                <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Xft-e1-SLH"/>
+                                    <constraint firstAttribute="width" constant="55" id="dRP-GP-Clf"/>
+                                </constraints>
+                                <state key="normal" title="•••">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="changeMapType:" destination="1kK-cU-hBn" eventType="touchUpInside" id="8Qe-Mu-2as"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="IZV-Ty-psE" firstAttribute="top" secondItem="R6w-at-bFd" secondAttribute="topMargin" constant="28" id="57w-mT-Vnh"/>
                             <constraint firstAttribute="trailing" secondItem="RMF-pU-SwZ" secondAttribute="trailing" id="Exw-VV-TUu"/>
+                            <constraint firstItem="xNI-Yb-tKY" firstAttribute="top" secondItem="nqd-aR-Bo6" secondAttribute="bottom" constant="60" id="FXM-li-arI"/>
+                            <constraint firstAttribute="trailing" secondItem="nqd-aR-Bo6" secondAttribute="trailing" constant="10" id="HMT-gr-Iie"/>
                             <constraint firstAttribute="trailingMargin" secondItem="IZV-Ty-psE" secondAttribute="trailing" constant="11" id="QLL-WE-p76"/>
                             <constraint firstItem="RMF-pU-SwZ" firstAttribute="leading" secondItem="R6w-at-bFd" secondAttribute="leading" id="R8o-h0-lRV"/>
                             <constraint firstItem="xNI-Yb-tKY" firstAttribute="top" secondItem="IZV-Ty-psE" secondAttribute="bottom" constant="75" id="XFX-J3-sgR"/>
@@ -3760,6 +3777,7 @@
                     <connections>
                         <outlet property="btnCall" destination="KSE-k4-hkw" id="kGL-2z-wv3"/>
                         <outlet property="btnCloseDetails" destination="2PS-eG-BAV" id="dyT-2o-RBH"/>
+                        <outlet property="btnMapType" destination="nqd-aR-Bo6" id="5Br-6v-BAa"/>
                         <outlet property="btnRespond" destination="aHI-Dd-8ei" id="lZp-Od-xqV"/>
                         <outlet property="lblAddress" destination="2vc-rc-1eO" id="4FA-NK-RPX"/>
                         <outlet property="lblContact" destination="pRj-U9-8Om" id="Zd6-FR-nZo"/>

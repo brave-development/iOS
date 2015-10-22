@@ -175,6 +175,10 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 		searchBar.resignFirstResponder()
 	}
 	
+	func backBecauseOfGroupJoined() {
+		self.dismissViewControllerAnimated(true, completion: nil)
+	}
+	
 	// Notification bar
 	
 	func showNotificationBar(text: String = "") {
@@ -201,10 +205,6 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 			self.searchBar.layoutIfNeeded()
 			self.tableView.layoutIfNeeded()
 		})
-	}
-	
-	func backBecauseOfGroupJoined() {
-		btnBack.sendActionsForControlEvents(.TouchUpInside)
 	}
 	
 	@IBAction func close(sender: AnyObject) {

@@ -1,6 +1,409 @@
+/* No comment provided by engineer. */
+"1_min" = "";
+
+/* Button title to activate the panic button
+   confirmation to activate the panic button */
+"activate" = "";
+
+/* No comment provided by engineer. */
+"activate_confirmation_text" = "";
+
+/* No comment provided by engineer. */
+"already_joined_group" = "";
+
+/* No comment provided by engineer. */
+"are_you_sure" = "";
+
+/* No comment provided by engineer. */
+"are_you_sure_text" = "";
+
+/* No comment provided by engineer. */
+"are_you_sure_title" = "";
+
+/* No comment provided by engineer. */
+"background_update_info_text" = "";
+
+/* No comment provided by engineer. */
+"background_update_info_title" = "";
+
+/* No comment provided by engineer. */
+"cancel" = "";
+
+/* No comment provided by engineer. */
+"closed_group" = "";
+
+/* No comment provided by engineer. */
+"confirmation_info_text" = "";
+
+/* No comment provided by engineer. */
+"confirmation_info_title" = "";
+
+/* Asking for... */
+"contact_number" = "";
+
+/* No comment provided by engineer. */
+"could_not_get_panic_history" = "";
+
+/* No comment provided by engineer. */
+"deactivate" = "";
+
+/* No comment provided by engineer. */
+"delete_account_confirmation_1_text" = "";
+
+/* No comment provided by engineer. */
+"delete_account_confirmation_1_title" = "";
+
+/* No comment provided by engineer. */
+"delete_account_confirmation_2_text" = "";
+
+/* No comment provided by engineer. */
+"delete_account_confirmation_2_title" = "";
+
+/* No comment provided by engineer. */
+"dont_respond" = "";
+
+/* No comment provided by engineer. */
+"duration_h_m" = "";
+
+/* Asking for... */
+"email" = "";
+
+/* No comment provided by engineer. */
+"email_address_invalid" = "";
+
+/* No comment provided by engineer. */
+"email_address_not_found" = "";
+
+/* No comment provided by engineer. */
+"email_sent_text" = "";
+
+/* No comment provided by engineer. */
+"email_sent_title" = "";
+
+/* No comment provided by engineer. */
+"enter_code_text" = "";
+
+/* No comment provided by engineer. */
+"enter_code_title" = "";
+
+/* No comment provided by engineer. */
+"error_becoming_a_responder" = "";
+
+/* No comment provided by engineer. */
+"error_beginning_location_text" = "";
+
+/* No comment provided by engineer. */
+"error_beginning_location_title" = "";
+
+/* No comment provided by engineer. */
+"error_cell" = "";
+
+/* No comment provided by engineer. */
+"error_choose_image" = "";
+
+/* No comment provided by engineer. */
+"error_could_not_send_email_text" = "";
+
+/* No comment provided by engineer. */
+"error_could_not_send_email_title" = "";
+
+/* No comment provided by engineer. */
+"error_country" = "";
+
+/* No comment provided by engineer. */
+"error_description_10_chars" = "";
+
+/* No comment provided by engineer. */
+"error_email" = "";
+
+/* No comment provided by engineer. */
+"error_email_text" = "";
+
+/* No comment provided by engineer. */
+"error_email_title" = "";
+
+/* No comment provided by engineer. */
+"error_fetching_groups_text" = "";
+
+/* No comment provided by engineer. */
+"error_fetching_groups_title" = "";
+
+/* No comment provided by engineer. */
+"error_full_name" = "";
+
+/* No comment provided by engineer. */
+"error_invalid_login" = "";
+
+/* No comment provided by engineer. */
+"error_name_3_chars" = "";
+
+/* No comment provided by engineer. */
+"error_name_5_chars" = "";
+
+/* No comment provided by engineer. */
+"error_name_only_letters" = "";
+
+/* No comment provided by engineer. */
+"error_network_connection" = "";
+
+/* No comment provided by engineer. */
+"error_no_group_found_text" = "";
+
+/* No comment provided by engineer. */
+"error_no_group_found_title" = "";
+
+/* No comment provided by engineer. */
+"error_pass_6_chars" = "";
+
+/* No comment provided by engineer. */
+"error_pass_dont_match" = "";
+
+/* No comment provided by engineer. */
+"error_password" = "";
+
+/* No comment provided by engineer. */
+"error_password_confirm" = "";
+
+/* No comment provided by engineer. */
+"error_purchase_text" = "";
+
+/* No comment provided by engineer. */
+"error_update_failed" = "";
+
+/* No comment provided by engineer. */
+"error_updating_details_text" = "";
+
+/* No comment provided by engineer. */
+"error_updating_details_title" = "";
+
+/* No comment provided by engineer. */
+"error_updating_location_text" = "";
+
+/* No comment provided by engineer. */
+"error_updating_location_title" = "";
+
+/* No comment provided by engineer. */
+"error_updating_settings" = "";
+
+/* No comment provided by engineer. */
+"error_username_5_chars" = "";
+
+/* No comment provided by engineer. */
+"facebook_share_login" = "";
+
+/* No comment provided by engineer. */
+"group_already_exists" = "";
+
+/* Placeholder asking the user to enter the group code */
+"group_code" = "";
+
+/* No comment provided by engineer. */
+"group_create" = "";
+
+/* No comment provided by engineer. */
+"group_description" = "";
+
+/* No comment provided by engineer. */
+"group_join_private" = "";
+
+/* No comment provided by engineer. */
+"group_join_public" = "";
+
+/* No comment provided by engineer. */
+"group_name" = "";
+
+/* No comment provided by engineer. */
+"group_not_exist_text" = "";
+
+/* No comment provided by engineer. */
+"group_set_to_private_text" = "";
+
+/* No comment provided by engineer. */
+"group_set_to_public_text" = "";
+
+/* No comment provided by engineer. */
+"help" = "";
+
+/* Join a group */
+"join" = "";
+
+/* No comment provided by engineer. */
+"join_private_group_help_text" = "";
+
+/* No comment provided by engineer. */
+"join_private_group_help_title" = "";
+
+/* No comment provided by engineer. */
+"joined_group_text" = "";
+
 /* tester2 */
 "leave_group_confirmation_title" = "Laat loop %@?";
 
+/* No comment provided by engineer. */
+"location_error_text" = "";
+
+/* No comment provided by engineer. */
+"location_error_title" = "";
+
+/* No comment provided by engineer. */
+"location_not_allowed" = "";
+
+/* No comment provided by engineer. */
+"location_not_allowed_text" = "";
+
+/* No comment provided by engineer. */
+"location_not_allowed_title" = "";
+
+/* No comment provided by engineer. */
+"location_not_aloowed_text" = "";
+
+/* No comment provided by engineer. */
+"logout_message" = "";
+
+/* First part of main tutorial */
+"main_tut_1" = "";
+
+/* No comment provided by engineer. */
+"main_tut_2" = "";
+
+/* No comment provided by engineer. */
+"main_tut_3" = "";
+
+/* No comment provided by engineer. */
+"main_tut_4" = "";
+
+/* No comment provided by engineer. */
+"menu_not_available" = "";
+
+/* Asking for ... */
+"name_surname" = "";
+
+/* Heading showing the groups nearby to the user */
+"nearby" = "";
+
+/* No comment provided by engineer. */
+"no" = "";
+
+/* No comment provided by engineer. */
+"no_data" = "";
+
+/* No comment provided by engineer. */
+"not_available" = "";
+
+/* No comment provided by engineer. */
+"number_change_warning" = "";
+
+/* No comment provided by engineer. */
+"open_comm" = "";
+
+/* No comment provided by engineer. */
+"panic_notification_message" = "";
+
+/* No comment provided by engineer. */
+"pass_dont_match" = "";
+
+/* Asking for... */
+"password" = "";
+
+/* No comment provided by engineer. */
+"password_6_chars" = "";
+
+/* Asking for... */
+"password_confirm" = "";
+
+/* No comment provided by engineer. */
+"please_wait_text" = "";
+
+/* No comment provided by engineer. */
+"please_wait_title" = "";
+
+/* No comment provided by engineer. */
+"private_panics_50" = "";
+
+/* No comment provided by engineer. */
+"public_panics_20" = "";
+
+/* No comment provided by engineer. */
+"report_user_text" = "";
+
+/* No comment provided by engineer. */
+"report_user_title" = "";
+
+/* No comment provided by engineer. */
+"reset" = "";
+
+/* No comment provided by engineer. */
+"reset_password_text" = "";
+
+/* No comment provided by engineer. */
+"reset_password_title" = "";
+
+/* No comment provided by engineer. */
+"respond" = "";
+
+/* No comment provided by engineer. */
+"results" = "";
+
+/* No comment provided by engineer. */
+"save" = "";
+
+/* No comment provided by engineer. */
+"save_changes_confirmation_text" = "";
+
+/* No comment provided by engineer. */
+"searching_groups" = "";
+
+/* No comment provided by engineer. */
+"settings_updated" = "";
+
+/* No comment provided by engineer. */
+"share_joined_group" = "";
+
+/* No comment provided by engineer. */
+"share_panic_whatsapp_text" = "";
+
+/* No comment provided by engineer. */
+"share_text" = "";
+
+/* No comment provided by engineer. */
+"share_title" = "";
+
+/* Popup which shows when someone else activates and the current user is busy within the app */
+"someone_needs_help" = "";
+
+/* No comment provided by engineer. */
+"stop_responding" = "";
+
+/* No comment provided by engineer. */
+"successful" = "";
+
+/* No comment provided by engineer. */
+"trying_to_join_group" = "";
+
+/* No comment provided by engineer. */
+"tutorials_reset_text" = "";
+
+/* No comment provided by engineer. */
+"twitter_share_login" = "";
+
 /* tester */
 "unsuccessful" = "";
+
+/* No comment provided by engineer. */
+"update_successful" = "";
+
+/* Asking for... */
+"username" = "";
+
+/* No comment provided by engineer. */
+"username_already_taken" = "";
+
+/* No comment provided by engineer. */
+"whatsapp_not_installed" = "";
+
+/* No comment provided by engineer. */
+"yes" = "";
+
+/* Heading for section showing the users subscribed groups */
+"your_groups" = "";
 

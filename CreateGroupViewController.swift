@@ -209,7 +209,17 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 				newGroupObject["public"] = false
 			}
 			newGroupObject["imageFile"] = image
-			groupsHandler.createGroup(newGroupObject, parent: self)
+			if groupsHandler.checkIfGroupExists(newGroupObject) == false {
+				groupsHandler.createGroup(newGroupObject, parent: self)
+			} else {
+				self.spinner.stopAnimating()
+				self.btnClose.enabled = true
+				self.btnFinish.enabled = true
+				self.txtName.userInteractionEnabled = true
+				self.txtDescription.userInteractionEnabled = true
+				self.btnEditBackground.enabled = true
+				self.btnLock.enabled = true
+			}
 		}))
 		saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
 			self.tooltipLock.show()
@@ -366,7 +376,7 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 	
 	@IBAction func close(sender: AnyObject) {
 		if txtName.text != groupNameLocalized || txtDescription.text != groupDescriptionLocalized || imageChosen == true {
-			var saveAlert = UIAlertController(title: NSLocalizedString("are_you_sure_title", value: "Are you sure?", comment: ""), message: NSLocalizedString("are_you_sure_text", value: "You will loose the current information", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
+			var saveAlert = UIAlertController(title: NSLocalizedString("are_you_sure_title", value: "Are you sure?", comment: ""), message: NSLocalizedString("are_you_sure_text", value: "You will loose any unsaved information", comment: ""), preferredStyle: UIAlertControllerStyle.Alert)
 			saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .Default, handler: { (action: UIAlertAction!) in
 				// Clicked YES
 				self.dismissViewControllerAnimated(true, completion: nil)

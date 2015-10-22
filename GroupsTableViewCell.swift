@@ -155,6 +155,8 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 //		options.addAction(deleteAction)
 		options.addAction(cancelAction)
 		
+		options.popoverPresentationController?.sourceView = self.btnMore
+		options.popoverPresentationController?.sourceRect = self.btnMore.frame
 		self.parent.presentViewController(options, animated: true, completion: nil)
 	}
 	
@@ -186,10 +188,11 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 	}
 	
 	func shareCode() {
-		global.showAlert(self.object!.objectId!, message: "Share this code with others wanting to join this group")
+		global.showAlert(self.object!.objectId!, message: NSLocalizedString("share_code_text", value: "Share this code with others wanting to join this group", comment: ""))
 	}
 	
 	func purchaseSuccessful() {
+		NSNotificationCenter.defaultCenter().postNotificationName("didJoinGroup", object: nil)
 		groupsHandler.addGroup(lblName.text!)
 		groupsHandler.getNearbyGroups(parent.manager.location, refresh: true)
 		parent.populateDataSource()
@@ -217,8 +220,8 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 		var imageFile: UIImage?
 		let getImageDispatch: dispatch_queue_t = dispatch_queue_create("getImageDispatch", nil)
 		dispatch_async(getImageDispatch, {
-			if self.object!["imageFile"] != nil {
-				let image: PFFile = self.object!["imageFile"] as! PFFile
+//			if self.object!["imageFile"] != nil && self.object["imageFile"] != NSNull() {
+			if let image: PFFile = self.object!["imageFile"] as? PFFile {
 				image.getDataInBackgroundWithBlock {
 					(imageData: NSData?, error: NSError?) -> Void in
 					if error == nil { self.finishedDownload(UIImage(data:imageData!)!) }
@@ -254,6 +257,11 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 		let documentsPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as! String
 		let groupName = self.object!["flatValue"] as! String
 		let getImagePath = documentsPath.stringByAppendingPathComponent("\(groupName).jpg")
+		
+//		println("------------------------------------")
+//		println(groupName)
+//		println(getImagePath)
+//		println("------------------------------------")
 		
 		var checkValidation = NSFileManager.defaultManager()
 		if (checkValidation.fileExistsAtPath(getImagePath)) {

@@ -1,8 +1,8 @@
 /* Class = "UIButton"; normalTitle = "LEAVE"; ObjectID = "0bB-1j-tkY"; */
-"0bB-1j-tkY.normalTitle" = "LEAVE";
+"0bB-1j-tkY.normalTitle" = "VERLASSEN";
 
 /* Class = "UILabel"; text = "Search for public groups here. Entering 3 or more characters will start a search for all public groups starting with those characters in your country."; ObjectID = "0bo-QE-Yzg"; */
-"0bo-QE-Yzg.text" = "Search for public groups here. Entering 3 or more characters will start a search for all public groups starting with those characters in your country.";
+"0bo-QE-Yzg.text" = "Suche öffentliche Gruppen. Entering 3 or more characters will start a search for all public groups starting with those characters in your country.";
 
 /* Class = "UITextField"; placeholder = "Cell Number"; ObjectID = "0mW-Su-AYZ"; */
 "0mW-Su-AYZ.placeholder" = "Cell Number";
@@ -125,7 +125,7 @@
 "Dl3-cc-CPm.normalTitle" = "Done";
 
 /* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "E7G-5k-h2U"; */
-"E7G-5k-h2U.normalTitle" = "Cancel";
+"E7G-5k-h2U.normalTitle" = "Abbrechen";
 
 /* Class = "UIButton"; normalTitle = "Country Name"; ObjectID = "EUb-tl-ioe"; */
 "EUb-tl-ioe.normalTitle" = "Country Name";
@@ -140,7 +140,7 @@
 "GOs-kt-qbm.text" = "Cell Number";
 
 /* Class = "UIButton"; normalTitle = "JOIN"; ObjectID = "Gvy-vO-7zF"; */
-"Gvy-vO-7zF.normalTitle" = "JOIN";
+"Gvy-vO-7zF.normalTitle" = "BEITRETEN";
 
 /* Class = "UILabel"; text = "555"; ObjectID = "HAR-4F-rpq"; */
 "HAR-4F-rpq.text" = "555";
@@ -161,16 +161,16 @@
 "Jmy-cn-oPt.normalTitle" = "Panic";
 
 /* Class = "UIButton"; normalTitle = "Call"; ObjectID = "KSE-k4-hkw"; */
-"KSE-k4-hkw.normalTitle" = "Call";
+"KSE-k4-hkw.normalTitle" = "Anrufen";
 
 /* Class = "UILabel"; text = "12:30pm"; ObjectID = "Kiu-ed-rsf"; */
 "Kiu-ed-rsf.text" = "12:30pm";
 
 /* Class = "UILabel"; text = "Date"; ObjectID = "Li5-XR-1Is"; */
-"Li5-XR-1Is.text" = "Date";
+"Li5-XR-1Is.text" = "Datum";
 
 /* Class = "UIViewController"; title = "Add New Group"; ObjectID = "Mg4-3s-UgJ"; */
-"Mg4-3s-UgJ.title" = "Add New Group";
+"Mg4-3s-UgJ.title" = "Neue Gruppe hinzufügen";
 
 /* Class = "UILabel"; text = "I seem to have landed myself in a small pickle..."; ObjectID = "N0c-zE-CXN"; */
 "N0c-zE-CXN.text" = "I seem to have landed myself in a small pickle...";
@@ -185,13 +185,13 @@
 "PHt-Cl-qkc.text" = "555";
 
 /* Class = "UIButton"; normalTitle = "Activate"; ObjectID = "PNW-kY-sep"; */
-"PNW-kY-sep.normalTitle" = "Activate";
+"PNW-kY-sep.normalTitle" = "Aktivieren";
 
 /* Class = "UILabel"; text = "Name"; ObjectID = "PSE-DV-2Pc"; */
 "PSE-DV-2Pc.text" = "Name";
 
 /* Class = "UILabel"; text = "Number of members"; ObjectID = "PZn-UT-pNt"; */
-"PZn-UT-pNt.text" = "Number of members";
+"PZn-UT-pNt.text" = "Mitglieder";
 
 /* Class = "UITableViewSection"; footerTitle = " "; ObjectID = "R9N-nW-IgV"; */
 "R9N-nW-IgV.footerTitle" = " ";
@@ -209,7 +209,7 @@
 "Tw4-g9-tw0.normalTitle" = "Report a user";
 
 /* Class = "UILabel"; text = "Background Updates"; ObjectID = "UVt-dw-J72"; */
-"UVt-dw-J72.text" = "Background Updates";
+"UVt-dw-J72.text" = "Hintergrund Updates";
 
 /* Class = "UISegmentedControl"; UYz-Hx-ggW.segmentTitles[0] = "Public"; ObjectID = "UYz-Hx-ggW"; */
 "UYz-Hx-ggW.segmentTitles[0]" = "Public";

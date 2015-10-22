@@ -167,6 +167,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(application: UIApplication) {
+		PFInstallation.currentInstallation().badge = 0
+		PFInstallation.currentInstallation().saveEventually(nil)
 //        println("applicationDidBecomeActive")
         
     }

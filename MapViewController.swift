@@ -26,6 +26,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	@IBOutlet weak var btnCall: UIButton!
 	@IBOutlet weak var btnRespond: UIButton!
 	@IBOutlet weak var btnCloseDetails: UIButton!
+	@IBOutlet weak var btnMapType: UIButton!
 	
     var manager: CLLocationManager! = CLLocationManager()
     var locationPermission: Bool = false
@@ -82,12 +83,36 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 		
 		map.setRegion(theRegion, animated: true)
 		map.showsUserLocation = true
-        map.mapType = MKMapType.Standard
+		
+		if global.persistantSettings.objectForKey("mapType") != nil {
+			switch (global.persistantSettings.objectForKey("mapType") as! String) {
+			case "standard":
+				map.mapType = MKMapType.Standard
+				break
+				
+			case "satellite":
+				map.mapType = MKMapType.Satellite
+				break
+				
+			case "hybrid":
+				map.mapType = MKMapType.Hybrid
+				break
+				
+			default:
+				break
+			}
+		}
         
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
         
         viewIsActive = true
+		
+		btnMapType.layer.cornerRadius = btnMapType.frame.size.height * 0.5
+		btnMapType.layer.shadowOffset = CGSizeZero
+		btnMapType.layer.shadowRadius = 4
+		btnMapType.layer.shadowOpacity = 0.7
+		
         getVictims()
     }
     
@@ -225,6 +250,34 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             return nil
         }
     }
+	
+	@IBAction func changeMapType(sender: AnyObject) {
+		var mapOptions = UIAlertController(title: "Map type", message: "", preferredStyle: UIAlertControllerStyle.ActionSheet)
+		
+		let standard = UIAlertAction(title: "Standard", style: .Default) { (_) in
+			self.map.mapType = MKMapType.Standard
+			global.persistantSettings.setObject("standard", forKey: "mapType")
+		}
+		
+		let sat = UIAlertAction(title: "Satellite", style: .Default) { (_) in
+			self.map.mapType = MKMapType.Satellite
+			global.persistantSettings.setObject("satellite", forKey: "mapType")
+		}
+		
+		let hybrid = UIAlertAction(title: "Hybrid", style: .Default) { (_) in
+			self.map.mapType = MKMapType.Hybrid
+			global.persistantSettings.setObject("hybrid", forKey: "mapType")
+		}
+		global.persistantSettings.synchronize()
+		
+		mapOptions.addAction(standard)
+		mapOptions.addAction(sat)
+		mapOptions.addAction(hybrid)
+		mapOptions.addAction( UIAlertAction(title: "Cancel", style: .Cancel) { (_) in } )
+		
+		mapOptions.popoverPresentationController?.sourceView = self.btnMapType
+		self.presentViewController(mapOptions, animated: true, completion: nil)
+	}
 	
 	func showDetailsView() {
 		self.viewDetails.hidden = false
@@ -425,7 +478,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 		//			tabbarViewController.badge.hidden = true
 		//		}
 //		tabbarViewController.badge.autoBadgeSizeWithString("\(panicHandler.activePanicCount)")
-		println("Updated panic count from Map")
+//		println("Updated panic count from Map")
 	}
     
     func freeMem() {
