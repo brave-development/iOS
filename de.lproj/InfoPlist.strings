@@ -1,6 +1,6 @@
 /* (No Commment) */
-"CFBundleName" = "";
+"CFBundleName" = "$(PRODUKT_NAME)";
 
 /* (No Commment) */
-"CFBundleShortVersionString" = "";
+"CFBundleShortVersionString" = "2.0.1";
 

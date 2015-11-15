@@ -1,0 +1,1423 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.2" xsi:schemaLocation="urn:oasis:names:tc:xliff:document:1.2 http://docs.oasis-open.org/xliff/v1.2/os/xliff-core-1.2-strict.xsd">
+  <file original="Panic/Base.lproj/Main.storyboard" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.4" build-num="6E35b"/>
+    </header>
+    <body>
+      <trans-unit id="0bB-1j-tkY.normalTitle">
+        <source>LEAVE</source>
+        <target>VERLASSEN</target>
+        <note>Class = "UIButton"; normalTitle = "LEAVE"; ObjectID = "0bB-1j-tkY";</note>
+      </trans-unit>
+      <trans-unit id="0bo-QE-Yzg.text">
+        <source>Search for public groups here. Entering 3 or more characters will start a search for all public groups starting with those characters in your country.</source>
+        <target>Suchen Sie nach öffentliche Gruppen. Geben Sie drei oder mehr Zeichen ein, um Vorschläge für Ihr Land zu erhalten.</target>
+        <note>Class = "UILabel"; text = "Search for public groups here. Entering 3 or more characters will start a search for all public groups starting with those characters in your country."; ObjectID = "0bo-QE-Yzg";</note>
+      </trans-unit>
+      <trans-unit id="0mW-Su-AYZ.placeholder">
+        <source>Cell Number</source>
+        <target>Handynummer</target>
+        <note>Class = "UITextField"; placeholder = "Cell Number"; ObjectID = "0mW-Su-AYZ";</note>
+      </trans-unit>
+      <trans-unit id="0p1-UK-Kn5.text">
+        <source>Loading...</source>
+        <target>Lädt...</target>
+        <note>Class = "UILabel"; text = "Loading..."; ObjectID = "0p1-UK-Kn5";</note>
+      </trans-unit>
+      <trans-unit id="1RW-sB-c5J.normalTitle">
+        <source>Choose Country</source>
+        <target>Land auswählen</target>
+        <note>Class = "UIButton"; normalTitle = "Choose Country"; ObjectID = "1RW-sB-c5J";</note>
+      </trans-unit>
+      <trans-unit id="1Zx-p1-mT5.text">
+        <source>Country</source>
+        <target>Land</target>
+        <note>Class = "UILabel"; text = "Country"; ObjectID = "1Zx-p1-mT5";</note>
+      </trans-unit>
+      <trans-unit id="1kK-cU-hBn.title">
+        <source>Map</source>
+        <target>Karte</target>
+        <note>Class = "UIViewController"; title = "Map"; ObjectID = "1kK-cU-hBn";</note>
+      </trans-unit>
+      <trans-unit id="1rA-bG-nhD.placeholder">
+        <source>Email</source>
+        <target>Email</target>
+        <note>Class = "UITextField"; placeholder = "Email"; ObjectID = "1rA-bG-nhD";</note>
+      </trans-unit>
+      <trans-unit id="1uZ-6o-hPO.text">
+        <source>Name</source>
+        <target>Name</target>
+        <note>Class = "UILabel"; text = "Name"; ObjectID = "1uZ-6o-hPO";</note>
+      </trans-unit>
+      <trans-unit id="2GP-AI-Vqy.normalTitle">
+        <source>Register</source>
+        <target>Registrieren</target>
+        <note>Class = "UIButton"; normalTitle = "Register"; ObjectID = "2GP-AI-Vqy";</note>
+      </trans-unit>
+      <trans-unit id="2lg-A7-MX2.normalTitle">
+        <source>Delete Account</source>
+        <target>Konto löschen</target>
+        <note>Class = "UIButton"; normalTitle = "Delete Account"; ObjectID = "2lg-A7-MX2";</note>
+      </trans-unit>
+      <trans-unit id="2vc-rc-1eO.text">
+        <source>8 Davies walk, Hout Bay</source>
+        <target>8 Davies walk, Hout Bay</target>
+        <note>Class = "UILabel"; text = "8 Davies walk, Hout Bay"; ObjectID = "2vc-rc-1eO";</note>
+      </trans-unit>
+      <trans-unit id="3KU-kY-JkZ.text">
+        <source>SEARCH FOR A GROUP</source>
+        <target>Nach Gruppe suchen</target>
+        <note>Class = "UILabel"; text = "SEARCH FOR A GROUP"; ObjectID = "3KU-kY-JkZ";</note>
+      </trans-unit>
+      <trans-unit id="3rb-jB-ZxG.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "3rb-jB-ZxG";</note>
+      </trans-unit>
+      <trans-unit id="4vE-y9-cBN.text">
+        <source>No Panic History</source>
+        <target>Keine Panic Vergangenheit</target>
+        <note>Class = "UILabel"; text = "No Panic History"; ObjectID = "4vE-y9-cBN";</note>
+      </trans-unit>
+      <trans-unit id="5RM-2p-CAh.text">
+        <source>Group Name</source>
+        <target>Gruppenname</target>
+        <note>Class = "UITextView"; text = "Group Name"; ObjectID = "5RM-2p-CAh";</note>
+      </trans-unit>
+      <trans-unit id="7JF-45-bkw.text">
+        <source>Email</source>
+        <target>Email</target>
+        <note>Class = "UILabel"; text = "Email"; ObjectID = "7JF-45-bkw";</note>
+      </trans-unit>
+      <trans-unit id="7WQ-EZ-f5O.text">
+        <source>Group Description</source>
+        <target>Gruppenbeschreibung</target>
+        <note>Class = "UITextView"; text = "Group Description"; ObjectID = "7WQ-EZ-f5O";</note>
+      </trans-unit>
+      <trans-unit id="8LH-ZI-E7L.text">
+        <source> </source>
+        <target> -</target>
+        <note>Class = "UILabel"; text = " "; ObjectID = "8LH-ZI-E7L";</note>
+      </trans-unit>
+      <trans-unit id="8lQ-f9-UMV.normalTitle">
+        <source>Logout</source>
+        <target>Ausloggen</target>
+        <note>Class = "UIButton"; normalTitle = "Logout"; ObjectID = "8lQ-f9-UMV";</note>
+      </trans-unit>
+      <trans-unit id="8vp-mX-kn7.normalTitle">
+        <source>Back</source>
+        <target>Zurück</target>
+        <note>Class = "UIButton"; normalTitle = "Back"; ObjectID = "8vp-mX-kn7";</note>
+      </trans-unit>
+      <trans-unit id="9qy-Kf-cfH.text">
+        <source>Choose a background</source>
+        <target>Hintergrund anpassen</target>
+        <note>Class = "UILabel"; text = "Choose a background"; ObjectID = "9qy-Kf-cfH";</note>
+      </trans-unit>
+      <trans-unit id="9sH-9f-gbE.title">
+        <source>History Details</source>
+        <target>Vergangenheit</target>
+        <note>Class = "UIViewController"; title = "History Details"; ObjectID = "9sH-9f-gbE";</note>
+      </trans-unit>
+      <trans-unit id="57w-3n-3ZJ.headerTitle">
+        <source> </source>
+        <target>-</target>
+        <note>Class = "UITableViewSection"; headerTitle = " "; ObjectID = "57w-3n-3ZJ";</note>
+      </trans-unit>
+      <trans-unit id="678-30-R8h.text">
+        <source>Public</source>
+        <target>Öffentlich</target>
+        <note>Class = "UILabel"; text = "Public"; ObjectID = "678-30-R8h";</note>
+      </trans-unit>
+      <trans-unit id="ALn-DJ-6QA.headerTitle">
+        <source> </source>
+        <target>-</target>
+        <note>Class = "UITableViewSection"; headerTitle = " "; ObjectID = "ALn-DJ-6QA";</note>
+      </trans-unit>
+      <trans-unit id="AsE-Hi-lgf.normalTitle">
+        <source>Panic</source>
+        <target>Panic</target>
+        <note>Class = "UIButton"; normalTitle = "Panic"; ObjectID = "AsE-Hi-lgf";</note>
+      </trans-unit>
+      <trans-unit id="B7E-o5-xcK.title">
+        <source>Register</source>
+        <target>Registrieren</target>
+        <note>Class = "UIViewController"; title = "Register"; ObjectID = "B7E-o5-xcK";</note>
+      </trans-unit>
+      <trans-unit id="BBh-iy-Pmp.text">
+        <source>List of groups busy updating</source>
+        <target>Gruppenliste wird aktualisiert</target>
+        <note>Class = "UILabel"; text = "List of groups busy updating"; ObjectID = "BBh-iy-Pmp";</note>
+      </trans-unit>
+      <trans-unit id="BlX-f9-pPd.text">
+        <source>NO GROUPS FOUND</source>
+        <target>KEINE GRUPPEN GEFUNDEN</target>
+        <note>Class = "UILabel"; text = "NO GROUPS FOUND"; ObjectID = "BlX-f9-pPd";</note>
+      </trans-unit>
+      <trans-unit id="Bve-aB-7He.placeholder">
+        <source>Group Name</source>
+        <target>Gruppenname</target>
+        <note>Class = "UISearchBar"; placeholder = "Group Name"; ObjectID = "Bve-aB-7He";</note>
+      </trans-unit>
+      <trans-unit id="Bve-aB-7He.scopeButtonTitles[0]">
+        <source>Public</source>
+        <target>Öffentlich</target>
+        <note>Class = "UISearchBar"; Bve-aB-7He.scopeButtonTitles[0] = "Public"; ObjectID = "Bve-aB-7He";</note>
+      </trans-unit>
+      <trans-unit id="Bve-aB-7He.scopeButtonTitles[1]">
+        <source>Private</source>
+        <target>Private</target>
+        <note>Class = "UISearchBar"; Bve-aB-7He.scopeButtonTitles[1] = "Private"; ObjectID = "Bve-aB-7He";</note>
+      </trans-unit>
+      <trans-unit id="Bve-aB-7He.scopeButtonTitles[2]">
+        <source>New</source>
+        <target>Neu</target>
+        <note>Class = "UISearchBar"; Bve-aB-7He.scopeButtonTitles[2] = "New"; ObjectID = "Bve-aB-7He";</note>
+      </trans-unit>
+      <trans-unit id="C7b-iz-5p9.normalTitle">
+        <source>Report</source>
+        <target>Melden</target>
+        <note>Class = "UIButton"; normalTitle = "Report"; ObjectID = "C7b-iz-5p9";</note>
+      </trans-unit>
+      <trans-unit id="CIb-5X-3fF.normalTitle">
+        <source>Cancel</source>
+        <target>Abbrechen</target>
+        <note>Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "CIb-5X-3fF";</note>
+      </trans-unit>
+      <trans-unit id="Cca-Ty-eIf.normalTitle">
+        <source>Submit</source>
+        <target>Bestätigen</target>
+        <note>Class = "UIButton"; normalTitle = "Submit"; ObjectID = "Cca-Ty-eIf";</note>
+      </trans-unit>
+      <trans-unit id="Ciz-L1-jbB.text">
+        <source>NO GROUPS</source>
+        <target>KEINE GRUPPEN</target>
+        <note>Class = "UILabel"; text = "NO GROUPS"; ObjectID = "Ciz-L1-jbB";</note>
+      </trans-unit>
+      <trans-unit id="DY6-w9-oQe.placeholder">
+        <source>Username</source>
+        <target>Benutzername</target>
+        <note>Class = "UITextField"; placeholder = "Username"; ObjectID = "DY6-w9-oQe";</note>
+      </trans-unit>
+      <trans-unit id="DYg-M3-cN7.normalTitle">
+        <source>•••</source>
+        <target>•••</target>
+        <note>Class = "UIButton"; normalTitle = "•••"; ObjectID = "DYg-M3-cN7";</note>
+      </trans-unit>
+      <trans-unit id="DeY-TU-GhK.text">
+        <source>Photo: Kyle Jones</source>
+        <target>Foto: Kyle Jones</target>
+        <note>Class = "UILabel"; text = "Photo: Kyle Jones"; ObjectID = "DeY-TU-GhK";</note>
+      </trans-unit>
+      <trans-unit id="Dl3-cc-CPm.normalTitle">
+        <source>Done</source>
+        <target>Fertig</target>
+        <note>Class = "UIButton"; normalTitle = "Done"; ObjectID = "Dl3-cc-CPm";</note>
+      </trans-unit>
+      <trans-unit id="E7G-5k-h2U.normalTitle">
+        <source>Cancel</source>
+        <target>Abbrechen</target>
+        <note>Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "E7G-5k-h2U";</note>
+      </trans-unit>
+      <trans-unit id="EUb-tl-ioe.normalTitle">
+        <source>Country Name</source>
+        <target>Land</target>
+        <note>Class = "UIButton"; normalTitle = "Country Name"; ObjectID = "EUb-tl-ioe";</note>
+      </trans-unit>
+      <trans-unit id="G3m-bG-fNG.text">
+        <source>Type at least 3 characters to search</source>
+        <target>Bitte mind. drei Zeichen eingeben</target>
+        <note>Class = "UILabel"; text = "Type at least 3 characters to search"; ObjectID = "G3m-bG-fNG";</note>
+      </trans-unit>
+      <trans-unit id="GD8-iQ-v4n.text">
+        <source>Update location while app is closed. Heavy battery usage.</source>
+        <target>Standort aktualisieren wenn Anwendung geschlossen ist. Hoher Energieverbrauch</target>
+        <note>Class = "UILabel"; text = "Update location while app is closed. Heavy battery usage."; ObjectID = "GD8-iQ-v4n";</note>
+      </trans-unit>
+      <trans-unit id="GOs-kt-qbm.text">
+        <source>Cell Number</source>
+        <target>Handynummer</target>
+        <note>Class = "UILabel"; text = "Cell Number"; ObjectID = "GOs-kt-qbm";</note>
+      </trans-unit>
+      <trans-unit id="Gvy-vO-7zF.normalTitle">
+        <source>JOIN</source>
+        <target>BEITRETEN</target>
+        <note>Class = "UIButton"; normalTitle = "JOIN"; ObjectID = "Gvy-vO-7zF";</note>
+      </trans-unit>
+      <trans-unit id="HAR-4F-rpq.text">
+        <source>555</source>
+        <target>555</target>
+        <note>Class = "UILabel"; text = "555"; ObjectID = "HAR-4F-rpq";</note>
+      </trans-unit>
+      <trans-unit id="HcT-Uw-djr.title">
+        <source>Local History</source>
+        <target>Lokale Vergangenheit</target>
+        <note>Class = "UIViewController"; title = "Local History"; ObjectID = "HcT-Uw-djr";</note>
+      </trans-unit>
+      <trans-unit id="Hpq-DC-Vus.text">
+        <source>5 Oct 2014</source>
+        <target>5 Okt 2014</target>
+        <note>Class = "UILabel"; text = "5 Oct 2014"; ObjectID = "Hpq-DC-Vus";</note>
+      </trans-unit>
+      <trans-unit id="IP4-6p-DRS.text">
+        <source>Confirm</source>
+        <target>Bestätigen</target>
+        <note>Class = "UILabel"; text = "Confirm"; ObjectID = "IP4-6p-DRS";</note>
+      </trans-unit>
+      <trans-unit id="If1-VY-3f2.normalTitle">
+        <source>Back</source>
+        <target>Zurück</target>
+        <note>Class = "UIButton"; normalTitle = "Back"; ObjectID = "If1-VY-3f2";</note>
+      </trans-unit>
+      <trans-unit id="Jmy-cn-oPt.normalTitle">
+        <source>Panic</source>
+        <target>Panic</target>
+        <note>Class = "UIButton"; normalTitle = "Panic"; ObjectID = "Jmy-cn-oPt";</note>
+      </trans-unit>
+      <trans-unit id="KSE-k4-hkw.normalTitle">
+        <source>Call</source>
+        <target>Anrufen</target>
+        <note>Class = "UIButton"; normalTitle = "Call"; ObjectID = "KSE-k4-hkw";</note>
+      </trans-unit>
+      <trans-unit id="Kiu-ed-rsf.text">
+        <source>12:30pm</source>
+        <target>12:30</target>
+        <note>Class = "UILabel"; text = "12:30pm"; ObjectID = "Kiu-ed-rsf";</note>
+      </trans-unit>
+      <trans-unit id="Li5-XR-1Is.text">
+        <source>Date</source>
+        <target>Datum</target>
+        <note>Class = "UILabel"; text = "Date"; ObjectID = "Li5-XR-1Is";</note>
+      </trans-unit>
+      <trans-unit id="Mg4-3s-UgJ.title">
+        <source>Add New Group</source>
+        <target>Neue Gruppe hinzufügen</target>
+        <note>Class = "UIViewController"; title = "Add New Group"; ObjectID = "Mg4-3s-UgJ";</note>
+      </trans-unit>
+      <trans-unit id="N0c-zE-CXN.text">
+        <source>I seem to have landed myself in a small pickle...</source>
+        <target>Es scheint als sei etwas schief gelaufen...</target>
+        <note>Class = "UILabel"; text = "I seem to have landed myself in a small pickle..."; ObjectID = "N0c-zE-CXN";</note>
+      </trans-unit>
+      <trans-unit id="O3W-Hg-uBd.text">
+        <source>233</source>
+        <target>233</target>
+        <note>Class = "UILabel"; text = "233"; ObjectID = "O3W-Hg-uBd";</note>
+      </trans-unit>
+      <trans-unit id="OEz-Bu-OWy.text">
+        <source>Private group or open community</source>
+        <target>Private oder Öffentlich Gruppe</target>
+        <note>Class = "UILabel"; text = "Private group or open community"; ObjectID = "OEz-Bu-OWy";</note>
+      </trans-unit>
+      <trans-unit id="PHt-Cl-qkc.text">
+        <source>555</source>
+        <target>555</target>
+        <note>Class = "UILabel"; text = "555"; ObjectID = "PHt-Cl-qkc";</note>
+      </trans-unit>
+      <trans-unit id="PNW-kY-sep.normalTitle">
+        <source>Activate</source>
+        <target>Aktivieren</target>
+        <note>Class = "UIButton"; normalTitle = "Activate"; ObjectID = "PNW-kY-sep";</note>
+      </trans-unit>
+      <trans-unit id="PSE-DV-2Pc.text">
+        <source>Name</source>
+        <target>Name</target>
+        <note>Class = "UILabel"; text = "Name"; ObjectID = "PSE-DV-2Pc";</note>
+      </trans-unit>
+      <trans-unit id="PZn-UT-pNt.text">
+        <source>Number of members</source>
+        <target>Mitglieder</target>
+        <note>Class = "UILabel"; text = "Number of members"; ObjectID = "PZn-UT-pNt";</note>
+      </trans-unit>
+      <trans-unit id="R9N-nW-IgV.footerTitle">
+        <source> </source>
+        <target> -</target>
+        <note>Class = "UITableViewSection"; footerTitle = " "; ObjectID = "R9N-nW-IgV";</note>
+      </trans-unit>
+      <trans-unit id="RWH-f2-5vG.normalTitle">
+        <source>Feedback</source>
+        <target>Feedback</target>
+        <note>Class = "UIButton"; normalTitle = "Feedback"; ObjectID = "RWH-f2-5vG";</note>
+      </trans-unit>
+      <trans-unit id="SyQ-NE-9wP.normalTitle">
+        <source>History</source>
+        <target>Vergangenheit</target>
+        <note>Class = "UIButton"; normalTitle = "History"; ObjectID = "SyQ-NE-9wP";</note>
+      </trans-unit>
+      <trans-unit id="TJf-tj-Qoy.text">
+        <source>Rathfelder Area Constantia</source>
+        <target>Rathfelder Area Constantia</target>
+        <note>Class = "UILabel"; text = "Rathfelder Area Constantia"; ObjectID = "TJf-tj-Qoy";</note>
+      </trans-unit>
+      <trans-unit id="Tw4-g9-tw0.normalTitle">
+        <source>Report a user</source>
+        <target>Benutzer melden</target>
+        <note>Class = "UIButton"; normalTitle = "Report a user"; ObjectID = "Tw4-g9-tw0";</note>
+      </trans-unit>
+      <trans-unit id="UVt-dw-J72.text">
+        <source>Background Updates</source>
+        <target>Hintergrundaktualisierungen</target>
+        <note>Class = "UILabel"; text = "Background Updates"; ObjectID = "UVt-dw-J72";</note>
+      </trans-unit>
+      <trans-unit id="UYz-Hx-ggW.segmentTitles[0]">
+        <source>Public</source>
+        <target>Öffentlich</target>
+        <note>Class = "UISegmentedControl"; UYz-Hx-ggW.segmentTitles[0] = "Public"; ObjectID = "UYz-Hx-ggW";</note>
+      </trans-unit>
+      <trans-unit id="UYz-Hx-ggW.segmentTitles[1]">
+        <source>Private</source>
+        <target>Privat</target>
+        <note>Class = "UISegmentedControl"; UYz-Hx-ggW.segmentTitles[1] = "Private"; ObjectID = "UYz-Hx-ggW";</note>
+      </trans-unit>
+      <trans-unit id="UYz-Hx-ggW.segmentTitles[2]">
+        <source>New</source>
+        <target>Neu</target>
+        <note>Class = "UISegmentedControl"; UYz-Hx-ggW.segmentTitles[2] = "New"; ObjectID = "UYz-Hx-ggW";</note>
+      </trans-unit>
+      <trans-unit id="Uey-Pa-0Xe.title">
+        <source>Groups</source>
+        <target>Gruppen</target>
+        <note>Class = "UIViewController"; title = "Groups"; ObjectID = "Uey-Pa-0Xe";</note>
+      </trans-unit>
+      <trans-unit id="Uyr-8Y-gNL.text">
+        <source>Here you can see your own Panic history, limited to 50 records.</source>
+        <target>Hier können Sie Ihre letzten 50 Panic Vorfälle einsehen</target>
+        <note>Class = "UILabel"; text = "Here you can see your own Panic history, limited to 50 records."; ObjectID = "Uyr-8Y-gNL";</note>
+      </trans-unit>
+      <trans-unit id="V2o-ri-IQg.normalTitle">
+        <source>LEAVE</source>
+        <target>VERLASSEN</target>
+        <note>Class = "UIButton"; normalTitle = "LEAVE"; ObjectID = "V2o-ri-IQg";</note>
+      </trans-unit>
+      <trans-unit id="Vmj-Io-bD1.text">
+        <source>Rathfelder Area Constantia</source>
+        <target>Rathfelder Area Constantia</target>
+        <note>Class = "UILabel"; text = "Rathfelder Area Constantia"; ObjectID = "Vmj-Io-bD1";</note>
+      </trans-unit>
+      <trans-unit id="VtA-Se-ZUA.normalTitle">
+        <source>•••</source>
+        <target>•••</target>
+        <note>Class = "UIButton"; normalTitle = "•••"; ObjectID = "VtA-Se-ZUA";</note>
+      </trans-unit>
+      <trans-unit id="VxD-ZH-HIl.text">
+        <source>Private group or open community</source>
+        <target>Private oder Öffentliche Gruppe</target>
+        <note>Class = "UILabel"; text = "Private group or open community"; ObjectID = "VxD-ZH-HIl";</note>
+      </trans-unit>
+      <trans-unit id="W0c-cl-fUH.text">
+        <source>16</source>
+        <target>16</target>
+        <note>Class = "UILabel"; text = "16"; ObjectID = "W0c-cl-fUH";</note>
+      </trans-unit>
+      <trans-unit id="WNY-7h-IVi.text">
+        <source>22 Minutes</source>
+        <target>22 Minuten</target>
+        <note>Class = "UILabel"; text = "22 Minutes"; ObjectID = "WNY-7h-IVi";</note>
+      </trans-unit>
+      <trans-unit id="WrF-Ts-mIm.normalTitle">
+        <source>Reset Password</source>
+        <target>Passwort zurücksetzen</target>
+        <note>Class = "UIButton"; normalTitle = "Reset Password"; ObjectID = "WrF-Ts-mIm";</note>
+      </trans-unit>
+      <trans-unit id="WuS-KV-jEe.normalTitle">
+        <source>Join</source>
+        <target>Beitreten</target>
+        <note>Class = "UIButton"; normalTitle = "Join"; ObjectID = "WuS-KV-jEe";</note>
+      </trans-unit>
+      <trans-unit id="XDa-W8-WIH.text">
+        <source>Contact</source>
+        <target>Kontakt</target>
+        <note>Class = "UILabel"; text = "Contact"; ObjectID = "XDa-W8-WIH";</note>
+      </trans-unit>
+      <trans-unit id="XGm-TS-fz0.text">
+        <source>Show confirmation message before activating panic button</source>
+        <target>Bestätigungsmeldung vor der Panic Button-Aktivierung anzeigen</target>
+        <note>Class = "UILabel"; text = "Show confirmation message before activating panic button"; ObjectID = "XGm-TS-fz0";</note>
+      </trans-unit>
+      <trans-unit id="XgX-Bc-9dL.text">
+        <source>Tap the Panic button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live.</source>
+        <target>Berühren Sie den Panic Button. Während dieser Anleitung wird dies keine Auswirkungen haben. Sobald die Anleitung abgeschlossen ist, ist der Button jedoch scharf.</target>
+        <note>Class = "UILabel"; text = "Tap the Panic button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live."; ObjectID = "XgX-Bc-9dL";</note>
+      </trans-unit>
+      <trans-unit id="XhJ-d2-TZm.text">
+        <source>5 Oct 2014</source>
+        <target>5 Okt 2014</target>
+        <note>Class = "UILabel"; text = "5 Oct 2014"; ObjectID = "XhJ-d2-TZm";</note>
+      </trans-unit>
+      <trans-unit id="Xjr-I7-0oJ.normalTitle">
+        <source>Finish</source>
+        <target>Beenden</target>
+        <note>Class = "UIButton"; normalTitle = "Finish"; ObjectID = "Xjr-I7-0oJ";</note>
+      </trans-unit>
+      <trans-unit id="Xok-GO-1PI.text">
+        <source>Panic Confirmation</source>
+        <target>Panic Bestätigung</target>
+        <note>Class = "UILabel"; text = "Panic Confirmation"; ObjectID = "Xok-GO-1PI";</note>
+      </trans-unit>
+      <trans-unit id="Y6P-nQ-Fzb.footerTitle">
+        <source> </source>
+        <target>-</target>
+        <note>Class = "UITableViewSection"; footerTitle = " "; ObjectID = "Y6P-nQ-Fzb";</note>
+      </trans-unit>
+      <trans-unit id="Y6P-nQ-Fzb.headerTitle">
+        <source> Caution</source>
+        <target>Vorsicht</target>
+        <note>Class = "UITableViewSection"; headerTitle = " Caution"; ObjectID = "Y6P-nQ-Fzb";</note>
+      </trans-unit>
+      <trans-unit id="Y9K-q5-eXe.title">
+        <source>Item</source>
+        <target>Gegenstand</target>
+        <note>Class = "UITabBarItem"; title = "Item"; ObjectID = "Y9K-q5-eXe";</note>
+      </trans-unit>
+      <trans-unit id="YHY-eE-gdu.text">
+        <source>Loading...</source>
+        <target>Lädt...</target>
+        <note>Class = "UILabel"; text = "Loading..."; ObjectID = "YHY-eE-gdu";</note>
+      </trans-unit>
+      <trans-unit id="YUf-K4-FbV.normalTitle">
+        <source>Report a bug</source>
+        <target>Einen Fehler melden</target>
+        <note>Class = "UIButton"; normalTitle = "Report a bug"; ObjectID = "YUf-K4-FbV";</note>
+      </trans-unit>
+      <trans-unit id="Ybc-wo-mhN.text">
+        <source>First, we need to subscribe you to a group. Subscribing to a group will allow other subscribers to receive your notifications when you are in trouble.</source>
+        <target>Zuerst müssen wir Sie zu einer Gruppe hinzufügen. Dadurch erhalten andere Mitglieder Ihre Meldung, sollten Sie in einen Notfall haben. </target>
+        <note>Class = "UILabel"; text = "First, we need to subscribe you to a group. Subscribing to a group will allow other subscribers to receive your notifications when you are in trouble."; ObjectID = "Ybc-wo-mhN";</note>
+      </trans-unit>
+      <trans-unit id="Yh4-eN-n6Q.text">
+        <source>2:30 - 3:30</source>
+        <target>2:30 - 3:30</target>
+        <note>Class = "UILabel"; text = "2:30 - 3:30"; ObjectID = "Yh4-eN-n6Q";</note>
+      </trans-unit>
+      <trans-unit id="Z1l-KV-0to.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "Z1l-KV-0to";</note>
+      </trans-unit>
+      <trans-unit id="Zyw-bw-3Df.text">
+        <source>Joined group Cape Town City Center</source>
+        <target>Ist der Gruppe Cape Town City Center beigetreten</target>
+        <note>Class = "UILabel"; text = "Joined group Cape Town City Center"; ObjectID = "Zyw-bw-3Df";</note>
+      </trans-unit>
+      <trans-unit id="aHI-Dd-8ei.normalTitle">
+        <source>Respond</source>
+        <target>Antworten</target>
+        <note>Class = "UIButton"; normalTitle = "Respond"; ObjectID = "aHI-Dd-8ei";</note>
+      </trans-unit>
+      <trans-unit id="aKt-Gq-GC5.placeholder">
+        <source>Password</source>
+        <target>Passwort</target>
+        <note>Class = "UITextField"; placeholder = "Password"; ObjectID = "aKt-Gq-GC5";</note>
+      </trans-unit>
+      <trans-unit id="aRJ-GM-2Fh.text">
+        <source>Responders</source>
+        <target>Helfer</target>
+        <note>Class = "UILabel"; text = "Responders"; ObjectID = "aRJ-GM-2Fh";</note>
+      </trans-unit>
+      <trans-unit id="aVL-5I-vhf.text">
+        <source>Remember you can still swipe from the left edge to open the main menu.</source>
+        <target>Denken Sie daran, dass Sie nach rechts wischen können, um das Hauptmenü aufzurufen.</target>
+        <note>Class = "UILabel"; text = "Remember you can still swipe from the left edge to open the main menu."; ObjectID = "aVL-5I-vhf";</note>
+      </trans-unit>
+      <trans-unit id="asr-cq-A2K.text">
+        <source>     </source>
+        <target>     -</target>
+        <note>Class = "UILabel"; text = "     "; ObjectID = "asr-cq-A2K";</note>
+      </trans-unit>
+      <trans-unit id="bf1-M8-Ukx.title">
+        <source>Settings</source>
+        <target>Einstellungen</target>
+        <note>Class = "UITableViewController"; title = "Settings"; ObjectID = "bf1-M8-Ukx";</note>
+      </trans-unit>
+      <trans-unit id="bmp-1C-ghT.text">
+        <source>555</source>
+        <target>555</target>
+        <note>Class = "UILabel"; text = "555"; ObjectID = "bmp-1C-ghT";</note>
+      </trans-unit>
+      <trans-unit id="buI-42-ueq.text">
+        <source>Loading...</source>
+        <target>Lädt...</target>
+        <note>Class = "UILabel"; text = "Loading..."; ObjectID = "buI-42-ueq";</note>
+      </trans-unit>
+      <trans-unit id="cnS-e7-o1F.text">
+        <source>Panic</source>
+        <target>Panic</target>
+        <note>Class = "UILabel"; text = "Panic"; ObjectID = "cnS-e7-o1F";</note>
+      </trans-unit>
+      <trans-unit id="eaf-UV-oDP.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "eaf-UV-oDP";</note>
+      </trans-unit>
+      <trans-unit id="elk-mO-0Od.text">
+        <source>join a nearby group or tap + for more options</source>
+        <target>einer Gruppe beitreten oder "+" für mehr Optionen berühren</target>
+        <note>Class = "UILabel"; text = "join a nearby group or tap + for more options"; ObjectID = "elk-mO-0Od";</note>
+      </trans-unit>
+      <trans-unit id="fCA-iG-EaX.title">
+        <source>Tabbar</source>
+        <target>Reiterleiste</target>
+        <note>Class = "UIViewController"; title = "Tabbar"; ObjectID = "fCA-iG-EaX";</note>
+      </trans-unit>
+      <trans-unit id="h4v-f9-5bI.text">
+        <source>Rathfelder Area Constantia</source>
+        <target>Rathfelder Area Constantia</target>
+        <note>Class = "UILabel"; text = "Rathfelder Area Constantia"; ObjectID = "h4v-f9-5bI";</note>
+      </trans-unit>
+      <trans-unit id="hHA-ht-pWa.text">
+        <source>16</source>
+        <target>16</target>
+        <note>Class = "UILabel"; text = "16"; ObjectID = "hHA-ht-pWa";</note>
+      </trans-unit>
+      <trans-unit id="hoH-1h-kLu.text">
+        <source>AM</source>
+        <target>AM</target>
+        <note>Class = "UILabel"; text = "AM"; ObjectID = "hoH-1h-kLu";</note>
+      </trans-unit>
+      <trans-unit id="kKi-hN-C64.text">
+        <source>Welcome</source>
+        <target>Willkommen</target>
+        <note>Class = "UILabel"; text = "Welcome"; ObjectID = "kKi-hN-C64";</note>
+      </trans-unit>
+      <trans-unit id="kWg-cN-gKV.text">
+        <source>Password</source>
+        <target>Passwort</target>
+        <note>Class = "UILabel"; text = "Password"; ObjectID = "kWg-cN-gKV";</note>
+      </trans-unit>
+      <trans-unit id="kdS-kf-ljO.title">
+        <source>Panic</source>
+        <target>Panic</target>
+        <note>Class = "UIViewController"; title = "Panic"; ObjectID = "kdS-kf-ljO";</note>
+      </trans-unit>
+      <trans-unit id="mC6-LO-XHV.title">
+        <source>Back</source>
+        <target>Zurück</target>
+        <note>Class = "UIBarButtonItem"; title = "Back"; ObjectID = "mC6-LO-XHV";</note>
+      </trans-unit>
+      <trans-unit id="nTx-6c-gQa.text">
+        <source>Name Surname</source>
+        <target>Vor-und Nachname</target>
+        <note>Class = "UILabel"; text = "Name Surname"; ObjectID = "nTx-6c-gQa";</note>
+      </trans-unit>
+      <trans-unit id="nbv-FK-6pp.text">
+        <source>Joined group Cape Town City Center</source>
+        <target>Ist der Gruppen Cape Town City Center beigetreten</target>
+        <note>Class = "UILabel"; text = "Joined group Cape Town City Center"; ObjectID = "nbv-FK-6pp";</note>
+      </trans-unit>
+      <trans-unit id="nqg-fi-y3w.text">
+        <source>NO GROUPS NEARBY</source>
+        <target>KEINE GRUPPEN IN IHRER NÄHE</target>
+        <note>Class = "UILabel"; text = "NO GROUPS NEARBY"; ObjectID = "nqg-fi-y3w";</note>
+      </trans-unit>
+      <trans-unit id="o8j-Yr-9oS.footerTitle">
+        <source> </source>
+        <target>-</target>
+        <note>Class = "UITableViewSection"; footerTitle = " "; ObjectID = "o8j-Yr-9oS";</note>
+      </trans-unit>
+      <trans-unit id="o8j-Yr-9oS.headerTitle">
+        <source> </source>
+        <target>-</target>
+        <note>Class = "UITableViewSection"; headerTitle = " "; ObjectID = "o8j-Yr-9oS";</note>
+      </trans-unit>
+      <trans-unit id="oM8-qV-hZL.text">
+        <source>Rathfelder Area Constantia</source>
+        <target>Rathfelder Area Constantia</target>
+        <note>Class = "UILabel"; text = "Rathfelder Area Constantia"; ObjectID = "oM8-qV-hZL";</note>
+      </trans-unit>
+      <trans-unit id="oMo-ex-xQP.text">
+        <source>Responders</source>
+        <target>Helfer</target>
+        <note>Class = "UILabel"; text = "Responders"; ObjectID = "oMo-ex-xQP";</note>
+      </trans-unit>
+      <trans-unit id="oaH-Fd-aDe.placeholder">
+        <source>Password</source>
+        <target>Passwort</target>
+        <note>Class = "UITextField"; placeholder = "Password"; ObjectID = "oaH-Fd-aDe";</note>
+      </trans-unit>
+      <trans-unit id="p1X-5o-6A7.text">
+        <source>Tap the add button</source>
+        <target>Berühren Sie den "Hinzufügen"-Knopf</target>
+        <note>Class = "UILabel"; text = "Tap the add button"; ObjectID = "p1X-5o-6A7";</note>
+      </trans-unit>
+      <trans-unit id="p7v-8Y-uNo.normalTitle">
+        <source>Activate</source>
+        <target>Aktvieren</target>
+        <note>Class = "UIButton"; normalTitle = "Activate"; ObjectID = "p7v-8Y-uNo";</note>
+      </trans-unit>
+      <trans-unit id="pRj-U9-8Om.text">
+        <source>0729293991</source>
+        <target>0729293991</target>
+        <note>Class = "UILabel"; text = "0729293991"; ObjectID = "pRj-U9-8Om";</note>
+      </trans-unit>
+      <trans-unit id="pdE-qY-3I8.text">
+        <source>Tapping on one of the records will display more details about that particular Panic activation.</source>
+        <target>Indem Sie eines der Ereignisse berühren, können Sie mehr über diese Panic Aktivierung erfahren.</target>
+        <note>Class = "UILabel"; text = "Tapping on one of the records will display more details about that particular Panic activation."; ObjectID = "pdE-qY-3I8";</note>
+      </trans-unit>
+      <trans-unit id="pnC-SN-7NU.text">
+        <source>0</source>
+        <target>0</target>
+        <note>Class = "UILabel"; text = "0"; ObjectID = "pnC-SN-7NU";</note>
+      </trans-unit>
+      <trans-unit id="qdt-87-5Nk.text">
+        <source>NO GROUPS NEARBY</source>
+        <target>KEINE GRUPPEN IN IHRER NÄHE</target>
+        <note>Class = "UILabel"; text = "NO GROUPS NEARBY"; ObjectID = "qdt-87-5Nk";</note>
+      </trans-unit>
+      <trans-unit id="rcL-kG-LNf.normalTitle">
+        <source>Groups</source>
+        <target>GRUPPEN</target>
+        <note>Class = "UIButton"; normalTitle = "Groups"; ObjectID = "rcL-kG-LNf";</note>
+      </trans-unit>
+      <trans-unit id="rqI-an-QgS.text">
+        <source>22</source>
+        <target>22</target>
+        <note>Class = "UILabel"; text = "22"; ObjectID = "rqI-an-QgS";</note>
+      </trans-unit>
+      <trans-unit id="s4A-Al-cuL.text">
+        <source>Here you will find the list of groups you have subscribed to. When you activate Panic, notifications are sent out to fellow subscribers of these groups with your information and location.</source>
+        <target>Her können Sie eine Liste aller Gruppen, in denen Sie Mitglied sind finden. Wenn Sie Panic aktivieren, wird eine Meldung mit Ihren Details und Standort an alle Mitglieder dieser Gruppen geschickt.</target>
+        <note>Class = "UILabel"; text = "Here you will find the list of groups you have subscribed to. When you activate Panic, notifications are sent out to fellow subscribers of these groups with your information and location."; ObjectID = "s4A-Al-cuL";</note>
+      </trans-unit>
+      <trans-unit id="s7R-jQ-CLV.normalTitle">
+        <source>Settings</source>
+        <target>Einstellungen</target>
+        <note>Class = "UIButton"; normalTitle = "Settings"; ObjectID = "s7R-jQ-CLV";</note>
+      </trans-unit>
+      <trans-unit id="sE6-P6-v6K.text">
+        <source>May</source>
+        <target>Mai</target>
+        <note>Class = "UILabel"; text = "May"; ObjectID = "sE6-P6-v6K";</note>
+      </trans-unit>
+      <trans-unit id="sQS-ca-TgP.text">
+        <source>Important</source>
+        <target>Wichtig</target>
+        <note>Class = "UILabel"; text = "Important"; ObjectID = "sQS-ca-TgP";</note>
+      </trans-unit>
+      <trans-unit id="t3z-ji-tzN.normalTitle">
+        <source>•••</source>
+        <target>•••</target>
+        <note>Class = "UIButton"; normalTitle = "•••"; ObjectID = "t3z-ji-tzN";</note>
+      </trans-unit>
+      <trans-unit id="tI1-rY-hwj.text">
+        <source>Tap anywhere to continue</source>
+        <target>Berühren um fortzufahren</target>
+        <note>Class = "UILabel"; text = "Tap anywhere to continue"; ObjectID = "tI1-rY-hwj";</note>
+      </trans-unit>
+      <trans-unit id="thk-ne-o3P.text">
+        <source>Cape Town</source>
+        <target>Kapstadt</target>
+        <note>Class = "UILabel"; text = "Cape Town"; ObjectID = "thk-ne-o3P";</note>
+      </trans-unit>
+      <trans-unit id="tvr-sb-QJd.normalTitle">
+        <source>Login</source>
+        <target>Einloggen</target>
+        <note>Class = "UIButton"; normalTitle = "Login"; ObjectID = "tvr-sb-QJd";</note>
+      </trans-unit>
+      <trans-unit id="tym-Mx-7Ue.text">
+        <source>5 Oct 2014</source>
+        <target>5 Okt 2014</target>
+        <note>Class = "UILabel"; text = "5 Oct 2014"; ObjectID = "tym-Mx-7Ue";</note>
+      </trans-unit>
+      <trans-unit id="u2g-Sj-fNe.title">
+        <source>Item</source>
+        <target>Gegenstand</target>
+        <note>Class = "UITabBarItem"; title = "Item"; ObjectID = "u2g-Sj-fNe";</note>
+      </trans-unit>
+      <trans-unit id="ukz-yx-q3w.normalTitle">
+        <source>LEAVE</source>
+        <target>VERLASSEN</target>
+        <note>Class = "UIButton"; normalTitle = "LEAVE"; ObjectID = "ukz-yx-q3w";</note>
+      </trans-unit>
+      <trans-unit id="v9H-gj-TDs.text">
+        <source>type 3 or more characters to search</source>
+        <target>Bitte geben Sie drei oder mehr Zeichen ein, um zu suchen</target>
+        <note>Class = "UILabel"; text = "type 3 or more characters to search"; ObjectID = "v9H-gj-TDs";</note>
+      </trans-unit>
+      <trans-unit id="v14-0N-g2G.text">
+        <source>Swipe from the left edge to open the main menu</source>
+        <target>Wischen Sie nach rechts, um das Hauptmenü zu öffnen</target>
+        <note>Class = "UILabel"; text = "Swipe from the left edge to open the main menu"; ObjectID = "v14-0N-g2G";</note>
+      </trans-unit>
+      <trans-unit id="vNt-cX-3JG.text">
+        <source>Check spelling or alternatively create your own</source>
+        <target>Überprüfen Sie die Rechtschreibung oder erstellen Sie Ihre eigene Gruppe</target>
+        <note>Class = "UILabel"; text = "Check spelling or alternatively create your own"; ObjectID = "vNt-cX-3JG";</note>
+      </trans-unit>
+      <trans-unit id="vXZ-lx-hvc.title">
+        <source>Login</source>
+        <target>Einloggen</target>
+        <note>Class = "UIViewController"; title = "Login"; ObjectID = "vXZ-lx-hvc";</note>
+      </trans-unit>
+      <trans-unit id="wUv-AI-Wkf.normalTitle">
+        <source>Back</source>
+        <target>Zurück</target>
+        <note>Class = "UIButton"; normalTitle = "Back"; ObjectID = "wUv-AI-Wkf";</note>
+      </trans-unit>
+      <trans-unit id="wqW-i2-3cu.text">
+        <source>8</source>
+        <target>8</target>
+        <note>Class = "UILabel"; text = "8"; ObjectID = "wqW-i2-3cu";</note>
+      </trans-unit>
+      <trans-unit id="x7C-nX-ihH.text">
+        <source>Groups</source>
+        <target>Gruppen</target>
+        <note>Class = "UILabel"; text = "Groups"; ObjectID = "x7C-nX-ihH";</note>
+      </trans-unit>
+      <trans-unit id="xCQ-X8-JAL.placeholder">
+        <source>Confirm Password</source>
+        <target>Passwort bestätigen</target>
+        <note>Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "xCQ-X8-JAL";</note>
+      </trans-unit>
+      <trans-unit id="xG1-SH-5RA.text">
+        <source>Setting the group to private will hide it from public searches and require you to enter the name into the "Private" tab to join</source>
+        <target>Wenn Sie die Gruppen Privat machen, wird diese nicht in öffentlichen Suchen angezeigt und der Gruppenname muss im "Privat"-Tab eingegeben werden, um beizutreten.</target>
+        <note>Class = "UILabel"; text = "Setting the group to private will hide it from public searches and require you to enter the name into the \"Private\" tab to join"; ObjectID = "xG1-SH-5RA";</note>
+      </trans-unit>
+      <trans-unit id="xhE-ZF-2zD.text">
+        <source>Welcome</source>
+        <target>Willkommen</target>
+        <note>Class = "UILabel"; text = "Welcome"; ObjectID = "xhE-ZF-2zD";</note>
+      </trans-unit>
+      <trans-unit id="y4E-Ko-hnz.text">
+        <source>000</source>
+        <target>000</target>
+        <note>Class = "UILabel"; text = "000"; ObjectID = "y4E-Ko-hnz";</note>
+      </trans-unit>
+      <trans-unit id="yAE-s6-24v.placeholder">
+        <source>Username</source>
+        <target>Benutzername</target>
+        <note>Class = "UITextField"; placeholder = "Username"; ObjectID = "yAE-s6-24v";</note>
+      </trans-unit>
+      <trans-unit id="yCn-kD-Qhq.normalTitle">
+        <source>Tutorial</source>
+        <target>Anleitung</target>
+        <note>Class = "UIButton"; normalTitle = "Tutorial"; ObjectID = "yCn-kD-Qhq";</note>
+      </trans-unit>
+      <trans-unit id="yjc-uz-5Ex.placeholder">
+        <source>Name</source>
+        <target>Name</target>
+        <note>Class = "UITextField"; placeholder = "Name"; ObjectID = "yjc-uz-5Ex";</note>
+      </trans-unit>
+      <trans-unit id="zEq-hZ-FHm.text">
+        <source>Label</source>
+        <target>Label</target>
+        <note>Class = "UILabel"; text = "Label"; ObjectID = "zEq-hZ-FHm";</note>
+      </trans-unit>
+      <trans-unit id="zYK-nb-1w5.normalTitle">
+        <source>Map</source>
+        <target>Karte</target>
+        <note>Class = "UIButton"; normalTitle = "Map"; ObjectID = "zYK-nb-1w5";</note>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Panic/Info.plist" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.4" build-num="6E35b"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target>$(PRODUKT_NAME)</target>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>2.0.1</source>
+        <target>2.0.1</target>
+      </trans-unit>
+    </body>
+  </file>
+  <file original="Panic/Localizable.strings" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.4" build-num="6E35b"/>
+    </header>
+    <body>
+      <trans-unit id="1_min">
+        <source>1 Minute or less</source>
+        <note>No comment provided by engineer.</note>
+      <target>Eine Minute oder weniger</target></trans-unit>
+      <trans-unit id="activate">
+        <source>Activate</source>
+        <note>Button title to activate the panic button
+   confirmation to activate the panic button</note>
+      <target>Aktivieren</target></trans-unit>
+      <trans-unit id="activate_confirmation_text">
+        <source>Activate Panic and send notifications?</source>
+        <note>No comment provided by engineer.</note>
+      <target>Panic aktivieren und Meldung schicken?</target></trans-unit>
+      <trans-unit id="already_joined_group">
+        <source>You already belong to this group.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Sie sind bereit Mitglied dieser Gruppe.</target></trans-unit>
+      <trans-unit id="are_you_sure">
+        <source>Are you sure?</source>
+        <note>No comment provided by engineer.</note>
+      <target>Sind Sie sicher?</target></trans-unit>
+      <trans-unit id="are_you_sure_text">
+        <source>You will loose the current information</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ihre bisherigen Informationen werden gelöscht</target></trans-unit>
+      <trans-unit id="are_you_sure_title">
+        <source>Are you sure?</source>
+        <note>No comment provided by engineer.</note>
+      <target>Sind Sie sicher?</target></trans-unit>
+      <trans-unit id="background_update_info_text">
+        <source>Enabling background updates will let Panic continue to broadcast your location, even when the app is in the background and/or your iPhone is asleep, during activation.
+
+This is disabled by default as it can be heavy on battery, can use more data then expected if left on for an extended period of time and because of the way iPhone handles background apps, can be unreliable (although rarely)</source>
+        <note>No comment provided by engineer.</note>
+      <target>Wenn Sie Hintergrundaktualisierungen zulassen wird Panic bei Aktivierung Ihren Standort senden, auch wenn die Anwendung im Hintergrund ausgeführt wird und/oder Ihr iPhone sich im Standby befindet. Diese Funktion ist standardmäßig ausgeschaltet, da dies zu hohem Daten- und Energieverbrauch führen kann.  </target></trans-unit>
+      <trans-unit id="background_update_info_title">
+        <source>Background Update</source>
+        <note>No comment provided by engineer.</note>
+      <target>Hintergrundaktualisierung</target></trans-unit>
+      <trans-unit id="cancel">
+        <source>Cancel</source>
+        <note>No comment provided by engineer.</note>
+      <target>Abbrechen</target></trans-unit>
+      <trans-unit id="closed_group">
+        <source>Closed group</source>
+        <note>No comment provided by engineer.</note>
+      <target>Geschlossene Gruppe</target></trans-unit>
+      <trans-unit id="confirmation_info_text">
+        <source>Enabling this will remove the 5 second delay before sending notifications, however you will have to manually select 'Yes' each time you activate Panic.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Dies wird die 5-Sekunden Verzögerung entfernen wenn Sie Meldungen absetzen, aber Sie müssen jedesmal manuell bestätigen, wenn Sie Panic aktivieren.</target></trans-unit>
+      <trans-unit id="confirmation_info_title">
+        <source>Panic Confirmation</source>
+        <note>No comment provided by engineer.</note>
+      <target>Panic Bestätigung</target></trans-unit>
+      <trans-unit id="contact_number">
+        <source>Contact Number</source>
+        <note>Asking for...</note>
+      <target>Kontaktnummer</target></trans-unit>
+      <trans-unit id="could_not_get_panic_history">
+        <source>Could not get the list of Panics. Please check your internet connection and try again</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ihre Panic-Liste konnte nicht geladen werden. Bitte überprüfen Sie Ihre Internetverbindung und versuchen es erneut.</target></trans-unit>
+      <trans-unit id="deactivate">
+        <source>Deactivate</source>
+        <note>No comment provided by engineer.</note>
+      <target>Deaktivieren</target></trans-unit>
+      <trans-unit id="delete_account_confirmation_1_text">
+        <source>Are you sure you want to delete your account?
+
+This will remove all your details, free up your username, remove all Panic history and you will have to reregister if you want to use this app again.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Sind Sie sicher, dass Sie Ihre Konto löschen möchten? Dies wird all Ihre Daten löschen, Ihren Benutzernamen freigeben, Ihre Panic Vergangenheit löschen und Sie werden sich erneut registrieren müssen, falls Sie Panic wieder nutzen möchten.</target></trans-unit>
+      <trans-unit id="delete_account_confirmation_1_title">
+        <source>Confirmation</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bestätigung</target></trans-unit>
+      <trans-unit id="delete_account_confirmation_2_text">
+        <source>Permenently delete account?</source>
+        <note>No comment provided by engineer.</note>
+      <target>Konto für immer löschen?</target></trans-unit>
+      <trans-unit id="delete_account_confirmation_2_title">
+        <source>Final Confirmation</source>
+        <note>No comment provided by engineer.</note>
+      <target>Letzte Bestätigung</target></trans-unit>
+      <trans-unit id="dont_respond">
+        <source>Dont respond</source>
+        <note>No comment provided by engineer.</note>
+      <target>Nicht antworten</target></trans-unit>
+      <trans-unit id="duration_h_m">
+        <source>%1$@ Hours %2$@ Minutes</source>
+        <note>No comment provided by engineer.</note>
+      <target>%1$@Stunden%2$@Minuten</target></trans-unit>
+      <trans-unit id="email">
+        <source>Email:</source>
+        <note>Asking for...</note>
+      <target>Email:</target></trans-unit>
+      <trans-unit id="email_address_invalid">
+        <source>Invalid email address</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ungültige Email-Adresse</target></trans-unit>
+      <trans-unit id="email_address_not_found">
+        <source>Email address not found</source>
+        <note>No comment provided by engineer.</note>
+      <target>Email-Adresse nicht gefunden</target></trans-unit>
+      <trans-unit id="email_sent_text">
+        <source>An email has been sent to the email address you supplied with password reset instructions</source>
+        <note>No comment provided by engineer.</note>
+      <target>Eine Email mit einer Anleitung zum Zurücksetzen des Passworts wurde an die angegebene Adresse verschickt.</target></trans-unit>
+      <trans-unit id="email_sent_title">
+        <source>Email sent</source>
+        <note>No comment provided by engineer.</note>
+      <target>Email verschickt</target></trans-unit>
+      <trans-unit id="enter_code_text">
+        <source>Enter the code given to you by another group member</source>
+        <note>No comment provided by engineer.</note>
+      <target>Geben Sie den Zugangscode ein</target></trans-unit>
+      <trans-unit id="enter_code_title">
+        <source>Enter Code</source>
+        <note>No comment provided by engineer.</note>
+      <target>Zugangscode eingeben</target></trans-unit>
+      <trans-unit id="error_becoming_a_responder">
+        <source>%@
+Will try again in a few seconds.</source>
+        <note>No comment provided by engineer.</note>
+      <target>%@ Es wird in einigen Sekunden erneut versucht.</target></trans-unit>
+      <trans-unit id="error_beginning_location_text">
+        <source>Will try again in a few seconds</source>
+        <note>No comment provided by engineer.</note>
+      <target>Es wird in einigen Sekunden erneut versucht</target></trans-unit>
+      <trans-unit id="error_beginning_location_title">
+        <source>Error beginning location</source>
+        <note>No comment provided by engineer.</note>
+      <target>Fehler bei der Standorterfassung</target></trans-unit>
+      <trans-unit id="error_cell">
+        <source>Please fill in your cell number
+</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte geben Sie Ihre Handynummer ein</target></trans-unit>
+      <trans-unit id="error_choose_image">
+        <source>Please choose an image</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte wählen Sie ein Foto aus</target></trans-unit>
+      <trans-unit id="error_could_not_send_email_text">
+        <source>Your device could not send e-mail.  Please check e-mail configuration and try again.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Email konnte nicht verschickt werden. Bitte überprüfen Sie Ihre Email-Konfiguration und probieren es erneut.</target></trans-unit>
+      <trans-unit id="error_could_not_send_email_title">
+        <source>Could Not Send Email</source>
+        <note>No comment provided by engineer.</note>
+      <target>Email konnte nicht verschickt werden</target></trans-unit>
+      <trans-unit id="error_country">
+        <source>Please select a country
+</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte wählen Sie ein Land</target></trans-unit>
+      <trans-unit id="error_description_10_chars">
+        <source>Description must be 10 or more characters</source>
+        <note>No comment provided by engineer.</note>
+      <target>Beschreibung muss mehr als 10 Zeichen lang sein</target></trans-unit>
+      <trans-unit id="error_email">
+        <source>Please enter a valid email address
+</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte geben Sie eine gültige Email-Adresse ein</target></trans-unit>
+      <trans-unit id="error_email_text">
+        <source>Your device could not send e-mail.  Please check e-mail configuration and try again.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Email konnte nicht verschickt werden. Bitte überprüfen Sie Ihre Email-Konfiguration und probieren es erneut.</target></trans-unit>
+      <trans-unit id="error_email_title">
+        <source>Could Not Send Email</source>
+        <note>No comment provided by engineer.</note>
+      <target>Email konnte nicht verschickt werden</target></trans-unit>
+      <trans-unit id="error_fetching_groups_text">
+        <source>There was an error retrieving the list of groups. Possibly check you internet connection.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Beim Aufrufen der Gruppenliste ist ein Fehler aufgetreten. Bitte überprüfen Sie Ihre Internetverbindung.</target></trans-unit>
+      <trans-unit id="error_fetching_groups_title">
+        <source>Error fetching groups</source>
+        <note>No comment provided by engineer.</note>
+      <target>Beim Aufrufen der Gruppenliste ist ein Fehler aufgetreten.</target></trans-unit>
+      <trans-unit id="error_full_name">
+        <source>Please fill in your full name
+</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte geben Sie Ihren vollständigen Namen ein.</target></trans-unit>
+      <trans-unit id="error_invalid_login">
+        <source>Invalid login credentials</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ungültige Benutzerangaben</target></trans-unit>
+      <trans-unit id="error_name_3_chars">
+        <source>Name must be 3 or more characters</source>
+        <note>No comment provided by engineer.</note>
+      <target>Name muss mindestens drei Zeichen lang sein</target></trans-unit>
+      <trans-unit id="error_name_5_chars">
+        <source>Your name cannot be less than 5 characters. Please fill in your full name.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ihr Name kann nicht kürzer als 5 Zeichen sein. Bitte fügen Sie Ihren vollständigen Namen ein.</target></trans-unit>
+      <trans-unit id="error_name_only_letters">
+        <source>Your name can only contain letters
+</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ihr Name kann nur Buchstaben enthalten</target></trans-unit>
+      <trans-unit id="error_network_connection">
+        <source>The network connection was lost</source>
+        <note>No comment provided by engineer.</note>
+      <target>Die Internetverbindung wurde getrennt</target></trans-unit>
+      <trans-unit id="error_no_group_found_text">
+        <source>No group with that code has been found. Codes are case sensitive.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Keine Gruppe mit diesem Zugangscode konnte gefunden werden. Bitte achten Sie auf Groß-und Kleinschreibung.</target></trans-unit>
+      <trans-unit id="error_no_group_found_title">
+        <source>No group found</source>
+        <note>No comment provided by engineer.</note>
+      <target>Keine Gruppe gefunden</target></trans-unit>
+      <trans-unit id="error_pass_6_chars">
+        <source>Password must be 6 or more characters
+</source>
+        <note>No comment provided by engineer.</note>
+      <target>Passwort muss mind. 6 Zeichen lang sein</target></trans-unit>
+      <trans-unit id="error_pass_dont_match">
+        <source>Passwords do not match
+</source>
+        <note>No comment provided by engineer.</note>
+      <target>Passwörter stimmen nicht überein</target></trans-unit>
+      <trans-unit id="error_password">
+        <source>Please fill in a password
+</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte fügen Sie ein Passwort ein</target></trans-unit>
+      <trans-unit id="error_password_confirm">
+        <source>Please retype your password
+</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte wiederholen Sie Ihr Passwort</target></trans-unit>
+      <trans-unit id="error_purchase_text">
+        <source>Your purchase was unsuccessful. Please try again. No money has been debited from your account.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ihr Einkauf konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut. Es wurde kein Geld von Ihrem Konto abgebucht.</target></trans-unit>
+      <trans-unit id="error_update_failed">
+        <source>Something went wrong during the update. Please try again.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Während der Aktualisierung ist etwas schief gelaufen. Bitte versuchen Sie es erneut.</target></trans-unit>
+      <trans-unit id="error_updating_details_text">
+        <source>Will try again in a few seconds</source>
+        <note>No comment provided by engineer.</note>
+      <target>Es wird in einigen Sekunden erneut versucht</target></trans-unit>
+      <trans-unit id="error_updating_details_title">
+        <source>Error updating details</source>
+        <note>No comment provided by engineer.</note>
+      <target>Fehler bei der Angabenaktualisierung</target></trans-unit>
+      <trans-unit id="error_updating_location_text">
+        <source>Will try again in a few seconds</source>
+        <note>No comment provided by engineer.</note>
+      <target>Es wird in einigen Sekunden erneut versucht</target></trans-unit>
+      <trans-unit id="error_updating_location_title">
+        <source>Error updating location</source>
+        <note>No comment provided by engineer.</note>
+      <target>Fehler bei der Standortaktualisierung</target></trans-unit>
+      <trans-unit id="error_updating_settings">
+        <source>There was an error updating you settings</source>
+        <note>No comment provided by engineer.</note>
+      <target>Es ist ein Fehler bei der Aktualisierung Ihrer Einstellungen aufgetreten</target></trans-unit>
+      <trans-unit id="error_username_5_chars">
+        <source>Username must be at least 5 characters
+</source>
+        <note>No comment provided by engineer.</note>
+      <target>Benutzername muss mind. 5 Zeichen lang sein</target></trans-unit>
+      <trans-unit id="facebook_share_login">
+        <source>Please login to a Facebook account to share.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte loggen Sie sich mit einem Facebook Konto ein, um zu teilen.</target></trans-unit>
+      <trans-unit id="group_already_exists">
+        <source>Group '%1$@' already exists in %2$@</source>
+        <note>No comment provided by engineer.</note>
+      <target>Gruppe '%1$@' already exists in %2$@</target></trans-unit>
+      <trans-unit id="group_code">
+        <source>Group Code</source>
+        <note>Placeholder asking the user to enter the group code</note>
+      <target>Gruppen Zugangscode</target></trans-unit>
+      <trans-unit id="group_create">
+        <source>Create your own</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ihre eigene Gruppe erstellen</target></trans-unit>
+      <trans-unit id="group_description">
+        <source>Group Description</source>
+        <note>No comment provided by engineer.</note>
+      <target>Gruppenbeschreibung</target></trans-unit>
+      <trans-unit id="group_join_private">
+        <source>Join Private Group</source>
+        <note>No comment provided by engineer.</note>
+      <target>Einer Privaten Gruppe beitreten</target></trans-unit>
+      <trans-unit id="group_join_public">
+        <source>Join a Community</source>
+        <note>No comment provided by engineer.</note>
+      <target>Einer Öffentlichen Gruppe beitreten</target></trans-unit>
+      <trans-unit id="group_name">
+        <source>Group Name</source>
+        <note>No comment provided by engineer.</note>
+      <target>Gruppenname</target></trans-unit>
+      <trans-unit id="group_not_exist_text">
+        <source>The group '%@' does not exist. Check the spelling or use the New tab to create it</source>
+        <note>No comment provided by engineer.</note>
+      <target>Die Gruppe '%@' existiert nicht. Bitte überprüfen Sie die Rechtschreibung oder erstellen Sie eine neue Gruppe</target></trans-unit>
+      <trans-unit id="group_set_to_private_text">
+        <source>This group is set to private. It will therfore NOT SHOW in any searches or nearby suggestions.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Diese Gruppe ist Privat. Daher wird sie IN KEINER Suche oder Vorschlägen auftauchen.</target></trans-unit>
+      <trans-unit id="group_set_to_public_text">
+        <source>This group is set to public. It will therfor SHOW in all searches and nearby suggestions and anyone will be able to join it</source>
+        <note>No comment provided by engineer.</note>
+      <target>Diese Gruppe ist Öffentlich. Daher wird sie in allen Suchen und Vorschlägen angezeigt und JEDER KANN IHR BEITRETEN.</target></trans-unit>
+      <trans-unit id="help">
+        <source>Help</source>
+        <note>No comment provided by engineer.</note>
+      <target>Hilfe</target></trans-unit>
+      <trans-unit id="join">
+        <source>Join</source>
+        <note>Join a group</note>
+      <target>Beitreten</target></trans-unit>
+      <trans-unit id="join_private_group_help_text">
+        <source>Someone needs to share the groups private code with you in order for you to join. This code can be found by either tapping the small lock in the group or by tapping the (•••) button and selecting 'share'.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ein Gruppenmitglied muss Ihnen den Zugangscode mitteilen, damit Sie beitreten können. Dieser Code kann entweder durch das berühren des Schloss-Symbols in der Gruppe oder durch das Berühren von (•••) und "Teilen" gefunden werden.</target></trans-unit>
+      <trans-unit id="join_private_group_help_title">
+        <source>Joining a Private Group</source>
+        <note>No comment provided by engineer.</note>
+      <target>Tritt einer Privaten Gruppe bei</target></trans-unit>
+      <trans-unit id="joined_group_text">
+        <source>Successfully created and joined the group %@.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Gruppe %@ wurde erfolgreich erstellt</target></trans-unit>
+      <trans-unit id="leave_group_confirmation_title">
+        <source>Leave %@?</source>
+        <target>%@ verlassen?</target>
+        <note>tester2</note>
+      </trans-unit>
+      <trans-unit id="location_error_text">
+        <source>Location Services are unavailable at the moment.
+
+Possible reasons:
+Internet Connection
+Indoors
+Location Permission</source>
+        <note>No comment provided by engineer.</note>
+      <target>Standortdienste sind im Moment nicht verfügbar. Möglich Gründe: fehlerhafte Internetverbindung; Sie befinden sich in einem Gebäude; Keine Erlaubnis auf Standort zuzugreifen</target></trans-unit>
+      <trans-unit id="location_error_title">
+        <source>Location Error</source>
+        <note>No comment provided by engineer.</note>
+      <target>Standort Fehler</target></trans-unit>
+      <trans-unit id="location_not_allowed">
+        <source>To use this feature, you will need to grant Panic permission to use your location in the background. To do this, go to iPhone Settings &gt; Privacy &gt; Location Services &gt; Panic &gt; 'Always'</source>
+        <note>No comment provided by engineer.</note>
+      <target>Um diese Funktion zu nutzen müssen Sie Panic die Erlaubnis erteilen, Ihren Standort im Hintergrund benutzen zu dürfen. Dies können Sie tun, indem Sie zu Ihren iPhone-Einstellungen &gt; Datenschutz &gt; Standortdienste &gt; Panic &gt; "Immer" gehen </target></trans-unit>
+      <trans-unit id="location_not_allowed_text">
+        <source>Please enable location services for Panic by going to Settings &gt; Privacy &gt; Location Services.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte erlauben Sie Standortdienste für Panic, indem Sie zu Einstellungen &gt; Datenschutz &gt; Standortdienste gehen.</target></trans-unit>
+      <trans-unit id="location_not_allowed_title">
+        <source>Location Not Allowed</source>
+        <note>No comment provided by engineer.</note>
+      <target>Standort nicht gefunden</target></trans-unit>
+      <trans-unit id="location_not_aloowed_text">
+        <source>Please enable location services for Panic by going to Settings &gt; Privacy &gt; Location Services.
+Without location services, no one will be able to respond to your emergency.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte erlauben Sie Standortdienste für Panic, indem Sie zu Ihren iPhone-Einstellungen &gt; Datenschutz &gt; Standortdienste &gt; Panic &gt; "Immer" gehen. Ohne Standortdienste kann Ihnen im Notfall niemand helfen.</target></trans-unit>
+      <trans-unit id="logout_message">
+        <source>Logging out disables any Panic notifications. You will not be notified when someone activates their Panic button.
+
+On the other hand, closing the app with the home button, or even the app switcher, logs you out in a way that you still receive notifications.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ausloggen schaltet alle Panic-Meldungen aus. Sie werden keine Benachrichtigungen erhalten wenn jemand Panic aktiviert. Wenn Sie die Anwendungen über den "Home"-Knopf verlassen wird Panic im Hintergrund weitergeführt. </target></trans-unit>
+      <trans-unit id="main_tut_1">
+        <source>Tap the Panic button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live.</source>
+        <note>First part of main tutorial</note>
+      <target>Berühren Sie den Panic Button. Während dieser Anleitung wird dies keine Auswirkungen haben. Sobald die Anleitung abgeschlossen ist, ist der Button jedoch scharf.</target></trans-unit>
+      <trans-unit id="main_tut_2">
+        <source>Your position would now be made available for others to track live on the map. Notifications are also sent to people subscribed to the same groups you are, alerting them of your distress.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ihr Standort wäre nun für andere auf der Karte einsehbar. Außerdem werden Benachrichtigungen an alle Mitglieder der Gruppen geschickt, in denen Sie Mitglied sind. </target></trans-unit>
+      <trans-unit id="main_tut_3">
+        <source>When activating the Panic button, there is a 5 second delay before notifications are sent out - in case of accidental activations. This delay can be disabled in Settings.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Es gibt eine 5-Sekunden Verzögerung bevor Benachrichtigungen verschickt werden wenn Panic aktiviert wurde, falls Sie Panic ohne Absicht aktivieren sollten. Diese Verzögerung kann in den Einstellungen ausgeschaltet werden.</target></trans-unit>
+      <trans-unit id="main_tut_4">
+        <source>Tap one more time to finish</source>
+        <note>No comment provided by engineer.</note>
+      <target>Noch einmal berühren um Fertig zu stellen</target></trans-unit>
+      <trans-unit id="menu_not_available">
+        <source>Menus are unavailable while Panic is active</source>
+        <note>No comment provided by engineer.</note>
+      <target>Sie können nicht auf Menüs zugreifen wenn Panic aktiv ist</target></trans-unit>
+      <trans-unit id="name_surname">
+        <source>Name and Surname</source>
+        <note>Asking for ...</note>
+      <target>Name und Nachname</target></trans-unit>
+      <trans-unit id="nearby">
+        <source>NEARBY</source>
+        <note>Heading showing the groups nearby to the user</note>
+      <target>IN DER NÄHE</target></trans-unit>
+      <trans-unit id="no">
+        <source>No</source>
+        <note>No comment provided by engineer.</note>
+      <target>Neien</target></trans-unit>
+      <trans-unit id="no_data">
+        <source>No Data</source>
+        <note>No comment provided by engineer.</note>
+      <target>Keine Daten</target></trans-unit>
+      <trans-unit id="not_available">
+        <source>Not available</source>
+        <note>No comment provided by engineer.</note>
+      <target>Nicht verfügbar</target></trans-unit>
+      <trans-unit id="number_change_warning">
+        <source>Setting your mobile number incorrectly will prevent others from contacting you in an emergency</source>
+        <note>No comment provided by engineer.</note>
+      <target>Mit einer falschen Telefonnummer können andere Sie im Notfall nicht erreichen</target></trans-unit>
+      <trans-unit id="open_comm">
+        <source>Open community</source>
+        <note>No comment provided by engineer.</note>
+      <target>Öffentlich Gruppe</target></trans-unit>
+      <trans-unit id="panic_notification_message">
+        <source>%1$@ needs help! Contact them on %2$@ or view their location in the app.</source>
+        <note>No comment provided by engineer.</note>
+      <target>%1$@ braucht Hilfe! Kontaktieren Sie %2$@ oder sehen Sie seinen/ihren Standort in der Anwendung.</target></trans-unit>
+      <trans-unit id="pass_dont_match">
+        <source>Passwords do not match</source>
+        <note>No comment provided by engineer.</note>
+      <target>Passwörter stimmen nicht überein</target></trans-unit>
+      <trans-unit id="password">
+        <source>Password</source>
+        <note>Asking for...</note>
+      <target>Passwort</target></trans-unit>
+      <trans-unit id="password_6_chars">
+        <source>Password must be 6 or more characters</source>
+        <note>No comment provided by engineer.</note>
+      <target>Passwort muss mind. 6 Zeichen lang sein</target></trans-unit>
+      <trans-unit id="password_confirm">
+        <source>Confirm Password</source>
+        <note>Asking for...</note>
+      <target>Passwort bestätigen</target></trans-unit>
+      <trans-unit id="please_wait_text">
+        <source>Processing your request. Please be patient.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ihre Anfrage wird bearbeitet. Bitte haben Sie einen Moment Geduld.</target></trans-unit>
+      <trans-unit id="please_wait_title">
+        <source>Please wait</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte warten</target></trans-unit>
+      <trans-unit id="private_panics_50">
+        <source>Last 50 of your own Panic activations.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ihre letzten 50 Panic Aktivierungen</target></trans-unit>
+      <trans-unit id="public_panics_20">
+        <source>Last 20 Panic activations by other people.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Die letzten 20 Panic Aktivierungen anderer Leute</target></trans-unit>
+      <trans-unit id="report_user_text">
+        <source>To report a user, go to Public History, tap on the Panic associated to that user and use the report button there.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Um einen Benutzer zu melden, gehen Sie zu Öffentlicher Vergangenheit, berühren die Aktivierung des Benutzers und benutzen die "Melden"-Option.</target></trans-unit>
+      <trans-unit id="report_user_title">
+        <source>Report a user</source>
+        <note>No comment provided by engineer.</note>
+      <target>Einen Benutzer melden</target></trans-unit>
+      <trans-unit id="reset">
+        <source>Reset</source>
+        <note>No comment provided by engineer.</note>
+      <target>Zurücksetzen</target></trans-unit>
+      <trans-unit id="reset_password_text">
+        <source>Enter the email address associated with the account. You will receive an email with reset instructions</source>
+        <note>No comment provided by engineer.</note>
+      <target>Geben Sie die Email-Adresse dieses Kontos an. Sie werden eine Email mit einer Anleitung zum Zurücksetzen des Passwort erhalten.</target></trans-unit>
+      <trans-unit id="reset_password_title">
+        <source>Reset Password</source>
+        <note>No comment provided by engineer.</note>
+      <target>Passwort zurücksetzen</target></trans-unit>
+      <trans-unit id="respond">
+        <source>Respond</source>
+        <note>No comment provided by engineer.</note>
+      <target>Antworten</target></trans-unit>
+      <trans-unit id="results">
+        <source>RESULTS</source>
+        <note>No comment provided by engineer.</note>
+      <target>ERGEBNISSE</target></trans-unit>
+      <trans-unit id="save">
+        <source>Save</source>
+        <note>No comment provided by engineer.</note>
+      <target>Speichern</target></trans-unit>
+      <trans-unit id="save_changes_confirmation_text">
+        <source>Do you want to save changes?</source>
+        <note>No comment provided by engineer.</note>
+      <target>Möchten Sie die Änderungen speichern?</target></trans-unit>
+      <trans-unit id="searching_groups">
+        <source>Searching groups</source>
+        <note>No comment provided by engineer.</note>
+      <target>Sucht Gruppen</target></trans-unit>
+      <trans-unit id="settings_updated">
+        <source>Settings updated</source>
+        <note>No comment provided by engineer.</note>
+      <target>Einstellungen aktualisiert</target></trans-unit>
+      <trans-unit id="share_joined_group">
+        <source>I just joined the group %@ using Panic. Help me make our communities safer, as well as ourselves!</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ich bin gerade der Gruppe %@ auf Panic beigetreten. Hilf mir unsere Nachbarschaft sicherer zu machen!</target></trans-unit>
+      <trans-unit id="share_panic_whatsapp_text">
+        <source>I just downloaded Panic! Help me make our community a safer place.
+Get the app here: http://goo.gl/M25QIw</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ich habe gerade Panic heruntergeladen!  Hilf mir unsere Nachbarschaft sicherer zu machen! Hol dir die App hier: http://goo.gl/M25QIw</target></trans-unit>
+      <trans-unit id="share_text">
+        <source>The more people that join your communities and groups, the safer you all become... </source>
+        <note>No comment provided by engineer.</note>
+      <target>Je mehr Leute unseren Gruppen beitreten desto sicherer wird unsere Nachbarschaft...</target></trans-unit>
+      <trans-unit id="share_title">
+        <source>Let others know</source>
+        <note>No comment provided by engineer.</note>
+      <target>Erzählen Sie anderen von Panic</target></trans-unit>
+      <trans-unit id="someone_needs_help">
+        <source>Someone needs help</source>
+        <note>Popup which shows when someone else activates and the current user is busy within the app</note>
+      <target>Jemand braucht Hilfe</target></trans-unit>
+      <trans-unit id="stop_responding">
+        <source>Stop Responding</source>
+        <note>No comment provided by engineer.</note>
+      <target>Antworten stoppen</target></trans-unit>
+      <trans-unit id="successful">
+        <source>Successful</source>
+        <note>No comment provided by engineer.</note>
+      <target>Erfolgreich</target></trans-unit>
+      <trans-unit id="trying_to_join_group">
+        <source>Trying to join group...</source>
+        <note>No comment provided by engineer.</note>
+      <target>Versucht Gruppe beizutreten...</target></trans-unit>
+      <trans-unit id="tutorials_reset_text">
+        <source>Tutorials have been re-enabled. Go back to the main Home screen to view them as you did the first time the app was opened.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Anleitungen wurden wieder aktiviert. Gehen Sie zurück zum Hauptmenü, um sie erneut zu sehen.</target></trans-unit>
+      <trans-unit id="twitter_share_login">
+        <source>Please login to a Twitter account to share.</source>
+        <note>No comment provided by engineer.</note>
+      <target>Bitte loggen Sie sich mit Ihrem Twitter-Konto ein, um zu teilen.</target></trans-unit>
+      <trans-unit id="unsuccessful">
+        <source>Unsuccessful</source>
+        <target>Nicht Erfolgreich</target>
+        <note>tester</note>
+      </trans-unit>
+      <trans-unit id="update_successful">
+        <source>Updated successfully</source>
+        <note>No comment provided by engineer.</note>
+      <target>Erfolgreich aktualisiert</target></trans-unit>
+      <trans-unit id="username">
+        <source>Username</source>
+        <note>Asking for...</note>
+      <target>Benutzername</target></trans-unit>
+      <trans-unit id="username_already_taken">
+        <source>Username %@ already taken</source>
+        <note>No comment provided by engineer.</note>
+      <target>Benutzername %@ bereit vergeben</target></trans-unit>
+      <trans-unit id="whatsapp_not_installed">
+        <source>Whatsapp not installed</source>
+        <note>No comment provided by engineer.</note>
+      <target>Whatsapp nicht installiert</target></trans-unit>
+      <trans-unit id="yes">
+        <source>Yes</source>
+        <note>No comment provided by engineer.</note>
+      <target>Ja</target></trans-unit>
+      <trans-unit id="your_groups">
+        <source>YOUR GROUPS</source>
+        <note>Heading for section showing the users subscribed groups</note>
+      <target>IHRE GRUPPEN</target></trans-unit>
+    </body>
+  </file>
+  <file original="PanicTests/Info.plist" source-language="en" datatype="plaintext" target-language="de">
+    <header>
+      <tool tool-id="com.apple.dt.xcode" tool-name="Xcode" tool-version="6.4" build-num="6E35b"/>
+    </header>
+    <body>
+      <trans-unit id="CFBundleName">
+        <source>$(PRODUCT_NAME)</source>
+        <target>$(PRODUKT_NAME)</target>
+      </trans-unit>
+      <trans-unit id="CFBundleShortVersionString">
+        <source>1.0</source>
+        <target>1.0</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
