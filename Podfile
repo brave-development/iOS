@@ -1,0 +1,5 @@
+pod 'HMSegmentedControl'
+pod 'CustomBadge'
+#pod 'PubNub'
+pod 'Mapbox-iOS-SDK'
+pod 'Parse', '~> 1.14'
