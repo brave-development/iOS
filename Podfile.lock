@@ -1,0 +1,27 @@
+PODS:
+  - Bolts/Tasks (1.8.4)
+  - CustomBadge (3.0.0)
+  - HMSegmentedControl (1.5.3)
+  - Mapbox-iOS-SDK (3.5.0)
+  - Parse (1.14.2):
+    - Bolts/Tasks (~> 1.8)
+  - SwiftyJSON (3.1.4)
+
+DEPENDENCIES:
+  - CustomBadge
+  - HMSegmentedControl
+  - Mapbox-iOS-SDK
+  - Parse (~> 1.14)
+  - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  CustomBadge: c60738d213e7ef019b0bf1caa7948333f280ea9b
+  HMSegmentedControl: 7c6145afb50f26cec5f3243082f6f12b9f41318f
+  Mapbox-iOS-SDK: f0158f986ded5fd0b4034b1b8801aeeb5556a26a
+  Parse: 4335d65f40cb3d43190d723144bbe1afb9c38230
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
+
+PODFILE CHECKSUM: 852bd42c189b7718aeaa8769ccfe899cbece7e3b
+
+COCOAPODS: 1.2.0
