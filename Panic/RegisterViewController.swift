@@ -60,7 +60,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
 					tutorial.reset()
 					self.spinner.stopAnimating()
 					self.dismiss(animated: true, completion: {
-						global.shareGroup(NSLocalizedString("share_panic_whatsapp_text", value: "I just downloaded Halla! Help me make our community a safer place.\nGet the app here: http://goo.gl/M25QIw", comment: ""), viewController: nil)
+						global.shareGroup(NSLocalizedString("share_panic_whatsapp_text", value: "I just downloaded Panic! Help me make our community a safer place.\nGet the app here: http://goo.gl/M25QIw", comment: ""), viewController: nil)
 					})
 					
                 }

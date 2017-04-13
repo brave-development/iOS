@@ -90,7 +90,6 @@
 		75CF75E31BCB9F9200B18480 /* LaunchImage-1242x2208@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E21BCB9F9200B18480 /* LaunchImage-1242x2208@2x.png */; };
 		75CF75E51BCBA0DD00B18480 /* LaunchImage-750x1334@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E41BCBA0DD00B18480 /* LaunchImage-750x1334@2x.png */; };
 		75CF75E71BCBA1C600B18480 /* LaunchImage-640x1136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E61BCBA1C600B18480 /* LaunchImage-640x1136@2x.png */; };
-		75CF75E91BCBA2EF00B18480 /* Launch Screen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E81BCBA2EF00B18480 /* Launch Screen.xib */; };
 		75D869F81B29DEE20065DE37 /* GroupsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D869F71B29DEE20065DE37 /* GroupsHandler.swift */; };
 /* End PBXBuildFile section */
 
@@ -232,7 +231,6 @@
 		75CF75E21BCB9F9200B18480 /* LaunchImage-1242x2208@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LaunchImage-1242x2208@2x.png"; path = "Panic/Images/LaunchImage-1242x2208@2x.png"; sourceTree = "<group>"; };
 		75CF75E41BCBA0DD00B18480 /* LaunchImage-750x1334@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LaunchImage-750x1334@2x.png"; path = "Panic/Images/LaunchImage-750x1334@2x.png"; sourceTree = "<group>"; };
 		75CF75E61BCBA1C600B18480 /* LaunchImage-640x1136@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "LaunchImage-640x1136@2x.png"; path = "Panic/Images/LaunchImage-640x1136@2x.png"; sourceTree = "<group>"; };
-		75CF75E81BCBA2EF00B18480 /* Launch Screen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "Launch Screen.xib"; sourceTree = "<group>"; };
 		75CF75EA1BCBE04F00B18480 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Main.strings; sourceTree = "<group>"; };
 		75CF75EB1BCBE04F00B18480 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		75D869F71B29DEE20065DE37 /* GroupsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsHandler.swift; sourceTree = "<group>"; };
@@ -316,7 +314,6 @@
 				7545A65B1A2C8A3100B19E3E /* CustomNavigationSegue.swift */,
 				75162DE61A2B8B3E0094BA31 /* Images.xcassets */,
 				75162DE81A2B8B3E0094BA31 /* LaunchScreen.xib */,
-				75CF75E81BCBA2EF00B18480 /* Launch Screen.xib */,
 				75162DDD1A2B8B3E0094BA31 /* Supporting Files */,
 				754B90331A4C2D0B00BDC20B /* Tutorial.swift */,
 				755D4ED31AB4760E001F4590 /* Drawing.swift */,
@@ -612,7 +609,6 @@
 				7583FAA01B81E63D00CFD09C /* lock.png in Resources */,
 				752AA71E1BA5E12E005BE9FC /* ArrowDown.png in Resources */,
 				75606E721A3786BF0089744C /* phone@2x.png in Resources */,
-				75CF75E91BCBA2EF00B18480 /* Launch Screen.xib in Resources */,
 				75606E741A3793110089744C /* call@2x.png in Resources */,
 				752AA6FB1B94A34A005BE9FC /* create.png in Resources */,
 				754EF2B61B380B7A0046ACC1 /* UserIcon.png in Resources */,

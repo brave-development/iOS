@@ -22,8 +22,8 @@ class Tutorial {
 	
 	func load() {
 		print("Loading tutorial settings")
-		if global.persistantSettings.object(forKey: "Halla") != nil {
-			panic = global.persistantSettings.bool(forKey: "Halla")
+		if global.persistantSettings.object(forKey: "Panic") != nil {
+			panic = global.persistantSettings.bool(forKey: "Panic")
 		}
 		
 		if global.persistantSettings.object(forKey: "swipeToOpenMenu") != nil {
@@ -55,7 +55,7 @@ class Tutorial {
 	}
 	
 	func save() {
-		global.persistantSettings.set(panic, forKey: "Halla")
+		global.persistantSettings.set(panic, forKey: "Panic")
 		global.persistantSettings.set(swipeToOpenMenu, forKey: "swipeToOpenMenu")
 		global.persistantSettings.set(groupsButton, forKey: "groupsButton")
 		global.persistantSettings.set(addNewGroup, forKey: "addNewGroup")

@@ -186,7 +186,7 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 		if segControl != nil {
 			switch (segControl.selectedSegmentIndex) {
 			case 0:
-				lblTutorialTextTop.text = NSLocalizedString("public_panics_20", value: "Last 20 Halla activations by other people.", comment: "")
+				lblTutorialTextTop.text = NSLocalizedString("public_panics_20", value: "Last 20 Panic activations by other people.", comment: "")
 				lblNoHistory.isHidden = true
 				if global.publicHistoryFetched == true {
 					count = global.panicHistoryPublic.count
@@ -196,7 +196,7 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
 				}
 				
 			case 1:
-				lblTutorialTextTop.text = NSLocalizedString("private_panics_50", value: "Last 50 of your own Halla activations.", comment: "")
+				lblTutorialTextTop.text = NSLocalizedString("private_panics_50", value: "Last 50 of your own Panic activations.", comment: "")
 				spinner.stopAnimating()
 				if global.privateHistoryFetched == true {
 					count = global.panicHistoryLocal.count

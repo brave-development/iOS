@@ -77,7 +77,7 @@ class Global: UIViewController {
 			})
 			
 			if checkInternetConnectivity() == false {
-				showAlert("No internet", message: "Although you have been logged in, an internet connection cannot be established. Please note this will have negative effects on the Halla system. If you activate Halla, it will continue to try connect, but success cannot be guaranteed")
+				showAlert("No internet", message: "Although you have been logged in, an internet connection cannot be established. Please note this will have negative effects on the Panic system. If you activate Panic, it will continue to try connect, but success cannot be guaranteed")
 			}
 			tutorial.load()
 			return true
@@ -288,7 +288,7 @@ class Global: UIViewController {
 			if (status == CLAuthorizationStatus.authorizedAlways) || (status == CLAuthorizationStatus.authorizedWhenInUse) {
 				return true
 			} else {
-				global.showAlert(NSLocalizedString("location_not_allowed_title", value: "Location Not Allowed", comment: ""), message: NSLocalizedString("location_not_aloowed_text", value: "Please enable location services for Halla by going to Settings > Privacy > Location Services.\nWithout location services, no one will be able to respond to your emergency.", comment: ""))
+				global.showAlert(NSLocalizedString("location_not_allowed_title", value: "Location Not Allowed", comment: ""), message: NSLocalizedString("location_not_aloowed_text", value: "Please enable location services for Panic by going to Settings > Privacy > Location Services.\nWithout location services, no one will be able to respond to your emergency.", comment: ""))
 				return false
 			}
 		}

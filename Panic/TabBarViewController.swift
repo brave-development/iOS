@@ -107,7 +107,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		if PFUser.current()!["name"] != nil {
 			lblName.text = (PFUser.current()!["name"] as! String)
 		} else {
-			lblName.text = "Halla User"
+			lblName.text = "Panic User"
 		}
 		
 		
@@ -183,7 +183,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		if(MFMailComposeViewController.canSendMail()) {
 			
 			mail.mailComposeDelegate = self
-			mail.setSubject("Halla - Feedback")
+			mail.setSubject("Panic - Feedback")
 			mail.setToRecipients(["byron@panic-sec.org"])
 			self.present(mail, animated: true, completion: nil)
 		}
@@ -241,7 +241,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 					}
 				}
 			} else {
-				global.showAlert("", message: NSLocalizedString("menu_not_available", value: "Menus are unavailable while Halla is active", comment: ""))
+				global.showAlert("", message: NSLocalizedString("menu_not_available", value: "Menus are unavailable while Panic is active", comment: ""))
 			}
 		}
 	}
@@ -390,7 +390,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 	func setupTutorial() {
 		btnPanic.setTitle("Activate", for: UIControlState())
 		descriptionCount = 0
-		lblDescription.text = NSLocalizedString("main_tut_1", value: "Tap the Halla button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live.", comment: "First part of main tutorial")
+		lblDescription.text = NSLocalizedString("main_tut_1", value: "Tap the Panic button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live.", comment: "First part of main tutorial")
 		viewTutorialPanic.isHidden = false
 		btnPanic.layer.cornerRadius = 0.5 * btnPanic.bounds.size.width
 		btnPanic.layer.borderWidth = 2
@@ -420,7 +420,7 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 			break;
 			
 		case 2:
-			animateTextChange(NSLocalizedString("main_tut_3", value: "When activating the Halla button, there is a 5 second delay before notifications are sent out - in case of accidental activations. This delay can be disabled in Settings.", comment: ""))
+			animateTextChange(NSLocalizedString("main_tut_3", value: "When activating the Panic button, there is a 5 second delay before notifications are sent out - in case of accidental activations. This delay can be disabled in Settings.", comment: ""))
 			break;
 			
 		case 3:

@@ -143,7 +143,7 @@ class HistoryDetailsViewController: UIViewController, CLLocationManagerDelegate,
 		if(MFMailComposeViewController.canSendMail()) {
 			let currentUser = PFUser.current()!["name"] as! String
 			mail.mailComposeDelegate = self
-			mail.setSubject("Halla - Report User")
+			mail.setSubject("Panic - Report User")
 			mail.setToRecipients(["byroncoetsee@gmail.com"])
 			mail.setMessageBody("Your username: \(currentUser).<br/>Their username: \(lblName.text!).<br/>Date: \(lblDate.text!)<br/>Time: \(lblTimes.text!)<br/>Their Contact: \(lblContact.text!)<br/><br/>" +
 				"Reason: ", isHTML: true)

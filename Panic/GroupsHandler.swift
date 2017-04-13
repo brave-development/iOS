@@ -167,7 +167,7 @@ class GroupsHandler: UIViewController {
 			updateGroups(groupName, add: true)
 			PFInstallation.current()?.addUniqueObject(groupName.formatGroupForChannel(), forKey: "channels")
 			PFInstallation.current()?.saveInBackground(block: nil)
-			global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Halla. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
+			global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Panic. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
 		} else {
 			
 		}

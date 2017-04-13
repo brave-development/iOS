@@ -84,7 +84,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
     @IBAction func panicPressed(_ sender: AnyObject) {
 		tabbarViewController.closeSidebar()
 		if tutorial.swipeToOpenMenu == true {
-			if (btnPanic.titleLabel?.text == NSLocalizedString("activate", value: "Activate", comment: "Button title to activate the Halla button")) {
+			if (btnPanic.titleLabel?.text == NSLocalizedString("activate", value: "Activate", comment: "Button title to activate the Panic button")) {
 				print("Location permission \(locationPermission)")
 				if locationPermission == true {
 					
@@ -93,7 +93,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 					
 					if global.panicConfirmation == true {
 						
-						let saveAlert = UIAlertController(title: NSLocalizedString("activate", value: "Activate", comment: "confirmation to activate the Halla button"), message: NSLocalizedString("activate_confirmation_text", value: "Activate Halla and send notifications?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+						let saveAlert = UIAlertController(title: NSLocalizedString("activate", value: "Activate", comment: "confirmation to activate the Panic button"), message: NSLocalizedString("activate_confirmation_text", value: "Activate Panic and send notifications?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
 						saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
 							self.activatePanic()
 						}))
@@ -103,7 +103,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 						activatePanic()
 					}
 				} else {
-					global.showAlert(NSLocalizedString("location_not_allowed_title", value: "Location Not Allowed", comment: ""), message: NSLocalizedString("location_not_allowed_text", value: "Please enable location services for Halla by going to Settings > Privacy > Location Services.", comment: ""))
+					global.showAlert(NSLocalizedString("location_not_allowed_title", value: "Location Not Allowed", comment: ""), message: NSLocalizedString("location_not_allowed_text", value: "Please enable location services for Panic by going to Settings > Privacy > Location Services.", comment: ""))
 				}
 			} else {
 				deativatePanic()
@@ -168,7 +168,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
             self.tabbarViewController.showTabbar() })
         panicHandler.endPanic()
         manager.stopUpdatingLocation()
-        btnPanic.setTitle(NSLocalizedString("activate", value: "Activate", comment: "Button title to activate the Halla button"), for: UIControlState())
+        btnPanic.setTitle(NSLocalizedString("activate", value: "Activate", comment: "Button title to activate the Panic button"), for: UIControlState())
         btnPanic.layer.borderColor = UIColor.green.cgColor
         btnPanic.layer.shadowColor = UIColor.green.cgColor
 		UIView.animate(withDuration: 0.5, animations: {
@@ -240,13 +240,13 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 		let panicMessage = String(format: NSLocalizedString("panic_notification_message", value: "%@ needs help! Contact them on %@ or view their location in the app.", comment: ""), arguments: [userName, userNumber])
 		push.setData(["alert" : panicMessage, "badge" : "Increment", "sound" : "default", "lat" : manager.location!.coordinate.latitude, "long" : manager.location!.coordinate.longitude])
 		push.sendInBackground(block: {
-			(result : Bool, error : NSError?) -> Void in
+			(result, error) in
 			if result == true {
-				print("Push sent to group \(group?.formatGroupForChannel())")
+				print("Push sent to group \(group!.formatGroupForChannel())")
 			} else if error != nil {
-				print(error)
+				print(error!)
 			}
-		} as! PFBooleanResultBlock)
+		})
 	}
 	
 	func textViewDidEndEditing(_ textView: UITextView) {
@@ -259,7 +259,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 	
 	func updateActivePanics() {
 		tabbarViewController.badge.autoBadgeSize(with: "\(panicHandler.activePanicCount)")
-		print("Updated Halla count from Main")
+		print("Updated Panic count from Main")
 	}
 	
 	override func viewWillDisappear(_ animated: Bool) {

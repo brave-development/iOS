@@ -25,7 +25,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>Halla</string>
+				<string>Panic</string>
 				<string>fb830346543706378</string>
 			</array>
 		</dict>
@@ -46,7 +46,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location permission while the app is in the background or if your phone is asleep is essential for Halla to continue tracking you in an emergency. This can be disabled in the Settings.</string>
+	<string>Location permission while the app is in the background or if your phone is asleep is essential for Panic to continue tracking you in an emergency. This can be disabled in the Settings.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>UIBackgroundModes</key>
@@ -59,6 +59,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need to choose an image from your camera roll</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

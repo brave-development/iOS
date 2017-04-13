@@ -120,7 +120,7 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 			if(MFMailComposeViewController.canSendMail()) {
 				
 				mail.mailComposeDelegate = self
-				mail.setSubject("Halla - Report Group")
+				mail.setSubject("Panic - Report Group")
 				mail.setToRecipients(["byron@panic-sec.org"])
 				mail.setBccRecipients(["byroncoetsee@gmail.com", "bevpaly@gmail.com", "lawrencesuss@gmail.com"])
 				self.parentVC.present(mail, animated: true, completion: nil)
