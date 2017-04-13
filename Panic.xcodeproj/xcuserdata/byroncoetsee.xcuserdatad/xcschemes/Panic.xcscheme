@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0730"
+   LastUpgradeVersion = "0830"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -15,23 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "75162DD91A2B8B3E0094BA31"
-               BuildableName = "Hala.app"
-               BlueprintName = "Hala"
-               ReferencedContainer = "container:Hala.xcodeproj">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "75162DEE1A2B8B3E0094BA31"
-               BuildableName = "Hala.xctest"
-               BlueprintName = "HalaTests"
-               ReferencedContainer = "container:Hala.xcodeproj">
+               BuildableName = "Panic.app"
+               BlueprintName = "Panic"
+               ReferencedContainer = "container:Panic.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -42,24 +28,14 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "75162DEE1A2B8B3E0094BA31"
-               BuildableName = "Hala.xctest"
-               BlueprintName = "HalaTests"
-               ReferencedContainer = "container:Hala.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "75162DD91A2B8B3E0094BA31"
-            BuildableName = "Hala.app"
-            BlueprintName = "Hala"
-            ReferencedContainer = "container:Hala.xcodeproj">
+            BuildableName = "Panic.app"
+            BlueprintName = "Panic"
+            ReferencedContainer = "container:Panic.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -80,9 +56,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "75162DD91A2B8B3E0094BA31"
-            BuildableName = "Hala.app"
-            BlueprintName = "Hala"
-            ReferencedContainer = "container:Hala.xcodeproj">
+            BuildableName = "Panic.app"
+            BlueprintName = "Panic"
+            ReferencedContainer = "container:Panic.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -99,9 +75,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "75162DD91A2B8B3E0094BA31"
-            BuildableName = "Hala.app"
-            BlueprintName = "Hala"
-            ReferencedContainer = "container:Hala.xcodeproj">
+            BuildableName = "Panic.app"
+            BlueprintName = "Panic"
+            ReferencedContainer = "container:Panic.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

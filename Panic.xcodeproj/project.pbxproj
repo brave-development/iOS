@@ -7,9 +7,18 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26CCDFC1F07A2169A12E7775 /* Pods_Halla.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 206A97BD8C8D938314B343B3 /* Pods_Halla.framework */; };
+		5EA0CBAD66523EEA52B18335 /* Pods_Panic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DDDAE8647815ACEBD54F28 /* Pods_Panic.framework */; };
 		750A7D4C1AB6D01D006EAA97 /* TextViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A7D4B1AB6D01D006EAA97 /* TextViewCustom.swift */; };
 		750A7D501AB70ABF006EAA97 /* AnnotationCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A7D4F1AB70ABF006EAA97 /* AnnotationCustom.swift */; };
+		75109B3A1E9F88D00056BBCB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75109B391E9F88D00056BBCB /* AudioToolbox.framework */; };
+		75109B3C1E9F88DE0056BBCB /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75109B3B1E9F88DE0056BBCB /* CFNetwork.framework */; };
+		75109B3E1E9F88E80056BBCB /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75109B3D1E9F88E80056BBCB /* CoreGraphics.framework */; };
+		75109B401E9F88F20056BBCB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75109B3F1E9F88F20056BBCB /* CoreLocation.framework */; };
+		75109B421E9F88FE0056BBCB /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75109B411E9F88FE0056BBCB /* MobileCoreServices.framework */; };
+		75109B441E9F890C0056BBCB /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75109B431E9F890C0056BBCB /* QuartzCore.framework */; };
+		75109B461E9F89170056BBCB /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75109B451E9F89170056BBCB /* Security.framework */; };
+		75109B481E9F89200056BBCB /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75109B471E9F89200056BBCB /* StoreKit.framework */; };
+		75109B4A1E9F89290056BBCB /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75109B491E9F89290056BBCB /* SystemConfiguration.framework */; };
 		75162DE01A2B8B3E0094BA31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75162DDF1A2B8B3E0094BA31 /* AppDelegate.swift */; };
 		75162DE21A2B8B3E0094BA31 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75162DE11A2B8B3E0094BA31 /* LoginViewController.swift */; };
 		75162DE51A2B8B3E0094BA31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75162DE31A2B8B3E0094BA31 /* Main.storyboard */; };
@@ -35,15 +44,6 @@
 		754075601A4C71C600815AED /* tap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7540755F1A4C71C600815AED /* tap@2x.png */; };
 		754075621A4DE8A500815AED /* tapUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754075611A4DE8A500815AED /* tapUp@2x.png */; };
 		7545A63A1A2BBC0600B19E3E /* panic_bridging_file.m in Sources */ = {isa = PBXBuildFile; fileRef = 7545A6391A2BBC0600B19E3E /* panic_bridging_file.m */; };
-		7545A63E1A2BBC4600B19E3E /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7545A63D1A2BBC4600B19E3E /* SystemConfiguration.framework */; };
-		7545A6401A2BBC4F00B19E3E /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7545A63F1A2BBC4F00B19E3E /* StoreKit.framework */; };
-		7545A6461A2BBC7A00B19E3E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7545A6451A2BBC7A00B19E3E /* Security.framework */; };
-		7545A6481A2BBC8700B19E3E /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7545A6471A2BBC8700B19E3E /* QuartzCore.framework */; };
-		7545A64A1A2BBC8F00B19E3E /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7545A6491A2BBC8F00B19E3E /* MobileCoreServices.framework */; };
-		7545A64C1A2BBC9B00B19E3E /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7545A64B1A2BBC9B00B19E3E /* CoreLocation.framework */; };
-		7545A64E1A2BBCA800B19E3E /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7545A64D1A2BBCA800B19E3E /* CoreGraphics.framework */; };
-		7545A6501A2BBCB200B19E3E /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7545A64F1A2BBCB200B19E3E /* CFNetwork.framework */; };
-		7545A6521A2BBCBB00B19E3E /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7545A6511A2BBCBB00B19E3E /* AudioToolbox.framework */; };
 		7545A6541A2BBDEC00B19E3E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545A6531A2BBDEC00B19E3E /* Global.swift */; };
 		7545A6561A2BBE8C00B19E3E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545A6551A2BBE8C00B19E3E /* RegisterViewController.swift */; };
 		7545A65A1A2C899800B19E3E /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545A6591A2C899800B19E3E /* TabBarViewController.swift */; };
@@ -132,18 +132,29 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		17DDDAE8647815ACEBD54F28 /* Pods_Panic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Panic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		206A97BD8C8D938314B343B3 /* Pods_Halla.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Halla.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		34D5BDF56A2A92A4D9680CA0 /* Pods-Panic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Panic/Pods-Panic.debug.xcconfig"; sourceTree = "<group>"; };
 		40F2449244394164C6572DC0 /* Pods-Halla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Halla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Halla/Pods-Halla.release.xcconfig"; sourceTree = "<group>"; };
 		750A7D4B1AB6D01D006EAA97 /* TextViewCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewCustom.swift; sourceTree = "<group>"; };
 		750A7D4F1AB70ABF006EAA97 /* AnnotationCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationCustom.swift; sourceTree = "<group>"; };
-		75162DDA1A2B8B3E0094BA31 /* Halla.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Halla.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75109B391E9F88D00056BBCB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		75109B3B1E9F88DE0056BBCB /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		75109B3D1E9F88E80056BBCB /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		75109B3F1E9F88F20056BBCB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		75109B411E9F88FE0056BBCB /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		75109B431E9F890C0056BBCB /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		75109B451E9F89170056BBCB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		75109B471E9F89200056BBCB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		75109B491E9F89290056BBCB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		75162DDA1A2B8B3E0094BA31 /* Panic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Panic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75162DDE1A2B8B3E0094BA31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75162DDF1A2B8B3E0094BA31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75162DE11A2B8B3E0094BA31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		75162DE41A2B8B3E0094BA31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75162DE61A2B8B3E0094BA31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		75162DE91A2B8B3E0094BA31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		75162DEF1A2B8B3E0094BA31 /* Halla.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Halla.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		75162DEF1A2B8B3E0094BA31 /* Panic.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Panic.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75162DF41A2B8B3E0094BA31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75162DF51A2B8B3E0094BA31 /* PanicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanicTests.swift; sourceTree = "<group>"; };
 		75162E011A2B8EBF0094BA31 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Background@2x.png"; path = "Panic/Images/Background@2x.png"; sourceTree = "<group>"; };
@@ -170,15 +181,6 @@
 		754075611A4DE8A500815AED /* tapUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tapUp@2x.png"; path = "Panic/Images/Tutorial/tapUp@2x.png"; sourceTree = "<group>"; };
 		7545A6381A2BBC0500B19E3E /* Panic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Panic-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		7545A6391A2BBC0600B19E3E /* panic_bridging_file.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = panic_bridging_file.m; sourceTree = "<group>"; };
-		7545A63D1A2BBC4600B19E3E /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		7545A63F1A2BBC4F00B19E3E /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		7545A6451A2BBC7A00B19E3E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		7545A6471A2BBC8700B19E3E /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		7545A6491A2BBC8F00B19E3E /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
-		7545A64B1A2BBC9B00B19E3E /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		7545A64D1A2BBCA800B19E3E /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		7545A64F1A2BBCB200B19E3E /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		7545A6511A2BBCBB00B19E3E /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		7545A6531A2BBDEC00B19E3E /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		7545A6551A2BBE8C00B19E3E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		7545A6591A2C899800B19E3E /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 		75CF75EA1BCBE04F00B18480 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Main.strings; sourceTree = "<group>"; };
 		75CF75EB1BCBE04F00B18480 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		75D869F71B29DEE20065DE37 /* GroupsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsHandler.swift; sourceTree = "<group>"; };
+		ECBA48090E5F8F3B6F6C7BE2 /* Pods-Panic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Panic/Pods-Panic.release.xcconfig"; sourceTree = "<group>"; };
 		FD90C133EE23CFC28DE5AA37 /* Pods-Halla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Halla.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Halla/Pods-Halla.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -242,19 +245,19 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				75109B4A1E9F89290056BBCB /* SystemConfiguration.framework in Frameworks */,
+				75109B481E9F89200056BBCB /* StoreKit.framework in Frameworks */,
+				75109B461E9F89170056BBCB /* Security.framework in Frameworks */,
+				75109B441E9F890C0056BBCB /* QuartzCore.framework in Frameworks */,
+				75109B421E9F88FE0056BBCB /* MobileCoreServices.framework in Frameworks */,
+				75109B401E9F88F20056BBCB /* CoreLocation.framework in Frameworks */,
+				75109B3E1E9F88E80056BBCB /* CoreGraphics.framework in Frameworks */,
+				75109B3C1E9F88DE0056BBCB /* CFNetwork.framework in Frameworks */,
+				75109B3A1E9F88D00056BBCB /* AudioToolbox.framework in Frameworks */,
 				7555E1731B3382E600C0171F /* Accounts.framework in Frameworks */,
 				7555E1711B3382DC00C0171F /* Social.framework in Frameworks */,
 				755F4C731B25C3AC0086CC3E /* libstdc++.6.0.9.dylib in Frameworks */,
-				7545A6521A2BBCBB00B19E3E /* AudioToolbox.framework in Frameworks */,
-				7545A6501A2BBCB200B19E3E /* CFNetwork.framework in Frameworks */,
-				7545A64E1A2BBCA800B19E3E /* CoreGraphics.framework in Frameworks */,
-				7545A64C1A2BBC9B00B19E3E /* CoreLocation.framework in Frameworks */,
-				7545A64A1A2BBC8F00B19E3E /* MobileCoreServices.framework in Frameworks */,
-				7545A6481A2BBC8700B19E3E /* QuartzCore.framework in Frameworks */,
-				7545A6461A2BBC7A00B19E3E /* Security.framework in Frameworks */,
-				7545A6401A2BBC4F00B19E3E /* StoreKit.framework in Frameworks */,
-				7545A63E1A2BBC4600B19E3E /* SystemConfiguration.framework in Frameworks */,
-				26CCDFC1F07A2169A12E7775 /* Pods_Halla.framework in Frameworks */,
+				5EA0CBAD66523EEA52B18335 /* Pods_Panic.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,15 +274,6 @@
 		75162DD11A2B8B3E0094BA31 = {
 			isa = PBXGroup;
 			children = (
-				7545A6511A2BBCBB00B19E3E /* AudioToolbox.framework */,
-				7545A64F1A2BBCB200B19E3E /* CFNetwork.framework */,
-				7545A64D1A2BBCA800B19E3E /* CoreGraphics.framework */,
-				7545A64B1A2BBC9B00B19E3E /* CoreLocation.framework */,
-				7545A6491A2BBC8F00B19E3E /* MobileCoreServices.framework */,
-				7545A6471A2BBC8700B19E3E /* QuartzCore.framework */,
-				7545A6451A2BBC7A00B19E3E /* Security.framework */,
-				7545A63F1A2BBC4F00B19E3E /* StoreKit.framework */,
-				7545A63D1A2BBC4600B19E3E /* SystemConfiguration.framework */,
 				7545A6391A2BBC0600B19E3E /* panic_bridging_file.m */,
 				757DA8601A40A4F60037995C /* Countries.txt */,
 				7574A5F61A2E421D00148645 /* Images */,
@@ -294,8 +288,8 @@
 		75162DDB1A2B8B3E0094BA31 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				75162DDA1A2B8B3E0094BA31 /* Halla.app */,
-				75162DEF1A2B8B3E0094BA31 /* Halla.xctest */,
+				75162DDA1A2B8B3E0094BA31 /* Panic.app */,
+				75162DEF1A2B8B3E0094BA31 /* Panic.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -374,12 +368,22 @@
 		75352AFC1A558CF5000EEFC2 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				75109B491E9F89290056BBCB /* SystemConfiguration.framework */,
+				75109B471E9F89200056BBCB /* StoreKit.framework */,
+				75109B451E9F89170056BBCB /* Security.framework */,
+				75109B431E9F890C0056BBCB /* QuartzCore.framework */,
+				75109B411E9F88FE0056BBCB /* MobileCoreServices.framework */,
+				75109B3F1E9F88F20056BBCB /* CoreLocation.framework */,
+				75109B3D1E9F88E80056BBCB /* CoreGraphics.framework */,
+				75109B3B1E9F88DE0056BBCB /* CFNetwork.framework */,
+				75109B391E9F88D00056BBCB /* AudioToolbox.framework */,
 				757508961B94849600C2CA5D /* floatingButtonTrial.xcodeproj */,
 				7555E1721B3382E600C0171F /* Accounts.framework */,
 				7555E1701B3382DC00C0171F /* Social.framework */,
 				755F4C721B25C3AC0086CC3E /* libstdc++.6.0.9.dylib */,
 				75352AFD1A558CF5000EEFC2 /* NotificationCenter.framework */,
 				206A97BD8C8D938314B343B3 /* Pods_Halla.framework */,
+				17DDDAE8647815ACEBD54F28 /* Pods_Panic.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -472,6 +476,8 @@
 			children = (
 				FD90C133EE23CFC28DE5AA37 /* Pods-Halla.debug.xcconfig */,
 				40F2449244394164C6572DC0 /* Pods-Halla.release.xcconfig */,
+				34D5BDF56A2A92A4D9680CA0 /* Pods-Panic.debug.xcconfig */,
+				ECBA48090E5F8F3B6F6C7BE2 /* Pods-Panic.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -479,9 +485,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		75162DD91A2B8B3E0094BA31 /* Halla */ = {
+		75162DD91A2B8B3E0094BA31 /* Panic */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75162DF91A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "Halla" */;
+			buildConfigurationList = 75162DF91A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "Panic" */;
 			buildPhases = (
 				52868075765964BE0D7FCAD0 /* [CP] Check Pods Manifest.lock */,
 				75162DD61A2B8B3E0094BA31 /* Sources */,
@@ -496,14 +502,14 @@
 			);
 			dependencies = (
 			);
-			name = Halla;
+			name = Panic;
 			productName = Panic;
-			productReference = 75162DDA1A2B8B3E0094BA31 /* Halla.app */;
+			productReference = 75162DDA1A2B8B3E0094BA31 /* Panic.app */;
 			productType = "com.apple.product-type.application";
 		};
-		75162DEE1A2B8B3E0094BA31 /* HallaTests */ = {
+		75162DEE1A2B8B3E0094BA31 /* PanicTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75162DFC1A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "HallaTests" */;
+			buildConfigurationList = 75162DFC1A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "PanicTests" */;
 			buildPhases = (
 				75162DEB1A2B8B3E0094BA31 /* Sources */,
 				75162DEC1A2B8B3E0094BA31 /* Frameworks */,
@@ -514,9 +520,9 @@
 			dependencies = (
 				75162DF11A2B8B3E0094BA31 /* PBXTargetDependency */,
 			);
-			name = HallaTests;
+			name = PanicTests;
 			productName = PanicTests;
-			productReference = 75162DEF1A2B8B3E0094BA31 /* Halla.xctest */;
+			productReference = 75162DEF1A2B8B3E0094BA31 /* Panic.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -549,7 +555,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 75162DD51A2B8B3E0094BA31 /* Build configuration list for PBXProject "Halla" */;
+			buildConfigurationList = 75162DD51A2B8B3E0094BA31 /* Build configuration list for PBXProject "Panic" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -568,8 +574,8 @@
 			);
 			projectRoot = "";
 			targets = (
-				75162DD91A2B8B3E0094BA31 /* Halla */,
-				75162DEE1A2B8B3E0094BA31 /* HallaTests */,
+				75162DD91A2B8B3E0094BA31 /* Panic */,
+				75162DEE1A2B8B3E0094BA31 /* PanicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -662,7 +668,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Halla/Pods-Halla-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Panic/Pods-Panic-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2E69E2C40A7C4E8082DDB8C5 /* [CP] Copy Pods Resources */ = {
@@ -677,7 +683,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Halla/Pods-Halla-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Panic/Pods-Panic-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		52868075765964BE0D7FCAD0 /* [CP] Check Pods Manifest.lock */ = {
@@ -761,7 +767,7 @@
 /* Begin PBXTargetDependency section */
 		75162DF11A2B8B3E0094BA31 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75162DD91A2B8B3E0094BA31 /* Halla */;
+			target = 75162DD91A2B8B3E0094BA31 /* Panic */;
 			targetProxy = 75162DF01A2B8B3E0094BA31 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -898,7 +904,7 @@
 		};
 		75162DFA1A2B8B3E0094BA31 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FD90C133EE23CFC28DE5AA37 /* Pods-Halla.debug.xcconfig */;
+			baseConfigurationReference = 34D5BDF56A2A92A4D9680CA0 /* Pods-Panic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -919,7 +925,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SoC.Panic;
-				PRODUCT_NAME = Halla;
+				PRODUCT_NAME = Panic;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Panic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -930,7 +936,7 @@
 		};
 		75162DFB1A2B8B3E0094BA31 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 40F2449244394164C6572DC0 /* Pods-Halla.release.xcconfig */;
+			baseConfigurationReference = ECBA48090E5F8F3B6F6C7BE2 /* Pods-Panic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -951,7 +957,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SoC.Panic;
-				PRODUCT_NAME = Halla;
+				PRODUCT_NAME = Panic;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Panic-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -974,9 +980,9 @@
 				INFOPLIST_FILE = PanicTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SoC.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = Halla;
+				PRODUCT_NAME = Panic;
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Halla.app/Halla";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Panic.app/Panic";
 			};
 			name = Debug;
 		};
@@ -991,16 +997,16 @@
 				INFOPLIST_FILE = PanicTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SoC.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = Halla;
+				PRODUCT_NAME = Panic;
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Halla.app/Halla";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Panic.app/Panic";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		75162DD51A2B8B3E0094BA31 /* Build configuration list for PBXProject "Halla" */ = {
+		75162DD51A2B8B3E0094BA31 /* Build configuration list for PBXProject "Panic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75162DF71A2B8B3E0094BA31 /* Debug */,
@@ -1009,7 +1015,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75162DF91A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "Halla" */ = {
+		75162DF91A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "Panic" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75162DFA1A2B8B3E0094BA31 /* Debug */,
@@ -1018,7 +1024,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75162DFC1A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "HallaTests" */ = {
+		75162DFC1A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "PanicTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75162DFD1A2B8B3E0094BA31 /* Debug */,

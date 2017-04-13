@@ -17,7 +17,7 @@ class CustomNavigationSegue: UIStoryboardSegue {
         
         switch (destinationController.title!) {
             
-        case "Halla":
+        case "Panic":
             let main = destinationController as! MainViewController
             main.tabbarViewController = tabBarController
             tabBarController.showTabbar()

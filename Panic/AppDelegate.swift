@@ -21,7 +21,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 //		ParseCrashReporting.enable()
-        Parse.setApplicationId("cBZmGCzXfaQAyxqnTh6eF2kIqCUnSm1ET8wYL5O7", clientKey:"rno7DabpDMU293yi2TF4S3jKOlrZX2P27EW70C3G")
+//        Parse.setApplicationId("cBZmGCzXfaQAyxqnTh6eF2kIqCUnSm1ET8wYL5O7", clientKey:"rno7DabpDMU293yi2TF4S3jKOlrZX2P27EW70C3G")
+        let configuration = ParseClientConfiguration {
+            $0.applicationId = "PANICING-TURTLE"
+            $0.server = "https://panicing-turtle.herokuapp.com/parse"
+        }
+        Parse.initialize(with: configuration)
+        
         PFAnalytics.trackAppOpenedWithLaunchOptions(inBackground: launchOptions, block: nil)
 		print(PFInstallation.current())
 		
