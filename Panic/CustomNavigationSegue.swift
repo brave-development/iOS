@@ -12,48 +12,48 @@ class CustomNavigationSegue: UIStoryboardSegue {
     
     override func perform() {
         
-        let tabBarController = self.source as! TabBarViewController
+        let mainViewController = self.source as! MainViewController
         let destinationController = self.destination 
         
         switch (destinationController.title!) {
             
         case "Panic":
-            let main = destinationController as! MainViewController
-            main.tabbarViewController = tabBarController
-            tabBarController.showTabbar()
-//			tabBarController.tapRecognizer.enabled = true
+            let main = destinationController as! PanicButtonViewController
+            main.mainViewController = mainViewController
+            mainViewController.showTabbar()
+//			mainViewController.tapRecognizer.enabled = true
             break;
             
         case "Groups":
-            tabBarController.hideTabbar()
-//			tabBarController.tapRecognizer.enabled = true
+            mainViewController.hideTabbar()
+//			mainViewController.tapRecognizer.enabled = true
             break;
             
         case "Settings":
             let settings = destinationController as! SettingsTableViewController
-            settings.tabbarViewController = tabBarController
-//			tabBarController.tapRecognizer.enabled = true
+            settings.mainViewController = mainViewController
+//			mainViewController.tapRecognizer.enabled = true
             break;
 			
 		case "Public History":
-//			tabBarController.tapRecognizer.enabled = false
+//			mainViewController.tapRecognizer.enabled = false
 			break
 			
 		case "Local History":
-//			tabBarController.tapRecognizer.enabled = false
+//			mainViewController.tapRecognizer.enabled = false
 			break
             
         default:
-//			tabBarController.tapRecognizer.enabled = true
+//			mainViewController.tapRecognizer.enabled = true
             break;
         }
         
-        for view in tabBarController.placeholderView.subviews {
+        for view in mainViewController.placeholderView.subviews {
             view.removeFromSuperview()
         }
-        tabBarController.currentViewController = destinationController
-        tabBarController.placeholderView.addSubview(destinationController.view)
-        tabBarController.placeholderView.clipsToBounds = true
+        mainViewController.currentViewController = destinationController
+        mainViewController.placeholderView.addSubview(destinationController.view)
+        mainViewController.placeholderView.clipsToBounds = true
     }
     
 }

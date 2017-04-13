@@ -295,9 +295,9 @@ class GroupsHandler: UIViewController {
 					if result == true {
 						print("GROUP CREATED")
 					} else {
-						print(error)
+						print(error!)
 					}
-					print(error)
+					print(error!)
 				})
 			} else {
 				print("FOUND GROUP")

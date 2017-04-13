@@ -137,7 +137,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     func manageLogin() {
         if global.getUserInformation() == true {
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc: TabBarViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! TabBarViewController
+            let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
             vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             self.present(vc, animated: true, completion: nil)
 		}

@@ -25,7 +25,7 @@
 		75162DE71A2B8B3E0094BA31 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75162DE61A2B8B3E0094BA31 /* Images.xcassets */; };
 		75162DF61A2B8B3E0094BA31 /* PanicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75162DF51A2B8B3E0094BA31 /* PanicTests.swift */; };
 		75162E021A2B8EBF0094BA31 /* Background@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75162E011A2B8EBF0094BA31 /* Background@2x.png */; };
-		75162E041A2B9EA10094BA31 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75162E031A2B9EA10094BA31 /* MainViewController.swift */; };
+		75162E041A2B9EA10094BA31 /* PanicButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75162E031A2B9EA10094BA31 /* PanicButtonViewController.swift */; };
 		752AA6F01B94973B005BE9FC /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 752AA6EF1B94973B005BE9FC /* plus.png */; };
 		752AA6F41B94976C005BE9FC /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 752AA6F31B94976C005BE9FC /* cross.png */; };
 		752AA6FB1B94A34A005BE9FC /* create.png in Resources */ = {isa = PBXBuildFile; fileRef = 752AA6FA1B94A34A005BE9FC /* create.png */; };
@@ -43,10 +43,9 @@
 		752DE9991A3C4C2800784B94 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 752DE9981A3C4C2800784B94 /* SettingsTableViewController.swift */; };
 		754075601A4C71C600815AED /* tap@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7540755F1A4C71C600815AED /* tap@2x.png */; };
 		754075621A4DE8A500815AED /* tapUp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754075611A4DE8A500815AED /* tapUp@2x.png */; };
-		7545A63A1A2BBC0600B19E3E /* panic_bridging_file.m in Sources */ = {isa = PBXBuildFile; fileRef = 7545A6391A2BBC0600B19E3E /* panic_bridging_file.m */; };
 		7545A6541A2BBDEC00B19E3E /* Global.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545A6531A2BBDEC00B19E3E /* Global.swift */; };
 		7545A6561A2BBE8C00B19E3E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545A6551A2BBE8C00B19E3E /* RegisterViewController.swift */; };
-		7545A65A1A2C899800B19E3E /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545A6591A2C899800B19E3E /* TabBarViewController.swift */; };
+		7545A65A1A2C899800B19E3E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545A6591A2C899800B19E3E /* MainViewController.swift */; };
 		7545A65C1A2C8A3100B19E3E /* CustomNavigationSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7545A65B1A2C8A3100B19E3E /* CustomNavigationSegue.swift */; };
 		754B90251A47707F00BDC20B /* blank.png in Resources */ = {isa = PBXBuildFile; fileRef = 754B90241A47707F00BDC20B /* blank.png */; };
 		754B90311A4C287C00BDC20B /* swipeRight@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 754B90301A4C287C00BDC20B /* swipeRight@2x.png */; };
@@ -157,7 +156,7 @@
 		75162DF41A2B8B3E0094BA31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75162DF51A2B8B3E0094BA31 /* PanicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanicTests.swift; sourceTree = "<group>"; };
 		75162E011A2B8EBF0094BA31 /* Background@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Background@2x.png"; path = "Panic/Images/Background@2x.png"; sourceTree = "<group>"; };
-		75162E031A2B9EA10094BA31 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		75162E031A2B9EA10094BA31 /* PanicButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanicButtonViewController.swift; sourceTree = "<group>"; };
 		752AA6EF1B94973B005BE9FC /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = plus.png; path = Panic/Images/plus.png; sourceTree = "<group>"; };
 		752AA6F31B94976C005BE9FC /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cross.png; path = Panic/Images/cross.png; sourceTree = "<group>"; };
 		752AA6FA1B94A34A005BE9FC /* create.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = create.png; path = Panic/Images/create.png; sourceTree = "<group>"; };
@@ -179,10 +178,9 @@
 		7540755F1A4C71C600815AED /* tap@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tap@2x.png"; path = "Panic/Images/Tutorial/tap@2x.png"; sourceTree = "<group>"; };
 		754075611A4DE8A500815AED /* tapUp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "tapUp@2x.png"; path = "Panic/Images/Tutorial/tapUp@2x.png"; sourceTree = "<group>"; };
 		7545A6381A2BBC0500B19E3E /* Panic-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Panic-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
-		7545A6391A2BBC0600B19E3E /* panic_bridging_file.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = panic_bridging_file.m; sourceTree = "<group>"; };
 		7545A6531A2BBDEC00B19E3E /* Global.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Global.swift; sourceTree = "<group>"; };
 		7545A6551A2BBE8C00B19E3E /* RegisterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
-		7545A6591A2C899800B19E3E /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
+		7545A6591A2C899800B19E3E /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7545A65B1A2C8A3100B19E3E /* CustomNavigationSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomNavigationSegue.swift; sourceTree = "<group>"; };
 		754B90241A47707F00BDC20B /* blank.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blank.png; path = Panic/Images/blank.png; sourceTree = "<group>"; };
 		754B90301A4C287C00BDC20B /* swipeRight@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "swipeRight@2x.png"; path = "Panic/Images/Tutorial/swipeRight@2x.png"; sourceTree = "<group>"; };
@@ -219,7 +217,7 @@
 		7574A6031A2E4D4F00148645 /* GroupsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsViewController.swift; sourceTree = "<group>"; };
 		757508961B94849600C2CA5D /* floatingButtonTrial.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = floatingButtonTrial.xcodeproj; path = "VCFloatingActionButton-master/floatingButtonTrial.xcodeproj"; sourceTree = "<group>"; };
 		757DA85E1A3F965D0037995C /* CountriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountriesViewController.swift; sourceTree = "<group>"; };
-		757DA8601A40A4F60037995C /* Countries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Countries.txt; path = Panic/Countries.txt; sourceTree = "<group>"; };
+		757DA8601A40A4F60037995C /* Countries.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Countries.txt; sourceTree = "<group>"; };
 		7583FA9F1B81E63D00CFD09C /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lock.png; path = Panic/Images/lock.png; sourceTree = "<group>"; };
 		7586AC531A30DAB5003DC023 /* PublicHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublicHistoryTableViewCell.swift; sourceTree = "<group>"; };
 		7586AC571A31AF5F003DC023 /* LaunchImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage@2x.png"; sourceTree = "<group>"; };
@@ -269,11 +267,174 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		75109B4B1EA020590056BBCB /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				7574A5EA1A2DB81F00148645 /* MapViewController.swift */,
+			);
+			name = Map;
+			sourceTree = "<group>";
+		};
+		75109B4C1EA0206A0056BBCB /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				752DE9981A3C4C2800784B94 /* SettingsTableViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		75109B4D1EA0208B0056BBCB /* Groups */ = {
+			isa = PBXGroup;
+			children = (
+				75109B5C1EA026250056BBCB /* Cells */,
+				752AA7381BB2E2F9005BE9FC /* AddPublicGroupViewController.swift */,
+				752AA6FF1B94F56E005BE9FC /* CreateGroupViewController.swift */,
+				7586AC5D1A322BFA003DC023 /* AddNewGroupViewController.swift */,
+				7574A6031A2E4D4F00148645 /* GroupsViewController.swift */,
+			);
+			name = Groups;
+			sourceTree = "<group>";
+		};
+		75109B4E1EA020A00056BBCB /* History */ = {
+			isa = PBXGroup;
+			children = (
+				755100FB1B28A15300148E90 /* Cells */,
+				754C76E51A45A67B0007C53B /* HistoryDetailsViewController.swift */,
+				75606E7D1A37B9210089744C /* LocalHistoryViewController.swift */,
+			);
+			name = History;
+			sourceTree = "<group>";
+		};
+		75109B4F1EA024840056BBCB /* Login/Register */ = {
+			isa = PBXGroup;
+			children = (
+				75109B511EA024910056BBCB /* Register */,
+				75109B501EA0248D0056BBCB /* Login */,
+			);
+			name = Login/Register;
+			sourceTree = "<group>";
+		};
+		75109B501EA0248D0056BBCB /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				75162DE11A2B8B3E0094BA31 /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
+		75109B511EA024910056BBCB /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				7545A6551A2BBE8C00B19E3E /* RegisterViewController.swift */,
+				754C76D91A42E9B50007C53B /* RegisterTableViewController.swift */,
+			);
+			name = Register;
+			sourceTree = "<group>";
+		};
+		75109B521EA024A60056BBCB /* Global */ = {
+			isa = PBXGroup;
+			children = (
+				75162DE31A2B8B3E0094BA31 /* Main.storyboard */,
+				75162DE81A2B8B3E0094BA31 /* LaunchScreen.xib */,
+				75162DDF1A2B8B3E0094BA31 /* AppDelegate.swift */,
+				7545A6531A2BBDEC00B19E3E /* Global.swift */,
+				75162DE61A2B8B3E0094BA31 /* Images.xcassets */,
+			);
+			name = Global;
+			sourceTree = "<group>";
+		};
+		75109B531EA024CE0056BBCB /* SubClassed */ = {
+			isa = PBXGroup;
+			children = (
+				7545A65B1A2C8A3100B19E3E /* CustomNavigationSegue.swift */,
+			);
+			name = SubClassed;
+			sourceTree = "<group>";
+		};
+		75109B541EA025090056BBCB /* UI Elements */ = {
+			isa = PBXGroup;
+			children = (
+				75109B571EA025390056BBCB /* Other */,
+				75109B561EA0252C0056BBCB /* Floating Action Button */,
+				75109B551EA025140056BBCB /* Float Table View */,
+			);
+			name = "UI Elements";
+			sourceTree = "<group>";
+		};
+		75109B551EA025140056BBCB /* Float Table View */ = {
+			isa = PBXGroup;
+			children = (
+				752AA7091B98465C005BE9FC /* floatTableViewCell.h */,
+				752AA70A1B98465C005BE9FC /* floatTableViewCell.m */,
+				752AA70B1B98465C005BE9FC /* floatTableViewCell.xib */,
+			);
+			name = "Float Table View";
+			sourceTree = "<group>";
+		};
+		75109B561EA0252C0056BBCB /* Floating Action Button */ = {
+			isa = PBXGroup;
+			children = (
+				752AA70C1B98465C005BE9FC /* VCFloatingActionButton.h */,
+				752AA70D1B98465C005BE9FC /* VCFloatingActionButton.m */,
+			);
+			name = "Floating Action Button";
+			sourceTree = "<group>";
+		};
+		75109B571EA025390056BBCB /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				752AA71B1BA5D7E4005BE9FC /* Tooltip.swift */,
+				750A7D4B1AB6D01D006EAA97 /* TextViewCustom.swift */,
+				750A7D4F1AB70ABF006EAA97 /* AnnotationCustom.swift */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		75109B581EA025510056BBCB /* Handlers */ = {
+			isa = PBXGroup;
+			children = (
+				75D869F71B29DEE20065DE37 /* GroupsHandler.swift */,
+				75606E6D1A36E4110089744C /* PanicHandler.swift */,
+			);
+			name = Handlers;
+			sourceTree = "<group>";
+		};
+		75109B591EA025A20056BBCB /* Main View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				7545A6591A2C899800B19E3E /* MainViewController.swift */,
+			);
+			name = "Main View Controller";
+			sourceTree = "<group>";
+		};
+		75109B5A1EA025B40056BBCB /* Panic Button */ = {
+			isa = PBXGroup;
+			children = (
+				75162E031A2B9EA10094BA31 /* PanicButtonViewController.swift */,
+			);
+			name = "Panic Button";
+			sourceTree = "<group>";
+		};
+		75109B5B1EA025D60056BBCB /* Countries */ = {
+			isa = PBXGroup;
+			children = (
+				757DA8601A40A4F60037995C /* Countries.txt */,
+				757DA85E1A3F965D0037995C /* CountriesViewController.swift */,
+			);
+			name = Countries;
+			sourceTree = "<group>";
+		};
+		75109B5C1EA026250056BBCB /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				755100FC1B28A1F100148E90 /* GroupsTableViewCell.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		75162DD11A2B8B3E0094BA31 = {
 			isa = PBXGroup;
 			children = (
-				7545A6391A2BBC0600B19E3E /* panic_bridging_file.m */,
-				757DA8601A40A4F60037995C /* Countries.txt */,
 				7574A5F61A2E421D00148645 /* Images */,
 				75162DDC1A2B8B3E0094BA31 /* Panic */,
 				75162DF21A2B8B3E0094BA31 /* PanicTests */,
@@ -295,31 +456,17 @@
 		75162DDC1A2B8B3E0094BA31 /* Panic */ = {
 			isa = PBXGroup;
 			children = (
-				755100FB1B28A15300148E90 /* Cells */,
-				75162DE31A2B8B3E0094BA31 /* Main.storyboard */,
-				75162DDF1A2B8B3E0094BA31 /* AppDelegate.swift */,
-				7545A6551A2BBE8C00B19E3E /* RegisterViewController.swift */,
-				754C76D91A42E9B50007C53B /* RegisterTableViewController.swift */,
-				75162DE11A2B8B3E0094BA31 /* LoginViewController.swift */,
-				75162E031A2B9EA10094BA31 /* MainViewController.swift */,
-				7574A5EA1A2DB81F00148645 /* MapViewController.swift */,
-				7545A6591A2C899800B19E3E /* TabBarViewController.swift */,
-				7574A6031A2E4D4F00148645 /* GroupsViewController.swift */,
-				752AA6FF1B94F56E005BE9FC /* CreateGroupViewController.swift */,
-				752DE9981A3C4C2800784B94 /* SettingsTableViewController.swift */,
-				7586AC5D1A322BFA003DC023 /* AddNewGroupViewController.swift */,
-				75606E7D1A37B9210089744C /* LocalHistoryViewController.swift */,
-				754C76E51A45A67B0007C53B /* HistoryDetailsViewController.swift */,
-				757DA85E1A3F965D0037995C /* CountriesViewController.swift */,
-				7545A65B1A2C8A3100B19E3E /* CustomNavigationSegue.swift */,
-				75162DE61A2B8B3E0094BA31 /* Images.xcassets */,
-				75162DE81A2B8B3E0094BA31 /* LaunchScreen.xib */,
+				75109B521EA024A60056BBCB /* Global */,
+				75109B4F1EA024840056BBCB /* Login/Register */,
+				75109B591EA025A20056BBCB /* Main View Controller */,
+				75109B5A1EA025B40056BBCB /* Panic Button */,
+				75109B4B1EA020590056BBCB /* Map */,
+				75109B4D1EA0208B0056BBCB /* Groups */,
+				75109B4E1EA020A00056BBCB /* History */,
+				75109B4C1EA0206A0056BBCB /* Settings */,
+				75109B5B1EA025D60056BBCB /* Countries */,
+				75109B581EA025510056BBCB /* Handlers */,
 				75162DDD1A2B8B3E0094BA31 /* Supporting Files */,
-				754B90331A4C2D0B00BDC20B /* Tutorial.swift */,
-				755D4ED31AB4760E001F4590 /* Drawing.swift */,
-				750A7D4B1AB6D01D006EAA97 /* TextViewCustom.swift */,
-				750A7D4F1AB70ABF006EAA97 /* AnnotationCustom.swift */,
-				752AA7381BB2E2F9005BE9FC /* AddPublicGroupViewController.swift */,
 			);
 			path = Panic;
 			sourceTree = "<group>";
@@ -327,19 +474,14 @@
 		75162DDD1A2B8B3E0094BA31 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				754B90331A4C2D0B00BDC20B /* Tutorial.swift */,
+				755D4ED31AB4760E001F4590 /* Drawing.swift */,
+				75109B541EA025090056BBCB /* UI Elements */,
+				75109B531EA024CE0056BBCB /* SubClassed */,
 				7551BB751BCD52DC0041A541 /* Localizable.strings */,
 				7551BB691BCD2EE80041A541 /* InfoPlist.strings */,
-				7545A6531A2BBDEC00B19E3E /* Global.swift */,
-				752AA7091B98465C005BE9FC /* floatTableViewCell.h */,
-				752AA70A1B98465C005BE9FC /* floatTableViewCell.m */,
-				752AA70B1B98465C005BE9FC /* floatTableViewCell.xib */,
-				752AA70C1B98465C005BE9FC /* VCFloatingActionButton.h */,
-				752AA70D1B98465C005BE9FC /* VCFloatingActionButton.m */,
-				75D869F71B29DEE20065DE37 /* GroupsHandler.swift */,
-				75606E6D1A36E4110089744C /* PanicHandler.swift */,
 				7545A6381A2BBC0500B19E3E /* Panic-Bridging-Header.h */,
 				75162DDE1A2B8B3E0094BA31 /* Info.plist */,
-				752AA71B1BA5D7E4005BE9FC /* Tooltip.swift */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -410,7 +552,6 @@
 			isa = PBXGroup;
 			children = (
 				7586AC531A30DAB5003DC023 /* PublicHistoryTableViewCell.swift */,
-				755100FC1B28A1F100148E90 /* GroupsTableViewCell.swift */,
 				75A875321B3404B7004A3E17 /* LocalHistoryTableViewCell.swift */,
 			);
 			name = Cells;
@@ -724,7 +865,7 @@
 				754C76DA1A42E9B50007C53B /* RegisterTableViewController.swift in Sources */,
 				750A7D4C1AB6D01D006EAA97 /* TextViewCustom.swift in Sources */,
 				7545A65C1A2C8A3100B19E3E /* CustomNavigationSegue.swift in Sources */,
-				75162E041A2B9EA10094BA31 /* MainViewController.swift in Sources */,
+				75162E041A2B9EA10094BA31 /* PanicButtonViewController.swift in Sources */,
 				752AA7001B94F56E005BE9FC /* CreateGroupViewController.swift in Sources */,
 				7586AC5E1A322BFA003DC023 /* AddNewGroupViewController.swift in Sources */,
 				75606E6E1A36E4110089744C /* PanicHandler.swift in Sources */,
@@ -740,11 +881,10 @@
 				75606E7E1A37B9210089744C /* LocalHistoryViewController.swift in Sources */,
 				750A7D501AB70ABF006EAA97 /* AnnotationCustom.swift in Sources */,
 				7545A6561A2BBE8C00B19E3E /* RegisterViewController.swift in Sources */,
-				7545A65A1A2C899800B19E3E /* TabBarViewController.swift in Sources */,
+				7545A65A1A2C899800B19E3E /* MainViewController.swift in Sources */,
 				7545A6541A2BBDEC00B19E3E /* Global.swift in Sources */,
 				754B90341A4C2D0B00BDC20B /* Tutorial.swift in Sources */,
 				752DE9991A3C4C2800784B94 /* SettingsTableViewController.swift in Sources */,
-				7545A63A1A2BBC0600B19E3E /* panic_bridging_file.m in Sources */,
 				75D869F81B29DEE20065DE37 /* GroupsHandler.swift in Sources */,
 				7574A6041A2E4D4F00148645 /* GroupsViewController.swift in Sources */,
 			);

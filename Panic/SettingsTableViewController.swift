@@ -35,7 +35,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 	@IBOutlet weak var switchBackgroundUpdate: UISwitch!
     @IBOutlet weak var btnCountry: UIButton!
     
-    var tabbarViewController : TabBarViewController!
+    var mainViewController : MainViewController!
     var changed = false
     var currentlySelectedTextFieldValue = ""
     var newPassword : String?
@@ -164,7 +164,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 		PFUser.logOut()
 		PFInstallation.current()?.setObject(["", "logged_out"], forKey: "channels")
 		PFInstallation.current()?.saveInBackground(block: nil)
-		self.tabbarViewController.back()
+		self.mainViewController.back()
 	}
 	
     @IBAction func deleteAccount(_ sender: AnyObject) {
@@ -184,7 +184,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 								if result == true {
 									PFUser.current()!.deleteInBackground(block: nil)
 									if PFUser.current() != nil { PFUser.logOut() }
-									self.tabbarViewController.back()
+									self.mainViewController.back()
 									global.showAlert("", message: "Thanks for using Panic. Goodbye.")
 								}
 							})

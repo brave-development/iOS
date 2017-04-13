@@ -483,11 +483,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	
 	func updateActivePanics() {
 		//		if panicHandler.activePanicCount > 0 {
-		//			tabbarViewController.badge.hidden = false
+		//			mainViewController.badge.hidden = false
 		//		} else {
-		//			tabbarViewController.badge.hidden = true
+		//			mainViewController.badge.hidden = true
 		//		}
-//		tabbarViewController.badge.autoBadgeSizeWithString("\(panicHandler.activePanicCount)")
+//		mainViewController.badge.autoBadgeSizeWithString("\(panicHandler.activePanicCount)")
 //		print("Updated panic count from Map")
 	}
     
