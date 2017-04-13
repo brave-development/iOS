@@ -234,7 +234,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, CLLocat
 		} else {
 			tempQuery!.whereKey("channels", equalTo: "panic_global")
 		}
-		tempQuery!.whereKey("installationId", notEqualTo: PFInstallation.current()?.installationId)
+		tempQuery!.whereKey("installationId", notEqualTo: PFInstallation.current()!.installationId)
 		push.setQuery(tempQuery as! PFQuery<PFInstallation>)
 		push.expire(afterTimeInterval: 18000) // 5 Hours
 		let panicMessage = String(format: NSLocalizedString("panic_notification_message", value: "%@ needs help! Contact them on %@ or view their location in the app.", comment: ""), arguments: [userName, userNumber])

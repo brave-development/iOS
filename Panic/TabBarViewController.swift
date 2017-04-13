@@ -296,10 +296,6 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		}
 	}
 	
-	func updateViews() {
-		
-	}
-	
 	func back() {
 		self.dismiss(animated: true, completion: nil)
 	}
@@ -338,7 +334,9 @@ class TabBarViewController: UIViewController, UIGestureRecognizerDelegate, MFMai
 		}
 	}
 	
+    
 	// Tutorial
+    
 	
 	func animateSwipeRight() {
 		layoutLeftSwipeRight.constant = 8
