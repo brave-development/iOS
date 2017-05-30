@@ -23,7 +23,6 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 	@IBOutlet weak var sidebarLeftLayout: NSLayoutConstraint!
 	@IBOutlet weak var btnHome: UIButton!
 	@IBOutlet var btnLogout : UIButton!
-//	@IBOutlet weak var btnMenu: UIButton!
 	@IBOutlet weak var viewSidebar: UIView!
 	@IBOutlet weak var profilePic: UIImageView!
 	@IBOutlet weak var lblName: UILabel!

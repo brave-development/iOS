@@ -239,7 +239,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
 					for group in groupsHandler.joinedGroups {
 						sendNotification(group)
 					}
-					sendNotification(nil)
+					sendNotification()
 				}
 				allowAddToPushQue = true
 				pendingPushNotifications = false
@@ -251,8 +251,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
 		}
     }
 	
-    func sendNotification(_ group: String? = "panic_global") {
-        //		let push = PFPush()
+    func sendNotification(_ group: String? = "panic_global") { 
         let userName = PFUser.current()!["name"] as! String
         let userNumber = PFUser.current()!["cellNumber"] as! String
         
@@ -262,7 +261,6 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
              "contactNumber" : userNumber]
         ) {
             response, error in
-            // ratings is 4.5
         }
         
         //		let tempQuery = PFInstallation.query()
@@ -295,7 +293,8 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
 	}
 	
 	func updateActivePanics() {
-		mainViewController.badge.autoBadgeSize(with: "\(panicHandler.activePanicCount)")
+        mainViewController.badge.autoBadgeSize(with: "\(panicHandler.activePanicCount)")
+        mainViewController.badge.isHidden = panicHandler.activePanicCount == 0
 		print("Updated Panic count from Main")
 	}
 	

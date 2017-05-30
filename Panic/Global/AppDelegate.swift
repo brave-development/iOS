@@ -104,7 +104,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         if let refreshedToken = FIRInstanceID.instanceID().token() {
             print("Firebase InstanceID token: \(refreshedToken)")
-            PFInstallation.current()?.setValue(refreshedToken, forKey: "FirebaseID")
+            PFInstallation.current()?.setValue(refreshedToken, forKey: "firebaseID")
             PFInstallation.current()?.saveInBackground()
         }
         
