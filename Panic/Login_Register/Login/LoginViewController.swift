@@ -75,6 +75,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //        var user = PFUser()
         PFUser.logInWithUsername(inBackground: txtUsername.text!.lowercased().trim(), password: txtPassword.text!.trim(), block: {
 			(user, error) in
+            print(user)
             if (error != nil) {
                 print(error!)
 				let unsuccessful = NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: "")
@@ -188,8 +189,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     func animateTextField(_ textField : UITextField, up : Bool)
     {
-        if (up == true) {
-            self.bottomLayout.constant = 230
+        if up == true {
+            self.bottomLayout.constant = 270
         } else {
             self.bottomLayout.constant = 160
         }

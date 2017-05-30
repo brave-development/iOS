@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>2.0.2</string>
+	<string>3</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -31,7 +31,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2.0.2.1</string>
+	<string>2</string>
 	<key>FacebookAppID</key>
 	<string>830346543706378</string>
 	<key>FacebookDisplayName</key>
@@ -49,6 +49,8 @@
 	<string>Location permission while the app is in the background or if your phone is asleep is essential for Panic to continue tracking you in an emergency. This can be disabled in the Settings.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need to choose an image from your camera roll</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>location</string>
@@ -59,8 +61,8 @@
 	<array>
 		<string>armv7</string>
 	</array>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need to choose an image from your camera roll</string>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

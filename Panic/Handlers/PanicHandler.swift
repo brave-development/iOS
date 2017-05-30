@@ -38,8 +38,7 @@ class PanicHandler: UIViewController {
             
             queryObject.saveInBackground(block: {
                 (result, error) in
-                if result == true
-				{
+                if result {
                     self.updating = false
                     self.objectInUse = true
 					self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.getResponderCount), userInfo: nil, repeats: true)

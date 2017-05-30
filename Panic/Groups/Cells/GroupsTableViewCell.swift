@@ -135,10 +135,6 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 			self.btnLeave.sendActions(for: UIControlEvents.touchUpInside)
 		}
 		
-		// HIDE
-//		let deleteAction = UIAlertAction(title: "Hide", style: .Destructive) { (_) in
-//		}
-		
 		let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in }
 		
 		// SHARE - if private
@@ -149,10 +145,8 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 			options.addAction(reportAction)
 		}
 		
-//		options.addAction(editAction)
 		options.addAction(reportAction)
 		options.addAction(leaveJoinAction)
-//		options.addAction(deleteAction)
 		options.addAction(cancelAction)
 		
 		options.popoverPresentationController?.sourceView = self.btnMore
@@ -255,11 +249,6 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 		let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
 		let groupName = self.object!["flatValue"] as! String
 		let getImagePath = URL(string: documentsPath)?.appendingPathComponent("\(groupName).jpg", isDirectory: true)
-		
-//		print("------------------------------------")
-//		print(groupName)
-//		print(getImagePath)
-//		print("------------------------------------")
 		
 		let checkValidation = FileManager.default
 		if (checkValidation.fileExists(atPath: getImagePath!.absoluteString)) {

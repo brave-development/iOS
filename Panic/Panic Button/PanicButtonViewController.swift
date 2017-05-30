@@ -9,26 +9,23 @@
 import UIKit
 import Parse
 import CoreLocation
+import Toast
 
-protocol testDelegate {
-    func test()
-}
 
 class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate, UITextViewDelegate {
-    
-    var delegate: testDelegate?
-    
-//    var testString = ""
 	
     var mainViewController : MainViewController!
     var manager : CLLocationManager!
     var pushQuery : PFQuery = PFInstallation.query()!
     var pendingPushNotifications = false // Tracks the button status. Dont send push if Panic isnt active.
-    var allowAddToPushQue = true // Tracks if a push has been sent. Should not allow another push to be qued if false.
+    var allowAddToPushQue = true // Tracks if a push has been sent. Should not allow another push to be queued if false.
 	var locationPermission = false
 	var tapGesture: UITapGestureRecognizer!
 	var timer: Timer?
 	
+    @IBOutlet weak var viewNeedle: UIView!
+    @IBOutlet weak var spinnerNeedle: UIActivityIndicatorView!
+    @IBOutlet weak var btnNeedle: UIButton!
     @IBOutlet weak var btnPanic: UIButton!
     @IBOutlet weak var background: UIImageView!
 	@IBOutlet weak var txtDetails: UITextView!
@@ -43,12 +40,10 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-//		print(PFUser.currentUser())
 		viewMenuButton.layer.cornerRadius = 0.5 * viewMenuButton.bounds.size.width
 		viewMenuButton.clipsToBounds = true
 		
 		if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) || (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse) {
-//			locationPermission = true
 		}
 		
 		NotificationCenter.default.addObserver(self, selector: #selector(updateActivePanics), name: NSNotification.Name(rawValue: "updatedActivePanics"), object: nil)
@@ -70,26 +65,53 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         manager.desiredAccuracy = kCLLocationAccuracyBest
         manager.requestAlwaysAuthorization()
 		
-		btnPanic.backgroundColor = UIColor(white: 0, alpha: 0.3)
+		btnPanic.backgroundColor = UIColor(white: 0, alpha: 0.4)
         
         btnPanic.layer.cornerRadius = 0.5 * btnPanic.bounds.size.width
         btnPanic.layer.borderWidth = 2
         btnPanic.layer.borderColor = UIColor.green.cgColor
+        
+        btnNeedle.layer.cornerRadius = btnNeedle.frame.size.height/2
+        btnNeedle.layer.masksToBounds = true
+        viewNeedle.layer.shadowOffset = CGSize(width: 0, height: 0)
+        viewNeedle.layer.shadowRadius = 4
+        viewNeedle.layer.shadowOpacity = 0.7
     }
 	
 	@IBAction func menuButton(_ sender: AnyObject) {
 		self.mainViewController.openSidebar(true)
 	}
 	
+    @IBAction func needleDropPressed(_ sender: Any) {
+        if locationPermissionGranted() {
+            btnNeedle.setImage(UIImage(), for: .normal)
+            spinnerNeedle.startAnimating()
+            self.btnNeedle.isEnabled = false
+            let drop = PFObject(className: "Needles")
+            
+            drop["location"] = PFGeoPoint(location: manager.location)
+            drop["user"] = PFUser.current()
+            
+            drop.saveInBackground {
+                (success, error) in
+                self.spinnerNeedle.stopAnimating()
+                self.btnNeedle.setImage(UIImage(named: "needle"), for: .normal)
+                self.btnNeedle.isEnabled = true
+                if success {
+                    self.view.makeToast("Needle position saved!", duration: 3, position: CSToastPositionCenter)
+                } else {
+                    self.view.makeToast("error!.localizedDescription", duration: 3, position: CSToastPositionCenter)
+                }
+            }
+        }
+    }
+    
     @IBAction func panicPressed(_ sender: AnyObject) {
 		mainViewController.closeSidebar()
 		if tutorial.swipeToOpenMenu == true {
 			if (btnPanic.titleLabel?.text == NSLocalizedString("activate", value: "Activate", comment: "Button title to activate the Panic button")) {
-				print("Location permission \(locationPermission)")
-				if locationPermission == true {
-					
-					UIView.animate(withDuration: 0.3, animations: {
-						self.mainViewController.hideTabbar() })
+                
+				if locationPermissionGranted() {
 					
 					if global.panicConfirmation == true {
 						
@@ -102,8 +124,6 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
 					} else {
 						activatePanic()
 					}
-				} else {
-					global.showAlert(NSLocalizedString("location_not_allowed_title", value: "Location Not Allowed", comment: ""), message: NSLocalizedString("location_not_allowed_text", value: "Please enable location services for Panic by going to Settings > Privacy > Location Services.", comment: ""))
 				}
 			} else {
 				deativatePanic()
@@ -114,6 +134,11 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     func activatePanic() {
 		PFAnalytics.trackEvent(inBackground: "Activate_Panic", dimensions: nil, block: nil)
 		UIApplication.shared.isIdleTimerDisabled = true
+        
+        self.mainViewController.tabbarView.isUserInteractionEnabled = false
+        UIView.animate(withDuration: 0.3, animations: {
+            self.mainViewController.hideTabbar()
+        })
 		
 		UIView.animate(withDuration: 0.3, animations: {
 			self.viewMenuButton.alpha = 0.0
@@ -164,8 +189,10 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
 		
 		timer?.invalidate()
 		
+        self.mainViewController.tabbarView.isUserInteractionEnabled = true
         UIView.animate(withDuration: 0.3, animations: {
             self.mainViewController.showTabbar() })
+        
         panicHandler.endPanic()
         manager.stopUpdatingLocation()
         btnPanic.setTitle(NSLocalizedString("activate", value: "Activate", comment: "Button title to activate the Panic button"), for: UIControlState())
@@ -224,30 +251,40 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
 		}
     }
 	
-	func sendNotification(_ group: String?) {
-		let push = PFPush()
-		let userName = PFUser.current()!["name"] as! String
-		let userNumber = PFUser.current()!["cellNumber"] as! String
-		let tempQuery = PFInstallation.query()
-		if group != nil {
-			tempQuery!.whereKey("channels", equalTo: group!.formatGroupForChannel())
-		} else {
-			tempQuery!.whereKey("channels", equalTo: "panic_global")
-		}
-		tempQuery!.whereKey("installationId", notEqualTo: PFInstallation.current()!.installationId)
-		push.setQuery(tempQuery as! PFQuery<PFInstallation>)
-		push.expire(afterTimeInterval: 18000) // 5 Hours
-		let panicMessage = String(format: NSLocalizedString("panic_notification_message", value: "%@ needs help! Contact them on %@ or view their location in the app.", comment: ""), arguments: [userName, userNumber])
-		push.setData(["alert" : panicMessage, "badge" : "Increment", "sound" : "default", "lat" : manager.location!.coordinate.latitude, "long" : manager.location!.coordinate.longitude])
-		push.sendInBackground(block: {
-			(result, error) in
-			if result == true {
-				print("Push sent to group \(group!.formatGroupForChannel())")
-			} else if error != nil {
-				print(error!)
-			}
-		})
-	}
+    func sendNotification(_ group: String? = "panic_global") {
+        //		let push = PFPush()
+        let userName = PFUser.current()!["name"] as! String
+        let userNumber = PFUser.current()!["cellNumber"] as! String
+        
+        PFCloud.callFunction(inBackground: "pushFromCloud", withParameters:
+            ["channel" : group!,
+             "username" : userName,
+             "contactNumber" : userNumber]
+        ) {
+            response, error in
+            // ratings is 4.5
+        }
+        
+        //		let tempQuery = PFInstallation.query()
+        //		if group != nil {
+        //			tempQuery!.whereKey("channels", equalTo: group!.formatGroupForChannel())
+        //		} else {
+        //			tempQuery!.whereKey("channels", equalTo: "panic_global")
+        //		}
+        //		tempQuery!.whereKey("installationId", notEqualTo: PFInstallation.current()!.installationId)
+        //		push.setQuery(tempQuery as! PFQuery<PFInstallation>)
+        //		push.expire(afterTimeInterval: 18000) // 5 Hours
+        //		let panicMessage = String(format: NSLocalizedString("panic_notification_message", value: "%@ needs help! Contact them on %@ or view their location in the app.", comment: ""), arguments: [userName, userNumber])
+        //		push.setData(["alert" : panicMessage, "badge" : "Increment", "sound" : "default", "lat" : manager.location!.coordinate.latitude, "long" : manager.location!.coordinate.longitude])
+        //		push.sendInBackground(block: {
+        //			(result, error) in
+        //			if result == true {
+        //				print("Push sent to group \(group!.formatGroupForChannel())")
+        //			} else if error != nil {
+        //				print(error!)
+        //			}
+        //		})
+    }
 	
 	func textViewDidEndEditing(_ textView: UITextView) {
 		panicHandler.updateDetails(textView.text)
@@ -268,14 +305,22 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
 	}
 	
     // LOCATION FUNCTIONS *******************
-	
+    
+    func locationPermissionGranted() -> Bool {
+        print("Location permission \(locationPermission)")
+        if locationPermission == true {
+            return true
+        } else {
+            global.showAlert(NSLocalizedString("location_not_allowed_title", value: "Location Not Allowed", comment: ""), message: NSLocalizedString("location_not_allowed_text", value: "Please enable location services for Panic by going to Settings > Privacy > Location Services.", comment: ""))
+            return false
+        }
+    }
+    
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         panicHandler.updatePanic(manager.location!)
     }
     
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        
-    }
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) { }
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 		if global.didChangeAuthStatus(manager, status: status) == true {

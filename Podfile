@@ -6,9 +6,13 @@ target 'Panic' do
 
 	pod 'HMSegmentedControl'
 	pod 'CustomBadge'
-	#pod 'PubNub'
 	pod 'Mapbox-iOS-SDK'
 	pod 'Parse', '~> 1.14'
     pod 'SwiftyJSON'
+    pod 'Firebase/Core'
+    pod 'Firebase/Messaging'
+    pod 'Firebase/RemoteConfig'
+
+    pod 'Toast'
 
 end

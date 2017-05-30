@@ -11,7 +11,7 @@ import Parse
 import Social
 import CoreLocation
 
-class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureRecognizerDelegate, CLLocationManagerDelegate, floatMenuDelegate {
+class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLocationManagerDelegate, floatMenuDelegate {
 	
 	var total : Int = 0
 	var privateTotal : Int = 0
@@ -158,154 +158,6 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 		})
 	}
 	
-	func numberOfSectionsInTableView(_ tableView: UITableView) -> Int {
-		if groupsHandler.nearbyGroups.count == 0 { return 1 }
-		return 2
-	}
-	
-	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-		var view = UIView(frame: CGRect(x: 0, y: 0, width: tblGroups.frame.width, height: 40))
-		let label = UILabel(frame: view.bounds)
-		label.textAlignment = NSTextAlignment.center
-		label.font = UIFont(name: "Arial", size: 11)
-		view.backgroundColor = UIColor(white: 1, alpha: 0.95)
-		
-		if section == 0 {
-			label.text = NSLocalizedString("your_groups", value: "YOUR GROUPS", comment: "Heading for section showing the users subscribed groups")
-		} else {
-			label.text = NSLocalizedString("nearby", value: "NEARBY", comment: "Heading showing the groups nearby to the user")
-		}
-		view.addSubview(label)
-		return view
-	}
-	
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-		return 40
-	}
-	
-	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		if section == 0{
-			if joinGroupIdHolder.count == 0 { return 1 }
-			return joinGroupIdHolder.count
-		} else {
-			return nearbyGroupIdHolder.count
-		}
-	}
-	
-	func populateDataSource() {
-		joinGroupIdHolder = []
-		for (id, _) in groupsHandler.joinedGroupsObject {
-			joinGroupIdHolder.append(id)
-		}
-		
-		nearbyGroupIdHolder = []
-		for (id, _) in groupsHandler.nearbyGroupObjects {
-			nearbyGroupIdHolder.append(id)
-		}
-	}
-	
-	func tableView(_ tableView: UITableView, cellForRowAtIndexPath indexPath: IndexPath) -> UITableViewCell {
-		
-		if joinGroupIdHolder.count == 0 && indexPath.section == 0 {
-			let cellNoGroups = tblGroups.dequeueReusableCell(withIdentifier: "noGroups", for: indexPath) as! UITableViewCell
-			return cellNoGroups
-		}
-		
-		var group: PFObject!
-		var cell = tblGroups.dequeueReusableCell(withIdentifier: "newCell", for: indexPath) as! GroupsTableViewCell
-		
-		if indexPath.section == 0 {
-			group = groupsHandler.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
-		} else {
-			group = groupsHandler.nearbyGroupObjects[nearbyGroupIdHolder[indexPath.row]]!
-		}
-		var subsCount: Int!
-		if group["subscriberObjects"] != nil {
-			subsCount = (group["subscriberObjects"] as? [String])!.count
-		} else {
-			subsCount = 0
-		}
-		cell.object = group
-		cell.subsCount = subsCount
-		cell.parentVC = self
-		cell.setup()
-		
-		return cell
-	}
-	
-	func scrollViewDidScroll(_ scrollView: UIScrollView) {
-		for cell in tblGroups.visibleCells {
-			if cell is GroupsTableViewCell && cell.frame.size.height != 60 {
-				(cell as! GroupsTableViewCell).offset(tblGroups.contentOffset.y)
-			}
-		}
-	}
-	
-	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		if joinGroupIdHolder.count == 0 && indexPath.section == 0 { return 60 }
-		return 260
-	}
-	
-	func didSelectMenuOption(at: Int) {
-		switch(at) {
-		case 0:
-			//create
-			let vc = storyboard?.instantiateViewController(withIdentifier: "createNewGroupViewController") as! CreateGroupViewController
-//			self.definesPresentationContext = true
-			vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-			self.present(vc, animated: true, completion: nil)
-//			addGroup()
-			break
-			
-		case 1:
-			//join private
-			var inputTextField: UITextField?
-			let codePrompt = UIAlertController(title: NSLocalizedString("enter_code_title", value: "Enter Code", comment: ""), message: NSLocalizedString("enter_code_text", value: "Enter the code given to you by another group member", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
-			codePrompt.addAction(UIAlertAction(title: NSLocalizedString("join", value: "Join", comment: "Join a group"), style: UIAlertActionStyle.default, handler: { (action) -> Void in
-				self.showNotificationBar(NSLocalizedString("trying_to_join_group", value: "Trying to join group...", comment: ""))
-				let query = PFQuery(className: "Groups")
-				query.getObjectInBackground(withId: inputTextField!.text!, block: {
-					(result, error) -> Void in
-					if error == nil {
-						if result != nil {
-							let group = result! as PFObject
-							groupsHandler.addGroup(group["name"] as! String)
-							DispatchQueue.main.async(execute: { self.hideNotificationBar() })
-						}
-					} else {
-						if (error! as NSError).code == 101 {
-							global.showAlert(NSLocalizedString("error_no_group_found_title", value: "No group found", comment: ""), message: NSLocalizedString("error_no_group_found_text", value: "No group with that code has been found. Codes are case sensitive.", comment: ""))
-						} else {
-							print(error!)
-						}
-					}
-				})
-			}))
-			codePrompt.addTextField(configurationHandler: {(textField: UITextField!) in
-				textField.placeholder = NSLocalizedString("group_code", value: "Group Code", comment: "Placeholder asking the user to enter the group code")
-				inputTextField = textField
-			})
-			
-			codePrompt.addAction(UIAlertAction(title: NSLocalizedString("help", value: "Help", comment: ""), style: UIAlertActionStyle.default, handler: { (action) -> Void in
-				global.showAlert(NSLocalizedString("join_private_group_help_title", value: "Joining a Private Group", comment: ""), message: NSLocalizedString("join_private_group_help_text", value: "Someone needs to share the groups private code with you in order for you to join. This code can be found by either tapping the small lock in the group or by tapping the (•••) button and selecting 'share'.", comment: ""))
-			}))
-			
-			codePrompt.addAction(UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: ""), style: UIAlertActionStyle.destructive, handler: nil))
-			present(codePrompt, animated: true, completion: nil)
-			break
-			
-		case 2:
-			let vc = storyboard?.instantiateViewController(withIdentifier: "addPublicGroupViewController") as! AddPublicGroupViewController
-			vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
-			vc.parentVC = self
-			self.present(vc, animated: true, completion: nil)
-			break
-			
-		default:
-			break
-		}
-	}
-	
 	func checkIfAlreadyContainsGroup(_ groupName : String) -> Bool {
 		for channel in PFInstallation.current()?.channels as! [String] {
 			if channel.formatGroupForFlatValue() == groupName.formatGroupForFlatValue() {
@@ -348,29 +200,192 @@ class GroupsViewController: UIViewController, UITableViewDelegate, UIGestureReco
 		})
 	}
 	
-	// Tutorial
-	
-	func animateTutorial() {
-		let gesture = UITapGestureRecognizer(target: self, action: "addGroup")
-		
-		self.imageTap.layer.shadowColor = UIColor.white.cgColor
-		self.imageTap.layer.shadowRadius = 5.0
-		self.imageTap.layer.shadowOffset = CGSize.zero
-		
-		var animate = CABasicAnimation(keyPath: "shadowOpacity")
-		animate.fromValue = 0.0
-		animate.toValue = 1.0
-		animate.autoreverses = true
-		animate.duration = 1
-		
-		self.imageTap.layer.add(animate, forKey: "shadowOpacity")
-		
-		if tutorial.addNewGroup == false {
-			let timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: "animateTutorial", userInfo: nil, repeats: false)
-		}
-	}
-	
 	override func viewWillDisappear(_ animated: Bool) {
 		if timer != nil { timer!.invalidate() }
 	}
+}
+
+
+// =========
+// TABLE VIEW
+// =========
+
+
+extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if groupsHandler.nearbyGroups.count == 0 { return 1 }
+        return 2
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        var view = UIView(frame: CGRect(x: 0, y: 0, width: tblGroups.frame.width, height: 40))
+        let label = UILabel(frame: view.bounds)
+        label.textAlignment = NSTextAlignment.center
+        label.font = UIFont(name: "Arial", size: 11)
+        view.backgroundColor = UIColor(white: 1, alpha: 0.95)
+        
+        if section == 0 {
+            label.text = NSLocalizedString("your_groups", value: "YOUR GROUPS", comment: "Heading for section showing the users subscribed groups")
+        } else {
+            label.text = NSLocalizedString("nearby", value: "NEARBY", comment: "Heading showing the groups nearby to the user")
+        }
+        view.addSubview(label)
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0{
+            if joinGroupIdHolder.count == 0 { return 1 }
+            return joinGroupIdHolder.count
+        } else {
+            return nearbyGroupIdHolder.count
+        }
+    }
+    
+    func populateDataSource() {
+        joinGroupIdHolder = []
+        for (id, _) in groupsHandler.joinedGroupsObject {
+            joinGroupIdHolder.append(id)
+        }
+        
+        nearbyGroupIdHolder = []
+        for (id, _) in groupsHandler.nearbyGroupObjects {
+            nearbyGroupIdHolder.append(id)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if joinGroupIdHolder.count == 0 && indexPath.section == 0 {
+            let cellNoGroups = tblGroups.dequeueReusableCell(withIdentifier: "noGroups", for: indexPath)
+            return cellNoGroups
+        }
+        
+        var group: PFObject!
+        let cell = tblGroups.dequeueReusableCell(withIdentifier: "newCell", for: indexPath) as! GroupsTableViewCell
+        
+        if indexPath.section == 0 {
+            group = groupsHandler.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
+        } else {
+            group = groupsHandler.nearbyGroupObjects[nearbyGroupIdHolder[indexPath.row]]!
+        }
+        var subsCount: Int!
+        if group["subscriberObjects"] != nil {
+            subsCount = (group["subscriberObjects"] as? [String])!.count
+        } else {
+            subsCount = 0
+        }
+        cell.object = group
+        cell.subsCount = subsCount
+        cell.parentVC = self
+        cell.setup()
+        
+        return cell
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        for cell in tblGroups.visibleCells {
+            if cell is GroupsTableViewCell && cell.frame.size.height != 60 {
+                (cell as! GroupsTableViewCell).offset(tblGroups.contentOffset.y)
+            }
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if joinGroupIdHolder.count == 0 && indexPath.section == 0 { return 60 }
+        return 260
+    }
+    
+    func didSelectMenuOption(at: Int) {
+        switch(at) {
+        case 0:
+            //create
+            let vc = storyboard?.instantiateViewController(withIdentifier: "createNewGroupViewController") as! CreateGroupViewController
+            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            self.present(vc, animated: true, completion: nil)
+            //			addGroup()
+            break
+            
+        case 1:
+            //join private
+            var inputTextField: UITextField?
+            let codePrompt = UIAlertController(title: NSLocalizedString("enter_code_title", value: "Enter Code", comment: ""), message: NSLocalizedString("enter_code_text", value: "Enter the code given to you by another group member", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+            codePrompt.addAction(UIAlertAction(title: NSLocalizedString("join", value: "Join", comment: "Join a group"), style: UIAlertActionStyle.default, handler: { (action) -> Void in
+                self.showNotificationBar(NSLocalizedString("trying_to_join_group", value: "Trying to join group...", comment: ""))
+                let query = PFQuery(className: "Groups")
+                query.getObjectInBackground(withId: inputTextField!.text!, block: {
+                    (result, error) -> Void in
+                    if error == nil {
+                        if result != nil {
+                            let group = result! as PFObject
+                            groupsHandler.addGroup(group["name"] as! String)
+                            DispatchQueue.main.async(execute: { self.hideNotificationBar() })
+                        }
+                    } else {
+                        if (error! as NSError).code == 101 {
+                            global.showAlert(NSLocalizedString("error_no_group_found_title", value: "No group found", comment: ""), message: NSLocalizedString("error_no_group_found_text", value: "No group with that code has been found. Codes are case sensitive.", comment: ""))
+                        } else {
+                            print(error!)
+                        }
+                    }
+                })
+            }))
+            codePrompt.addTextField(configurationHandler: {(textField: UITextField!) in
+                textField.placeholder = NSLocalizedString("group_code", value: "Group Code", comment: "Placeholder asking the user to enter the group code")
+                inputTextField = textField
+            })
+            
+            codePrompt.addAction(UIAlertAction(title: NSLocalizedString("help", value: "Help", comment: ""), style: UIAlertActionStyle.default, handler: { (action) -> Void in
+                global.showAlert(NSLocalizedString("join_private_group_help_title", value: "Joining a Private Group", comment: ""), message: NSLocalizedString("join_private_group_help_text", value: "Someone needs to share the groups private code with you in order for you to join. This code can be found by either tapping the small lock in the group or by tapping the (•••) button and selecting 'share'.", comment: ""))
+            }))
+            
+            codePrompt.addAction(UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: ""), style: UIAlertActionStyle.destructive, handler: nil))
+            present(codePrompt, animated: true, completion: nil)
+            break
+            
+        case 2:
+            let vc = storyboard?.instantiateViewController(withIdentifier: "addPublicGroupViewController") as! AddPublicGroupViewController
+            vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+            vc.parentVC = self
+            self.present(vc, animated: true, completion: nil)
+            break
+            
+        default:
+            break
+        }
+    }
+}
+
+
+// =======
+// TUTORIAL
+// =======
+
+
+extension GroupsViewController {
+    
+    func animateTutorial() {
+        let gesture = UITapGestureRecognizer(target: self, action: "addGroup")
+        
+        self.imageTap.layer.shadowColor = UIColor.white.cgColor
+        self.imageTap.layer.shadowRadius = 5.0
+        self.imageTap.layer.shadowOffset = CGSize.zero
+        
+        var animate = CABasicAnimation(keyPath: "shadowOpacity")
+        animate.fromValue = 0.0
+        animate.toValue = 1.0
+        animate.autoreverses = true
+        animate.duration = 1
+        
+        self.imageTap.layer.add(animate, forKey: "shadowOpacity")
+        
+        if tutorial.addNewGroup == false {
+            let timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: "animateTutorial", userInfo: nil, repeats: false)
+        }
+    }
 }
