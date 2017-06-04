@@ -39,11 +39,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             attributes:[NSForegroundColorAttributeName: UIColor.white])
         
         // Adding Facebook login button
-        let loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
-        loginButton.center = view.center
-        loginButton.delegate = self
-        
-        view.addSubview(loginButton)
+//        let loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
+//        loginButton.center = view.center
+//        loginButton.delegate = self
+//        
+//        view.addSubview(loginButton)
     }
     
     override func viewDidAppear(_ animated: Bool) {
