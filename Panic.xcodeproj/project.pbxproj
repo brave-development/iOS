@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		5EA0CBAD66523EEA52B18335 /* Pods_Panic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DDDAE8647815ACEBD54F28 /* Pods_Panic.framework */; };
-		750309461EE4756D00599E4D /* AuthenticationHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750309451EE4756D00599E4D /* AuthenticationHandler.swift */; };
 		750A7D4C1AB6D01D006EAA97 /* TextViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A7D4B1AB6D01D006EAA97 /* TextViewCustom.swift */; };
 		750A7D501AB70ABF006EAA97 /* AnnotationCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A7D4F1AB70ABF006EAA97 /* AnnotationCustom.swift */; };
 		75109B3A1E9F88D00056BBCB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75109B391E9F88D00056BBCB /* AudioToolbox.framework */; };
@@ -119,7 +118,6 @@
 		17DDDAE8647815ACEBD54F28 /* Pods_Panic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Panic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34D5BDF56A2A92A4D9680CA0 /* Pods-Panic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Panic/Pods-Panic.debug.xcconfig"; sourceTree = "<group>"; };
 		40F2449244394164C6572DC0 /* Pods-Halla.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Halla.release.xcconfig"; path = "Pods/Target Support Files/Pods-Halla/Pods-Halla.release.xcconfig"; sourceTree = "<group>"; };
-		750309451EE4756D00599E4D /* AuthenticationHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthenticationHandler.swift; sourceTree = "<group>"; };
 		750A7D4B1AB6D01D006EAA97 /* TextViewCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewCustom.swift; sourceTree = "<group>"; };
 		750A7D4F1AB70ABF006EAA97 /* AnnotationCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnnotationCustom.swift; sourceTree = "<group>"; };
 		75109B391E9F88D00056BBCB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -293,7 +291,6 @@
 			children = (
 				75109B501EA0248D0056BBCB /* Login */,
 				75109B511EA024910056BBCB /* Register */,
-				750309451EE4756D00599E4D /* AuthenticationHandler.swift */,
 			);
 			path = Login_Register;
 			sourceTree = "<group>";
@@ -834,7 +831,6 @@
 				7574A5EB1A2DB81F00148645 /* MapViewController.swift in Sources */,
 				75606E7E1A37B9210089744C /* LocalHistoryViewController.swift in Sources */,
 				750A7D501AB70ABF006EAA97 /* AnnotationCustom.swift in Sources */,
-				750309461EE4756D00599E4D /* AuthenticationHandler.swift in Sources */,
 				7545A6561A2BBE8C00B19E3E /* RegisterViewController.swift in Sources */,
 				7545A65A1A2C899800B19E3E /* MainViewController.swift in Sources */,
 				7545A6541A2BBDEC00B19E3E /* Global.swift in Sources */,

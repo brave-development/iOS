@@ -80,8 +80,41 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func login(_ sender: AnyObject) {
+//        spinner.startAnimating()
         startLoading()
-        
+//        var user = PFUser()
+        PFUser.logInWithUsername(inBackground: txtUsername.text!.lowercased().trim(), password: txtPassword.text!.trim(), block: {
+			(user, error) in
+            print(user)
+            if (error != nil) {
+                print(error!)
+				let unsuccessful = NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: "")
+                switch (error! as NSError).code {
+                case 100:
+                    global.showAlert(unsuccessful, message: NSLocalizedString("error_network_connection", value: "The network connection was lost", comment: ""))
+                    self.btnLogin.isEnabled = true
+                    self.btnRegister.isEnabled = true
+                    break
+                case 101:
+                    global.showAlert(unsuccessful, message: NSLocalizedString("error_invalid_login", value: "Invalid login credentials", comment: ""))
+                    self.btnLogin.isEnabled = true
+                    self.btnRegister.isEnabled = true
+                    break
+                default:
+                    if error?.localizedDescription != nil {
+                        global.showAlert(unsuccessful, message: error!.localizedDescription)
+                    } else {
+                        global.showAlert(unsuccessful, message: "Dunno, brah")
+                    }
+                    self.btnLogin.isEnabled = true
+                    self.btnRegister.isEnabled = true
+                    break
+                }
+            } else {
+                self.manageLogin()
+            }
+            self.stopLoading()
+        })
     }
     
     @IBAction func register(_ sender: AnyObject) {
@@ -210,7 +243,6 @@ extension LoginViewController: LoginButtonDelegate {
                         
                         let json = JSON(responseDictionary)
                     }
-                    LoginManager.init().logOut()
                 }
             }
         } else {
