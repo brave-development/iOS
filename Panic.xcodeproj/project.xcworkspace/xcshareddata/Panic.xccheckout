@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>B6582C5F-71E4-48E7-916E-68B9DE916FD1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Panic</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>186F56D76AB89E965165A59023085641B925EBB9</key>
+		<string>https://github.com/byroncoetsee/Panic.git</string>
+		<key>DCD14167E88C2C97DDC6A059CB5F7975C93FA4DB</key>
+		<string>https://github.com/byroncoetsee/Programming.git</string>
+		<key>E6A4BC3F552A471ADCB320A05786E1C58F6AB4FA</key>
+		<string>https://bitbucket.org/byroncoetsee/panic.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Panic.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>186F56D76AB89E965165A59023085641B925EBB9</key>
+		<string>../..Panic/</string>
+		<key>DCD14167E88C2C97DDC6A059CB5F7975C93FA4DB</key>
+		<string>../../../..</string>
+		<key>E6A4BC3F552A471ADCB320A05786E1C58F6AB4FA</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://bitbucket.org/byroncoetsee/panic.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>E6A4BC3F552A471ADCB320A05786E1C58F6AB4FA</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>DCD14167E88C2C97DDC6A059CB5F7975C93FA4DB</string>
+			<key>IDESourceControlWCCName</key>
+			<string>..</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E6A4BC3F552A471ADCB320A05786E1C58F6AB4FA</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Panic</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>186F56D76AB89E965165A59023085641B925EBB9</string>
+			<key>IDESourceControlWCCName</key>
+			<string>Panic</string>
+		</dict>
+	</array>
+</dict>
+</plist>

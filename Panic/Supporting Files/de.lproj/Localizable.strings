@@ -1,0 +1,409 @@
+/* No comment provided by engineer. */
+"1_min" = "Eine Minute oder weniger";
+
+/* Button title to activate the panic button
+   confirmation to activate the panic button */
+"activate" = "Aktivieren";
+
+/* No comment provided by engineer. */
+"activate_confirmation_text" = "Panic aktivieren und Meldung schicken?";
+
+/* No comment provided by engineer. */
+"already_joined_group" = "Sie sind bereit Mitglied dieser Gruppe.";
+
+/* No comment provided by engineer. */
+"are_you_sure" = "Sind Sie sicher?";
+
+/* No comment provided by engineer. */
+"are_you_sure_text" = "Ihre bisherigen Informationen werden gelöscht";
+
+/* No comment provided by engineer. */
+"are_you_sure_title" = "Sind Sie sicher?";
+
+/* No comment provided by engineer. */
+"background_update_info_text" = "Wenn Sie Hintergrundaktualisierungen zulassen wird Panic bei Aktivierung Ihren Standort senden, auch wenn die Anwendung im Hintergrund ausgeführt wird und/oder Ihr iPhone sich im Standby befindet. Diese Funktion ist standardmäßig ausgeschaltet, da dies zu hohem Daten- und Energieverbrauch führen kann.  ";
+
+/* No comment provided by engineer. */
+"background_update_info_title" = "Hintergrundaktualisierung";
+
+/* No comment provided by engineer. */
+"cancel" = "Abbrechen";
+
+/* No comment provided by engineer. */
+"closed_group" = "Geschlossene Gruppe";
+
+/* No comment provided by engineer. */
+"confirmation_info_text" = "Dies wird die 5-Sekunden Verzögerung entfernen wenn Sie Meldungen absetzen, aber Sie müssen jedesmal manuell bestätigen, wenn Sie Panic aktivieren.";
+
+/* No comment provided by engineer. */
+"confirmation_info_title" = "Panic Bestätigung";
+
+/* Asking for... */
+"contact_number" = "Kontaktnummer";
+
+/* No comment provided by engineer. */
+"could_not_get_panic_history" = "Ihre Panic-Liste konnte nicht geladen werden. Bitte überprüfen Sie Ihre Internetverbindung und versuchen es erneut.";
+
+/* No comment provided by engineer. */
+"deactivate" = "Deaktivieren";
+
+/* No comment provided by engineer. */
+"delete_account_confirmation_1_text" = "Sind Sie sicher, dass Sie Ihre Konto löschen möchten? Dies wird all Ihre Daten löschen, Ihren Benutzernamen freigeben, Ihre Panic Vergangenheit löschen und Sie werden sich erneut registrieren müssen, falls Sie Panic wieder nutzen möchten.";
+
+/* No comment provided by engineer. */
+"delete_account_confirmation_1_title" = "Bestätigung";
+
+/* No comment provided by engineer. */
+"delete_account_confirmation_2_text" = "Konto für immer löschen?";
+
+/* No comment provided by engineer. */
+"delete_account_confirmation_2_title" = "Letzte Bestätigung";
+
+/* No comment provided by engineer. */
+"dont_respond" = "Nicht antworten";
+
+/* No comment provided by engineer. */
+"duration_h_m" = "%1$@Stunden%2$@Minuten";
+
+/* Asking for... */
+"email" = "Email:";
+
+/* No comment provided by engineer. */
+"email_address_invalid" = "Ungültige Email-Adresse";
+
+/* No comment provided by engineer. */
+"email_address_not_found" = "Email-Adresse nicht gefunden";
+
+/* No comment provided by engineer. */
+"email_sent_text" = "Eine Email mit einer Anleitung zum Zurücksetzen des Passworts wurde an die angegebene Adresse verschickt.";
+
+/* No comment provided by engineer. */
+"email_sent_title" = "Email verschickt";
+
+/* No comment provided by engineer. */
+"enter_code_text" = "Geben Sie den Zugangscode ein";
+
+/* No comment provided by engineer. */
+"enter_code_title" = "Zugangscode eingeben";
+
+/* No comment provided by engineer. */
+"error_becoming_a_responder" = "%@ Es wird in einigen Sekunden erneut versucht.";
+
+/* No comment provided by engineer. */
+"error_beginning_location_text" = "Es wird in einigen Sekunden erneut versucht";
+
+/* No comment provided by engineer. */
+"error_beginning_location_title" = "Fehler bei der Standorterfassung";
+
+/* No comment provided by engineer. */
+"error_cell" = "Bitte geben Sie Ihre Handynummer ein";
+
+/* No comment provided by engineer. */
+"error_choose_image" = "Bitte wählen Sie ein Foto aus";
+
+/* No comment provided by engineer. */
+"error_could_not_send_email_text" = "Email konnte nicht verschickt werden. Bitte überprüfen Sie Ihre Email-Konfiguration und probieren es erneut.";
+
+/* No comment provided by engineer. */
+"error_could_not_send_email_title" = "Email konnte nicht verschickt werden";
+
+/* No comment provided by engineer. */
+"error_country" = "Bitte wählen Sie ein Land";
+
+/* No comment provided by engineer. */
+"error_description_10_chars" = "Beschreibung muss mehr als 10 Zeichen lang sein";
+
+/* No comment provided by engineer. */
+"error_email" = "Bitte geben Sie eine gültige Email-Adresse ein";
+
+/* No comment provided by engineer. */
+"error_email_text" = "Email konnte nicht verschickt werden. Bitte überprüfen Sie Ihre Email-Konfiguration und probieren es erneut.";
+
+/* No comment provided by engineer. */
+"error_email_title" = "Email konnte nicht verschickt werden";
+
+/* No comment provided by engineer. */
+"error_fetching_groups_text" = "Beim Aufrufen der Gruppenliste ist ein Fehler aufgetreten. Bitte überprüfen Sie Ihre Internetverbindung.";
+
+/* No comment provided by engineer. */
+"error_fetching_groups_title" = "Beim Aufrufen der Gruppenliste ist ein Fehler aufgetreten.";
+
+/* No comment provided by engineer. */
+"error_full_name" = "Bitte geben Sie Ihren vollständigen Namen ein.";
+
+/* No comment provided by engineer. */
+"error_invalid_login" = "Ungültige Benutzerangaben";
+
+/* No comment provided by engineer. */
+"error_name_3_chars" = "Name muss mindestens drei Zeichen lang sein";
+
+/* No comment provided by engineer. */
+"error_name_5_chars" = "Ihr Name kann nicht kürzer als 5 Zeichen sein. Bitte fügen Sie Ihren vollständigen Namen ein.";
+
+/* No comment provided by engineer. */
+"error_name_only_letters" = "Ihr Name kann nur Buchstaben enthalten";
+
+/* No comment provided by engineer. */
+"error_network_connection" = "Die Internetverbindung wurde getrennt";
+
+/* No comment provided by engineer. */
+"error_no_group_found_text" = "Keine Gruppe mit diesem Zugangscode konnte gefunden werden. Bitte achten Sie auf Groß-und Kleinschreibung.";
+
+/* No comment provided by engineer. */
+"error_no_group_found_title" = "Keine Gruppe gefunden";
+
+/* No comment provided by engineer. */
+"error_pass_6_chars" = "Passwort muss mind. 6 Zeichen lang sein";
+
+/* No comment provided by engineer. */
+"error_pass_dont_match" = "Passwörter stimmen nicht überein";
+
+/* No comment provided by engineer. */
+"error_password" = "Bitte fügen Sie ein Passwort ein";
+
+/* No comment provided by engineer. */
+"error_password_confirm" = "Bitte wiederholen Sie Ihr Passwort";
+
+/* No comment provided by engineer. */
+"error_purchase_text" = "Ihr Einkauf konnte nicht abgeschlossen werden. Bitte versuchen Sie es erneut. Es wurde kein Geld von Ihrem Konto abgebucht.";
+
+/* No comment provided by engineer. */
+"error_update_failed" = "Während der Aktualisierung ist etwas schief gelaufen. Bitte versuchen Sie es erneut.";
+
+/* No comment provided by engineer. */
+"error_updating_details_text" = "Es wird in einigen Sekunden erneut versucht";
+
+/* No comment provided by engineer. */
+"error_updating_details_title" = "Fehler bei der Angabenaktualisierung";
+
+/* No comment provided by engineer. */
+"error_updating_location_text" = "Es wird in einigen Sekunden erneut versucht";
+
+/* No comment provided by engineer. */
+"error_updating_location_title" = "Fehler bei der Standortaktualisierung";
+
+/* No comment provided by engineer. */
+"error_updating_settings" = "Es ist ein Fehler bei der Aktualisierung Ihrer Einstellungen aufgetreten";
+
+/* No comment provided by engineer. */
+"error_username_5_chars" = "Benutzername muss mind. 5 Zeichen lang sein";
+
+/* No comment provided by engineer. */
+"facebook_share_login" = "Bitte loggen Sie sich mit einem Facebook Konto ein, um zu teilen.";
+
+/* No comment provided by engineer. */
+"group_already_exists" = "Gruppe '%1$@' already exists in %2$@";
+
+/* Placeholder asking the user to enter the group code */
+"group_code" = "Gruppen Zugangscode";
+
+/* No comment provided by engineer. */
+"group_create" = "Ihre eigene Gruppe erstellen";
+
+/* No comment provided by engineer. */
+"group_description" = "Gruppenbeschreibung";
+
+/* No comment provided by engineer. */
+"group_join_private" = "Einer Privaten Gruppe beitreten";
+
+/* No comment provided by engineer. */
+"group_join_public" = "Einer Öffentlichen Gruppe beitreten";
+
+/* No comment provided by engineer. */
+"group_name" = "Gruppenname";
+
+/* No comment provided by engineer. */
+"group_not_exist_text" = "Die Gruppe '%@' existiert nicht. Bitte überprüfen Sie die Rechtschreibung oder erstellen Sie eine neue Gruppe";
+
+/* No comment provided by engineer. */
+"group_set_to_private_text" = "Diese Gruppe ist Privat. Daher wird sie IN KEINER Suche oder Vorschlägen auftauchen.";
+
+/* No comment provided by engineer. */
+"group_set_to_public_text" = "Diese Gruppe ist Öffentlich. Daher wird sie in allen Suchen und Vorschlägen angezeigt und JEDER KANN IHR BEITRETEN.";
+
+/* No comment provided by engineer. */
+"help" = "Hilfe";
+
+/* Join a group */
+"join" = "Beitreten";
+
+/* No comment provided by engineer. */
+"join_private_group_help_text" = "Ein Gruppenmitglied muss Ihnen den Zugangscode mitteilen, damit Sie beitreten können. Dieser Code kann entweder durch das berühren des Schloss-Symbols in der Gruppe oder durch das Berühren von (•••) und \"Teilen\" gefunden werden.";
+
+/* No comment provided by engineer. */
+"join_private_group_help_title" = "Tritt einer Privaten Gruppe bei";
+
+/* No comment provided by engineer. */
+"joined_group_text" = "Gruppe %@ wurde erfolgreich erstellt";
+
+/* tester2 */
+"leave_group_confirmation_title" = "%@ verlassen?";
+
+/* No comment provided by engineer. */
+"location_error_text" = "Standortdienste sind im Moment nicht verfügbar. Möglich Gründe: fehlerhafte Internetverbindung; Sie befinden sich in einem Gebäude; Keine Erlaubnis auf Standort zuzugreifen";
+
+/* No comment provided by engineer. */
+"location_error_title" = "Standort Fehler";
+
+/* No comment provided by engineer. */
+"location_not_allowed" = "Um diese Funktion zu nutzen müssen Sie Panic die Erlaubnis erteilen, Ihren Standort im Hintergrund benutzen zu dürfen. Dies können Sie tun, indem Sie zu Ihren iPhone-Einstellungen > Datenschutz > Standortdienste > Panic > \"Immer\" gehen ";
+
+/* No comment provided by engineer. */
+"location_not_allowed_text" = "Bitte erlauben Sie Standortdienste für Panic, indem Sie zu Einstellungen > Datenschutz > Standortdienste gehen.";
+
+/* No comment provided by engineer. */
+"location_not_allowed_title" = "Standort nicht gefunden";
+
+/* No comment provided by engineer. */
+"location_not_aloowed_text" = "Bitte erlauben Sie Standortdienste für Panic, indem Sie zu Ihren iPhone-Einstellungen > Datenschutz > Standortdienste > Panic > \"Immer\" gehen. Ohne Standortdienste kann Ihnen im Notfall niemand helfen.";
+
+/* No comment provided by engineer. */
+"logout_message" = "Ausloggen schaltet alle Panic-Meldungen aus. Sie werden keine Benachrichtigungen erhalten wenn jemand Panic aktiviert. Wenn Sie die Anwendungen über den \"Home\"-Knopf verlassen wird Panic im Hintergrund weitergeführt. ";
+
+/* First part of main tutorial */
+"main_tut_1" = "Berühren Sie den Panic Button. Während dieser Anleitung wird dies keine Auswirkungen haben. Sobald die Anleitung abgeschlossen ist, ist der Button jedoch scharf.";
+
+/* No comment provided by engineer. */
+"main_tut_2" = "Ihr Standort wäre nun für andere auf der Karte einsehbar. Außerdem werden Benachrichtigungen an alle Mitglieder der Gruppen geschickt, in denen Sie Mitglied sind. ";
+
+/* No comment provided by engineer. */
+"main_tut_3" = "Es gibt eine 5-Sekunden Verzögerung bevor Benachrichtigungen verschickt werden wenn Panic aktiviert wurde, falls Sie Panic ohne Absicht aktivieren sollten. Diese Verzögerung kann in den Einstellungen ausgeschaltet werden.";
+
+/* No comment provided by engineer. */
+"main_tut_4" = "Noch einmal berühren um Fertig zu stellen";
+
+/* No comment provided by engineer. */
+"menu_not_available" = "Sie können nicht auf Menüs zugreifen wenn Panic aktiv ist";
+
+/* Asking for ... */
+"name_surname" = "Name und Nachname";
+
+/* Heading showing the groups nearby to the user */
+"nearby" = "IN DER NÄHE";
+
+/* No comment provided by engineer. */
+"no" = "Neien";
+
+/* No comment provided by engineer. */
+"no_data" = "Keine Daten";
+
+/* No comment provided by engineer. */
+"not_available" = "Nicht verfügbar";
+
+/* No comment provided by engineer. */
+"number_change_warning" = "Mit einer falschen Telefonnummer können andere Sie im Notfall nicht erreichen";
+
+/* No comment provided by engineer. */
+"open_comm" = "Öffentlich Gruppe";
+
+/* No comment provided by engineer. */
+"panic_notification_message" = "%1$@ braucht Hilfe! Kontaktieren Sie %2$@ oder sehen Sie seinen/ihren Standort in der Anwendung.";
+
+/* No comment provided by engineer. */
+"pass_dont_match" = "Passwörter stimmen nicht überein";
+
+/* Asking for... */
+"password" = "Passwort";
+
+/* No comment provided by engineer. */
+"password_6_chars" = "Passwort muss mind. 6 Zeichen lang sein";
+
+/* Asking for... */
+"password_confirm" = "Passwort bestätigen";
+
+/* No comment provided by engineer. */
+"please_wait_text" = "Ihre Anfrage wird bearbeitet. Bitte haben Sie einen Moment Geduld.";
+
+/* No comment provided by engineer. */
+"please_wait_title" = "Bitte warten";
+
+/* No comment provided by engineer. */
+"private_panics_50" = "Ihre letzten 50 Panic Aktivierungen";
+
+/* No comment provided by engineer. */
+"public_panics_20" = "Die letzten 20 Panic Aktivierungen anderer Leute";
+
+/* No comment provided by engineer. */
+"report_user_text" = "Um einen Benutzer zu melden, gehen Sie zu Öffentlicher Vergangenheit, berühren die Aktivierung des Benutzers und benutzen die \"Melden\"-Option.";
+
+/* No comment provided by engineer. */
+"report_user_title" = "Einen Benutzer melden";
+
+/* No comment provided by engineer. */
+"reset" = "Zurücksetzen";
+
+/* No comment provided by engineer. */
+"reset_password_text" = "Geben Sie die Email-Adresse dieses Kontos an. Sie werden eine Email mit einer Anleitung zum Zurücksetzen des Passwort erhalten.";
+
+/* No comment provided by engineer. */
+"reset_password_title" = "Passwort zurücksetzen";
+
+/* No comment provided by engineer. */
+"respond" = "Antworten";
+
+/* No comment provided by engineer. */
+"results" = "ERGEBNISSE";
+
+/* No comment provided by engineer. */
+"save" = "Speichern";
+
+/* No comment provided by engineer. */
+"save_changes_confirmation_text" = "Möchten Sie die Änderungen speichern?";
+
+/* No comment provided by engineer. */
+"searching_groups" = "Sucht Gruppen";
+
+/* No comment provided by engineer. */
+"settings_updated" = "Einstellungen aktualisiert";
+
+/* No comment provided by engineer. */
+"share_joined_group" = "Ich bin gerade der Gruppe %@ auf Panic beigetreten. Hilf mir unsere Nachbarschaft sicherer zu machen!";
+
+/* No comment provided by engineer. */
+"share_panic_whatsapp_text" = "Ich habe gerade Panic heruntergeladen!  Hilf mir unsere Nachbarschaft sicherer zu machen! Hol dir die App hier: http://goo.gl/M25QIw";
+
+/* No comment provided by engineer. */
+"share_text" = "Je mehr Leute unseren Gruppen beitreten desto sicherer wird unsere Nachbarschaft...";
+
+/* No comment provided by engineer. */
+"share_title" = "Erzählen Sie anderen von Panic";
+
+/* Popup which shows when someone else activates and the current user is busy within the app */
+"someone_needs_help" = "Jemand braucht Hilfe";
+
+/* No comment provided by engineer. */
+"stop_responding" = "Antworten stoppen";
+
+/* No comment provided by engineer. */
+"successful" = "Erfolgreich";
+
+/* No comment provided by engineer. */
+"trying_to_join_group" = "Versucht Gruppe beizutreten...";
+
+/* No comment provided by engineer. */
+"tutorials_reset_text" = "Anleitungen wurden wieder aktiviert. Gehen Sie zurück zum Hauptmenü, um sie erneut zu sehen.";
+
+/* No comment provided by engineer. */
+"twitter_share_login" = "Bitte loggen Sie sich mit Ihrem Twitter-Konto ein, um zu teilen.";
+
+/* tester */
+"unsuccessful" = "Nicht Erfolgreich";
+
+/* No comment provided by engineer. */
+"update_successful" = "Erfolgreich aktualisiert";
+
+/* Asking for... */
+"username" = "Benutzername";
+
+/* No comment provided by engineer. */
+"username_already_taken" = "Benutzername %@ bereit vergeben";
+
+/* No comment provided by engineer. */
+"whatsapp_not_installed" = "Whatsapp nicht installiert";
+
+/* No comment provided by engineer. */
+"yes" = "Ja";
+
+/* Heading for section showing the users subscribed groups */
+"your_groups" = "IHRE GRUPPEN";
+

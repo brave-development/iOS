@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Panic Widget.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+		<key>Panic.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>7</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>75162DD91A2B8B3E0094BA31</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>75162DEE1A2B8B3E0094BA31</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>752D19981A55DF3700328AEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>752D19AB1A55DF9700328AEF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>75352AFA1A558CF5000EEFC2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>

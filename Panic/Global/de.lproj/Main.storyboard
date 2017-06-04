@@ -1,0 +1,483 @@
+/* Class = "UIButton"; normalTitle = "LEAVE"; ObjectID = "0bB-1j-tkY"; */
+"0bB-1j-tkY.normalTitle" = "VERLASSEN";
+
+/* Class = "UILabel"; text = "Search for public groups here. Entering 3 or more characters will start a search for all public groups starting with those characters in your country."; ObjectID = "0bo-QE-Yzg"; */
+"0bo-QE-Yzg.text" = "Suchen Sie nach öffentliche Gruppen. Geben Sie drei oder mehr Zeichen ein, um Vorschläge für Ihr Land zu erhalten.";
+
+/* Class = "UITextField"; placeholder = "Cell Number"; ObjectID = "0mW-Su-AYZ"; */
+"0mW-Su-AYZ.placeholder" = "Handynummer";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "0p1-UK-Kn5"; */
+"0p1-UK-Kn5.text" = "Lädt...";
+
+/* Class = "UIButton"; normalTitle = "Choose Country"; ObjectID = "1RW-sB-c5J"; */
+"1RW-sB-c5J.normalTitle" = "Land auswählen";
+
+/* Class = "UILabel"; text = "Country"; ObjectID = "1Zx-p1-mT5"; */
+"1Zx-p1-mT5.text" = "Land";
+
+/* Class = "UIViewController"; title = "Map"; ObjectID = "1kK-cU-hBn"; */
+"1kK-cU-hBn.title" = "Karte";
+
+/* Class = "UITextField"; placeholder = "Email"; ObjectID = "1rA-bG-nhD"; */
+"1rA-bG-nhD.placeholder" = "Email";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "1uZ-6o-hPO"; */
+"1uZ-6o-hPO.text" = "Name";
+
+/* Class = "UIButton"; normalTitle = "Register"; ObjectID = "2GP-AI-Vqy"; */
+"2GP-AI-Vqy.normalTitle" = "Registrieren";
+
+/* Class = "UIButton"; normalTitle = "Delete Account"; ObjectID = "2lg-A7-MX2"; */
+"2lg-A7-MX2.normalTitle" = "Konto löschen";
+
+/* Class = "UILabel"; text = "8 Davies walk, Hout Bay"; ObjectID = "2vc-rc-1eO"; */
+"2vc-rc-1eO.text" = "8 Davies walk, Hout Bay";
+
+/* Class = "UILabel"; text = "SEARCH FOR A GROUP"; ObjectID = "3KU-kY-JkZ"; */
+"3KU-kY-JkZ.text" = "Nach Gruppe suchen";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "3rb-jB-ZxG"; */
+"3rb-jB-ZxG.text" = "Label";
+
+/* Class = "UILabel"; text = "No Panic History"; ObjectID = "4vE-y9-cBN"; */
+"4vE-y9-cBN.text" = "Keine Panic Vergangenheit";
+
+/* Class = "UITextView"; text = "Group Name"; ObjectID = "5RM-2p-CAh"; */
+"5RM-2p-CAh.text" = "Gruppenname";
+
+/* Class = "UILabel"; text = "Email"; ObjectID = "7JF-45-bkw"; */
+"7JF-45-bkw.text" = "Email";
+
+/* Class = "UITextView"; text = "Group Description"; ObjectID = "7WQ-EZ-f5O"; */
+"7WQ-EZ-f5O.text" = "Gruppenbeschreibung";
+
+/* Class = "UILabel"; text = " "; ObjectID = "8LH-ZI-E7L"; */
+"8LH-ZI-E7L.text" = " -";
+
+/* Class = "UIButton"; normalTitle = "Logout"; ObjectID = "8lQ-f9-UMV"; */
+"8lQ-f9-UMV.normalTitle" = "Ausloggen";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "8vp-mX-kn7"; */
+"8vp-mX-kn7.normalTitle" = "Zurück";
+
+/* Class = "UILabel"; text = "Choose a background"; ObjectID = "9qy-Kf-cfH"; */
+"9qy-Kf-cfH.text" = "Hintergrund anpassen";
+
+/* Class = "UIViewController"; title = "History Details"; ObjectID = "9sH-9f-gbE"; */
+"9sH-9f-gbE.title" = "Vergangenheit";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "57w-3n-3ZJ"; */
+"57w-3n-3ZJ.headerTitle" = "-";
+
+/* Class = "UILabel"; text = "Public"; ObjectID = "678-30-R8h"; */
+"678-30-R8h.text" = "Öffentlich";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "ALn-DJ-6QA"; */
+"ALn-DJ-6QA.headerTitle" = "-";
+
+/* Class = "UIButton"; normalTitle = "Panic"; ObjectID = "AsE-Hi-lgf"; */
+"AsE-Hi-lgf.normalTitle" = "Panic";
+
+/* Class = "UIViewController"; title = "Register"; ObjectID = "B7E-o5-xcK"; */
+"B7E-o5-xcK.title" = "Registrieren";
+
+/* Class = "UILabel"; text = "List of groups busy updating"; ObjectID = "BBh-iy-Pmp"; */
+"BBh-iy-Pmp.text" = "Gruppenliste wird aktualisiert";
+
+/* Class = "UILabel"; text = "NO GROUPS FOUND"; ObjectID = "BlX-f9-pPd"; */
+"BlX-f9-pPd.text" = "KEINE GRUPPEN GEFUNDEN";
+
+/* Class = "UISearchBar"; placeholder = "Group Name"; ObjectID = "Bve-aB-7He"; */
+"Bve-aB-7He.placeholder" = "Gruppenname";
+
+/* Class = "UISearchBar"; Bve-aB-7He.scopeButtonTitles[0] = "Public"; ObjectID = "Bve-aB-7He"; */
+"Bve-aB-7He.scopeButtonTitles[0]" = "Öffentlich";
+
+/* Class = "UISearchBar"; Bve-aB-7He.scopeButtonTitles[1] = "Private"; ObjectID = "Bve-aB-7He"; */
+"Bve-aB-7He.scopeButtonTitles[1]" = "Private";
+
+/* Class = "UISearchBar"; Bve-aB-7He.scopeButtonTitles[2] = "New"; ObjectID = "Bve-aB-7He"; */
+"Bve-aB-7He.scopeButtonTitles[2]" = "Neu";
+
+/* Class = "UIButton"; normalTitle = "Report"; ObjectID = "C7b-iz-5p9"; */
+"C7b-iz-5p9.normalTitle" = "Melden";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "CIb-5X-3fF"; */
+"CIb-5X-3fF.normalTitle" = "Abbrechen";
+
+/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "Cca-Ty-eIf"; */
+"Cca-Ty-eIf.normalTitle" = "Bestätigen";
+
+/* Class = "UILabel"; text = "NO GROUPS"; ObjectID = "Ciz-L1-jbB"; */
+"Ciz-L1-jbB.text" = "KEINE GRUPPEN";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "DY6-w9-oQe"; */
+"DY6-w9-oQe.placeholder" = "Benutzername";
+
+/* Class = "UIButton"; normalTitle = "•••"; ObjectID = "DYg-M3-cN7"; */
+"DYg-M3-cN7.normalTitle" = "•••";
+
+/* Class = "UILabel"; text = "Photo: Kyle Jones"; ObjectID = "DeY-TU-GhK"; */
+"DeY-TU-GhK.text" = "Foto: Kyle Jones";
+
+/* Class = "UIButton"; normalTitle = "Done"; ObjectID = "Dl3-cc-CPm"; */
+"Dl3-cc-CPm.normalTitle" = "Fertig";
+
+/* Class = "UIButton"; normalTitle = "Cancel"; ObjectID = "E7G-5k-h2U"; */
+"E7G-5k-h2U.normalTitle" = "Abbrechen";
+
+/* Class = "UIButton"; normalTitle = "Country Name"; ObjectID = "EUb-tl-ioe"; */
+"EUb-tl-ioe.normalTitle" = "Land";
+
+/* Class = "UILabel"; text = "Type at least 3 characters to search"; ObjectID = "G3m-bG-fNG"; */
+"G3m-bG-fNG.text" = "Bitte mind. drei Zeichen eingeben";
+
+/* Class = "UILabel"; text = "Update location while app is closed. Heavy battery usage."; ObjectID = "GD8-iQ-v4n"; */
+"GD8-iQ-v4n.text" = "Standort aktualisieren wenn Anwendung geschlossen ist. Hoher Energieverbrauch";
+
+/* Class = "UILabel"; text = "Cell Number"; ObjectID = "GOs-kt-qbm"; */
+"GOs-kt-qbm.text" = "Handynummer";
+
+/* Class = "UIButton"; normalTitle = "JOIN"; ObjectID = "Gvy-vO-7zF"; */
+"Gvy-vO-7zF.normalTitle" = "BEITRETEN";
+
+/* Class = "UILabel"; text = "555"; ObjectID = "HAR-4F-rpq"; */
+"HAR-4F-rpq.text" = "555";
+
+/* Class = "UIViewController"; title = "Local History"; ObjectID = "HcT-Uw-djr"; */
+"HcT-Uw-djr.title" = "Lokale Vergangenheit";
+
+/* Class = "UILabel"; text = "5 Oct 2014"; ObjectID = "Hpq-DC-Vus"; */
+"Hpq-DC-Vus.text" = "5 Okt 2014";
+
+/* Class = "UILabel"; text = "Confirm"; ObjectID = "IP4-6p-DRS"; */
+"IP4-6p-DRS.text" = "Bestätigen";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "If1-VY-3f2"; */
+"If1-VY-3f2.normalTitle" = "Zurück";
+
+/* Class = "UIButton"; normalTitle = "Panic"; ObjectID = "Jmy-cn-oPt"; */
+"Jmy-cn-oPt.normalTitle" = "Panic";
+
+/* Class = "UIButton"; normalTitle = "Call"; ObjectID = "KSE-k4-hkw"; */
+"KSE-k4-hkw.normalTitle" = "Anrufen";
+
+/* Class = "UILabel"; text = "12:30pm"; ObjectID = "Kiu-ed-rsf"; */
+"Kiu-ed-rsf.text" = "12:30";
+
+/* Class = "UILabel"; text = "Date"; ObjectID = "Li5-XR-1Is"; */
+"Li5-XR-1Is.text" = "Datum";
+
+/* Class = "UIViewController"; title = "Add New Group"; ObjectID = "Mg4-3s-UgJ"; */
+"Mg4-3s-UgJ.title" = "Neue Gruppe hinzufügen";
+
+/* Class = "UILabel"; text = "I seem to have landed myself in a small pickle..."; ObjectID = "N0c-zE-CXN"; */
+"N0c-zE-CXN.text" = "Es scheint als sei etwas schief gelaufen...";
+
+/* Class = "UILabel"; text = "233"; ObjectID = "O3W-Hg-uBd"; */
+"O3W-Hg-uBd.text" = "233";
+
+/* Class = "UILabel"; text = "Private group or open community"; ObjectID = "OEz-Bu-OWy"; */
+"OEz-Bu-OWy.text" = "Private oder Öffentlich Gruppe";
+
+/* Class = "UILabel"; text = "555"; ObjectID = "PHt-Cl-qkc"; */
+"PHt-Cl-qkc.text" = "555";
+
+/* Class = "UIButton"; normalTitle = "Activate"; ObjectID = "PNW-kY-sep"; */
+"PNW-kY-sep.normalTitle" = "Aktivieren";
+
+/* Class = "UILabel"; text = "Name"; ObjectID = "PSE-DV-2Pc"; */
+"PSE-DV-2Pc.text" = "Name";
+
+/* Class = "UILabel"; text = "Number of members"; ObjectID = "PZn-UT-pNt"; */
+"PZn-UT-pNt.text" = "Mitglieder";
+
+/* Class = "UITableViewSection"; footerTitle = " "; ObjectID = "R9N-nW-IgV"; */
+"R9N-nW-IgV.footerTitle" = " -";
+
+/* Class = "UIButton"; normalTitle = "Feedback"; ObjectID = "RWH-f2-5vG"; */
+"RWH-f2-5vG.normalTitle" = "Feedback";
+
+/* Class = "UIButton"; normalTitle = "History"; ObjectID = "SyQ-NE-9wP"; */
+"SyQ-NE-9wP.normalTitle" = "Vergangenheit";
+
+/* Class = "UILabel"; text = "Rathfelder Area Constantia"; ObjectID = "TJf-tj-Qoy"; */
+"TJf-tj-Qoy.text" = "Rathfelder Area Constantia";
+
+/* Class = "UIButton"; normalTitle = "Report a user"; ObjectID = "Tw4-g9-tw0"; */
+"Tw4-g9-tw0.normalTitle" = "Benutzer melden";
+
+/* Class = "UILabel"; text = "Background Updates"; ObjectID = "UVt-dw-J72"; */
+"UVt-dw-J72.text" = "Hintergrundaktualisierungen";
+
+/* Class = "UISegmentedControl"; UYz-Hx-ggW.segmentTitles[0] = "Public"; ObjectID = "UYz-Hx-ggW"; */
+"UYz-Hx-ggW.segmentTitles[0]" = "Öffentlich";
+
+/* Class = "UISegmentedControl"; UYz-Hx-ggW.segmentTitles[1] = "Private"; ObjectID = "UYz-Hx-ggW"; */
+"UYz-Hx-ggW.segmentTitles[1]" = "Privat";
+
+/* Class = "UISegmentedControl"; UYz-Hx-ggW.segmentTitles[2] = "New"; ObjectID = "UYz-Hx-ggW"; */
+"UYz-Hx-ggW.segmentTitles[2]" = "Neu";
+
+/* Class = "UIViewController"; title = "Groups"; ObjectID = "Uey-Pa-0Xe"; */
+"Uey-Pa-0Xe.title" = "Gruppen";
+
+/* Class = "UILabel"; text = "Here you can see your own Panic history, limited to 50 records."; ObjectID = "Uyr-8Y-gNL"; */
+"Uyr-8Y-gNL.text" = "Hier können Sie Ihre letzten 50 Panic Vorfälle einsehen";
+
+/* Class = "UIButton"; normalTitle = "LEAVE"; ObjectID = "V2o-ri-IQg"; */
+"V2o-ri-IQg.normalTitle" = "VERLASSEN";
+
+/* Class = "UILabel"; text = "Rathfelder Area Constantia"; ObjectID = "Vmj-Io-bD1"; */
+"Vmj-Io-bD1.text" = "Rathfelder Area Constantia";
+
+/* Class = "UIButton"; normalTitle = "•••"; ObjectID = "VtA-Se-ZUA"; */
+"VtA-Se-ZUA.normalTitle" = "•••";
+
+/* Class = "UILabel"; text = "Private group or open community"; ObjectID = "VxD-ZH-HIl"; */
+"VxD-ZH-HIl.text" = "Private oder Öffentliche Gruppe";
+
+/* Class = "UILabel"; text = "16"; ObjectID = "W0c-cl-fUH"; */
+"W0c-cl-fUH.text" = "16";
+
+/* Class = "UILabel"; text = "22 Minutes"; ObjectID = "WNY-7h-IVi"; */
+"WNY-7h-IVi.text" = "22 Minuten";
+
+/* Class = "UIButton"; normalTitle = "Reset Password"; ObjectID = "WrF-Ts-mIm"; */
+"WrF-Ts-mIm.normalTitle" = "Passwort zurücksetzen";
+
+/* Class = "UIButton"; normalTitle = "Join"; ObjectID = "WuS-KV-jEe"; */
+"WuS-KV-jEe.normalTitle" = "Beitreten";
+
+/* Class = "UILabel"; text = "Contact"; ObjectID = "XDa-W8-WIH"; */
+"XDa-W8-WIH.text" = "Kontakt";
+
+/* Class = "UILabel"; text = "Show confirmation message before activating panic button"; ObjectID = "XGm-TS-fz0"; */
+"XGm-TS-fz0.text" = "Bestätigungsmeldung vor der Panic Button-Aktivierung anzeigen";
+
+/* Class = "UILabel"; text = "Tap the Panic button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live."; ObjectID = "XgX-Bc-9dL"; */
+"XgX-Bc-9dL.text" = "Berühren Sie den Panic Button. Während dieser Anleitung wird dies keine Auswirkungen haben. Sobald die Anleitung abgeschlossen ist, ist der Button jedoch scharf.";
+
+/* Class = "UILabel"; text = "5 Oct 2014"; ObjectID = "XhJ-d2-TZm"; */
+"XhJ-d2-TZm.text" = "5 Okt 2014";
+
+/* Class = "UIButton"; normalTitle = "Finish"; ObjectID = "Xjr-I7-0oJ"; */
+"Xjr-I7-0oJ.normalTitle" = "Beenden";
+
+/* Class = "UILabel"; text = "Panic Confirmation"; ObjectID = "Xok-GO-1PI"; */
+"Xok-GO-1PI.text" = "Panic Bestätigung";
+
+/* Class = "UITableViewSection"; footerTitle = " "; ObjectID = "Y6P-nQ-Fzb"; */
+"Y6P-nQ-Fzb.footerTitle" = "-";
+
+/* Class = "UITableViewSection"; headerTitle = " Caution"; ObjectID = "Y6P-nQ-Fzb"; */
+"Y6P-nQ-Fzb.headerTitle" = "Vorsicht";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "Y9K-q5-eXe"; */
+"Y9K-q5-eXe.title" = "Gegenstand";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "YHY-eE-gdu"; */
+"YHY-eE-gdu.text" = "Lädt...";
+
+/* Class = "UIButton"; normalTitle = "Report a bug"; ObjectID = "YUf-K4-FbV"; */
+"YUf-K4-FbV.normalTitle" = "Einen Fehler melden";
+
+/* Class = "UILabel"; text = "First, we need to subscribe you to a group. Subscribing to a group will allow other subscribers to receive your notifications when you are in trouble."; ObjectID = "Ybc-wo-mhN"; */
+"Ybc-wo-mhN.text" = "Zuerst müssen wir Sie zu einer Gruppe hinzufügen. Dadurch erhalten andere Mitglieder Ihre Meldung, sollten Sie in einen Notfall haben. ";
+
+/* Class = "UILabel"; text = "2:30 - 3:30"; ObjectID = "Yh4-eN-n6Q"; */
+"Yh4-eN-n6Q.text" = "2:30 - 3:30";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Z1l-KV-0to"; */
+"Z1l-KV-0to.text" = "Label";
+
+/* Class = "UILabel"; text = "Joined group Cape Town City Center"; ObjectID = "Zyw-bw-3Df"; */
+"Zyw-bw-3Df.text" = "Ist der Gruppe Cape Town City Center beigetreten";
+
+/* Class = "UIButton"; normalTitle = "Respond"; ObjectID = "aHI-Dd-8ei"; */
+"aHI-Dd-8ei.normalTitle" = "Antworten";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "aKt-Gq-GC5"; */
+"aKt-Gq-GC5.placeholder" = "Passwort";
+
+/* Class = "UILabel"; text = "Responders"; ObjectID = "aRJ-GM-2Fh"; */
+"aRJ-GM-2Fh.text" = "Helfer";
+
+/* Class = "UILabel"; text = "Remember you can still swipe from the left edge to open the main menu."; ObjectID = "aVL-5I-vhf"; */
+"aVL-5I-vhf.text" = "Denken Sie daran, dass Sie nach rechts wischen können, um das Hauptmenü aufzurufen.";
+
+/* Class = "UILabel"; text = "     "; ObjectID = "asr-cq-A2K"; */
+"asr-cq-A2K.text" = "     -";
+
+/* Class = "UITableViewController"; title = "Settings"; ObjectID = "bf1-M8-Ukx"; */
+"bf1-M8-Ukx.title" = "Einstellungen";
+
+/* Class = "UILabel"; text = "555"; ObjectID = "bmp-1C-ghT"; */
+"bmp-1C-ghT.text" = "555";
+
+/* Class = "UILabel"; text = "Loading..."; ObjectID = "buI-42-ueq"; */
+"buI-42-ueq.text" = "Lädt...";
+
+/* Class = "UILabel"; text = "Panic"; ObjectID = "cnS-e7-o1F"; */
+"cnS-e7-o1F.text" = "Panic";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "eaf-UV-oDP"; */
+"eaf-UV-oDP.text" = "Label";
+
+/* Class = "UILabel"; text = "join a nearby group or tap + for more options"; ObjectID = "elk-mO-0Od"; */
+"elk-mO-0Od.text" = "einer Gruppe beitreten oder \"+\" für mehr Optionen berühren";
+
+/* Class = "UIViewController"; title = "Tabbar"; ObjectID = "fCA-iG-EaX"; */
+"fCA-iG-EaX.title" = "Reiterleiste";
+
+/* Class = "UILabel"; text = "Rathfelder Area Constantia"; ObjectID = "h4v-f9-5bI"; */
+"h4v-f9-5bI.text" = "Rathfelder Area Constantia";
+
+/* Class = "UILabel"; text = "16"; ObjectID = "hHA-ht-pWa"; */
+"hHA-ht-pWa.text" = "16";
+
+/* Class = "UILabel"; text = "AM"; ObjectID = "hoH-1h-kLu"; */
+"hoH-1h-kLu.text" = "AM";
+
+/* Class = "UILabel"; text = "Welcome"; ObjectID = "kKi-hN-C64"; */
+"kKi-hN-C64.text" = "Willkommen";
+
+/* Class = "UILabel"; text = "Password"; ObjectID = "kWg-cN-gKV"; */
+"kWg-cN-gKV.text" = "Passwort";
+
+/* Class = "UIViewController"; title = "Panic"; ObjectID = "kdS-kf-ljO"; */
+"kdS-kf-ljO.title" = "Panic";
+
+/* Class = "UIBarButtonItem"; title = "Back"; ObjectID = "mC6-LO-XHV"; */
+"mC6-LO-XHV.title" = "Zurück";
+
+/* Class = "UILabel"; text = "Name Surname"; ObjectID = "nTx-6c-gQa"; */
+"nTx-6c-gQa.text" = "Vor-und Nachname";
+
+/* Class = "UILabel"; text = "Joined group Cape Town City Center"; ObjectID = "nbv-FK-6pp"; */
+"nbv-FK-6pp.text" = "Ist der Gruppen Cape Town City Center beigetreten";
+
+/* Class = "UILabel"; text = "NO GROUPS NEARBY"; ObjectID = "nqg-fi-y3w"; */
+"nqg-fi-y3w.text" = "KEINE GRUPPEN IN IHRER NÄHE";
+
+/* Class = "UITableViewSection"; footerTitle = " "; ObjectID = "o8j-Yr-9oS"; */
+"o8j-Yr-9oS.footerTitle" = "-";
+
+/* Class = "UITableViewSection"; headerTitle = " "; ObjectID = "o8j-Yr-9oS"; */
+"o8j-Yr-9oS.headerTitle" = "-";
+
+/* Class = "UILabel"; text = "Rathfelder Area Constantia"; ObjectID = "oM8-qV-hZL"; */
+"oM8-qV-hZL.text" = "Rathfelder Area Constantia";
+
+/* Class = "UILabel"; text = "Responders"; ObjectID = "oMo-ex-xQP"; */
+"oMo-ex-xQP.text" = "Helfer";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "oaH-Fd-aDe"; */
+"oaH-Fd-aDe.placeholder" = "Passwort";
+
+/* Class = "UILabel"; text = "Tap the add button"; ObjectID = "p1X-5o-6A7"; */
+"p1X-5o-6A7.text" = "Berühren Sie den \"Hinzufügen\"-Knopf";
+
+/* Class = "UIButton"; normalTitle = "Activate"; ObjectID = "p7v-8Y-uNo"; */
+"p7v-8Y-uNo.normalTitle" = "Aktvieren";
+
+/* Class = "UILabel"; text = "0729293991"; ObjectID = "pRj-U9-8Om"; */
+"pRj-U9-8Om.text" = "0729293991";
+
+/* Class = "UILabel"; text = "Tapping on one of the records will display more details about that particular Panic activation."; ObjectID = "pdE-qY-3I8"; */
+"pdE-qY-3I8.text" = "Indem Sie eines der Ereignisse berühren, können Sie mehr über diese Panic Aktivierung erfahren.";
+
+/* Class = "UILabel"; text = "0"; ObjectID = "pnC-SN-7NU"; */
+"pnC-SN-7NU.text" = "0";
+
+/* Class = "UILabel"; text = "NO GROUPS NEARBY"; ObjectID = "qdt-87-5Nk"; */
+"qdt-87-5Nk.text" = "KEINE GRUPPEN IN IHRER NÄHE";
+
+/* Class = "UIButton"; normalTitle = "Groups"; ObjectID = "rcL-kG-LNf"; */
+"rcL-kG-LNf.normalTitle" = "GRUPPEN";
+
+/* Class = "UILabel"; text = "22"; ObjectID = "rqI-an-QgS"; */
+"rqI-an-QgS.text" = "22";
+
+/* Class = "UILabel"; text = "Here you will find the list of groups you have subscribed to. When you activate Panic, notifications are sent out to fellow subscribers of these groups with your information and location."; ObjectID = "s4A-Al-cuL"; */
+"s4A-Al-cuL.text" = "Her können Sie eine Liste aller Gruppen, in denen Sie Mitglied sind finden. Wenn Sie Panic aktivieren, wird eine Meldung mit Ihren Details und Standort an alle Mitglieder dieser Gruppen geschickt.";
+
+/* Class = "UIButton"; normalTitle = "Settings"; ObjectID = "s7R-jQ-CLV"; */
+"s7R-jQ-CLV.normalTitle" = "Einstellungen";
+
+/* Class = "UILabel"; text = "May"; ObjectID = "sE6-P6-v6K"; */
+"sE6-P6-v6K.text" = "Mai";
+
+/* Class = "UILabel"; text = "Important"; ObjectID = "sQS-ca-TgP"; */
+"sQS-ca-TgP.text" = "Wichtig";
+
+/* Class = "UIButton"; normalTitle = "•••"; ObjectID = "t3z-ji-tzN"; */
+"t3z-ji-tzN.normalTitle" = "•••";
+
+/* Class = "UILabel"; text = "Tap anywhere to continue"; ObjectID = "tI1-rY-hwj"; */
+"tI1-rY-hwj.text" = "Berühren um fortzufahren";
+
+/* Class = "UILabel"; text = "Cape Town"; ObjectID = "thk-ne-o3P"; */
+"thk-ne-o3P.text" = "Kapstadt";
+
+/* Class = "UIButton"; normalTitle = "Login"; ObjectID = "tvr-sb-QJd"; */
+"tvr-sb-QJd.normalTitle" = "Einloggen";
+
+/* Class = "UILabel"; text = "5 Oct 2014"; ObjectID = "tym-Mx-7Ue"; */
+"tym-Mx-7Ue.text" = "5 Okt 2014";
+
+/* Class = "UITabBarItem"; title = "Item"; ObjectID = "u2g-Sj-fNe"; */
+"u2g-Sj-fNe.title" = "Gegenstand";
+
+/* Class = "UIButton"; normalTitle = "LEAVE"; ObjectID = "ukz-yx-q3w"; */
+"ukz-yx-q3w.normalTitle" = "VERLASSEN";
+
+/* Class = "UILabel"; text = "type 3 or more characters to search"; ObjectID = "v9H-gj-TDs"; */
+"v9H-gj-TDs.text" = "Bitte geben Sie drei oder mehr Zeichen ein, um zu suchen";
+
+/* Class = "UILabel"; text = "Swipe from the left edge to open the main menu"; ObjectID = "v14-0N-g2G"; */
+"v14-0N-g2G.text" = "Wischen Sie nach rechts, um das Hauptmenü zu öffnen";
+
+/* Class = "UILabel"; text = "Check spelling or alternatively create your own"; ObjectID = "vNt-cX-3JG"; */
+"vNt-cX-3JG.text" = "Überprüfen Sie die Rechtschreibung oder erstellen Sie Ihre eigene Gruppe";
+
+/* Class = "UIViewController"; title = "Login"; ObjectID = "vXZ-lx-hvc"; */
+"vXZ-lx-hvc.title" = "Einloggen";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "wUv-AI-Wkf"; */
+"wUv-AI-Wkf.normalTitle" = "Zurück";
+
+/* Class = "UILabel"; text = "8"; ObjectID = "wqW-i2-3cu"; */
+"wqW-i2-3cu.text" = "8";
+
+/* Class = "UILabel"; text = "Groups"; ObjectID = "x7C-nX-ihH"; */
+"x7C-nX-ihH.text" = "Gruppen";
+
+/* Class = "UITextField"; placeholder = "Confirm Password"; ObjectID = "xCQ-X8-JAL"; */
+"xCQ-X8-JAL.placeholder" = "Passwort bestätigen";
+
+/* Class = "UILabel"; text = "Setting the group to private will hide it from public searches and require you to enter the name into the \"Private\" tab to join"; ObjectID = "xG1-SH-5RA"; */
+"xG1-SH-5RA.text" = "Wenn Sie die Gruppen Privat machen, wird diese nicht in öffentlichen Suchen angezeigt und der Gruppenname muss im \"Privat\"-Tab eingegeben werden, um beizutreten.";
+
+/* Class = "UILabel"; text = "Welcome"; ObjectID = "xhE-ZF-2zD"; */
+"xhE-ZF-2zD.text" = "Willkommen";
+
+/* Class = "UILabel"; text = "000"; ObjectID = "y4E-Ko-hnz"; */
+"y4E-Ko-hnz.text" = "000";
+
+/* Class = "UITextField"; placeholder = "Username"; ObjectID = "yAE-s6-24v"; */
+"yAE-s6-24v.placeholder" = "Benutzername";
+
+/* Class = "UIButton"; normalTitle = "Tutorial"; ObjectID = "yCn-kD-Qhq"; */
+"yCn-kD-Qhq.normalTitle" = "Anleitung";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "yjc-uz-5Ex"; */
+"yjc-uz-5Ex.placeholder" = "Name";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "zEq-hZ-FHm"; */
+"zEq-hZ-FHm.text" = "Label";
+
+/* Class = "UIButton"; normalTitle = "Map"; ObjectID = "zYK-nb-1w5"; */
+"zYK-nb-1w5.normalTitle" = "Karte";
+
