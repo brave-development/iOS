@@ -235,8 +235,9 @@ class GroupsHandler: UIViewController {
 							let name = groupObject["name"] as! String
 							global.showAlert(NSLocalizedString("successful", value: "Successful", comment: ""), message: String(format: NSLocalizedString("joined_group_text", value: "Successfully created and joined the group %@.", comment: ""), arguments: [name]))
 							groupsHandler.addGroup(name)
-							NotificationCenter.default.post(name: Notification.Name(rawValue: "gotNearbyGroups"), object: nil)
-							parent.dismiss(animated: true, completion: nil)
+//							NotificationCenter.default.post(name: Notification.Name(rawValue: "gotNearbyGroups"), object: nil)
+//							parent.dismiss(animated: true, completion: nil)
+                            parent.uploadFinished()
 						})
 					} else {
 						global.showAlert("Oops", message: error!.localizedDescription)

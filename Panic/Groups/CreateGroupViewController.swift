@@ -8,8 +8,9 @@
 
 import UIKit
 import Parse
+import SDWebImage
 
-class CreateGroupViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate {
+class CreateGroupViewController: UIViewController, UINavigationControllerDelegate, UITextViewDelegate, UITextFieldDelegate {
 	
 	let imagePicker = UIImagePickerController()
 	var publicGroup = true
@@ -139,27 +140,6 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 		present(imagePicker, animated: true, completion: nil)
 	}
 	
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-		
-		if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
-			
-			imgBackground.image = pickedImage
-			imgBackground.alpha = 1
-			imgBackground.contentMode = .scaleAspectFill
-			viewContent.layer.borderWidth = 0.0
-			btnLeave.backgroundColor = UIColor(white: 0, alpha: 0.3)
-			imageChosen = true
-			
-			let gradient = drawing.gradient(viewContent, colours: [UIColor.clear.cgColor, UIColor.black.cgColor], locations: [0.0 , 1.0], opacity: 0.5)
-			viewContent.layer.insertSublayer(gradient, at: 1)
-		}
-		dismiss(animated: true, completion: nil)
-	}
-	
-	func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-		dismiss(animated: true, completion: nil)
-	}
-	
 	@IBAction func privatePublic(_ sender: AnyObject) {
 		publicGroup = !publicGroup
 		
@@ -179,7 +159,7 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 			} else {
 				newGroup()
 			}
-			NotificationCenter.default.post(name: Notification.Name(rawValue: "gotNearbyGroups"), object: nil)
+//			NotificationCenter.default.post(name: Notification.Name(rawValue: "gotNearbyGroups"), object: nil)
 		}
 	}
 	
@@ -189,36 +169,13 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 		let saveAlert = UIAlertController(title: NSLocalizedString("are_you_sure", value: "Are you sure?", comment: ""), message: message, preferredStyle: UIAlertControllerStyle.alert)
 		saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
 			// Clicked YES
-			self.spinner.startAnimating()
-			self.btnClose.isEnabled = false
-			self.btnFinish.isEnabled = false
-			self.txtName.isUserInteractionEnabled = false
-			self.txtDescription.isUserInteractionEnabled = false
-			self.btnEditBackground.isEnabled = false
-			self.btnLock.isEnabled = false
-			
-			let image: PFFile = PFFile(data: UIImageJPEGRepresentation(self.imgBackground.image!, 0.7)! , contentType: "image")
-			let newGroupObject : PFObject = PFObject(className: "Groups")
-			newGroupObject["name"] = self.txtName.text.trim().lowercased().capitalized
-			newGroupObject["flatValue"] = self.txtName.text.trim().formatGroupForFlatValue()
-			newGroupObject["country"] = PFUser.current()!.object(forKey: "country")
-			newGroupObject["admin"] = PFUser.current()
-			if self.publicGroup == true {
-				newGroupObject["public"] = true
+            self.prepareForUpload()
+            
+            let newGroup = self.createGroupObject()
+			if groupsHandler.checkIfGroupExists(newGroup) == false {
+				groupsHandler.createGroup(newGroup, parent: self)
 			} else {
-				newGroupObject["public"] = false
-			}
-			newGroupObject["imageFile"] = image
-			if groupsHandler.checkIfGroupExists(newGroupObject) == false {
-				groupsHandler.createGroup(newGroupObject, parent: self)
-			} else {
-				self.spinner.stopAnimating()
-				self.btnClose.isEnabled = true
-				self.btnFinish.isEnabled = true
-				self.txtName.isUserInteractionEnabled = true
-				self.txtDescription.isUserInteractionEnabled = true
-				self.btnEditBackground.isEnabled = true
-				self.btnLock.isEnabled = true
+                self.uploadFinished()
 			}
 		}))
 		saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
@@ -228,41 +185,58 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 	}
 	
 	func editGroup() {
-		self.spinner.startAnimating()
-		self.btnClose.isEnabled = false
-		self.btnFinish.isEnabled = false
-		self.txtName.isUserInteractionEnabled = false
-		self.txtDescription.isUserInteractionEnabled = false
-		self.btnEditBackground.isEnabled = false
-		self.btnLock.isEnabled = false
-		
-		let groupName = group!["flatValue"] as! String
-		let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
-		let destinationPath = URL(string: documentsPath)?.appendingPathComponent("\(groupName).jpg", isDirectory: true)
-		try? UIImageJPEGRepresentation(imgBackground.image!,1.0)!.write(to: URL(fileURLWithPath: destinationPath!.absoluteString), options: [.atomic])
-		
-		let image: PFFile = PFFile(data: UIImageJPEGRepresentation(self.imgBackground.image!, 0.7)! , contentType: "image")
-		group!["name"] = self.txtName.text.trim().lowercased().capitalized
-		group!["description"] = self.txtDescription.text.trim()
-		group!["flatValue"] = self.txtName.text.trim().formatGroupForFlatValue()
-		group!["country"] = PFUser.current()!.object(forKey: "country")
-		group!["admin"] = PFUser.current()
-		if self.publicGroup == true {
-			group!["public"] = true
-		} else {
-			group!["public"] = false
-		}
-		group!["imageFile"] = image
-		group!.saveInBackground(block: {
+        prepareForUpload()
+        
+        let edittedGroup = createGroupObject()
+		edittedGroup.saveInBackground(block: {
 			(result, error) in
 			if error != nil {
 				global.showAlert("", message: NSLocalizedString("error_update_failed", value: "Something went wrong during the update. Please try again.", comment: ""))
 			} else {
 				global.showAlert("", message: NSLocalizedString("update_successful", value: "Updated successfully", comment: ""))
-				self.dismiss(animated: true, completion: nil)
+                self.uploadFinished()
 			}
 		})
 	}
+    
+    func prepareForUpload() {
+        self.spinner.startAnimating()
+        self.btnClose.isEnabled = false
+        self.btnFinish.isEnabled = false
+        self.txtName.isUserInteractionEnabled = false
+        self.txtDescription.isUserInteractionEnabled = false
+        self.btnEditBackground.isEnabled = false
+        self.btnLock.isEnabled = false
+    }
+    
+    func uploadFinished() {
+        self.spinner.stopAnimating()
+        self.btnClose.isEnabled = true
+        self.btnFinish.isEnabled = true
+        self.txtName.isUserInteractionEnabled = true
+        self.txtDescription.isUserInteractionEnabled = true
+        self.btnEditBackground.isEnabled = true
+        self.btnLock.isEnabled = true
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "gotNearbyGroups"), object: nil)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func createGroupObject() -> PFObject {
+        let image: PFFile = PFFile(data: UIImageJPEGRepresentation(self.imgBackground.image!, 0.4)! , contentType: "image")
+        group!["name"] = self.txtName.text.trim().lowercased().capitalized
+        group!["description"] = self.txtDescription.text.trim()
+        group!["flatValue"] = self.txtName.text.trim().formatGroupForFlatValue()
+        group!["country"] = PFUser.current()!.object(forKey: "country")
+        group!["admin"] = PFUser.current()
+        if self.publicGroup == true {
+            group!["public"] = true
+        } else {
+            group!["public"] = false
+        }
+        group!["imageFile"] = image
+        
+        return group!
+    }
 	
 	//
 	let groupNameLocalized = NSLocalizedString("group_name", value: "Group Name", comment: "")
@@ -288,46 +262,25 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 	
 	func textViewDidBeginEditing(_ textView: UITextView) {
 		switch (textView.tag) {
-		case 0:
-			if txtName.text == groupNameLocalized { txtName.text = "" }
-			break
-			
-		case 1:
-			if txtDescription.text == groupDescriptionLocalized { txtDescription.text = "" }
-			break
-			
-		default:
-			break
+		case 0: if txtName.text == groupNameLocalized { txtName.text = "" }
+        case 1: if txtDescription.text == groupDescriptionLocalized { txtDescription.text = "" }
+        default: break
 		}
 	}
 	
 	func textViewDidEndEditing(_ textView: UITextView) {
 		switch (textView.tag) {
-		case 0:
-			if txtName.text == "" { txtName.text = groupNameLocalized }
-			break
-			
-		case 1:
-			if txtDescription.text == "" { txtDescription.text = groupDescriptionLocalized }
-			break
-			
-		default:
-			break
+		case 0: if txtName.text == "" { txtName.text = groupNameLocalized }
+        case 1: if txtDescription.text == "" { txtDescription.text = groupDescriptionLocalized }
+        default: break
 		}
 	}
 	
 	func textViewDidChange(_ textView: UITextView) {
 		switch (textView.tag) {
-		case 0:
-			lblName.text = txtName.text
-			break
-			
-		case 1:
-			lblDescription.text = txtDescription.text
-			break
-			
-		default:
-			break
+		case 0: lblName.text = txtName.text
+        case 1: lblDescription.text = txtDescription.text
+        default: break
 		}
 	}
 	
@@ -370,18 +323,27 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 			let image = UIImage(contentsOfFile: getImagePath!.absoluteString)
 			self.imgBackground.image = image
 		} else {
-			Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(setImage), userInfo: nil, repeats: false)
+            if let imageUrl = (self.group!["imageFile"] as! PFFile).url {
+                self.imgBackground.sd_setIndicatorStyle(.white)
+                self.imgBackground.sd_showActivityIndicatorView()
+                self.imgBackground.sd_setImage(with: URL(string: imageUrl))
+            }
 		}
 	}
 	
 	@IBAction func close(_ sender: AnyObject) {
 		if txtName.text != groupNameLocalized || txtDescription.text != groupDescriptionLocalized || imageChosen == true {
 			let saveAlert = UIAlertController(title: NSLocalizedString("are_you_sure_title", value: "Are you sure?", comment: ""), message: NSLocalizedString("are_you_sure_text", value: "You will loose any unsaved information", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+            
+            // YES
 			saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
-				// Clicked YES
 				self.dismiss(animated: true, completion: nil)
 			}))
+            
+            // NO
 			saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .default, handler: { (action: UIAlertAction!) in }))
+            
+            // PRESENT
 			present(saveAlert, animated: true, completion: nil)
 		} else {
 			self.dismiss(animated: true, completion: nil)
@@ -390,6 +352,35 @@ class CreateGroupViewController: UIViewController, UIImagePickerControllerDelega
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+}
+
+
+// ==============
+// Image Picker
+// ==============
+
+
+
+extension CreateGroupViewController: UIImagePickerControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+            
+            imgBackground.image = pickedImage
+            imgBackground.alpha = 1
+            imgBackground.contentMode = .scaleAspectFill
+            viewContent.layer.borderWidth = 0.0
+            btnLeave.backgroundColor = UIColor(white: 0, alpha: 0.3)
+            imageChosen = true
+            
+            let gradient = drawing.gradient(viewContent, colours: [UIColor.clear.cgColor, UIColor.black.cgColor], locations: [0.0 , 1.0], opacity: 0.5)
+            viewContent.layer.insertSublayer(gradient, at: 1)
+        }
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
     }
 }

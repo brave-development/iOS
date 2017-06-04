@@ -9,6 +9,9 @@
 import UIKit
 import Parse
 import CoreLocation
+import FacebookCore
+import FacebookLogin
+import SwiftyJSON
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
     
@@ -34,6 +37,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             attributes:[NSForegroundColorAttributeName: UIColor.white])
         txtPassword.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("password", value: "Password", comment: ""),
             attributes:[NSForegroundColorAttributeName: UIColor.white])
+        
+        // Adding Facebook login button
+        let loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
+        loginButton.center = view.center
+        loginButton.delegate = self
+        
+        view.addSubview(loginButton)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -70,41 +80,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func login(_ sender: AnyObject) {
-//        spinner.startAnimating()
         startLoading()
-//        var user = PFUser()
-        PFUser.logInWithUsername(inBackground: txtUsername.text!.lowercased().trim(), password: txtPassword.text!.trim(), block: {
-			(user, error) in
-            print(user)
-            if (error != nil) {
-                print(error!)
-				let unsuccessful = NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: "")
-                switch (error! as NSError).code {
-                case 100:
-                    global.showAlert(unsuccessful, message: NSLocalizedString("error_network_connection", value: "The network connection was lost", comment: ""))
-                    self.btnLogin.isEnabled = true
-                    self.btnRegister.isEnabled = true
-                    break
-                case 101:
-                    global.showAlert(unsuccessful, message: NSLocalizedString("error_invalid_login", value: "Invalid login credentials", comment: ""))
-                    self.btnLogin.isEnabled = true
-                    self.btnRegister.isEnabled = true
-                    break
-                default:
-                    if error?.localizedDescription != nil {
-                        global.showAlert(unsuccessful, message: error!.localizedDescription)
-                    } else {
-                        global.showAlert(unsuccessful, message: "Dunno, brah")
-                    }
-                    self.btnLogin.isEnabled = true
-                    self.btnRegister.isEnabled = true
-                    break
-                }
-            } else {
-                self.manageLogin()
-            }
-            self.stopLoading()
-        })
+        
     }
     
     @IBAction func register(_ sender: AnyObject) {
@@ -203,7 +180,43 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+}
+
+extension LoginViewController: LoginButtonDelegate {
     
+    func loginButtonDidCompleteLogin(_ loginButton: LoginButton, result: LoginResult) {
+        switch result {
+        case .failed(let error):
+            print(error)
+        case .cancelled:
+            print("Cancelled")
+        case .success(let _, let _, let _):
+            print("Logged In")
+            facebookLogin()
+        }
+    }
     
+    func facebookLogin() {
+        if let accessToken = AccessToken.current {
+            let params = ["fields":"name,email"]
+            let graphRequest = GraphRequest(graphPath: "me", parameters: params)
+            graphRequest.start { (urlResponse, requestResult) in
+                switch requestResult {
+                case .failed(let error):
+                    print(error)
+                case .success(let graphResponse):
+                    if let responseDictionary = graphResponse.dictionaryValue {
+                        UserDefaults.standard.set(responseDictionary, forKey: "userInfo")
+                        
+                        let json = JSON(responseDictionary)
+                    }
+                    LoginManager.init().logOut()
+                }
+            }
+        } else {
+        }
+    }
+    
+    func loginButtonDidLogOut(_ loginButton: LoginButton) {  }
 }
 

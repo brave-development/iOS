@@ -36,6 +36,7 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 	func setup() {
 		NotificationCenter.default.addObserver(self, selector: #selector(purchaseStarted), name: NSNotification.Name(rawValue: "purchaseStarted"), object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(purchaseEnded), name: NSNotification.Name(rawValue: "purchaseEnded"), object: nil)
+        
 		let yOffset = ((parentVC.tblGroups.contentOffset.y - self.frame.origin.y) / 320) * OffsetSpeed
 		if imgBackground != nil {
 			imgBackground.frame = CGRect(x: 0, y: yOffset, width: self.frame.width, height: 320)
@@ -43,15 +44,16 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 			imgBackground = UIImageView(frame: CGRect(x: 0, y: yOffset, width: self.frame.width, height: 320))
 			self.insertSubview(imgBackground, at: 0)
 		}
+        
+        imgBackground.clipsToBounds = true
 		imgBackground.contentMode = UIViewContentMode.scaleAspectFill 
 		setImage()
 		
 		let groupName = object!["name"] as! String
-		
 		lblName.text = groupName
 		
-		if object!["subscriberObjects"] != nil {
-			subsCount = (object!["subscriberObjects"] as? [String])!.count
+		if let _subsCount = (object!["subscriberObjects"] as? [String])?.count {
+			subsCount = _subsCount
 		}
 		
 		if object?["description"] != nil {
@@ -62,14 +64,11 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 		
 		if (object!["public"] as? Bool) == true {
 			imgLock.isHidden = true
-//			if subsCount > 2 { subsCount = subsCount + Int(floor(subsCount*0.3)) }
 		} else {
 			imgLock.isHidden = false
 		}
 		
 		lblSubs.text = "\(subsCount)"
-		
-		imgBackground.clipsToBounds = true
 		
 		btnMore = drawing.buttonBorderCircle(btnMore, borderWidth: 1, borderColour: UIColor.white.cgColor)
 		btnMore.backgroundColor = UIColor(white: 0, alpha: 0.3)
@@ -211,60 +210,65 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 	}
 	
 	func getImage() {
-		let getImageDispatch: DispatchQueue = DispatchQueue(label: "getImageDispatch", attributes: [])
-		getImageDispatch.async(execute: {
-			if let image: PFFile = self.object!["imageFile"] as? PFFile {
-				image.getDataInBackground {
-					(imageData, error) in
-					if error == nil { self.finishedDownload(UIImage(data:imageData!)!) }
-				}
-			} else if let imageUrl: String = self.object!["image"] as? String {
-				let url = URL(string: imageUrl)
-				if let imageData = try? Data(contentsOf: url!){
-					self.finishedDownload(UIImage(data:imageData)!)
-				}
-			} else {
-				DispatchQueue.main.async(execute: {
-					self.imgBackground.backgroundColor = UIColor(white: 1, alpha: 0.7)
-					self.imgBackground.image = UIImage(named: "noImage")
-					self.imgBackground.contentMode = UIViewContentMode.center
-				})
-			}
-		})
+        if let imageUrl = (self.object!["imageFile"] as! PFFile).url {
+            self.imgBackground.sd_setIndicatorStyle(.white)
+            self.imgBackground.sd_showActivityIndicatorView()
+            self.imgBackground.sd_setImage(with: URL(string: imageUrl))
+        }
+//		let getImageDispatch: DispatchQueue = DispatchQueue(label: "getImageDispatch", attributes: [])
+//		getImageDispatch.async(execute: {
+//			if let image: PFFile = self.object!["imageFile"] as? PFFile {
+//				image.getDataInBackground {
+//					(imageData, error) in
+//					if error == nil { self.finishedDownload(UIImage(data:imageData!)!) }
+//				}
+//			} else if let imageUrl: String = self.object!["image"] as? String {
+//				let url = URL(string: imageUrl)
+//				if let imageData = try? Data(contentsOf: url!){
+//					self.finishedDownload(UIImage(data:imageData)!)
+//				}
+//			} else {
+//				DispatchQueue.main.async(execute: {
+//					self.imgBackground.backgroundColor = UIColor(white: 1, alpha: 0.7)
+//					self.imgBackground.image = UIImage(named: "noImage")
+//					self.imgBackground.contentMode = UIViewContentMode.center
+//				})
+//			}
+//		})
 	}
 	
-	func finishedDownload(_ image: UIImage) {
-		let groupName = self.object!["flatValue"] as! String
-		let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-		
-		imgBackground.image = image
-		let destinationPath = URL(string: documentsPath)?.appendingPathComponent("\(groupName).jpg", isDirectory: true)
-		try? UIImageJPEGRepresentation(image,1.0)!.write(to: URL(fileURLWithPath: destinationPath!.absoluteString), options: [.atomic])
-	}
+//	func finishedDownload(_ image: UIImage) {
+//		let groupName = self.object!["flatValue"] as! String
+//		let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+//		
+//		imgBackground.image = image
+//		let destinationPath = URL(string: documentsPath)?.appendingPathComponent("\(groupName).jpg", isDirectory: true)
+//		try? UIImageJPEGRepresentation(image,1.0)!.write(to: URL(fileURLWithPath: destinationPath!.absoluteString), options: [.atomic])
+//	}
 	
 	func setImage() {
 		self.imgBackground.backgroundColor = UIColor.white
 		self.imgBackground.image = nil
 		
-		let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
-		let groupName = self.object!["flatValue"] as! String
-		let getImagePath = URL(string: documentsPath)?.appendingPathComponent("\(groupName).jpg", isDirectory: true)
-		
-		let checkValidation = FileManager.default
-		if (checkValidation.fileExists(atPath: getImagePath!.absoluteString)) {
-			let image = UIImage(contentsOfFile: getImagePath!.absoluteString)
-			self.imgBackground.image = image
-			do {
-				let fileAttrs = try FileManager.default.attributesOfItem(atPath: getImagePath!.absoluteString)
-				let modDate = fileAttrs[FileAttributeKey.modificationDate] as! Date
-				if Date().timeIntervalSince(modDate) > 86400 {
-					print("Fetching new image for \(groupName)")
-					getImage()
-				}
-			} catch { }
-		} else {
+//		let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
+//		let groupName = self.object!["flatValue"] as! String
+//		let getImagePath = URL(string: documentsPath)?.appendingPathComponent("\(groupName).jpg", isDirectory: true)
+//		
+//		let checkValidation = FileManager.default
+//		if (checkValidation.fileExists(atPath: getImagePath!.absoluteString)) {
+//			let image = UIImage(contentsOfFile: getImagePath!.absoluteString)
+//			self.imgBackground.image = image
+//			do {
+//				let fileAttrs = try FileManager.default.attributesOfItem(atPath: getImagePath!.absoluteString)
+//				let modDate = fileAttrs[FileAttributeKey.modificationDate] as! Date
+//				if Date().timeIntervalSince(modDate) > 86400 {
+//					print("Fetching new image for \(groupName)")
+//					getImage()
+//				}
+//			} catch { }
+//		} else {
 			getImage()
-		}
+//		}
 	}
 	
 	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

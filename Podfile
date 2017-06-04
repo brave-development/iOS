@@ -9,9 +9,15 @@ target 'Panic' do
 	pod 'Mapbox-iOS-SDK'
 	pod 'Parse', '~> 1.14'
     pod 'SwiftyJSON'
+    pod 'SDWebImage'
+    
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'Firebase/RemoteConfig'
+    
+    pod 'FacebookCore'
+    pod 'FacebookLogin'
+    pod 'FacebookShare'
 
     pod 'Toast'
 

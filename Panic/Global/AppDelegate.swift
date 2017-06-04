@@ -13,6 +13,7 @@ import Firebase
 import FirebaseCore
 import FirebaseMessaging
 import UserNotifications
+import FacebookCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, FIRMessagingDelegate {
@@ -30,6 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         FIRMessaging.messaging().remoteMessageDelegate = self
+        
+        // Facebook
+        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         
         // Get Countries
         DispatchQueue.main.async { global.getCountries() }
@@ -98,7 +102,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     // ===================
     
     
-    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool { return true }
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        return SDKApplicationDelegate.shared.application(application, open:url, sourceApplication:sourceApplication, annotation:annotation)
+    }
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) { UIApplication.shared.registerForRemoteNotifications() }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
