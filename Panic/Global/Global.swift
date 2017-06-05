@@ -273,8 +273,9 @@ class Global: UIViewController {
 	}
 	
 	func shareToWhatsapp(_ message: String) {
-		let whatsappUrlString = "whatsapp://send?text=\(message)"
-		let whatsappUrl = URL(string: whatsappUrlString.addingPercentEscapes(using: String.Encoding.utf8)!)
+        let encodedMessage = message.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlHostAllowed)
+		let whatsappUrlString = "whatsapp://send?text=\(encodedMessage!)"
+		let whatsappUrl = URL(string: whatsappUrlString)
 		
 		if UIApplication.shared.canOpenURL(whatsappUrl!) {
 			UIApplication.shared.openURL(whatsappUrl!)

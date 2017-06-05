@@ -316,24 +316,28 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
             var inputTextField: UITextField?
             let codePrompt = UIAlertController(title: NSLocalizedString("enter_code_title", value: "Enter Code", comment: ""), message: NSLocalizedString("enter_code_text", value: "Enter the code given to you by another group member", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
             codePrompt.addAction(UIAlertAction(title: NSLocalizedString("join", value: "Join", comment: "Join a group"), style: UIAlertActionStyle.default, handler: { (action) -> Void in
-                self.showNotificationBar(NSLocalizedString("trying_to_join_group", value: "Trying to join group...", comment: ""))
-                let query = PFQuery(className: "Groups")
-                query.getObjectInBackground(withId: inputTextField!.text!, block: {
-                    (result, error) -> Void in
-                    if error == nil {
-                        if result != nil {
-                            let group = result! as PFObject
-                            groupsHandler.addGroup(group["name"] as! String)
-                            DispatchQueue.main.async(execute: { self.hideNotificationBar() })
-                        }
-                    } else {
-                        if (error! as NSError).code == 101 {
-                            global.showAlert(NSLocalizedString("error_no_group_found_title", value: "No group found", comment: ""), message: NSLocalizedString("error_no_group_found_text", value: "No group with that code has been found. Codes are case sensitive.", comment: ""))
+                if inputTextField!.text!.trim().characters.count > 0 {
+                    self.showNotificationBar(NSLocalizedString("trying_to_join_group", value: "Trying to join group...", comment: ""))
+                    let query = PFQuery(className: "Groups")
+                    query.getObjectInBackground(withId: inputTextField!.text!, block: {
+                        (result, error) -> Void in
+                        if error == nil {
+                            if result != nil {
+                                let group = result! as PFObject
+                                groupsHandler.addGroup(group["name"] as! String)
+                                DispatchQueue.main.async(execute: { self.hideNotificationBar() })
+                            }
                         } else {
-                            print(error!)
+                            if (error! as NSError).code == 101 {
+                                global.showAlert(NSLocalizedString("error_no_group_found_title", value: "No group found", comment: ""), message: NSLocalizedString("error_no_group_found_text", value: "No group with that code has been found. Codes are case sensitive.", comment: ""))
+                            } else {
+                                print(error!)
+                            }
                         }
-                    }
-                })
+                    })
+                } else {
+                    global.showAlert("", message: "Please enter a group code and try again")
+                }
             }))
             codePrompt.addTextField(configurationHandler: {(textField: UITextField!) in
                 textField.placeholder = NSLocalizedString("group_code", value: "Group Code", comment: "Placeholder asking the user to enter the group code")

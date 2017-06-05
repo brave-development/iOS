@@ -65,7 +65,9 @@
 	<true/>
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
+		<string>whatsapp</string>
 		<string>fbauth2</string>
+		<string>twitter</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>

@@ -99,13 +99,12 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 	}
 	
 	@IBAction func more(_ sender: AnyObject) {
-		let options = UIAlertController(title: "Options", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
+		let options = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.actionSheet)
 		
 		// EDIT
-		if (object!["admin"] as? PFUser)?.objectId == PFUser.current()?.objectId || (object!["admin"] as? PFUser)?.objectId! ==  "3ryzx2MVKU" {
+		if (object!["admin"] as? PFUser)?.objectId == PFUser.current()?.objectId || (PFInstallation.current()?["admin"] as? Bool) == true {
 			let editAction = UIAlertAction(title: "Edit", style: .default) { (_) in
 				let vc = self.parentVC.storyboard?.instantiateViewController(withIdentifier: "createNewGroupViewController") as! CreateGroupViewController
-				//			vc.fillData(self.object!)
 				vc.group = self.object!
 				vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
 				self.parentVC.present(vc, animated: true, completion: nil)
@@ -121,7 +120,7 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 				mail.mailComposeDelegate = self
 				mail.setSubject("Panic - Report Group")
 				mail.setToRecipients(["byron@panic-sec.org"])
-				mail.setBccRecipients(["byroncoetsee@gmail.com", "bevpaly@gmail.com", "lawrencesuss@gmail.com"])
+				mail.setBccRecipients(["byroncoetsee@gmail.com", "wprenison@gmail.com"])
 				self.parentVC.present(mail, animated: true, completion: nil)
 			}
 			else {
