@@ -33,6 +33,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     @IBOutlet weak var viewPasswordConfirm: UIView!
     @IBOutlet weak var switchPanicConfirmation: UISwitch!
 	@IBOutlet weak var switchBackgroundUpdate: UISwitch!
+    @IBOutlet weak var switchAllowNotifications: UISwitch!
     @IBOutlet weak var btnCountry: UIButton!
     
     var mainViewController : MainViewController!
@@ -66,6 +67,13 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 		if global.backgroundPanic == true {
 			switchBackgroundUpdate.isOn = true
 		}
+        if let allowNotifications = (PFInstallation.current()!["allowNotifications"] as? Bool) {
+            switchAllowNotifications.isOn = allowNotifications
+        } else {
+            switchAllowNotifications.isOn = true
+            PFInstallation.current()?.setValue(true, forKey: "allowNotifications")
+            PFInstallation.current()?.saveInBackground()
+        }
     }
     
 	override func viewDidAppear(_ animated: Bool) {
@@ -98,7 +106,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
         } else {
             global.setPanicNotification(false)
         }
-    }
+    }2
 	
 	@IBAction func backgroundUpdates(_ sender: AnyObject) {
 		if switchBackgroundUpdate.isOn == true {
@@ -112,6 +120,10 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 		}
 	}
     
+    @IBAction func allowNotifications(_ sender: AnyObject) {
+        changed = true
+    }
+    
     // Show popup with information about panicConfirmation
     @IBAction func showInfoPanicConfirmation(_ sender: AnyObject) {
         global.showAlert(NSLocalizedString("confirmation_info_title", value: "Panic Confirmation", comment: ""), message: NSLocalizedString("confirmation_info_text", value: "Enabling this will remove the 5 second delay before sending notifications, however you will have to manually select 'Yes' each time you activate Panic.", comment: ""))
@@ -121,6 +133,10 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 		global.showAlert(NSLocalizedString("background_update_info_title", value: "Background Update", comment: ""), message: NSLocalizedString("background_update_info_text", value: "Enabling background updates will let Panic continue to broadcast your location, even when the app is in the background and/or your iPhone is asleep, during activation.\n\nThis is disabled by default as it can be heavy on battery, can use more data then expected if left on for an extended period of time and because of the way iPhone handles background apps, can be unreliable (although rarely)", comment: ""))
 	}
 	
+    @IBAction func showNotificationsInformation(_ sender: Any) {
+        global.showAlert(NSLocalizedString("allow_notifications_info_title", value: "Background Update", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Allowing notifications means this device will recieve a notification when someone activates the panic button. If you disable this, you will not be notified when someone needs help.\n\nPlease keep in mind how you might feel when you're in need of help and someone has this deactivated.", comment: ""))
+    }
+    
 	@IBAction func reportBug(_ sender: AnyObject) {
 		mail = MFMailComposeViewController()
 		if(MFMailComposeViewController.canSendMail()) {
@@ -277,9 +293,14 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     
     override func viewWillDisappear(_ animated: Bool) {
         if changed == true {
-            var saveAlert = UIAlertController(title: NSLocalizedString("save", value: "Save", comment: ""), message: NSLocalizedString("save_changes_confirmation_text", value: "Do you want to save changes?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+            let saveAlert = UIAlertController(title: NSLocalizedString("save", value: "Save", comment: ""), message: NSLocalizedString("save_changes_confirmation_text", value: "Do you want to save changes?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+            
+            // YES
             saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
-                var user = PFUser.current()!
+                PFInstallation.current()?.setValue(self.switchAllowNotifications.isOn, forKey: "allowNotifications")
+                PFInstallation.current()?.saveInBackground()
+                
+                let user = PFUser.current()!
                 if self.newPassword != nil { user.password = self.newPassword! }
                 user["name"] = self.txtName.text
                 user["cellNumber"] = self.txtCell.text
@@ -297,9 +318,10 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
                 })
             }))
             
-            saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
-//                global.showAlert("", message: "Not Saved")
-            }))
+            // NO
+            saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .default, handler: { (action: UIAlertAction!) in }))
+            
+            // PRESENT
             present(saveAlert, animated: true, completion: nil)
         }
     }
