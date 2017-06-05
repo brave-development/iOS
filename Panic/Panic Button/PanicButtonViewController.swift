@@ -236,10 +236,10 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
 			if pendingPushNotifications == true {
 				if allowAddToPushQue == true {
 					allowAddToPushQue = false
-					for group in groupsHandler.joinedGroups {
-						sendNotification(group)
-					}
-					sendNotification()
+//					for group in groupsHandler.joinedGroups {
+//						sendNotification(group)
+//					}
+					sendNotifications()
 				}
 				allowAddToPushQue = true
 				pendingPushNotifications = false
@@ -251,17 +251,16 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
 		}
     }
 	
-    func sendNotification(_ group: String? = "panic_global") { 
-        let userName = PFUser.current()!["name"] as! String
-        let userNumber = PFUser.current()!["cellNumber"] as! String
+    func sendNotifications() {
+        panicHandler.sendNotifications()
+//        let userName = PFUser.current()!["name"] as! String
+//        let userNumber = PFUser.current()!["cellNumber"] as! String
         
-        PFCloud.callFunction(inBackground: "pushFromCloud", withParameters:
-            ["channel" : group!,
-             "username" : userName,
-             "contactNumber" : userNumber]
-        ) {
-            response, error in
-        }
+//        PFCloud.callFunction(inBackground: "pushFromCloud", withParameters:
+//            ["objectId" : ""]
+//        ) {
+//            response, error in
+//        }
         
         //		let tempQuery = PFInstallation.query()
         //		if group != nil {

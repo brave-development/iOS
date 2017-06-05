@@ -106,7 +106,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
         } else {
             global.setPanicNotification(false)
         }
-    }2
+    }
 	
 	@IBAction func backgroundUpdates(_ sender: AnyObject) {
 		if switchBackgroundUpdate.isOn == true {

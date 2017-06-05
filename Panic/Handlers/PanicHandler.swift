@@ -151,6 +151,20 @@ class PanicHandler: UIViewController {
         objectInUse = false
         queryObject = nil
     }
+    
+    func sendNotifications() {
+        if queryObject.objectId != nil {
+            PFCloud.callFunction(inBackground: "pushFromCloud", withParameters:
+                ["objectId" : queryObject.objectId!]
+            ) {
+                response, error in
+            }
+        } else {
+            if panicIsActive == true {
+                Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(sendNotifications), userInfo: nil, repeats: false)
+            }
+        }
+    }
 	
 	// Get active panics, count them and show the number on the tabbar
 	func getActivePanics() {
@@ -163,12 +177,10 @@ class PanicHandler: UIViewController {
 				DispatchQueue.main.async(execute: {
 					self.activePanicCount = objects!.count
 					NotificationCenter.default.post(NSNotification(name: NSNotification.Name(rawValue: "updatedActivePanics"), object: nil) as Notification)
-//					print(objects)
 				})
 			} else {
 				self.activePanicCount = 0
 			}
-//			print(self)
 			self.getActivePanicsTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.getActivePanics), userInfo: nil, repeats: false)
 		})
 	}
