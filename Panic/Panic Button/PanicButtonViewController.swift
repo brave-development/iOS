@@ -253,34 +253,6 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
 	
     func sendNotifications() {
         panicHandler.sendNotifications()
-//        let userName = PFUser.current()!["name"] as! String
-//        let userNumber = PFUser.current()!["cellNumber"] as! String
-        
-//        PFCloud.callFunction(inBackground: "pushFromCloud", withParameters:
-//            ["objectId" : ""]
-//        ) {
-//            response, error in
-//        }
-        
-        //		let tempQuery = PFInstallation.query()
-        //		if group != nil {
-        //			tempQuery!.whereKey("channels", equalTo: group!.formatGroupForChannel())
-        //		} else {
-        //			tempQuery!.whereKey("channels", equalTo: "panic_global")
-        //		}
-        //		tempQuery!.whereKey("installationId", notEqualTo: PFInstallation.current()!.installationId)
-        //		push.setQuery(tempQuery as! PFQuery<PFInstallation>)
-        //		push.expire(afterTimeInterval: 18000) // 5 Hours
-        //		let panicMessage = String(format: NSLocalizedString("panic_notification_message", value: "%@ needs help! Contact them on %@ or view their location in the app.", comment: ""), arguments: [userName, userNumber])
-        //		push.setData(["alert" : panicMessage, "badge" : "Increment", "sound" : "default", "lat" : manager.location!.coordinate.latitude, "long" : manager.location!.coordinate.longitude])
-        //		push.sendInBackground(block: {
-        //			(result, error) in
-        //			if result == true {
-        //				print("Push sent to group \(group!.formatGroupForChannel())")
-        //			} else if error != nil {
-        //				print(error!)
-        //			}
-        //		})
     }
 	
 	func textViewDidEndEditing(_ textView: UITextView) {

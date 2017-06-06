@@ -154,9 +154,7 @@ class PanicHandler: UIViewController {
     
     func sendNotifications() {
         if queryObject.objectId != nil {
-            PFCloud.callFunction(inBackground: "pushFromId", withParameters:
-                ["objectId" : queryObject.objectId!]
-            ) {
+            PFCloud.callFunction(inBackground: "pushFromId", withParameters: ["objectId" : queryObject.objectId!] ) {
                 response, error in
                 
                 print(response)

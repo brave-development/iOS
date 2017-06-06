@@ -13,20 +13,6 @@ import Parse
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
-//    private lazy var __once1: () = {
-//            if error.localizedFailureReason != nil{
-//                global.showAlert(error.localizedDescription, message: error.localizedFailureReason!)
-//            } else {
-//                print("didFailWithError - \(error)")
-//                global.showAlert(NSLocalizedString("location_error_title", value: "Location Error", comment: ""), message: NSLocalizedString("location_error_text", value: "Location Services are unavailable at the moment.\n\nPossible reasons:\nInternet Connection\nIndoors\nLocation Permission", comment: ""))
-//            }
-//        }()
-//    
-//    private lazy var __once: () = {
-//				global.notificationDictionary = [:]
-//				global.openedViaNotification = false
-//			}()
-    
     var do_centerMapLocation = 0
     var do_locationError = 0
     
@@ -88,7 +74,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 		var theRegion: MKCoordinateRegion!
 		if global.openedViaNotification == true {
 			let lat = global.notificationDictionary!["lat"].doubleValue
-			let long = global.notificationDictionary!["long"].doubleValue
+			let long = global.notificationDictionary!["lng"].doubleValue
 			theRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(lat, long), theSpan)
             
             if do_centerMapLocation == 0 {
@@ -479,16 +465,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 				self.viewDetails.isHidden = true
 				self.detailsTimer.invalidate()
 		})
-	}
-	
-	func updateActivePanics() {
-		//		if panicHandler.activePanicCount > 0 {
-		//			mainViewController.badge.hidden = false
-		//		} else {
-		//			mainViewController.badge.hidden = true
-		//		}
-//		mainViewController.badge.autoBadgeSizeWithString("\(panicHandler.activePanicCount)")
-//		print("Updated panic count from Map")
 	}
     
     func freeMem() {
