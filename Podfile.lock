@@ -61,6 +61,12 @@ PODS:
   - Mapbox-iOS-SDK (3.5.4)
   - Parse (1.14.4):
     - Bolts/Tasks (~> 1.8)
+  - ParseFacebookUtilsV4 (1.11.1):
+    - Bolts/Tasks (>= 1.6)
+    - FBSDKCoreKit (~> 4.10)
+    - FBSDKLoginKit (~> 4.10)
+    - FBSDKTVOSKit (~> 4.10)
+    - Parse (~> 1.12)
   - Protobuf (3.3.0)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
@@ -79,6 +85,7 @@ DEPENDENCIES:
   - HMSegmentedControl
   - Mapbox-iOS-SDK
   - Parse (~> 1.14)
+  - ParseFacebookUtilsV4
   - SDWebImage
   - SwiftyJSON
   - Toast
@@ -102,11 +109,12 @@ SPEC CHECKSUMS:
   HMSegmentedControl: 7c6145afb50f26cec5f3243082f6f12b9f41318f
   Mapbox-iOS-SDK: 81197829dcf4c4ed9a593b7a95462881b5f1309a
   Parse: b0aa91d2c435e53d4a9af26e741e014c9b35c42e
+  ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
   Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
 
-PODFILE CHECKSUM: da6b77d7bcd5c160764ae2d8fa249211d2e48ad5
+PODFILE CHECKSUM: 2e1424ab31bcfe89ae2fe209339a69efe37272d1
 
 COCOAPODS: 1.2.1

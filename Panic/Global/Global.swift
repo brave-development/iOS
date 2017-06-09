@@ -55,10 +55,9 @@ class Global: UIViewController {
 	
 	var privateHistoryFetched : Bool = false
 	var publicHistoryFetched : Bool = false
+    
 	
-	//
-	
-	func getUserInformation() -> Bool {
+    func getUserInformation(callingVC: AnyObject) -> Bool {
 		
 		if PFUser.current() != nil {
 			PFUser.current()!.fetchInBackground(block: {
@@ -80,7 +79,23 @@ class Global: UIViewController {
 				showAlert("No internet", message: "Although you have been logged in, an internet connection cannot be established. Please note this will have negative effects on the Panic system. If you activate Panic, it will continue to try connect, but success cannot be guaranteed")
 			}
 			tutorial.load()
-			return true
+            
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
+                vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            
+            
+            switch callingVC {
+            case (is LoginViewController):
+                (callingVC as! LoginViewController).present(vc, animated: true, completion: nil)
+                break
+                
+            case (is RegisterViewController):
+                (callingVC as! RegisterViewController).present(vc, animated: true, completion: nil)
+                break
+                
+            default: print("NO TYPE FOUND FOR CALLING VIEW CONRTOLLER"); break
+            }
 		}
 		tutorial.reset()
 		return false

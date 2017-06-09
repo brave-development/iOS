@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseFacebookUtilsV4
 import CoreLocation
 import FacebookCore
 import FacebookLogin
@@ -20,11 +21,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var viewTextFields: UIView!
     @IBOutlet weak var btnLogin: UIButton!
     @IBOutlet weak var btnRegister: UIButton!
+    @IBOutlet weak var btnForgotPassword: UIButton!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
 	@IBOutlet weak var viewDarken: UIView!
     
     var selectedTextField : UITextField!
     @IBOutlet weak var bottomLayout : NSLayoutConstraint!
+    
+    var facebookButton: LoginButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,12 +42,15 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         txtPassword.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("password", value: "Password", comment: ""),
             attributes:[NSForegroundColorAttributeName: UIColor.white])
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        facebookButton = LoginButton(readPermissions: [ .publicProfile, .email ])
+        
         // Adding Facebook login button
-//        let loginButton = LoginButton(readPermissions: [ .publicProfile, .email ])
-//        loginButton.center = view.center
-//        loginButton.delegate = self
-//        
-//        view.addSubview(loginButton)
+        facebookButton.center = CGPoint(x: UIScreen.main.bounds.width/2, y: btnForgotPassword.center.y-35)
+        facebookButton.delegate = self
+        view.addSubview(facebookButton)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -51,11 +58,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 		let layer = drawing.gradient(viewDarken, colours: [UIColor.clear.cgColor, UIColor.black.cgColor])
 		viewDarken.layer.insertSublayer(layer, at: 0)
 		
-//		print("DEVICE TOKEN: \(PFInstallation.current()?.deviceToken)")
         let user = PFUser.current()
         if user != nil {
             startLoading()
-            manageLogin()
+            global.getUserInformation(callingVC: self)
             stopLoading()
         } else {
 			if PFInstallation.current()?.objectId == nil {
@@ -80,9 +86,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func login(_ sender: AnyObject) {
-//        spinner.startAnimating()
+//        facebookLogin()
+//        return
+        
         startLoading()
-//        var user = PFUser()
         PFUser.logInWithUsername(inBackground: txtUsername.text!.lowercased().trim(), password: txtPassword.text!.trim(), block: {
 			(user, error) in
             print(user)
@@ -111,7 +118,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     break
                 }
             } else {
-                self.manageLogin()
+                global.getUserInformation(callingVC: self)
             }
             self.stopLoading()
         })
@@ -145,14 +152,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 		self.present(alert, animated: true, completion: nil)
 	}
 	
-    func manageLogin() {
-        if global.getUserInformation() == true {
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
-            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            self.present(vc, animated: true, completion: nil)
-		}
-    }
+//    func manageLogin() {
+//        if global.getUserInformation() == true {
+//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//            let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
+//            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+//            self.present(vc, animated: true, completion: nil)
+//		}
+//    }
     
     func startLoading () {
         spinner.startAnimating()
@@ -202,7 +209,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         if up == true {
             self.bottomLayout.constant = 270
         } else {
-            self.bottomLayout.constant = 160
+            self.bottomLayout.constant = 180
         }
         UIView.animate(withDuration: 0.3, animations: {
             self.viewTextFields.layoutIfNeeded()
@@ -211,9 +218,14 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }
+
+
+// ===============
+// FACEBOOK BUTTON
+// ===============
+
 
 extension LoginViewController: LoginButtonDelegate {
     
@@ -229,24 +241,49 @@ extension LoginViewController: LoginButtonDelegate {
         }
     }
     
-    func facebookLogin() {
-        if let accessToken = AccessToken.current {
-            let params = ["fields":"name,email"]
-            let graphRequest = GraphRequest(graphPath: "me", parameters: params)
-            graphRequest.start { (urlResponse, requestResult) in
-                switch requestResult {
-                case .failed(let error):
-                    print(error)
-                case .success(let graphResponse):
-                    if let responseDictionary = graphResponse.dictionaryValue {
-                        UserDefaults.standard.set(responseDictionary, forKey: "userInfo")
-                        
-                        let json = JSON(responseDictionary)
-                    }
+    func getFBUserData(){
+        if FBSDKAccessToken.current() != nil {
+            FBSDKGraphRequest(graphPath: "me", parameters: ["fields": "id, name, first_name, last_name, picture.type(large), email"]).start(completionHandler: {
+                connection, result, error  in
+                
+                if (error == nil) {
+                    
+                    let json = JSON(result!)
+                    
+                    PFUser.current()?.setValue(json["name"].string, forKey: "name")
+                    PFUser.current()?.setValue(json["email"].string, forKey: "email")
+                    PFUser.current()?.setValue(json["id"].string, forKey: "facebookId")
+                    
+                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                    let vc: RegisterViewController = storyboard.instantiateViewController(withIdentifier: "registerViewController") as! RegisterViewController
+                    vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+                    self.present(vc, animated: true, completion: nil)
                 }
-            }
-        } else {
+            })
         }
+    }
+    
+    func facebookLogin() {
+        
+        PFFacebookUtils.logInInBackground(with: FBSDKAccessToken.current(), block: {
+            user, error in
+            
+            if user?.email == nil {
+                self.getFBUserData()
+            } else {
+                global.getUserInformation(callingVC: self)
+            }
+        })
+        
+//            PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"], block: {
+//                user, error in
+//                
+//                if user?.email == nil {
+//                    self.getFBUserData()
+//                } else {
+//                    global.getUserInformation(callingVC: self)
+//                }
+//            })
     }
     
     func loginButtonDidLogOut(_ loginButton: LoginButton) {  }

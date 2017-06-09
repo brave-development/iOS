@@ -36,7 +36,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Panic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-e7-o1F">
-                                <rect key="frame" x="150" y="229" width="76" height="51"/>
+                                <rect key="frame" x="150" y="201" width="76" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="CTs-uJ-rGr"/>
                                     <constraint firstAttribute="width" constant="113" id="wMC-Pk-azQ"/>
@@ -51,7 +51,7 @@
                                 </variation>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tvr-sb-QJd">
-                                <rect key="frame" x="166" y="549" width="44" height="27"/>
+                                <rect key="frame" x="166" y="521" width="44" height="27"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="27" id="M38-Q4-GZ6"/>
                                     <constraint firstAttribute="width" constant="46" id="iWA-KZ-UjE"/>
@@ -71,7 +71,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2GP-AI-Vqy">
-                                <rect key="frame" x="157" y="584" width="61" height="25"/>
+                                <rect key="frame" x="157" y="556" width="61" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Abc-nD-fX6"/>
                                     <constraint firstAttribute="width" constant="62" id="tTW-LU-l4B"/>
@@ -91,7 +91,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qjF-3i-aXm">
-                                <rect key="frame" x="16" y="395" width="343" height="120"/>
+                                <rect key="frame" x="16" y="367" width="343" height="120"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="DY6-w9-oQe">
                                         <rect key="frame" x="49" y="8" width="246" height="40"/>
@@ -132,20 +132,20 @@
                                 </constraints>
                             </view>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="da7-nT-cOy">
-                                <rect key="frame" x="178" y="521" width="20" height="20"/>
+                                <rect key="frame" x="178" y="493" width="20" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="20" id="ISP-Ra-Mjd"/>
                                     <constraint firstAttribute="width" constant="20" id="tXQ-DP-M7l"/>
                                 </constraints>
                             </activityIndicatorView>
                             <button opaque="NO" alpha="0.69999999999999973" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WrF-Ts-mIm">
-                                <rect key="frame" x="136" y="617" width="104" height="25"/>
+                                <rect key="frame" x="133" y="634" width="110" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="chF-Py-t8u"/>
                                     <constraint firstAttribute="width" constant="100" id="i00-6V-S6K"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="14"/>
-                                <state key="normal" title="Reset Password">
+                                <state key="normal" title="Forgot Password">
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <color key="titleShadowColor" red="0.98989898989898994" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -166,11 +166,11 @@
                             <constraint firstAttribute="centerX" secondItem="tvr-sb-QJd" secondAttribute="centerX" id="95R-ki-6xW"/>
                             <constraint firstAttribute="centerX" secondItem="cnS-e7-o1F" secondAttribute="centerX" id="G1e-Lb-g9G"/>
                             <constraint firstItem="B1u-ls-qfe" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="OJq-uL-1Vn"/>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qjF-3i-aXm" secondAttribute="bottom" constant="152" id="Sba-lg-But"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="qjF-3i-aXm" secondAttribute="bottom" constant="180" id="Sba-lg-But"/>
                             <constraint firstAttribute="centerX" secondItem="da7-nT-cOy" secondAttribute="centerX" id="Sh3-Rx-PTC"/>
-                            <constraint firstItem="WrF-Ts-mIm" firstAttribute="top" secondItem="2GP-AI-Vqy" secondAttribute="bottom" constant="8" id="UTN-3x-VJn"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="lZh-fR-Il8" secondAttribute="bottom" id="Xn1-fD-4Gk"/>
-                            <constraint firstAttribute="bottom" secondItem="2GP-AI-Vqy" secondAttribute="bottom" constant="58" id="cqf-Qe-piu"/>
+                            <constraint firstItem="tvr-sb-QJd" firstAttribute="top" secondItem="da7-nT-cOy" secondAttribute="bottom" constant="8" id="Ydg-8q-Dsn"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="WrF-Ts-mIm" secondAttribute="bottom" constant="8" id="eqJ-Y1-uZj"/>
                             <constraint firstAttribute="trailing" secondItem="B1u-ls-qfe" secondAttribute="trailing" id="hyb-kB-nGa"/>
                             <constraint firstItem="2GP-AI-Vqy" firstAttribute="top" secondItem="tvr-sb-QJd" secondAttribute="bottom" constant="8" id="iH5-I4-vZv"/>
                             <constraint firstItem="lZh-fR-Il8" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="jcw-4h-SSd"/>
@@ -185,6 +185,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomLayout" destination="Sba-lg-But" id="bt4-mI-UTi"/>
+                        <outlet property="btnForgotPassword" destination="WrF-Ts-mIm" id="Y0Q-Kp-KGN"/>
                         <outlet property="btnLogin" destination="tvr-sb-QJd" id="8jR-CZ-mm3"/>
                         <outlet property="btnRegister" destination="2GP-AI-Vqy" id="4bu-qK-VU1"/>
                         <outlet property="spinner" destination="da7-nT-cOy" id="xlO-U7-eNM"/>

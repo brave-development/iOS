@@ -8,6 +8,7 @@
 
 import UIKit
 import Parse
+import ParseFacebookUtilsV4
 import SwiftyJSON
 import Firebase
 import FirebaseCore
@@ -33,7 +34,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FIRMessaging.messaging().remoteMessageDelegate = self
         
         // Facebook
-        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+//        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
+        PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         
         // Get Countries
         DispatchQueue.main.async { global.getCountries() }
@@ -103,7 +105,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        return SDKApplicationDelegate.shared.application(application, open:url, sourceApplication:sourceApplication, annotation:annotation)
+        return FBSDKApplicationDelegate.sharedInstance().application(application,
+                                                                     open: url,
+                                                                     sourceApplication: sourceApplication,
+                                                                     annotation: annotation)
     }
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) { UIApplication.shared.registerForRemoteNotifications() }
     
@@ -165,6 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationDidBecomeActive(_ application: UIApplication) {
         PFInstallation.current()?.badge = 0
         PFInstallation.current()?.saveEventually(nil)
+        FBSDKAppEvents.activateApp()
     }
     
     func applicationWillTerminate(_ application: UIApplication) {

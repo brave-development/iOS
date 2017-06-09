@@ -7,9 +7,11 @@
 //
 
 import UIKit
-import Parse
+//import Parse
 import MessageUI
 import CoreLocation
+import FacebookCore
+import ParseFacebookUtilsV4
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -178,6 +180,8 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 			global.persistantSettings.removeObject(forKey: "groups")
 		}
 		PFUser.logOut()
+//        PFFacebookUtils.facebookLoginManager().logOut()
+//        FBSDKLoginManager.init().logOut()
 		PFInstallation.current()?.setObject(["", "logged_out"], forKey: "channels")
 		PFInstallation.current()?.saveInBackground(block: nil)
 		self.mainViewController.back()

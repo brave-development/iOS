@@ -7,7 +7,10 @@ target 'Panic' do
 	pod 'HMSegmentedControl'
 	pod 'CustomBadge'
 	pod 'Mapbox-iOS-SDK'
+    
 	pod 'Parse', '~> 1.14'
+    pod 'ParseFacebookUtilsV4'
+
     pod 'SwiftyJSON'
     pod 'SDWebImage'
     
