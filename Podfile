@@ -1,7 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
-target 'Panic' do
+target 'Brave' do
 	use_frameworks!
 
 	pod 'HMSegmentedControl'

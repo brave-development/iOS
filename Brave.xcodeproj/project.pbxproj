@@ -89,6 +89,7 @@
 		75CF75E71BCBA1C600B18480 /* LaunchImage-640x1136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E61BCBA1C600B18480 /* LaunchImage-640x1136@2x.png */; };
 		75D869F81B29DEE20065DE37 /* GroupsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D869F71B29DEE20065DE37 /* GroupsHandler.swift */; };
 		75D948791ED0539B00A733DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75D948781ED0539B00A733DA /* GoogleService-Info.plist */; };
+		7D9F5B023B8BC332B27F2CD6 /* Pods_Brave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA53505146F08CB3FB4B8662 /* Pods_Brave.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -129,14 +130,14 @@
 		75109B451E9F89170056BBCB /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		75109B471E9F89200056BBCB /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		75109B491E9F89290056BBCB /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		75162DDA1A2B8B3E0094BA31 /* Panic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Panic.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		75162DDA1A2B8B3E0094BA31 /* Brave.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Brave.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		75162DDE1A2B8B3E0094BA31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75162DDF1A2B8B3E0094BA31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		75162DE11A2B8B3E0094BA31 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		75162DE41A2B8B3E0094BA31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75162DE61A2B8B3E0094BA31 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		75162DE91A2B8B3E0094BA31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		75162DEF1A2B8B3E0094BA31 /* Panic.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Panic.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		75162DEF1A2B8B3E0094BA31 /* Brave.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Brave.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75162DF41A2B8B3E0094BA31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75162DF51A2B8B3E0094BA31 /* PanicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanicTests.swift; sourceTree = "<group>"; };
 		75162E011A2B8EBF0094BA31 /* Background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Background@2x.jpg"; sourceTree = "<group>"; };
@@ -215,8 +216,11 @@
 		75D869F71B29DEE20065DE37 /* GroupsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsHandler.swift; sourceTree = "<group>"; };
 		75D948781ED0539B00A733DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75D9487B1ED054A000A733DA /* Panic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Panic.entitlements; sourceTree = "<group>"; };
+		BA53505146F08CB3FB4B8662 /* Pods_Brave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DD273ABF8657901CE1C1433E /* Pods-Brave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brave.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brave/Pods-Brave.release.xcconfig"; sourceTree = "<group>"; };
 		ECBA48090E5F8F3B6F6C7BE2 /* Pods-Panic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Panic/Pods-Panic.release.xcconfig"; sourceTree = "<group>"; };
 		FD90C133EE23CFC28DE5AA37 /* Pods-Halla.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Halla.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Halla/Pods-Halla.debug.xcconfig"; sourceTree = "<group>"; };
+		FF1A035FFFDD477EF0960229 /* Pods-Brave.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brave.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Brave/Pods-Brave.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -236,6 +240,7 @@
 				7555E1731B3382E600C0171F /* Accounts.framework in Frameworks */,
 				7555E1711B3382DC00C0171F /* Social.framework in Frameworks */,
 				5EA0CBAD66523EEA52B18335 /* Pods_Panic.framework in Frameworks */,
+				7D9F5B023B8BC332B27F2CD6 /* Pods_Brave.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -428,8 +433,8 @@
 		75162DDB1A2B8B3E0094BA31 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				75162DDA1A2B8B3E0094BA31 /* Panic.app */,
-				75162DEF1A2B8B3E0094BA31 /* Panic.xctest */,
+				75162DDA1A2B8B3E0094BA31 /* Brave.app */,
+				75162DEF1A2B8B3E0094BA31 /* Brave.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -503,6 +508,7 @@
 				7555E1701B3382DC00C0171F /* Social.framework */,
 				75352AFD1A558CF5000EEFC2 /* NotificationCenter.framework */,
 				17DDDAE8647815ACEBD54F28 /* Pods_Panic.framework */,
+				BA53505146F08CB3FB4B8662 /* Pods_Brave.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -587,6 +593,8 @@
 				40F2449244394164C6572DC0 /* Pods-Halla.release.xcconfig */,
 				34D5BDF56A2A92A4D9680CA0 /* Pods-Panic.debug.xcconfig */,
 				ECBA48090E5F8F3B6F6C7BE2 /* Pods-Panic.release.xcconfig */,
+				FF1A035FFFDD477EF0960229 /* Pods-Brave.debug.xcconfig */,
+				DD273ABF8657901CE1C1433E /* Pods-Brave.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -594,9 +602,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		75162DD91A2B8B3E0094BA31 /* Panic */ = {
+		75162DD91A2B8B3E0094BA31 /* Brave */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75162DF91A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "Panic" */;
+			buildConfigurationList = 75162DF91A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "Brave" */;
 			buildPhases = (
 				52868075765964BE0D7FCAD0 /* [CP] Check Pods Manifest.lock */,
 				75162DD61A2B8B3E0094BA31 /* Sources */,
@@ -611,14 +619,14 @@
 			);
 			dependencies = (
 			);
-			name = Panic;
+			name = Brave;
 			productName = Panic;
-			productReference = 75162DDA1A2B8B3E0094BA31 /* Panic.app */;
+			productReference = 75162DDA1A2B8B3E0094BA31 /* Brave.app */;
 			productType = "com.apple.product-type.application";
 		};
-		75162DEE1A2B8B3E0094BA31 /* PanicTests */ = {
+		75162DEE1A2B8B3E0094BA31 /* BraveTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 75162DFC1A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "PanicTests" */;
+			buildConfigurationList = 75162DFC1A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "BraveTests" */;
 			buildPhases = (
 				75162DEB1A2B8B3E0094BA31 /* Sources */,
 				75162DEC1A2B8B3E0094BA31 /* Frameworks */,
@@ -629,9 +637,9 @@
 			dependencies = (
 				75162DF11A2B8B3E0094BA31 /* PBXTargetDependency */,
 			);
-			name = PanicTests;
+			name = BraveTests;
 			productName = PanicTests;
-			productReference = 75162DEF1A2B8B3E0094BA31 /* Panic.xctest */;
+			productReference = 75162DEF1A2B8B3E0094BA31 /* Brave.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -667,7 +675,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 75162DD51A2B8B3E0094BA31 /* Build configuration list for PBXProject "Panic" */;
+			buildConfigurationList = 75162DD51A2B8B3E0094BA31 /* Build configuration list for PBXProject "Brave" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -680,8 +688,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				75162DD91A2B8B3E0094BA31 /* Panic */,
-				75162DEE1A2B8B3E0094BA31 /* PanicTests */,
+				75162DD91A2B8B3E0094BA31 /* Brave */,
+				75162DEE1A2B8B3E0094BA31 /* BraveTests */,
 			);
 		};
 /* End PBXProject section */
@@ -757,7 +765,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Panic/Pods-Panic-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Brave/Pods-Brave-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		2E69E2C40A7C4E8082DDB8C5 /* [CP] Copy Pods Resources */ = {
@@ -772,7 +780,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Panic/Pods-Panic-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Brave/Pods-Brave-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		52868075765964BE0D7FCAD0 /* [CP] Check Pods Manifest.lock */ = {
@@ -854,7 +862,7 @@
 /* Begin PBXTargetDependency section */
 		75162DF11A2B8B3E0094BA31 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 75162DD91A2B8B3E0094BA31 /* Panic */;
+			target = 75162DD91A2B8B3E0094BA31 /* Brave */;
 			targetProxy = 75162DF01A2B8B3E0094BA31 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -996,7 +1004,7 @@
 		};
 		75162DFA1A2B8B3E0094BA31 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 34D5BDF56A2A92A4D9680CA0 /* Pods-Panic.debug.xcconfig */;
+			baseConfigurationReference = FF1A035FFFDD477EF0960229 /* Pods-Brave.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1018,7 +1026,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SoC.Panic;
-				PRODUCT_NAME = Panic;
+				PRODUCT_NAME = Brave;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic (Github)/Panic/Supporting Files/Panic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1029,7 +1037,7 @@
 		};
 		75162DFB1A2B8B3E0094BA31 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ECBA48090E5F8F3B6F6C7BE2 /* Pods-Panic.release.xcconfig */;
+			baseConfigurationReference = DD273ABF8657901CE1C1433E /* Pods-Brave.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1051,7 +1059,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SoC.Panic;
-				PRODUCT_NAME = Panic;
+				PRODUCT_NAME = Brave;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic (Github)/Panic/Supporting Files/Panic-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
@@ -1074,9 +1082,9 @@
 				INFOPLIST_FILE = "PanicTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SoC.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = Panic;
+				PRODUCT_NAME = Brave;
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Panic.app/Panic";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Brave.app/Brave";
 			};
 			name = Debug;
 		};
@@ -1091,16 +1099,16 @@
 				INFOPLIST_FILE = "PanicTests/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "SoC.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = Panic;
+				PRODUCT_NAME = Brave;
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Panic.app/Panic";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Brave.app/Brave";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		75162DD51A2B8B3E0094BA31 /* Build configuration list for PBXProject "Panic" */ = {
+		75162DD51A2B8B3E0094BA31 /* Build configuration list for PBXProject "Brave" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75162DF71A2B8B3E0094BA31 /* Debug */,
@@ -1109,7 +1117,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75162DF91A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "Panic" */ = {
+		75162DF91A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "Brave" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75162DFA1A2B8B3E0094BA31 /* Debug */,
@@ -1118,7 +1126,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		75162DFC1A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "PanicTests" */ = {
+		75162DFC1A2B8B3E0094BA31 /* Build configuration list for PBXNativeTarget "BraveTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				75162DFD1A2B8B3E0094BA31 /* Debug */,
