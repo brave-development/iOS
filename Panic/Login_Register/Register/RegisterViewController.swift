@@ -85,10 +85,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func signupLocal() {
         let user = PFUser()
         user["name"] = containerView.txtName.text
+        user["username"] = containerView.txtUsername.text
         user["cellNumber"] = containerView.txtCellNumber.text
         user["country"] = containerView.btnCountry.titleLabel?.text
         user["email"] = containerView.txtEmail.text
-        user["numberOfGroups"] = 1
+        user["numberOfGroups"] = 10
+        user["password"] = containerView.txtPassword.text
+        
+        
         
         user.signUpInBackground {
             (succeeded, error) in

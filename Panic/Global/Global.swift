@@ -56,6 +56,13 @@ class Global: UIViewController {
 	var privateHistoryFetched : Bool = false
 	var publicHistoryFetched : Bool = false
     
+    var isDESPilot: Bool {
+        if let value = PFUser.current()?.value(forKey: "betaID") as? String {
+            return value.lowercased() == "despilot"
+        }
+        return false
+    }
+    
 	
     func getUserInformation(callingVC: AnyObject) -> Bool {
 		
@@ -84,7 +91,6 @@ class Global: UIViewController {
                 let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
                 vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             
-            
             switch callingVC {
             case (is LoginViewController):
                 (callingVC as! LoginViewController).present(vc, animated: true, completion: nil)
@@ -97,7 +103,6 @@ class Global: UIViewController {
             default: print("NO TYPE FOUND FOR CALLING VIEW CONRTOLLER"); break
             }
 		}
-		tutorial.reset()
 		return false
 	}
 	

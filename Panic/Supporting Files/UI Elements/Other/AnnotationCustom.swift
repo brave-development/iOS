@@ -20,7 +20,7 @@ class AnnotationCustom: NSObject, MKAnnotation {
 	
 	init(coordinate: CLLocationCoordinate2D, title: String, id: String, object: PFObject, details: String = "") {
 		self.coordinate = coordinate
-		self.title = title
+		self.title = (object["user"] as! PFUser)["name"]! as! String
 		self.subtitle = details
 		self.id = id
 		self.object = object

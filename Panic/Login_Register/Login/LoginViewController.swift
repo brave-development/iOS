@@ -42,14 +42,13 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         txtPassword.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("password", value: "Password", comment: ""),
             attributes:[NSForegroundColorAttributeName: UIColor.white])
         
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
         facebookButton = LoginButton(readPermissions: [ .publicProfile, .email ])
-        
+        facebookButton.delegate = self
+    }
+
+    override func viewDidLayoutSubviews() {
         // Adding Facebook login button
         facebookButton.center = CGPoint(x: UIScreen.main.bounds.width/2, y: btnForgotPassword.center.y-35)
-        facebookButton.delegate = self
         view.addSubview(facebookButton)
     }
     
@@ -64,6 +63,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             global.getUserInformation(callingVC: self)
             stopLoading()
         } else {
+            tutorial.reset()
 			if PFInstallation.current()?.objectId == nil {
 				PFInstallation.current()?.saveInBackground(block: {
 					(result, error) in
@@ -80,16 +80,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         }
     }
     
-    func foundCountry() {
-        print("foundCountry delegate run")
-//        manager.stopUpdatingLocation()
-    }
-    
     @IBAction func login(_ sender: AnyObject) {
-//        facebookLogin()
-//        return
-        
         startLoading()
+        PFUser.logOut()
         PFUser.logInWithUsername(inBackground: txtUsername.text!.lowercased().trim(), password: txtPassword.text!.trim(), block: {
 			(user, error) in
             print(user)
@@ -274,16 +267,6 @@ extension LoginViewController: LoginButtonDelegate {
                 global.getUserInformation(callingVC: self)
             }
         })
-        
-//            PFFacebookUtils.logInInBackground(withReadPermissions: ["public_profile", "email"], block: {
-//                user, error in
-//                
-//                if user?.email == nil {
-//                    self.getFBUserData()
-//                } else {
-//                    global.getUserInformation(callingVC: self)
-//                }
-//            })
     }
     
     func loginButtonDidLogOut(_ loginButton: LoginButton) {  }

@@ -17,13 +17,13 @@ import UserNotifications
 import FacebookCore
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, FIRMessagingDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
     
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         configureParse(launchOptions: launchOptions)
-        FIRApp.configure()
+        FirebaseApp.configure()
         
         //        testCrash()
         
@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
         application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
-        FIRMessaging.messaging().remoteMessageDelegate = self
+        Messaging.messaging().remoteMessageDelegate = self
         
         // Facebook
 //        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
@@ -68,8 +68,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    func applicationReceivedRemoteMessage(_ remoteMessage: FIRMessagingRemoteMessage) {
+    func application(received remoteMessage: MessagingRemoteMessage) {
         print(remoteMessage)
+    }
+    
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        print("Firebase InstanceID token: \(fcmToken)")
+        PFInstallation.current()?.setValue(fcmToken, forKey: "firebaseID")
+        PFInstallation.current()?.saveInBackground()
     }
     
     
@@ -85,6 +91,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         Parse.initialize(with: configuration)
         PFAnalytics.trackAppOpenedWithLaunchOptions(inBackground: launchOptions, block: nil)
+        PFUser.enableRevocableSessionInBackground()
         
         PFInstallation.current()?.badge = 0
         PFInstallation.current()?.saveEventually(nil)
@@ -113,12 +120,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) { UIApplication.shared.registerForRemoteNotifications() }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        if let refreshedToken = FIRInstanceID.instanceID().token() {
-            print("Firebase InstanceID token: \(refreshedToken)")
-            PFInstallation.current()?.setValue(refreshedToken, forKey: "firebaseID")
-            PFInstallation.current()?.saveInBackground()
-        }
-        
         PFInstallation.current()?.setDeviceTokenFrom(deviceToken)
         PFInstallation.current()?.saveInBackground()
     }

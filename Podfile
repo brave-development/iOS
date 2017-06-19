@@ -18,9 +18,11 @@ target 'Brave' do
     pod 'Firebase/Messaging'
     pod 'Firebase/RemoteConfig'
     
+    pod 'Fabric'
+    pod 'Crashlytics'
+    
     pod 'FacebookCore'
     pod 'FacebookLogin'
-    pod 'FacebookShare'
 
     pod 'Toast'
 

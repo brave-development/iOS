@@ -5,7 +5,10 @@ PODS:
   - Bolts/AppLinks (1.8.4):
     - Bolts/Tasks
   - Bolts/Tasks (1.8.4)
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
   - CustomBadge (3.0.0)
+  - Fabric (1.6.11)
   - FacebookCore (0.2.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.15)
@@ -14,16 +17,9 @@ PODS:
     - FacebookCore (~> 0.2)
     - FBSDKCoreKit (~> 4.15)
     - FBSDKLoginKit (~> 4.15)
-  - FacebookShare (0.2.0):
-    - Bolts (~> 1.8)
-    - FacebookCore (~> 0.2)
-    - FBSDKCoreKit (~> 4.15)
-    - FBSDKShareKit (~> 4.15)
   - FBSDKCoreKit (4.23.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.23.0):
-    - FBSDKCoreKit
-  - FBSDKShareKit (4.23.0):
     - FBSDKCoreKit
   - Firebase/Core (4.0.1):
     - FirebaseAnalytics (= 4.0.0)
@@ -76,10 +72,11 @@ PODS:
   - Toast (3.1.0)
 
 DEPENDENCIES:
+  - Crashlytics
   - CustomBadge
+  - Fabric
   - FacebookCore
   - FacebookLogin
-  - FacebookShare
   - Firebase/Core
   - Firebase/Messaging
   - Firebase/RemoteConfig
@@ -93,13 +90,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
   CustomBadge: c60738d213e7ef019b0bf1caa7948333f280ea9b
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
   FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
   FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
-  FacebookShare: 8e9ee8ea06505e6a1d3d719b0cc63e840fb8aaeb
   FBSDKCoreKit: d7829f5a69901cd7296105328e4c3c3fc7da6518
   FBSDKLoginKit: 6b92bd65f319d669d2b0730e49db495ef1660566
-  FBSDKShareKit: 65751c3b9937ab9d594e6c37611ecc115ceeb448
   Firebase: f984cd44a160be77ad0590f432e574562bfd4083
   FirebaseAnalytics: 6f08e746f7d66f5452931bc2e822b5df9c66b64a
   FirebaseCore: 06172c5a0744ab3dd14f778fd666c22855e20098
@@ -116,6 +113,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
 
-PODFILE CHECKSUM: c50f8e8c2de0bfede187721560ab20fe8ff86766
+PODFILE CHECKSUM: 10308b5ebd8a0d0776ea3ba3e1b685fa00a82f16
 
 COCOAPODS: 1.2.1

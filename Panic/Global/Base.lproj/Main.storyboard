@@ -12,7 +12,7 @@
         <!--Login-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController title="Login" id="vXZ-lx-hvc" customClass="LoginViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Login" id="vXZ-lx-hvc" customClass="LoginViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -35,8 +35,8 @@
                                     <constraint firstAttribute="height" constant="180" id="Lja-8d-wNl"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Panic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-e7-o1F">
-                                <rect key="frame" x="150" y="201" width="76" height="51"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Brave" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cnS-e7-o1F">
+                                <rect key="frame" x="149" y="201" width="78" height="51"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="51" id="CTs-uJ-rGr"/>
                                     <constraint firstAttribute="width" constant="113" id="wMC-Pk-azQ"/>
@@ -208,7 +208,7 @@
         <!--Tabbar-->
         <scene sceneID="ley-hC-N2f">
             <objects>
-                <viewController storyboardIdentifier="mainViewController" title="Tabbar" id="fCA-iG-EaX" customClass="MainViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mainViewController" title="Tabbar" id="fCA-iG-EaX" customClass="MainViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="lzv-ij-KWX"/>
                         <viewControllerLayoutGuide type="bottom" id="7a7-KH-Lk7"/>
@@ -299,7 +299,7 @@
                                             </state>
                                             <connections>
                                                 <action selector="contacts:" destination="fCA-iG-EaX" eventType="touchUpInside" id="XwO-fg-16t"/>
-                                                <segue destination="Uey-Pa-0Xe" kind="custom" identifier="customSegueGroups" customClass="CustomNavigationSegue" customModule="Panic" id="69Y-1P-bWV"/>
+                                                <segue destination="Uey-Pa-0Xe" kind="custom" identifier="customSegueGroups" customClass="CustomNavigationSegue" customModule="Brave" customModuleProvider="target" id="69Y-1P-bWV"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AsE-Hi-lgf">
@@ -310,7 +310,7 @@
                                             <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="16"/>
                                             <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <inset key="titleEdgeInsets" minX="60" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="Panic">
+                                            <state key="normal" title="Home">
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
@@ -330,7 +330,7 @@
                                             </state>
                                             <connections>
                                                 <action selector="history:" destination="fCA-iG-EaX" eventType="touchUpInside" id="fNK-Od-kj6"/>
-                                                <segue destination="HcT-Uw-djr" kind="custom" identifier="customSegueHistory" customClass="CustomNavigationSegue" customModule="Panic" id="yoZ-8M-CEv"/>
+                                                <segue destination="HcT-Uw-djr" kind="custom" identifier="customSegueHistory" customClass="CustomNavigationSegue" customModule="Brave" customModuleProvider="target" id="yoZ-8M-CEv"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s7R-jQ-CLV">
@@ -346,7 +346,7 @@
                                             </state>
                                             <connections>
                                                 <action selector="settings:" destination="fCA-iG-EaX" eventType="touchUpInside" id="4Cr-Lj-jdq"/>
-                                                <segue destination="bf1-M8-Ukx" kind="custom" identifier="customSegueSettings" customClass="CustomNavigationSegue" customModule="Panic" id="a0v-ce-joc"/>
+                                                <segue destination="bf1-M8-Ukx" kind="custom" identifier="customSegueSettings" customClass="CustomNavigationSegue" customModule="Brave" customModuleProvider="target" id="a0v-ce-joc"/>
                                             </connections>
                                         </button>
                                         <progressView opaque="NO" alpha="0.49999999999999961" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MIM-R0-TXu">
@@ -401,7 +401,7 @@
                                                 <action selector="publicHistory:" destination="fCA-iG-EaX" eventType="touchUpInside" id="J8u-RP-ZeO"/>
                                             </connections>
                                         </button>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="fY9-tr-FyS">
+                                        <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="fY9-tr-FyS">
                                             <rect key="frame" x="60" y="60" width="95" height="95"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="95" id="FIW-wB-fxQ"/>
@@ -488,12 +488,12 @@
                                                 <constraint firstAttribute="width" constant="46" id="V0Y-dl-oV6"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <state key="normal" title="Panic">
+                                            <state key="normal" title="Home">
                                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
-                                                <segue destination="kdS-kf-ljO" kind="custom" identifier="customSegueMain" customClass="CustomNavigationSegue" customModule="Panic" id="A8p-ZM-wzM"/>
+                                                <segue destination="kdS-kf-ljO" kind="custom" identifier="customSegueMain" customClass="CustomNavigationSegue" customModule="Brave" customModuleProvider="target" id="A8p-ZM-wzM"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zYK-nb-1w5">
@@ -508,7 +508,7 @@
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
-                                                <segue destination="1kK-cU-hBn" kind="custom" identifier="customSegueMap" customClass="CustomNavigationSegue" customModule="Panic" id="OOC-kw-UZC"/>
+                                                <segue destination="1kK-cU-hBn" kind="custom" identifier="customSegueMap" customClass="CustomNavigationSegue" customModule="Brave" customModuleProvider="target" id="OOC-kw-UZC"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -606,7 +606,7 @@
                                             <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the Panic button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgX-Bc-9dL">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the Activate button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XgX-Bc-9dL">
                                             <rect key="frame" x="8" y="600" width="359" height="59"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="145" id="gie-bT-A0M"/>
@@ -763,7 +763,7 @@
         <!--Panic-->
         <scene sceneID="he3-Zq-kvr">
             <objects>
-                <viewController storyboardIdentifier="panicViewController" title="Panic" id="kdS-kf-ljO" customClass="PanicButtonViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="panicViewController" title="Panic" id="kdS-kf-ljO" customClass="PanicButtonViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tm4-aW-TwQ"/>
                         <viewControllerLayoutGuide type="bottom" id="vb9-Dn-ssc"/>
@@ -799,7 +799,7 @@
                                     <action selector="panicPressed:" destination="kdS-kf-ljO" eventType="touchUpInside" id="H2g-Nm-3qY"/>
                                 </connections>
                             </button>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1FU-F6-L9Q" customClass="KMPlaceholderTextView" customModule="Panic" customModuleProvider="target">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" keyboardDismissMode="interactive" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="1FU-F6-L9Q" customClass="KMPlaceholderTextView" customModule="Brave" customModuleProvider="target">
                                 <rect key="frame" x="16" y="20" width="343" height="119"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29548373287671231" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -933,7 +933,7 @@
         <!--Add New Group-->
         <scene sceneID="g06-jY-Z9A">
             <objects>
-                <viewController storyboardIdentifier="addNewGroupViewController" title="Add New Group" id="Mg4-3s-UgJ" customClass="AddNewGroupViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addNewGroupViewController" title="Add New Group" id="Mg4-3s-UgJ" customClass="AddNewGroupViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ymX-cr-Eb3"/>
                         <viewControllerLayoutGuide type="bottom" id="sk2-fN-oGp"/>
@@ -1049,7 +1049,7 @@
                                 <rect key="frame" x="0.0" y="116" width="375" height="511"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newCell" rowHeight="260" id="Sv3-MZ-Bjc" customClass="GroupsTableViewCell" customModule="Panic" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newCell" rowHeight="260" id="Sv3-MZ-Bjc" customClass="GroupsTableViewCell" customModule="Brave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="22" width="375" height="260"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Sv3-MZ-Bjc" id="6Dd-qH-ovl">
@@ -1378,7 +1378,7 @@
         <!--Add Public Group View Controller-->
         <scene sceneID="V4q-yr-naL">
             <objects>
-                <viewController storyboardIdentifier="addPublicGroupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sSP-lP-5BO" customClass="AddPublicGroupViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="addPublicGroupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="sSP-lP-5BO" customClass="AddPublicGroupViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hnP-mU-8sP"/>
                         <viewControllerLayoutGuide type="bottom" id="dz1-VH-u1i"/>
@@ -1395,7 +1395,7 @@
                                 <rect key="frame" x="0.0" y="114" width="375" height="553"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newCell" rowHeight="260" id="08w-Dy-SN4" customClass="GroupsTableViewCell" customModule="Panic" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newCell" rowHeight="260" id="08w-Dy-SN4" customClass="GroupsTableViewCell" customModule="Brave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="22" width="375" height="260"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="08w-Dy-SN4" id="G48-hw-Yz8">
@@ -1512,7 +1512,7 @@
                                             <outlet property="lblSubs" destination="HAR-4F-rpq" id="E1t-7Y-USA"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noGroupsNearby" rowHeight="60" id="VgH-VM-6xh" customClass="GroupsTableViewCell" customModule="Panic" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noGroupsNearby" rowHeight="60" id="VgH-VM-6xh" customClass="GroupsTableViewCell" customModule="Brave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="282" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="VgH-VM-6xh" id="B5v-bd-hbQ">
@@ -1534,7 +1534,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noGroups" rowHeight="60" id="i4A-5Z-sv5" customClass="GroupsTableViewCell" customModule="Panic" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noGroups" rowHeight="60" id="i4A-5Z-sv5" customClass="GroupsTableViewCell" customModule="Brave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="342" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="i4A-5Z-sv5" id="9Bc-B2-dBP">
@@ -1571,7 +1571,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noGroupsFound" rowHeight="60" id="5At-VA-8ya" customClass="GroupsTableViewCell" customModule="Panic" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noGroupsFound" rowHeight="60" id="5At-VA-8ya" customClass="GroupsTableViewCell" customModule="Brave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="402" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="5At-VA-8ya" id="UaT-eI-0bb">
@@ -1723,7 +1723,7 @@
         <!--Create Group View Controller-->
         <scene sceneID="YYL-6D-PoO">
             <objects>
-                <viewController storyboardIdentifier="createNewGroupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="e5W-0a-daw" customClass="CreateGroupViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="createNewGroupViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="e5W-0a-daw" customClass="CreateGroupViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zhH-Ow-qZy"/>
                         <viewControllerLayoutGuide type="bottom" id="Xjc-h1-4wz"/>
@@ -2086,7 +2086,7 @@
         <!--Groups-->
         <scene sceneID="RHy-Yd-uWt">
             <objects>
-                <viewController storyboardIdentifier="contactsViewController" title="Groups" id="Uey-Pa-0Xe" customClass="GroupsViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="contactsViewController" title="Groups" id="Uey-Pa-0Xe" customClass="GroupsViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="S7v-xg-9gG"/>
                         <viewControllerLayoutGuide type="bottom" id="bxb-fG-FRu"/>
@@ -2102,7 +2102,7 @@
                                 <rect key="frame" x="0.0" y="70" width="375" height="597"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newCell" rowHeight="260" id="OaQ-SS-5SJ" customClass="GroupsTableViewCell" customModule="Panic" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newCell" rowHeight="260" id="OaQ-SS-5SJ" customClass="GroupsTableViewCell" customModule="Brave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="22" width="375" height="260"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="OaQ-SS-5SJ" id="Bbs-kB-FSF">
@@ -2219,7 +2219,7 @@
                                             <outlet property="lblSubs" destination="bmp-1C-ghT" id="Aq1-Jc-lR5"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noGroupsNearby" rowHeight="60" id="7fr-L8-dff" customClass="GroupsTableViewCell" customModule="Panic" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noGroupsNearby" rowHeight="60" id="7fr-L8-dff" customClass="GroupsTableViewCell" customModule="Brave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="282" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7fr-L8-dff" id="lIV-2H-BjD">
@@ -2241,7 +2241,7 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noGroups" rowHeight="60" id="z9I-aM-Svu" customClass="GroupsTableViewCell" customModule="Panic" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="noGroups" rowHeight="60" id="z9I-aM-Svu" customClass="GroupsTableViewCell" customModule="Brave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="342" width="375" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="z9I-aM-Svu" id="IqQ-Xz-6iC">
@@ -2478,7 +2478,7 @@
         <!--Countries View Controller-->
         <scene sceneID="904-qg-vcQ">
             <objects>
-                <viewController storyboardIdentifier="countriesViewController" id="sZN-cS-O1R" customClass="CountriesViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="countriesViewController" id="sZN-cS-O1R" customClass="CountriesViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PGW-Zh-rYL"/>
                         <viewControllerLayoutGuide type="bottom" id="hb0-rU-iwD"/>
@@ -2551,7 +2551,7 @@
         <!--History Details-->
         <scene sceneID="gX5-fU-pCO">
             <objects>
-                <viewController storyboardIdentifier="historyDetailsViewController" title="History Details" id="9sH-9f-gbE" customClass="HistoryDetailsViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="historyDetailsViewController" title="History Details" id="9sH-9f-gbE" customClass="HistoryDetailsViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="iBR-s0-Ebd"/>
                         <viewControllerLayoutGuide type="bottom" id="d0n-yD-nSj"/>
@@ -2817,7 +2817,7 @@
         <!--Local History-->
         <scene sceneID="siK-Fz-sWW">
             <objects>
-                <viewController storyboardIdentifier="localHistoryViewController" title="Local History" id="HcT-Uw-djr" customClass="LocalHistoryViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="localHistoryViewController" title="Local History" id="HcT-Uw-djr" customClass="LocalHistoryViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="EkR-de-b19"/>
                         <viewControllerLayoutGuide type="bottom" id="Uqi-Oh-weD"/>
@@ -2833,7 +2833,7 @@
                                 <rect key="frame" x="0.0" y="73" width="375" height="594"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="localHistoryCell" rowHeight="95" id="poO-fD-H2c" customClass="LocalHistoryTableViewCell" customModule="Panic" customModuleProvider="target">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" showsReorderControl="YES" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="localHistoryCell" rowHeight="95" id="poO-fD-H2c" customClass="LocalHistoryTableViewCell" customModule="Brave" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="40" width="375" height="95"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="poO-fD-H2c" id="AJe-yE-FAu">
@@ -3130,7 +3130,7 @@
         <!--Settings-->
         <scene sceneID="LBL-g1-CbC">
             <objects>
-                <tableViewController storyboardIdentifier="settingsViewController" title="Settings" id="bf1-M8-Ukx" customClass="SettingsTableViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="settingsViewController" title="Settings" id="bf1-M8-Ukx" customClass="SettingsTableViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="25" sectionFooterHeight="22" id="Tiz-MW-x4Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3718,7 +3718,7 @@
         <!--Map-->
         <scene sceneID="G4y-oy-ky6">
             <objects>
-                <viewController storyboardIdentifier="mapViewController" title="Map" id="1kK-cU-hBn" customClass="MapViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapViewController" title="Map" id="1kK-cU-hBn" customClass="MapViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PEF-wp-qyL"/>
                         <viewControllerLayoutGuide type="bottom" id="xNI-Yb-tKY"/>
@@ -3932,7 +3932,7 @@
         <!--Register Table View Controller-->
         <scene sceneID="PVS-cA-Y7q">
             <objects>
-                <tableViewController id="T2P-aZ-Nvr" customClass="RegisterTableViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="T2P-aZ-Nvr" customClass="RegisterTableViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Qzf-Bh-5MZ">
                         <rect key="frame" x="0.0" y="0.0" width="343" height="465"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4213,7 +4213,7 @@
         <!--Register-->
         <scene sceneID="l7M-mY-bFU">
             <objects>
-                <viewController storyboardIdentifier="registerViewController" title="Register" id="B7E-o5-xcK" customClass="RegisterViewController" customModule="Panic" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="registerViewController" title="Register" id="B7E-o5-xcK" customClass="RegisterViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="p8o-r7-Jsz"/>
                         <viewControllerLayoutGuide type="bottom" id="BvV-DV-MIe"/>

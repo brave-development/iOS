@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5EA0CBAD66523EEA52B18335 /* Pods_Panic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17DDDAE8647815ACEBD54F28 /* Pods_Panic.framework */; };
+		750309471EEAB94500599E4D /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75162DE81A2B8B3E0094BA31 /* LaunchScreen.xib */; };
 		750A7D4C1AB6D01D006EAA97 /* TextViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A7D4B1AB6D01D006EAA97 /* TextViewCustom.swift */; };
 		750A7D501AB70ABF006EAA97 /* AnnotationCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 750A7D4F1AB70ABF006EAA97 /* AnnotationCustom.swift */; };
 		75109B3A1E9F88D00056BBCB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75109B391E9F88D00056BBCB /* AudioToolbox.framework */; };
@@ -62,7 +62,6 @@
 		755D4ED41AB4760E001F4590 /* Drawing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755D4ED31AB4760E001F4590 /* Drawing.swift */; };
 		755EBDD81B3D8E9B00A4666F /* RespondersIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 755EBDD71B3D8E9B00A4666F /* RespondersIcon.png */; };
 		75606E6E1A36E4110089744C /* PanicHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75606E6D1A36E4110089744C /* PanicHandler.swift */; };
-		75606E701A3785E90089744C /* panic@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75606E6F1A3785E90089744C /* panic@2x.png */; };
 		75606E721A3786BF0089744C /* phone@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75606E711A3786BF0089744C /* phone@2x.png */; };
 		75606E741A3793110089744C /* call@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75606E731A3793110089744C /* call@2x.png */; };
 		75606E7E1A37B9210089744C /* LocalHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75606E7D1A37B9210089744C /* LocalHistoryViewController.swift */; };
@@ -186,7 +185,6 @@
 		755D4ED31AB4760E001F4590 /* Drawing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Drawing.swift; sourceTree = "<group>"; };
 		755EBDD71B3D8E9B00A4666F /* RespondersIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RespondersIcon.png; sourceTree = "<group>"; };
 		75606E6D1A36E4110089744C /* PanicHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanicHandler.swift; sourceTree = "<group>"; };
-		75606E6F1A3785E90089744C /* panic@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "panic@2x.png"; sourceTree = "<group>"; };
 		75606E711A3786BF0089744C /* phone@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "phone@2x.png"; sourceTree = "<group>"; };
 		75606E731A3793110089744C /* call@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "call@2x.png"; sourceTree = "<group>"; };
 		75606E7D1A37B9210089744C /* LocalHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalHistoryViewController.swift; sourceTree = "<group>"; };
@@ -239,7 +237,6 @@
 				75109B3A1E9F88D00056BBCB /* AudioToolbox.framework in Frameworks */,
 				7555E1731B3382E600C0171F /* Accounts.framework in Frameworks */,
 				7555E1711B3382DC00C0171F /* Social.framework in Frameworks */,
-				5EA0CBAD66523EEA52B18335 /* Pods_Panic.framework in Frameworks */,
 				7D9F5B023B8BC332B27F2CD6 /* Pods_Brave.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -576,7 +573,6 @@
 				7583FA9F1B81E63D00CFD09C /* lock.png */,
 				7574A5FA1A2E425F00148645 /* logout@2x.png */,
 				752AA7071B978C69005BE9FC /* noImage.png */,
-				75606E6F1A3785E90089744C /* panic@2x.png */,
 				75606E711A3786BF0089744C /* phone@2x.png */,
 				752AA6EF1B94973B005BE9FC /* plus.png */,
 				752AA6FC1B94A382005BE9FC /* privateGroup.png */,
@@ -723,10 +719,10 @@
 				75CF75E71BCBA1C600B18480 /* LaunchImage-640x1136@2x.png in Resources */,
 				757DA8611A40A4F60037995C /* Countries.txt in Resources */,
 				752AA6F41B94976C005BE9FC /* cross.png in Resources */,
-				75606E701A3785E90089744C /* panic@2x.png in Resources */,
 				7565AF9D1BBAFC990015ABD0 /* group.png in Resources */,
 				7586AC5C1A31C761003DC023 /* homeIcon@2x.png in Resources */,
 				7565AFA11BBD29110015ABD0 /* camera.png in Resources */,
+				750309471EEAB94500599E4D /* LaunchScreen.xib in Resources */,
 				7574A5FF1A2E425F00148645 /* logout@2x.png in Resources */,
 				7586AC581A31AF5F003DC023 /* LaunchImage@2x.png in Resources */,
 				752AA7081B978C69005BE9FC /* noImage.png in Resources */,
@@ -1007,7 +1003,6 @@
 			baseConfigurationReference = FF1A035FFFDD477EF0960229 /* Pods-Brave.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Panic/Panic.entitlements;
@@ -1040,7 +1035,6 @@
 			baseConfigurationReference = DD273ABF8657901CE1C1433E /* Pods-Brave.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Panic/Panic.entitlements;

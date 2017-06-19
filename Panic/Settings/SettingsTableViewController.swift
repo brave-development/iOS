@@ -136,7 +136,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 	}
 	
     @IBAction func showNotificationsInformation(_ sender: Any) {
-        global.showAlert(NSLocalizedString("allow_notifications_info_title", value: "Background Update", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Allowing notifications means this device will recieve a notification when someone activates the panic button. If you disable this, you will not be notified when someone needs help.\n\nPlease keep in mind how you might feel when you're in need of help and someone has this deactivated.", comment: ""))
+        global.showAlert(NSLocalizedString("allow_notifications_info_title", value: "Allow Notifications", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Allowing notifications means this device will recieve a notification when someone activates the panic button. If you disable this, you will not be notified when someone needs help.\n\nPlease keep in mind how you might feel when you're in need of help and someone has this deactivated.", comment: ""))
     }
     
 	@IBAction func reportBug(_ sender: AnyObject) {

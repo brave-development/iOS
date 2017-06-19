@@ -240,7 +240,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 					}
 				}
 			} else {
-				global.showAlert("", message: NSLocalizedString("menu_not_available", value: "Menus are unavailable while Panic is active", comment: ""))
+				global.showAlert("", message: NSLocalizedString("menu_not_available", value: "Menus are unavailable while an alert is active", comment: ""))
 			}
 		}
 	}
@@ -387,7 +387,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 	func setupTutorial() {
 		btnPanic.setTitle("Activate", for: UIControlState())
 		descriptionCount = 0
-		lblDescription.text = NSLocalizedString("main_tut_1", value: "Tap the Panic button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live.", comment: "First part of main tutorial")
+		lblDescription.text = NSLocalizedString("main_tut_1", value: "Tap the Activate button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live.", comment: "First part of main tutorial")
 		viewTutorialPanic.isHidden = false
 		btnPanic.layer.cornerRadius = 0.5 * btnPanic.bounds.size.width
 		btnPanic.layer.borderWidth = 2
@@ -417,7 +417,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 			break;
 			
 		case 2:
-			animateTextChange(NSLocalizedString("main_tut_3", value: "When activating the Panic button, there is a 5 second delay before notifications are sent out - in case of accidental activations. This delay can be disabled in Settings.", comment: ""))
+			animateTextChange(NSLocalizedString("main_tut_3", value: "When activating the Brave button, there is a 5 second delay before notifications are sent out - in case of accidental activations. This delay can be disabled in Settings.", comment: ""))
 			break;
 			
 		case 3:

@@ -174,37 +174,6 @@ class HistoryDetailsViewController: UIViewController, CLLocationManagerDelegate,
 		}
 	}
 	
-//	func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView!
-//	{
-//		if !annotation.isEqual(mapView.userLocation) {
-//			var view: MKAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Standard")
-//			
-//			var btnViewRight: UIButton = UIButton.buttonWithType(UIButtonType.DetailDisclosure) as! UIButton
-//			btnViewRight.addTarget(self, action: "callVictim", forControlEvents: UIControlEvents.TouchUpInside)
-//			btnViewRight.setImage(UIImage(named: "call"), forState: UIControlState.Normal)
-//			
-//			if view.annotation.subtitle? != nil {
-//				if view.annotation.subtitle? != "Loading name..." {
-//					view.rightCalloutAccessoryView = btnViewRight
-//				}
-//			}
-//			
-//			view.image = UIImage(named: "panic")
-//			
-//			view.enabled = true
-//			view.canShowCallout = true
-//			view.centerOffset = CGPointMake(0, 0)
-//			return view
-//		} else {
-//			return nil
-//		}
-	// remove this line... literally
-//	}
-	
-//	func locationManager(manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-//		
-//	}
-	
 	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus)
 	{
 		if (status == CLAuthorizationStatus.authorizedAlways) || (status == CLAuthorizationStatus.authorizedWhenInUse) {
@@ -221,74 +190,54 @@ class HistoryDetailsViewController: UIViewController, CLLocationManagerDelegate,
             do_locationError = 1
         }
 	}
-	
-	func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer
-	{
-		let polylineRender: MKPolylineRenderer = MKPolylineRenderer(overlay: overlay)
-		polylineRender.lineWidth = 5.0
-		polylineRender.strokeColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.95)
-		return polylineRender;
-	}
-	
-	
-	func locationAllowed() {
-		print("Location Allowed!!")
-		
-		locationPermission = true
-		//        btnMe.hidden = false
-		//        findMe(btnMe)
-		locationPermissionDispatch = 0
-		manager.startUpdatingLocation()
-	}
-	
-	func locationNotAllowed(_ showMessage: Bool) {
-		print("Location NOT Allowed!!")
-		
-		locationPermission = false
-		//        btnMe.hidden = true
-		manager.stopUpdatingLocation()
-		if showMessage {
-			// Migrator FIXME: multiple dispatch_once calls using the same dispatch_once_t token cannot be automatically migrated
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let polylineRender: MKPolylineRenderer = MKPolylineRenderer(overlay: overlay)
+        polylineRender.lineWidth = 5.0
+        polylineRender.strokeColor = UIColor(red: 255, green: 0, blue: 0, alpha: 0.95)
+        return polylineRender;
+    }
+    
+    
+    func locationAllowed() {
+        print("Location Allowed!!")
+        
+        locationPermission = true
+        locationPermissionDispatch = 0
+        manager.startUpdatingLocation()
+    }
+    
+    func locationNotAllowed(_ showMessage: Bool) {
+        print("Location NOT Allowed!!")
+        
+        locationPermission = false
+        manager.stopUpdatingLocation()
+        if showMessage {
             if do_locationPermissionDispatch == 0 {
-				global.showAlert("Location Authorization", message: "To use this feature properly, please enable Location Services for this app in Settings > Privacy > Location")
+                global.showAlert("Location Authorization", message: "To use this feature properly, please enable Location Services for this app in Settings > Privacy > Location")
                 do_locationPermissionDispatch = 1
-			}
-		}
-	}
-	
-	func freeMem() {
-		//        print("Memory freed")
-//		if map != nil {
-			map.mapType = MKMapType.hybrid
-			map.removeFromSuperview()
-//		}
-		map = nil
-		manager = nil
-	}
-	
-	override func viewWillDisappear(_ animated: Bool) {
-//		if viewIsActive == false {
-//			manager.stopUpdatingLocation()
-//			manager.delegate = nil
-//			map.delegate = nil
-//			print("Disabled timer")
-//			timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: "freeMem", userInfo: nil, repeats: false)
-//		}
-//		viewIsActive = false
-	}
-
-
-	@IBAction func back(_ sender: AnyObject) {
-		manager.stopUpdatingLocation()
-		manager.delegate = nil
-		map.delegate = nil
-		print("Disabled timer")
-		timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(freeMem), userInfo: nil, repeats: false)
-		self.dismiss(animated: true, completion: nil)
-	}
-	
+            }
+        }
+    }
+    
+    func freeMem() {
+        map.mapType = MKMapType.hybrid
+        map.removeFromSuperview()
+        map = nil
+        manager = nil
+    }
+    
+    
+    @IBAction func back(_ sender: AnyObject) {
+        manager.stopUpdatingLocation()
+        manager.delegate = nil
+        map.delegate = nil
+        print("Disabled timer")
+        timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(freeMem), userInfo: nil, repeats: false)
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

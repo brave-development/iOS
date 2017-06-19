@@ -138,7 +138,7 @@ class PanicHandler: UIViewController {
         query.cancel()
 		timer?.invalidate()
         if queryObject != nil {
-            queryObject["active"] = false
+            if global.isDESPilot == false { queryObject["active"] = false }
             queryObject.saveInBackground(block: {
                 (result, error) in
                 if error == nil {
@@ -153,7 +153,7 @@ class PanicHandler: UIViewController {
     }
     
     func sendNotifications() {
-        if queryObject.objectId != nil {
+        if queryObject?.objectId != nil {
             PFCloud.callFunction(inBackground: "pushFromId", withParameters: ["objectId" : queryObject.objectId!] ) {
                 response, error in
                 

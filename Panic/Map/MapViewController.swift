@@ -141,8 +141,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 				if error == nil {
 					self.victimDetails = [:]
 					for object in objects! {
-						let tempObject = object 
-						self.victimDetails[(tempObject["user"] as! PFUser)["name"] as! String] = (tempObject)
+//						let tempObject = object 
+//						self.victimDetails[(tempObject["user"] as! PFUser)["name"] as! String] = (tempObject)
+                        self.victimDetails[object.objectId!] = object
 					}
 					self.updateAnnotations()
 				} else {
@@ -163,10 +164,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             print("Disabled timer")
             timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(freeMem), userInfo: nil, repeats: false)
         }
-        
-//        if global.queryUsersBusy == true {
-//            
-//        }
     }
     
     // Updating annotations
@@ -220,14 +217,13 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	
     // When the user taps on an annotation
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        selectedVictim = victimDetails[view.annotation!.title!!]
+        if let objectId = (view.annotation as? AnnotationCustom)?.object.objectId! {
+            selectedVictim = victimDetails[objectId]
+        }
     }
     
-    // How to add annotations
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView?
-    {
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if !annotation.isEqual(mapView.userLocation) {
-//			let anno = annotation as! AnnotationCustom
 			let view: MKAnnotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "Standard")
 			let btnViewRight: UIButton = UIButton(type: UIButtonType.detailDisclosure)
             btnViewRight.addTarget(self, action: #selector(showDetailsView), for: UIControlEvents.touchUpInside)
@@ -239,11 +235,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			view.rightCalloutAccessoryView = btnViewRight
 			view.leftCalloutAccessoryView = btnViewLeft
 			
-            view.image = UIImage(named: "panic")
+            view.image = UIImage(named: "mapPin")
             view.isEnabled = true
             view.canShowCallout = true
-            view.centerOffset = CGPoint(x: 0, y: -25)
-			view.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+            view.centerOffset = CGPoint(x: 0, y: -20)
+			view.frame = CGRect(x: 0, y: 0, width: 40, height: 40)
 			
             return view
         } else {
@@ -288,13 +284,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	}
 	
 	func populateDetails() {
-		let name = (selectedVictim!["user"] as! PFUser)["name"] as! String
-		let victimInfo = (victimDetails[name]! as PFObject)["user"] as! PFUser
-		let panicDetails = victimDetails[name]! as PFObject
+        let objectId = selectedVictim!.objectId!
+        let panicDetails = victimDetails[objectId]! as PFObject
+        
+        let victimInfo = (victimDetails[objectId]! as PFObject)["user"] as! PFUser
 		lblName.text = victimInfo["name"] as? String
 		lblContact.text = victimInfo["cellNumber"] as? String
 		
-		detailsTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(getDetails), userInfo: nil, repeats: true)
+		detailsTimer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(getDetails), userInfo: nil, repeats: true)
 		getDetails()
 		
 		if panicDetails["responders"] != nil {
@@ -317,13 +314,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	}
 	
 	func getDetails() {
-		let name = (selectedVictim!["user"] as! PFUser)["name"] as! String
-		if victimDetails[name] != nil {
-			let panicDetails = victimDetails[name]! as PFObject
-			
+		if let panicDetails = victimDetails[selectedVictim!.objectId!] as? PFObject {
 			if panicDetails["details"] != nil {
 				lblDetails.text = panicDetails["details"] as? String
-			}
+            } else {
+                lblDetails.text = "No details"
+            }
 		} else {
 			detailsTimer.invalidate()
 			closeDetails(btnCloseDetails)
