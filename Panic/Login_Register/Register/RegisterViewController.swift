@@ -73,6 +73,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         PFUser.current()?.setValue(containerView.btnCountry.titleLabel?.text, forKey: "country")
         PFUser.current()?.setValue(10, forKey: "numberOfGroups")
         PFUser.current()?.setValue(containerView.txtBetaCode.text?.trim(), forKey: "betaID")
+        PFUser.current()?.setValue([], forKey: "groups")
         
         PFUser.current()?.saveInBackground(block: {
             success, error in
@@ -94,6 +95,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         user["numberOfGroups"] = 10
         user["password"] = containerView.txtPassword.text
         user["betaID"] = containerView.txtBetaCode.text?.trim()
+        user["groups"] = []
         
         user.signUpInBackground {
             (succeeded, error) in
