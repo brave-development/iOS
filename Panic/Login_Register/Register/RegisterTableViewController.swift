@@ -57,6 +57,10 @@ class RegisterTableViewController: UITableViewController, countryDelegate, UITex
     @IBOutlet weak var viewConfirmPassword: UITableViewCell!
     @IBOutlet weak var txtConfirmPassword: UITextField!
     
+    @IBOutlet weak var viewBetaCode: UITableViewCell!
+    @IBOutlet weak var txtBetaCode: UITextField!
+    
+    
     var countrySelected = false
 	var textFields : [UITextField] = []
 	
@@ -68,6 +72,7 @@ class RegisterTableViewController: UITableViewController, countryDelegate, UITex
 		textFields.append(txtEmail)
 		textFields.append(txtPassword)
 		textFields.append(txtConfirmPassword)
+        textFields.append(txtBetaCode)
 		
 		txtName.delegate = self
 		txtUsername.delegate = self
@@ -75,6 +80,7 @@ class RegisterTableViewController: UITableViewController, countryDelegate, UITex
 		txtEmail.delegate = self
 		txtPassword.delegate = self
 		txtConfirmPassword.delegate = self
+        txtBetaCode.delegate = self
 		
         tblDetails.separatorStyle = UITableViewCellSeparatorStyle.none
 		let backgroundColour = UIColor(white: 0, alpha: 0.3)
@@ -87,6 +93,7 @@ class RegisterTableViewController: UITableViewController, countryDelegate, UITex
         viewCountry.backgroundColor = backgroundColour
         viewPassword.backgroundColor = backgroundColour
         viewConfirmPassword.backgroundColor = backgroundColour
+        viewBetaCode.backgroundColor = backgroundColour
         
         txtName.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("name_surname", value: "Name and Surname", comment: "Asking for ..."),
             attributes:[NSForegroundColorAttributeName: placeholderTextColour])
@@ -99,6 +106,8 @@ class RegisterTableViewController: UITableViewController, countryDelegate, UITex
         txtPassword.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("password", value: "Password", comment: "Asking for..."),
             attributes:[NSForegroundColorAttributeName: placeholderTextColour])
         txtConfirmPassword.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("password_confirm", value: "Confirm Password", comment: "Asking for..."),
+            attributes:[NSForegroundColorAttributeName: placeholderTextColour])
+        txtBetaCode.attributedPlaceholder = NSAttributedString(string:NSLocalizedString("beta_code", value: "Referral Code (optional)", comment: "Asking for..."),
             attributes:[NSForegroundColorAttributeName: placeholderTextColour])
         
     }

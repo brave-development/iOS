@@ -118,9 +118,9 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 			if(MFMailComposeViewController.canSendMail()) {
 				
 				mail.mailComposeDelegate = self
-				mail.setSubject("Panic - Report Group")
-				mail.setToRecipients(["byron@panic-sec.org"])
-				mail.setBccRecipients(["byroncoetsee@gmail.com", "wprenison@gmail.com"])
+				mail.setSubject("Brave - Report Group")
+				mail.setToRecipients(["feedback@brave.ly"])
+//				mail.setBccRecipients(["byroncoetsee@gmail.com", "wprenison@gmail.com"])
 				self.parentVC.present(mail, animated: true, completion: nil)
 			}
 			else {
@@ -185,8 +185,9 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 	
 	func purchaseSuccessful() {
 		NotificationCenter.default.post(name: Notification.Name(rawValue: "didJoinGroup"), object: nil)
-		groupsHandler.addGroup(lblName.text!)
-		groupsHandler.getNearbyGroups(parentVC.manager.location!, refresh: true)
+//		groupsHandler.addGroup(lblName.text!)
+        groupsHandler.addGroup(object)
+        groupsHandler.getNearbyGroups(parentVC.manager.location!, refresh: true)
 		parentVC.populateDataSource()
 		parentVC.checkForGroupDetails()
 		NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "purchaseSuccess"), object: nil)

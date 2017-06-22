@@ -144,15 +144,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 		alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: ""), style: UIAlertActionStyle.default, handler: nil))
 		self.present(alert, animated: true, completion: nil)
 	}
-	
-//    func manageLogin() {
-//        if global.getUserInformation() == true {
-//            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//            let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
-//            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-//            self.present(vc, animated: true, completion: nil)
-//		}
-//    }
     
     func startLoading () {
         spinner.startAnimating()

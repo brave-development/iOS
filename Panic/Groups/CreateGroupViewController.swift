@@ -159,18 +159,18 @@ class CreateGroupViewController: UIViewController, UINavigationControllerDelegat
 			} else {
 				newGroup()
 			}
-//			NotificationCenter.default.post(name: Notification.Name(rawValue: "gotNearbyGroups"), object: nil)
 		}
 	}
 	
 	func newGroup() {
 		var message: String = NSLocalizedString("group_set_to_private_text", value: "This group is set to private. It will therfore NOT SHOW in any searches or nearby suggestions.", comment: "")  // If set to PRIVATE
-		if self.publicGroup == true { message = NSLocalizedString("group_set_to_public_text", value: "This group is set to public. It will therfor SHOW in all searches and nearby suggestions and anyone will be able to join it", comment: "")}
+		if self.publicGroup == true { message = NSLocalizedString("group_set_to_public_text", value: "This group is set to public. It will therfore SHOW in all searches and nearby suggestions and anyone will be able to join it", comment: "")}
 		let saveAlert = UIAlertController(title: NSLocalizedString("are_you_sure", value: "Are you sure?", comment: ""), message: message, preferredStyle: UIAlertControllerStyle.alert)
 		saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
 			// Clicked YES
             self.prepareForUpload()
             
+            self.group = PFObject(className: "Groups")
             let newGroup = self.createGroupObject()
 			if groupsHandler.checkIfGroupExists(newGroup) == false {
 				groupsHandler.createGroup(newGroup, parent: self)

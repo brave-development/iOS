@@ -109,34 +109,23 @@ class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLoc
 		}
 		
 		if groupsHandler.gotGroupDetails == false || groupsHandler.gotNearbyGroupDetails == false {
-			Timer.scheduledTimer(timeInterval: 0.5, target: self, selector: "checkForGroupDetails", userInfo: nil, repeats: false)
+			Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkForGroupDetails), userInfo: nil, repeats: false)
 		} else {
 			hideNotificationBar()
 		}
 	}
-	
-//	func addGroup() {
-//		tutorial.addNewGroup = true
-//		tutorial.save()
-//		print("Set addNewGroups to TRUE")
-//		if viewTutorial.hidden == false {
-//			UIView.animateWithDuration(0.5, animations: {
-//				self.viewTutorial.alpha = 0.0 }, completion: {
-//					(finished: Bool) -> Void in
-//					self.viewTutorial.hidden = true
-//			})
-//		}
-//		
-//		if PFUser.currentUser()!["numberOfGroups"] != nil {
-//			if PFUser.currentUser()!["numberOfGroups"] as! Int == tblGroups.numberOfRowsInSection(0) {
-//				groupsHandler.handlePurchase(self)
-//			} else if PFUser.currentUser()!["numberOfGroups"] as! Int > groupsHandler.joinedGroups.count {
-//				var storyboard = UIStoryboard(name: "Main", bundle: nil)
-//				var vc: AddNewGroupViewController = storyboard.instantiateViewControllerWithIdentifier("addNewGroupViewController") as! AddNewGroupViewController
-//				self.presentViewController(vc, animated: true, completion: nil)
-//			}
-//		}
-//	}
+    
+    func populateDataSource() {
+        joinGroupIdHolder = []
+        for (id, _) in groupsHandler.joinedGroupsObject {
+            joinGroupIdHolder.append(id)
+        }
+        
+        nearbyGroupIdHolder = []
+        for (id, _) in groupsHandler.nearbyGroupObjects {
+            nearbyGroupIdHolder.append(id)
+        }
+    }
 	
 	func registerGroup() {
 		let query = PFQuery(className: "Groups")
@@ -244,18 +233,6 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
             return joinGroupIdHolder.count
         } else {
             return nearbyGroupIdHolder.count
-        }
-    }
-    
-    func populateDataSource() {
-        joinGroupIdHolder = []
-        for (id, _) in groupsHandler.joinedGroupsObject {
-            joinGroupIdHolder.append(id)
-        }
-        
-        nearbyGroupIdHolder = []
-        for (id, _) in groupsHandler.nearbyGroupObjects {
-            nearbyGroupIdHolder.append(id)
         }
     }
     

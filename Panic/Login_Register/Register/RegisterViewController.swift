@@ -71,7 +71,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
     func signupSocial() {
         PFUser.current()?.setValue(containerView.txtCellNumber.text, forKey: "cellNumber")
         PFUser.current()?.setValue(containerView.btnCountry.titleLabel?.text, forKey: "country")
-        PFUser.current()?.setValue(1, forKey: "numberOfGroups")
+        PFUser.current()?.setValue(10, forKey: "numberOfGroups")
+        PFUser.current()?.setValue(containerView.txtBetaCode.text?.trim(), forKey: "betaID")
+        
         PFUser.current()?.saveInBackground(block: {
             success, error in
             
@@ -91,8 +93,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate {
         user["email"] = containerView.txtEmail.text
         user["numberOfGroups"] = 10
         user["password"] = containerView.txtPassword.text
-        
-        
+        user["betaID"] = containerView.txtBetaCode.text?.trim()
         
         user.signUpInBackground {
             (succeeded, error) in

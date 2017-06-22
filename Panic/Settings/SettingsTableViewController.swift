@@ -144,9 +144,9 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 		if(MFMailComposeViewController.canSendMail()) {
 			
 			mail.mailComposeDelegate = self
-			mail.setSubject("Panic - Bug")
-			mail.setToRecipients(["byroncoetsee@gmail.com"])
-			mail.setMessageBody("I am having the following issues with the Panic app: ", isHTML: true)
+			mail.setSubject("Brave - Bug")
+			mail.setToRecipients(["feedback@brave.ly"])
+			mail.setMessageBody("I am having the following issues with the Brave app: ", isHTML: true)
 			self.present(mail, animated: true, completion: nil)
 		}
 		else {
@@ -155,7 +155,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 	}
 	
 	@IBAction func reportUser(_ sender: AnyObject) {
-		global.showAlert(NSLocalizedString("report_user_title", value: "Report a user", comment: ""), message:NSLocalizedString("report_user_text", value: "To report a user, go to Public History, tap on the Panic associated to that user and use the report button there.", comment: "") )
+		global.showAlert(NSLocalizedString("report_user_title", value: "Report a user", comment: ""), message:NSLocalizedString("report_user_text", value: "To report a user, go to Public History, tap on the Alert associated to that user and use the report button there.", comment: "") )
 	}
 	
 	func mailComposeController(_ controller: MFMailComposeViewController!, didFinishWith result: MFMailComposeResult, error: Error!) {

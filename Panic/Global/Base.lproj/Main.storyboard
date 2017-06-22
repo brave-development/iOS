@@ -860,7 +860,7 @@
                                     <constraint firstAttribute="trailing" secondItem="WHG-ek-t4K" secondAttribute="trailing" id="v8S-C5-FxJ"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ds4-Nh-T1n">
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ds4-Nh-T1n">
                                 <rect key="frame" x="148" y="449" width="80" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QJ-2S-67s">
@@ -4180,6 +4180,41 @@
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="blank" rowHeight="10" id="u8Q-4H-teM">
+                                        <rect key="frame" x="0.0" y="368" width="343" height="10"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="u8Q-4H-teM" id="EuY-z9-erl">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="10"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="yth-ZL-ncK" userLabel="Beta Code">
+                                        <rect key="frame" x="0.0" y="378" width="343" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="yth-ZL-ncK" id="OL9-WU-S89">
+                                            <rect key="frame" x="0.0" y="0.0" width="343" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" placeholder="Referral Code (optional)" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LG9-mc-OfY">
+                                                    <rect key="frame" x="8" y="4" width="327" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="WWX-lR-OqG"/>
+                                                    </constraints>
+                                                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <fontDescription key="fontDescription" name="STHeitiSC-Light" family="Heiti SC" pointSize="13"/>
+                                                    <textInputTraits key="textInputTraits" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                                </textField>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="LG9-mc-OfY" secondAttribute="bottom" constant="4" id="0lo-YJ-B54"/>
+                                                <constraint firstAttribute="trailing" secondItem="LG9-mc-OfY" secondAttribute="trailing" constant="8" id="CZi-gl-8Ld"/>
+                                                <constraint firstItem="LG9-mc-OfY" firstAttribute="top" secondItem="OL9-WU-S89" secondAttribute="top" constant="4" id="ViH-QK-u5W"/>
+                                                <constraint firstItem="LG9-mc-OfY" firstAttribute="leading" secondItem="OL9-WU-S89" secondAttribute="leading" constant="8" id="ibB-re-BKm"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -4191,12 +4226,14 @@
                     <connections>
                         <outlet property="btnCountry" destination="1RW-sB-c5J" id="F5s-3Z-eYl"/>
                         <outlet property="tblDetails" destination="Qzf-Bh-5MZ" id="D9z-Xt-MNd"/>
+                        <outlet property="txtBetaCode" destination="LG9-mc-OfY" id="N7e-5t-ZFS"/>
                         <outlet property="txtCellNumber" destination="0mW-Su-AYZ" id="fRJ-zR-Xyi"/>
                         <outlet property="txtConfirmPassword" destination="xCQ-X8-JAL" id="rK9-6y-xu5"/>
                         <outlet property="txtEmail" destination="1rA-bG-nhD" id="RUl-c3-2fR"/>
                         <outlet property="txtName" destination="yjc-uz-5Ex" id="ZfA-QZ-REa"/>
                         <outlet property="txtPassword" destination="aKt-Gq-GC5" id="Ubo-pA-Ixq"/>
                         <outlet property="txtUsername" destination="yAE-s6-24v" id="meD-5S-WBA"/>
+                        <outlet property="viewBetaCode" destination="yth-ZL-ncK" id="9Fh-u0-hO5"/>
                         <outlet property="viewCellNumber" destination="SZe-Q7-MHM" id="zJc-YQ-jTC"/>
                         <outlet property="viewConfirmPassword" destination="a1L-6H-eQ1" id="EHW-gB-NWR"/>
                         <outlet property="viewCountry" destination="2N1-j7-oZM" id="Z42-5f-WFK"/>

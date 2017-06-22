@@ -76,11 +76,14 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         btnPanic.layer.borderWidth = 2
         btnPanic.layer.borderColor = UIColor.green.cgColor
         
-        btnNeedle.layer.cornerRadius = btnNeedle.frame.size.height/2
-        btnNeedle.layer.masksToBounds = true
-        viewNeedle.layer.shadowOffset = CGSize(width: 0, height: 0)
-        viewNeedle.layer.shadowRadius = 4
-        viewNeedle.layer.shadowOpacity = 0.7
+        if global.isDESPilot {
+            viewNeedle.isHidden = false
+            btnNeedle.layer.cornerRadius = btnNeedle.frame.size.height/2
+            btnNeedle.layer.masksToBounds = true
+            viewNeedle.layer.shadowOffset = CGSize(width: 0, height: 0)
+            viewNeedle.layer.shadowRadius = 4
+            viewNeedle.layer.shadowOpacity = 0.7
+        }
     }
     
     @IBAction func menuButton(_ sender: AnyObject) {
@@ -160,12 +163,6 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(updateResponderCount), userInfo: nil, repeats: true)
         
         activateWithBetaChanges()
-        
-//        UIView.animate(withDuration: 0.5, animations: {
-//            self.txtDetails.alpha = 1.0
-//            self.lblResponders.alpha = 1.0
-//            self.lblRespondersLabel.alpha = 1.0
-//        })
         
         if pendingPushNotifications == false {
             pendingPushNotifications = true

@@ -170,16 +170,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func updateAnnotations() {
 		var liveAnnotationIds: [String : AnnotationCustom] = [:]
         for (name, object) in victimDetails {
-			var anno: AnnotationCustom!
-			let id = (object as PFObject).objectId
-			let location = CLLocationCoordinate2D(latitude: ((object as PFObject)["location"] as! PFGeoPoint).latitude, longitude: ((object as PFObject)["location"]as! PFGeoPoint).longitude)
-			if (object as PFObject)["details"] != nil {
-				let details = (object as PFObject)["details"] as! String
-				anno = AnnotationCustom(coordinate: location, title: name, id: id!, object: (object as PFObject), details: details)
-			} else {
-				anno = AnnotationCustom(coordinate: location, title: name, id: id!, object: (object as PFObject))
-			}
-			liveAnnotationIds[id!] = anno
+            if (object as PFObject)["user"] != nil {
+                var anno: AnnotationCustom!
+                let id = (object as PFObject).objectId
+                let location = CLLocationCoordinate2D(latitude: ((object as PFObject)["location"] as! PFGeoPoint).latitude, longitude: ((object as PFObject)["location"]as! PFGeoPoint).longitude)
+                if (object as PFObject)["details"] != nil {
+                    let details = (object as PFObject)["details"] as! String
+                    anno = AnnotationCustom(coordinate: location, title: name, id: id!, object: (object as PFObject), details: details)
+                } else {
+                    anno = AnnotationCustom(coordinate: location, title: name, id: id!, object: (object as PFObject))
+                }
+                liveAnnotationIds[id!] = anno
+            }
         }
 		addAnnotations(liveAnnotationIds)
     }

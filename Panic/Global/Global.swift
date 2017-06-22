@@ -56,13 +56,33 @@ class Global: UIViewController {
 	var privateHistoryFetched : Bool = false
 	var publicHistoryFetched : Bool = false
     
-    var isDESPilot: Bool {
+    var betaID : String? {
         if let value = PFUser.current()?.value(forKey: "betaID") as? String {
-            return value.lowercased() == "despilot"
+            return value
+        }
+        return nil
+    }
+    
+    var isDESPilot: Bool {
+        if betaID == "DESPilot" {
+            joinDESPilotGroup()
+            return true
         }
         return false
     }
     
+    func joinDESPilotGroup() {
+        let query = PFQuery(className: "Groups")
+        query.getObjectInBackground(withId: "Z7rmGeDACV", block: {
+            (result, error) -> Void in
+            if error == nil {
+                if result != nil {
+                    let group = result! as PFObject
+                    groupsHandler.addGroup(group["name"] as! String, silentAdd: true)
+                }
+            }
+        })
+    }
 	
     func getUserInformation(callingVC: AnyObject) -> Bool {
 		

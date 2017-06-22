@@ -24,7 +24,6 @@
 		75162DE51A2B8B3E0094BA31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75162DE31A2B8B3E0094BA31 /* Main.storyboard */; };
 		75162DE71A2B8B3E0094BA31 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 75162DE61A2B8B3E0094BA31 /* Images.xcassets */; };
 		75162DF61A2B8B3E0094BA31 /* PanicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75162DF51A2B8B3E0094BA31 /* PanicTests.swift */; };
-		75162E021A2B8EBF0094BA31 /* Background@2x.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 75162E011A2B8EBF0094BA31 /* Background@2x.jpg */; };
 		75162E041A2B9EA10094BA31 /* PanicButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75162E031A2B9EA10094BA31 /* PanicButtonViewController.swift */; };
 		752AA6F01B94973B005BE9FC /* plus.png in Resources */ = {isa = PBXBuildFile; fileRef = 752AA6EF1B94973B005BE9FC /* plus.png */; };
 		752AA6F41B94976C005BE9FC /* cross.png in Resources */ = {isa = PBXBuildFile; fileRef = 752AA6F31B94976C005BE9FC /* cross.png */; };
@@ -83,6 +82,7 @@
 		75A8752F1B340402004A3E17 /* DurationIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A8752E1B340402004A3E17 /* DurationIcon.png */; };
 		75A875311B340415004A3E17 /* Location.png in Resources */ = {isa = PBXBuildFile; fileRef = 75A875301B340415004A3E17 /* Location.png */; };
 		75A875331B3404B7004A3E17 /* LocalHistoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A875321B3404B7004A3E17 /* LocalHistoryTableViewCell.swift */; };
+		75B508921EFC014C00C22E8F /* GroupsHandler_2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B508911EFC014C00C22E8F /* GroupsHandler_2.swift */; };
 		75CF75E31BCB9F9200B18480 /* LaunchImage-1242x2208@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E21BCB9F9200B18480 /* LaunchImage-1242x2208@2x.png */; };
 		75CF75E51BCBA0DD00B18480 /* LaunchImage-750x1334@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E41BCBA0DD00B18480 /* LaunchImage-750x1334@2x.png */; };
 		75CF75E71BCBA1C600B18480 /* LaunchImage-640x1136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E61BCBA1C600B18480 /* LaunchImage-640x1136@2x.png */; };
@@ -139,7 +139,6 @@
 		75162DEF1A2B8B3E0094BA31 /* Brave.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Brave.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		75162DF41A2B8B3E0094BA31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		75162DF51A2B8B3E0094BA31 /* PanicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanicTests.swift; sourceTree = "<group>"; };
-		75162E011A2B8EBF0094BA31 /* Background@2x.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Background@2x.jpg"; sourceTree = "<group>"; };
 		75162E031A2B9EA10094BA31 /* PanicButtonViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PanicButtonViewController.swift; sourceTree = "<group>"; };
 		752AA6EF1B94973B005BE9FC /* plus.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plus.png; sourceTree = "<group>"; };
 		752AA6F31B94976C005BE9FC /* cross.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cross.png; sourceTree = "<group>"; };
@@ -206,6 +205,7 @@
 		75A8752E1B340402004A3E17 /* DurationIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DurationIcon.png; sourceTree = "<group>"; };
 		75A875301B340415004A3E17 /* Location.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Location.png; sourceTree = "<group>"; };
 		75A875321B3404B7004A3E17 /* LocalHistoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalHistoryTableViewCell.swift; sourceTree = "<group>"; };
+		75B508911EFC014C00C22E8F /* GroupsHandler_2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsHandler_2.swift; sourceTree = "<group>"; };
 		75CF75E21BCB9F9200B18480 /* LaunchImage-1242x2208@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-1242x2208@2x.png"; sourceTree = "<group>"; };
 		75CF75E41BCBA0DD00B18480 /* LaunchImage-750x1334@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-750x1334@2x.png"; sourceTree = "<group>"; };
 		75CF75E61BCBA1C600B18480 /* LaunchImage-640x1136@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "LaunchImage-640x1136@2x.png"; sourceTree = "<group>"; };
@@ -378,6 +378,7 @@
 			children = (
 				75D869F71B29DEE20065DE37 /* GroupsHandler.swift */,
 				75606E6D1A36E4110089744C /* PanicHandler.swift */,
+				75B508911EFC014C00C22E8F /* GroupsHandler_2.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -546,7 +547,6 @@
 				754075631A4E18AE00815AED /* App Related */,
 				75A8752D1B34038D004A3E17 /* Icons */,
 				754B90321A4C289900BDC20B /* Tutorial */,
-				75162E011A2B8EBF0094BA31 /* Background@2x.jpg */,
 				754B90241A47707F00BDC20B /* blank.png */,
 			);
 			path = Images;
@@ -715,7 +715,6 @@
 				75D948791ED0539B00A733DA /* GoogleService-Info.plist in Resources */,
 				75A875311B340415004A3E17 /* Location.png in Resources */,
 				7574A5FD1A2E425F00148645 /* history@2x.png in Resources */,
-				75162E021A2B8EBF0094BA31 /* Background@2x.jpg in Resources */,
 				75CF75E71BCBA1C600B18480 /* LaunchImage-640x1136@2x.png in Resources */,
 				757DA8611A40A4F60037995C /* Countries.txt in Resources */,
 				752AA6F41B94976C005BE9FC /* cross.png in Resources */,
@@ -822,6 +821,7 @@
 				750A7D4C1AB6D01D006EAA97 /* TextViewCustom.swift in Sources */,
 				7545A65C1A2C8A3100B19E3E /* CustomNavigationSegue.swift in Sources */,
 				75162E041A2B9EA10094BA31 /* PanicButtonViewController.swift in Sources */,
+				75B508921EFC014C00C22E8F /* GroupsHandler_2.swift in Sources */,
 				752AA7001B94F56E005BE9FC /* CreateGroupViewController.swift in Sources */,
 				75606E6E1A36E4110089744C /* PanicHandler.swift in Sources */,
 				754C76E61A45A67B0007C53B /* HistoryDetailsViewController.swift in Sources */,

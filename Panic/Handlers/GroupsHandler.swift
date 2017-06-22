@@ -27,29 +27,24 @@ class GroupsHandler: UIViewController {
 	
 	// Trackers
 	
-	var gotGroupDetails : Bool = false
-	var gotNearbyGroupDetails : Bool = false
+	var gotGroupDetails = false
+	var gotNearbyGroupDetails = false
 	var imagesFetched = false
 	var purchaseRunning = false
 	
 	func getGroups() {
-		let user = PFUser.current()!
-		if user["groups"] != nil {
-			for group in user["groups"] as! [String] {
-				if joinedGroups.index(of: group) == nil {
-					joinedGroups.append(group)
-				}
-			}
-		} else {
-			joinedGroups = []
-			gotGroupDetails = true
-		}
-		
-		var groupFormatted : [String] = []
-		for group in joinedGroups {
-			groupFormatted.append(group.formatGroupForChannel())
-		}
-		updateGroups()
+        var groupFormatted: [String] = []
+        
+        let user = PFUser.current()!
+        for group in user["groups"] as! [String] {
+            if joinedGroups.index(of: group) == nil {
+                joinedGroups.append(group)
+                groupFormatted.append(group.formatGroupForChannel())
+            }
+        }
+        
+        if joinedGroups.count == 0 { gotGroupDetails = true }
+        
 		getGroupDetails(nil)
 		PFInstallation.current()?.setObject([""], forKey: "channels")
 		PFInstallation.current()?.addUniqueObjects(from: groupFormatted, forKey: "channels")
@@ -134,15 +129,12 @@ class GroupsHandler: UIViewController {
 				if error == nil {
 					
 					PFAnalytics.trackEvent(inBackground: "Group_Purchases", dimensions: nil, block: nil)
-//
+
 					print("BOUGHT ADD GROUP")
 					global.persistantSettings.synchronize()
 					PFUser.current()!["numberOfGroups"] = groupsHandler.joinedGroups.count + 1
 					PFUser.current()!.saveEventually(nil)
 					NotificationCenter.default.post(name: NSNotification.Name(rawValue: "purchaseSuccessful"), object: nil)
-//					if groupsHandler.referalGroup != nil {
-//						groupsHandler.shareGroup(groupsHandler.referalGroup!, viewController: self)
-//					}
 				} else {
 					NotificationCenter.default.post(name: NSNotification.Name(rawValue: "purchaseFail"), object: nil)
 					if error?.localizedDescription != "" {
@@ -160,14 +152,22 @@ class GroupsHandler: UIViewController {
 		parent.present(saveAlert, animated: true, completion: nil)
 	}
 	
-	func addGroup(_ groupName : String) {
+    func addGroup(_ groupName : String, silentAdd: Bool = false) {
 		if joinedGroups.count <= PFUser.current()!["numberOfGroups"] as! Int {
-			PFUser.current()?.addUniqueObject(groupName, forKey: "groups")
+            
+            if joinedGroups.index(of: groupName) == nil {
+                joinedGroups.append(groupName)
+            }
+//			PFUser.current()?.addUniqueObject(groupName, forKey: "groups")
+            
 			getGroupDetails(groupName)
 			updateGroups(groupName, add: true)
 			PFInstallation.current()?.addUniqueObject(groupName.formatGroupForChannel(), forKey: "channels")
 			PFInstallation.current()?.saveInBackground(block: nil)
-			global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Panic. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
+            
+            if silentAdd == false {
+                global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Panic. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
+            }
 		}
 	}
 	
@@ -176,7 +176,6 @@ class GroupsHandler: UIViewController {
 		joinedGroups.remove(at: joinedGroups.index(of: groupName)!)
 		joinedGroupsObject[groupName.formatGroupForFlatValue()] = nil
 		updateGroups(groupName, add: false)
-//		print(PFInstallation.current()?.object(forKey: "channels"))
 		print(groupName)
 		PFInstallation.current()?.saveInBackground(block: nil)
 		PFInstallation.current()?.remove(groupName.formatGroupForChannel(), forKey: "channels")
@@ -211,20 +210,9 @@ class GroupsHandler: UIViewController {
 		global.persistantSettings.synchronize()
 	}
 	
-//	func getShortLink(groupName : String) -> NSString {
-//		let apiEndpoint = "http://tinyurl.com/api-create.php?url=\(groupName.stringByAddingPercentEncodingWithAllowedCharacters(.URLHostAllowedCharacterSet())!)"
-//		let shortURL = NSString(contentsOfURL: NSURL(string: apiEndpoint)!, encoding: NSASCIIStringEncoding, error: nil)
-//		let pasteboard = UIPasteboard.generalPasteboard()
-//		pasteboard.string = (shortURL as! String)
-//		return shortURL!
-//	}
-	
 	// CREATE GROUP
 	func createGroup(_ groupObject: PFObject, parent: CreateGroupViewController) {
 		if checkIfAlreadyContainsGroup(groupObject) == false {
-			var error : NSErrorPointer?
-			var query = PFQuery(className: "Groups")
-			var queryAddNewGroupCheckFlat = PFQuery(className: "Groups")
 			if checkIfGroupExists(groupObject) == false {
 				groupObject.saveInBackground(block: {
 					(result, error) in
@@ -233,8 +221,6 @@ class GroupsHandler: UIViewController {
 							let name = groupObject["name"] as! String
 							global.showAlert(NSLocalizedString("successful", value: "Successful", comment: ""), message: String(format: NSLocalizedString("joined_group_text", value: "Successfully created and joined the group %@.", comment: ""), arguments: [name]))
 							groupsHandler.addGroup(name)
-//							NotificationCenter.default.post(name: Notification.Name(rawValue: "gotNearbyGroups"), object: nil)
-//							parent.dismiss(animated: true, completion: nil)
                             parent.uploadFinished()
 						})
 					} else {
@@ -268,7 +254,7 @@ class GroupsHandler: UIViewController {
 				let pfObject = objects.first!
 				let name = pfObject["name"] as! String
 				let country = pfObject["country"] as! String
-//				let privateGroup = pfObject["public"] as! Bool
+                
 				global.showAlert(NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: ""), message: String(format: NSLocalizedString("group_already_exists", value: "Group '%@' already exists in %@", comment: ""), arguments: [name, country]))
 			}
 		}
@@ -301,7 +287,6 @@ class GroupsHandler: UIViewController {
 			} else {
 				print("FOUND GROUP")
 			}
-
 		})
 	}
 }

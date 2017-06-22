@@ -66,7 +66,6 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 	
 	func fetchGroups() {
 		if query != nil { query.cancel() }
-//		searchBar.addSubview(searchSpinner)
 		showNotificationBar(NSLocalizedString("searching_groups", value: "Searching groups", comment: ""))
 		query.whereKey("flatValue", hasPrefix: searchBar.text!.formatGroupForFlatValue())
 		query.order(byDescending: "flatValue")
@@ -75,7 +74,6 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 			print("Running fetch - AddPublicViewController - 51")
 			if error == nil && objects != nil {
 				print("Fetch returned something")
-//				var tempGroupArray : [String] = []
 				self.searchGroups = [:]
 				for groupRaw in objects! {
 					let groupObject = groupRaw 
@@ -85,16 +83,11 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 					}
 				}
 				DispatchQueue.main.async(execute: {
-//					self.searching = false
 					self.tableView.reloadData()
 					self.hideNotificationBar()
-//					self.viewLoading.hidden = true
-//					self.searchSpinner.removeFromSuperview()
 				})
 			} else {
 				global.showAlert(NSLocalizedString("error_fetching_groups_title", value: "Error fetching groups", comment: ""), message: NSLocalizedString("error_fetching_groups_text", value: "There was an error retrieving the list of groups. Possibly check you internet connection.", comment: ""))
-//				self.viewLoading.hidden = true
-//				self.searchSpinner.removeFromSuperview()
 			}
 		})
 	}
