@@ -56,7 +56,7 @@ class GroupsHandler_2: UIViewController {
     }
     
     // Adding a group
-    func addGroup(group : PFObject, silentAdd: Bool = false) {
+    func addGroup(group : PFObject) {
         let groupName = group["name"] as! String
         
         if joinedGroupsObject.count <= PFUser.current()!["numberOfGroups"] as! Int {
@@ -68,12 +68,24 @@ class GroupsHandler_2: UIViewController {
             group["subscribers"] = count
             group.saveInBackground()
             
-            if silentAdd == false {
-                global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Panic. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
-            }
+            global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Panic. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
             
             saveGroupChanges()
         }
+    }
+    
+    func addBetaGroup(group: PFObject) {
+        let groupName = group["name"] as! String
+//        PFUser.current()?.addUniqueObject(groupName, forKey: "groups")
+        
+        joinedGroupsObject[groupName] = group
+        
+        group.addUniqueObject(PFUser.current()!.objectId!, forKey: "subscriberObjects")
+        let count = (group["subscriberObjects"] as! [String]).count
+        group["subscribers"] = count
+        group.saveInBackground()
+        
+        saveGroupChanges()
     }
     
     // Remove a group
@@ -104,9 +116,6 @@ class GroupsHandler_2: UIViewController {
         
         PFUser.current()!.saveInBackground()
         PFInstallation.current()!.saveInBackground()
-        
-//        global.persistantSettings.set(joinedGroupsObject.keys, forKey: "groups")
-//        global.persistantSettings.synchronize()
     }
     
     // Checks if all the groups details have finished being retrieved

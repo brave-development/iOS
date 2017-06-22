@@ -586,7 +586,7 @@
                   moduleName = "Brave"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic%20(Github)/Panic/Login_Register/Login/LoginViewController.swift"
-                  timestampString = "519840401.882721"
+                  timestampString = "519840538.079738"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "86"
@@ -601,7 +601,7 @@
                   moduleName = "Brave"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic%20(Github)/Panic/Login_Register/Login/LoginViewController.swift"
-                  timestampString = "519840401.885636"
+                  timestampString = "519840538.082069"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "88"
@@ -1373,7 +1373,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
             endingLineNumber = "47"
-            landmarkName = "getGroupDetails(groupName:)"
+            landmarkName = "getGroupDetails()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1399,13 +1399,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Panic/Handlers/GroupsHandler_2.swift"
-            timestampString = "519839714.059972"
+            filePath = "Panic/Groups/GroupsViewController.swift"
+            timestampString = "519839193.234325"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "saveGroupChanges()"
+            startingLineNumber = "105"
+            endingLineNumber = "105"
+            landmarkName = "checkForGroupDetails()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1415,13 +1415,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Panic/Groups/GroupsViewController.swift"
-            timestampString = "519839193.234325"
+            filePath = "Panic/Groups/Cells/GroupsTableViewCell.swift"
+            timestampString = "519840462.270038"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "checkForGroupDetails()"
+            startingLineNumber = "83"
+            endingLineNumber = "83"
+            landmarkName = "setup()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Panic/Groups/Cells/GroupsTableViewCell.swift"
+            timestampString = "519840517.093438"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "setup()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
