@@ -173,7 +173,7 @@ class CreateGroupViewController: UIViewController, UINavigationControllerDelegat
             self.group = PFObject(className: "Groups")
             let newGroup = self.createGroupObject()
 			if groupsHandler.checkIfGroupExists(newGroup) == false {
-				groupsHandler.createGroup(newGroup, parent: self)
+//				groupsHandler.createGroup(newGroup, country: self)
 			} else {
                 self.uploadFinished()
 			}

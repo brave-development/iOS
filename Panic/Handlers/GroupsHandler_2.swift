@@ -9,13 +9,14 @@
 import UIKit
 import Parse
 
-let groupsHandler_2 = GroupsHandler_2()
+let groupsHandler = GroupsHandler_2()
 
 class GroupsHandler_2: UIViewController {
     
     var joinedGroupsObject: [String : PFObject] = [:]
     var nearbyGroupObjects : [String : PFObject] = [:]
     
+    var purchaseRunning = false
     
     func getGroups() {
         var groupFormatted: [String] = []
@@ -23,18 +24,18 @@ class GroupsHandler_2: UIViewController {
         let user = PFUser.current()!
         for group in user["groups"] as! [String] {
             
-            joinedGroupsObject[group] = PFObject()
+            joinedGroupsObject[group] = PFObject(className: "Groups")
             groupFormatted.append(group.formatGroupForChannel())
         }
         
-        getGroupDetails(groupName: nil)
+        getGroupDetails()
         PFInstallation.current()?.setObject([""], forKey: "channels")
         PFInstallation.current()?.addUniqueObjects(from: groupFormatted, forKey: "channels")
         PFInstallation.current()?.saveInBackground(block: nil)
     }
     
     // Pass nil for all groups
-    func getGroupDetails(groupName : String?) {
+    func getGroupDetails() {
         
         for group in joinedGroupsObject.keys {
             let query = PFQuery(className: "Groups")
@@ -48,6 +49,7 @@ class GroupsHandler_2: UIViewController {
                     
                     // Making sure the user is a subscriber of the group object
                     object!.addUniqueObject(PFUser.current()!.objectId!, forKey: "subscriberObjects")
+                    object?.saveInBackground()
                 }
             })
         }
@@ -103,23 +105,75 @@ class GroupsHandler_2: UIViewController {
         PFUser.current()!.saveInBackground()
         PFInstallation.current()!.saveInBackground()
         
-        global.persistantSettings.set(joinedGroupsObject.keys, forKey: "groups")
-        global.persistantSettings.synchronize()
+//        global.persistantSettings.set(joinedGroupsObject.keys, forKey: "groups")
+//        global.persistantSettings.synchronize()
     }
     
-    // Used to create a group with user = Panic
-    func createGroup(_ groupName: String, country: String) {
+    // Checks if all the groups details have finished being retrieved
+    func groupsFetchFinished() -> Bool {
+        for (_, object) in joinedGroupsObject {
+            if object.objectId == nil {
+                return false
+            }
+        }
+        
+        for (_, object) in nearbyGroupObjects {
+            if object.objectId == nil {
+                return false
+            }
+        }
+        
+        return true
+    }
+    
+    // Need to clean up...
+    // Checks the DB to see if a group with the same name already exists
+    func checkIfGroupExists(_ group: PFObject) -> Bool {
         let query = PFQuery(className: "Groups")
-        query.whereKey("flatValue", equalTo: groupName.formatGroupForFlatValue())
+        query.whereKey("flatValue", equalTo: (group["name"] as! String).formatGroupForFlatValue())
+        let objects = try! query.findObjects()
+        
+        if objects != nil {
+            if objects.count == 0 {
+                return false
+            } else {
+                let pfObject = objects.first!
+                let name = pfObject["name"] as! String
+                let country = pfObject["country"] as! String
+                
+                global.showAlert(NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: ""), message: String(format: NSLocalizedString("group_already_exists", value: "Group '%@' already exists in %@", comment: ""), arguments: [name, country]))
+            }
+        }
+        return true
+    }
+    
+    // Addes a new group to the DB or returns false if it's there already
+    func createNewGroup(group: PFObject) -> Bool {
+        let query = PFQuery(className: "Groups")
+        query.whereKey("flatValue", equalTo: (group["name"] as! String).formatGroupForFlatValue())
+        
+        do {
+            try query.getFirstObject()
+            return false
+        } catch {
+            print()
+            return true
+        }
+    }
+    
+    // Creates a new group for an area
+    func createNewAreaGroup(name: String, country: String) {
+        let query = PFQuery(className: "Groups")
+        query.whereKey("flatValue", equalTo: name.formatGroupForFlatValue())
         query.findObjectsInBackground(block: {
             (object, error) in
             if object == nil {
-                print("NO GROUP FOUND. CREATING - '\(groupName)'")
+                print("NO GROUP FOUND. CREATING - '\(name)'")
                 let newGroupObject : PFObject = PFObject(className: "Groups")
-                newGroupObject["name"] = groupName
-                newGroupObject["flatValue"] = groupName.formatGroupForFlatValue()
+                newGroupObject["name"] = name
+                newGroupObject["flatValue"] = name.formatGroupForFlatValue()
                 newGroupObject["country"] = country
-                newGroupObject["admin"] = PFUser.init(withoutDataWithObjectId: "qP9SOINr4X")
+                newGroupObject["admin"] = PFUser.init(withoutDataWithObjectId: "GX2qQyNGm7")
                 newGroupObject["public"] = true
                 newGroupObject.saveInBackground(block: {
                     (result, error) in

@@ -2122,10 +2122,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="Z1l-KV-0to">
-                                                    <rect key="frame" x="10" y="236" width="190" height="16"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="190" id="eWe-Hv-EGN"/>
-                                                    </constraints>
+                                                    <rect key="frame" x="10" y="236" width="240" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -2145,7 +2142,7 @@
                                                         <action selector="joinLeave:" destination="OaQ-SS-5SJ" eventType="touchUpInside" id="QIl-5m-v5x"/>
                                                     </connections>
                                                 </button>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="555" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmp-1C-ghT">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="555" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bmp-1C-ghT">
                                                     <rect key="frame" x="275" y="227" width="24" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                                     <color key="textColor" red="0.97530043125152588" green="0.97527122497558594" blue="0.9752877950668335" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2191,6 +2188,7 @@
                                                 <constraint firstItem="0bB-1j-tkY" firstAttribute="centerX" secondItem="7K3-7l-vXH" secondAttribute="centerX" id="ifR-lo-OqI"/>
                                                 <constraint firstItem="t3z-ji-tzN" firstAttribute="leading" secondItem="Bbs-kB-FSF" secondAttribute="leadingMargin" constant="10" id="jNS-N8-w8F"/>
                                                 <constraint firstItem="0mO-GG-xYX" firstAttribute="top" secondItem="Bbs-kB-FSF" secondAttribute="topMargin" id="lMy-Ri-9XL"/>
+                                                <constraint firstItem="bmp-1C-ghT" firstAttribute="leading" secondItem="Z1l-KV-0to" secondAttribute="trailing" constant="25" id="lgQ-qI-kTE"/>
                                                 <constraint firstItem="h4v-f9-5bI" firstAttribute="leading" secondItem="Bbs-kB-FSF" secondAttribute="leadingMargin" constant="10" id="nBn-MJ-gDe"/>
                                                 <constraint firstAttribute="trailing" secondItem="0mO-GG-xYX" secondAttribute="trailing" id="phm-87-zQr"/>
                                                 <constraint firstItem="bmp-1C-ghT" firstAttribute="centerY" secondItem="0bB-1j-tkY" secondAttribute="centerY" id="rRz-eb-jIJ"/>

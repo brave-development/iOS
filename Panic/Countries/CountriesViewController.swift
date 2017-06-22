@@ -62,9 +62,9 @@ class CountriesViewController: UIViewController, UITableViewDelegate, CLLocation
                         self.foundCountryTracker = true
                         let pm = placemarks![0] 
 						if pm.subLocality != nil {
-							groupsHandler.createGroup(pm.subLocality!, country: pm.country!)
+							groupsHandler.createNewAreaGroup(name: pm.subLocality!, country: pm.country!)
 						} else if pm.subAdministrativeArea != nil {
-							groupsHandler.createGroup(pm.subAdministrativeArea!, country: pm.country!)
+                            groupsHandler.createNewAreaGroup(name: pm.subAdministrativeArea!, country: pm.country!)
 						}
 						let position = IndexPath(row: global.countries.index(of: pm.country!)!, section: 0)
 							if self.tblCountries != nil {

@@ -10,7 +10,7 @@ import UIKit
 import Parse
 import Social
 
-var groupsHandler : GroupsHandler = GroupsHandler()
+var groupsHandler_OLD : GroupsHandler = GroupsHandler()
 
 class GroupsHandler: UIViewController {
 	
@@ -132,7 +132,7 @@ class GroupsHandler: UIViewController {
 
 					print("BOUGHT ADD GROUP")
 					global.persistantSettings.synchronize()
-					PFUser.current()!["numberOfGroups"] = groupsHandler.joinedGroups.count + 1
+					PFUser.current()!["numberOfGroups"] = self.joinedGroups.count + 1
 					PFUser.current()!.saveEventually(nil)
 					NotificationCenter.default.post(name: NSNotification.Name(rawValue: "purchaseSuccessful"), object: nil)
 				} else {
@@ -220,7 +220,7 @@ class GroupsHandler: UIViewController {
 						DispatchQueue.main.async(execute: {
 							let name = groupObject["name"] as! String
 							global.showAlert(NSLocalizedString("successful", value: "Successful", comment: ""), message: String(format: NSLocalizedString("joined_group_text", value: "Successfully created and joined the group %@.", comment: ""), arguments: [name]))
-							groupsHandler.addGroup(name)
+							self.addGroup(name)
                             parent.uploadFinished()
 						})
 					} else {

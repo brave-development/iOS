@@ -110,9 +110,9 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 		}
 		
 		
-		if groupsHandler.referalGroup != nil {
-			global.showAlert(groupsHandler.referalType!, message: groupsHandler.referalGroup!)
-			contacts(btnGroups)
+        if 1 == 2 { //groupsHandler.referalGroup != nil {
+//			global.showAlert(groupsHandler.referalType!, message: groupsHandler.referalGroup!)
+//			contacts(btnGroups)
 		} else if tabBarButtons.count > 0 {
 			if global.openedViaNotification == true {
 				global.persistantSettings.setValue(global.notificationDictionary, forKey: "notifDict")

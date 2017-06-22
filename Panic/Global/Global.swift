@@ -78,7 +78,7 @@ class Global: UIViewController {
             if error == nil {
                 if result != nil {
                     let group = result! as PFObject
-                    groupsHandler.addGroup(group["name"] as! String, silentAdd: true)
+//                    groupsHandler.addGroup(group: group)
                 }
             }
         })

@@ -17,8 +17,8 @@ class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLoc
 	var privateTotal : Int = 0
 	var publicTotal : Int = 0
 	
-	var joinGroupIdHolder : [String] = []
-	var nearbyGroupIdHolder : [String] = []
+	var joinGroupKeys : [String] = []
+	var nearbyGroupKeys : [String] = []
 	var timer : Timer?
 	
 	// Notification Bar
@@ -82,83 +82,83 @@ class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLoc
 		manager.delegate = self
 		manager.startUpdatingLocation()
 		
-		NotificationCenter.default.addObserver(self, selector: #selector(GroupsViewController.checkForGroupDetails), name: NSNotification.Name(rawValue: "gotNearbyGroups"), object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(checkForGroupDetails), name: NSNotification.Name(rawValue: "gotNearbyGroups"), object: nil)
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		checkForGroupDetails()
-		if groupsHandler.gotGroupDetails {
-			if groupsHandler.referalGroup != nil {
-				if PFUser.current()!["numberOfGroups"] as! Int == groupsHandler.joinedGroups.count {
-					if checkIfAlreadyContainsGroup(groupsHandler.referalGroup!) == false {
-						registerGroup()
-					}
-				}
-			}
-		}
+//		if groupsHandler.gotGroupDetails {
+//			if groupsHandler.referalGroup != nil {
+//				if PFUser.current()!["numberOfGroups"] as! Int == groupsHandler.joinedGroups.count {
+//					if checkIfAlreadyContainsGroup(groupsHandler.referalGroup!) == false {
+//						registerGroup()
+//					}
+//				}
+//			}
+//		}
 	}
 	
 	func checkForGroupDetails() {
 		print("Checked for group details")
 		showNotificationBar()
-		populateDataSource()
-		if groupsHandler.gotGroupDetails {
+//		populateDataSource()
+		if groupsHandler.groupsFetchFinished() {
 			tblGroups.reloadData()
 			lblLoading.isHidden = true
 			tblGroups.isHidden = false
 		}
 		
-		if groupsHandler.gotGroupDetails == false || groupsHandler.gotNearbyGroupDetails == false {
+		if groupsHandler.groupsFetchFinished() == false {
 			Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(checkForGroupDetails), userInfo: nil, repeats: false)
 		} else {
 			hideNotificationBar()
 		}
 	}
     
-    func populateDataSource() {
-        joinGroupIdHolder = []
-        for (id, _) in groupsHandler.joinedGroupsObject {
-            joinGroupIdHolder.append(id)
-        }
-        
-        nearbyGroupIdHolder = []
-        for (id, _) in groupsHandler.nearbyGroupObjects {
-            nearbyGroupIdHolder.append(id)
-        }
-    }
+//    func populateDataSource() {
+//        joinGroupIdHolder = []
+//        for (id, _) in groupsHandler.joinedGroupsObject {
+//            joinGroupIdHolder.append(id)
+//        }
+//        
+//        nearbyGroupIdHolder = []
+//        for (id, _) in groupsHandler.nearbyGroupObjects {
+//            nearbyGroupIdHolder.append(id)
+//        }
+//    }
 	
-	func registerGroup() {
-		let query = PFQuery(className: "Groups")
-		query.whereKey("flatValue", equalTo: groupsHandler.referalGroup!.formatGroupForFlatValue())
-		query.findObjectsInBackground(block: {
-			(object, error) in
-			if object!.count > 0 {
-				let pfObject = object![0] 
-				DispatchQueue.main.async(execute: {
-					let name = pfObject["name"] as! String
-					groupsHandler.addGroup(name)
-					groupsHandler.joinedGroupsObject[pfObject["flatValue"] as! String] = pfObject
-					global.showAlert(NSLocalizedString("successful", value: "Successful", comment: ""), message: String(format: NSLocalizedString("joined_group_text", value: "You have joined the group %@", comment: ""), arguments: [name]))
-					self.tblGroups.reloadData()
-				})
-			} else {
-				global.showAlert("", message: String(format: NSLocalizedString("group_not_exist_text", value: "The group '%@' does not exist. Check the spelling or use the New tab to create it", comment: ""), arguments: [groupsHandler.referalGroup!]))
-			}
-		})
-	}
+//	func registerGroup() {
+//		let query = PFQuery(className: "Groups")
+//		query.whereKey("flatValue", equalTo: groupsHandler.referalGroup!.formatGroupForFlatValue())
+//		query.findObjectsInBackground(block: {
+//			(object, error) in
+//			if object!.count > 0 {
+//				let pfObject = object![0] 
+//				DispatchQueue.main.async(execute: {
+//					let name = pfObject["name"] as! String
+//					groupsHandler.addGroup(name)
+//					groupsHandler.joinedGroupsObject[pfObject["flatValue"] as! String] = pfObject
+//					global.showAlert(NSLocalizedString("successful", value: "Successful", comment: ""), message: String(format: NSLocalizedString("joined_group_text", value: "You have joined the group %@", comment: ""), arguments: [name]))
+//					self.tblGroups.reloadData()
+//				})
+//			} else {
+//				global.showAlert("", message: String(format: NSLocalizedString("group_not_exist_text", value: "The group '%@' does not exist. Check the spelling or use the New tab to create it", comment: ""), arguments: [groupsHandler.referalGroup!]))
+//			}
+//		})
+//	}
 	
-	func checkIfAlreadyContainsGroup(_ groupName : String) -> Bool {
-		for channel in PFInstallation.current()?.channels as! [String] {
-			if channel.formatGroupForFlatValue() == groupName.formatGroupForFlatValue() {
-				return true
-			}
-		}
-		return true
-	}
+//	func checkIfAlreadyContainsGroup(_ groupName : String) -> Bool {
+//		for channel in PFInstallation.current()?.channels as! [String] {
+//			if channel.formatGroupForFlatValue() == groupName.formatGroupForFlatValue() {
+//				return true
+//			}
+//		}
+//		return true
+//	}
 	
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		if manager.location!.horizontalAccuracy < 1001 {
-			groupsHandler.getNearbyGroups(manager.location!)
+//			groupsHandler.getNearbyGroups(manager.location!)
 			manager.stopUpdatingLocation()
 		}
 	}
@@ -203,7 +203,10 @@ class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLoc
 extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if groupsHandler.nearbyGroups.count == 0 { return 1 }
+        joinGroupKeys = Array(groupsHandler.joinedGroupsObject.keys)
+        nearbyGroupKeys = Array(groupsHandler.nearbyGroupObjects.keys)
+        
+        if groupsHandler.nearbyGroupObjects.count == 0 { return 1 }
         return 2
     }
     
@@ -229,16 +232,16 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0{
-            if joinGroupIdHolder.count == 0 { return 1 }
-            return joinGroupIdHolder.count
+            if groupsHandler.joinedGroupsObject.count == 0 { return 1 }
+            return groupsHandler.joinedGroupsObject.count
         } else {
-            return nearbyGroupIdHolder.count
+            return groupsHandler.nearbyGroupObjects.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if joinGroupIdHolder.count == 0 && indexPath.section == 0 {
+        if groupsHandler.joinedGroupsObject.count == 0 && indexPath.section == 0 {
             let cellNoGroups = tblGroups.dequeueReusableCell(withIdentifier: "noGroups", for: indexPath)
             return cellNoGroups
         }
@@ -247,9 +250,9 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tblGroups.dequeueReusableCell(withIdentifier: "newCell", for: indexPath) as! GroupsTableViewCell
         
         if indexPath.section == 0 {
-            group = groupsHandler.joinedGroupsObject[joinGroupIdHolder[indexPath.row]]!
+            group = groupsHandler.joinedGroupsObject[joinGroupKeys[indexPath.row]]!
         } else {
-            group = groupsHandler.nearbyGroupObjects[nearbyGroupIdHolder[indexPath.row]]!
+            group = groupsHandler.nearbyGroupObjects[nearbyGroupKeys[indexPath.row]]!
         }
         var subsCount: Int!
         if group["subscriberObjects"] != nil {
@@ -274,7 +277,7 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if joinGroupIdHolder.count == 0 && indexPath.section == 0 { return 60 }
+        if groupsHandler.joinedGroupsObject.count == 0 && indexPath.section == 0 { return 60 }
         return 260
     }
     
@@ -301,7 +304,7 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
                         if error == nil {
                             if result != nil {
                                 let group = result! as PFObject
-                                groupsHandler.addGroup(group["name"] as! String)
+                                groupsHandler.addGroup(group: group)
                                 DispatchQueue.main.async(execute: { self.hideNotificationBar() })
                             }
                         } else {

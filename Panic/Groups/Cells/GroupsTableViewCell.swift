@@ -80,7 +80,7 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 		btnLeave.clipsToBounds = true
 		btnLeave.backgroundColor = UIColor(white: 0, alpha: 0.3)
 		
-		if groupsHandler.joinedGroups.index(of: groupName) == nil {
+		if groupsHandler.joinedGroupsObject[groupName] == nil {
 			btnLeave.setTitle("JOIN", for: UIControlState())
 			alreadyJoined = false
 		} else {
@@ -157,8 +157,7 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 		if alreadyJoined == true {
 			let deleteAlert = UIAlertController(title: String(format: NSLocalizedString("leave_group_confirmation_title", value: "Leave %@?", comment: "tester2"), groupName), message: "Are you sure you want to leave this group?", preferredStyle: UIAlertControllerStyle.alert)
 			deleteAlert.addAction(UIAlertAction(title: "Leave", style: .destructive, handler: { (action: UIAlertAction!) in
-				groupsHandler.removeGroup(groupName)
-				self.parentVC.populateDataSource()
+				groupsHandler.removeGroup(group: self.object!)
 				if groupsHandler.joinedGroupsObject.count == 0 {
 					self.parentVC.tblGroups.reloadData()
 				} else {
@@ -169,13 +168,13 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 			deleteAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action: UIAlertAction!) in }))
 			self.parentVC.present(deleteAlert, animated: true, completion: nil)
 		} else {
-			if groupsHandler.joinedGroups.count >= PFUser.current()!["numberOfGroups"] as! Int {
-				NotificationCenter.default.addObserver(self, selector: #selector(purchaseSuccessful), name: NSNotification.Name(rawValue: "purchaseSuccessful"), object: nil)
-				NotificationCenter.default.addObserver(self, selector: #selector(purchaseFail), name: NSNotification.Name(rawValue: "purchaseFail"), object: nil)
-				groupsHandler.handlePurchase(parentVC)
-			} else {
+//			if groupsHandler.joinedGroups.count >= PFUser.current()!["numberOfGroups"] as! Int {
+//				NotificationCenter.default.addObserver(self, selector: #selector(purchaseSuccessful), name: NSNotification.Name(rawValue: "purchaseSuccessful"), object: nil)
+//				NotificationCenter.default.addObserver(self, selector: #selector(purchaseFail), name: NSNotification.Name(rawValue: "purchaseFail"), object: nil)
+//				groupsHandler.handlePurchase(parentVC)
+//			} else {
 				purchaseSuccessful()
-			}
+//			}
 		}
 	}
 	
@@ -186,9 +185,9 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 	func purchaseSuccessful() {
 		NotificationCenter.default.post(name: Notification.Name(rawValue: "didJoinGroup"), object: nil)
 //		groupsHandler.addGroup(lblName.text!)
-        groupsHandler.addGroup(object)
-        groupsHandler.getNearbyGroups(parentVC.manager.location!, refresh: true)
-		parentVC.populateDataSource()
+        groupsHandler.addGroup(group: object!)
+//        groupsHandler.getNearbyGroups(parentVC.manager.location!, refresh: true)
+		parentVC.tblGroups.reloadData()
 		parentVC.checkForGroupDetails()
 		NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "purchaseSuccess"), object: nil)
 		NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "purchaseFail"), object: nil)
