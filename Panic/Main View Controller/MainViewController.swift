@@ -266,8 +266,8 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 				self.tabbarView.layoutIfNeeded()  })
 		}
 	}
+    
 	func hideTabbar() {
-		
 		self.tabbarBottomLayout.constant = -tabbarView.frame.height-20
 		UIView.animate(withDuration: 0.3, animations: {
 			self.tabbarView.layoutIfNeeded() })
