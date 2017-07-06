@@ -68,24 +68,34 @@ class GroupsHandler_2: UIViewController {
             group["subscribers"] = count
             group.saveInBackground()
             
-            global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Panic. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
+            global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Brave. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
             
             saveGroupChanges()
         }
     }
     
-    func addBetaGroup(group: PFObject) {
-        let groupName = group["name"] as! String
-//        PFUser.current()?.addUniqueObject(groupName, forKey: "groups")
+    // Adding the user to a beta group
+    func addBetaGroup(objectId: String) {
         
-        joinedGroupsObject[groupName] = group
-        
-        group.addUniqueObject(PFUser.current()!.objectId!, forKey: "subscriberObjects")
-        let count = (group["subscriberObjects"] as! [String]).count
-        group["subscribers"] = count
-        group.saveInBackground()
-        
-        saveGroupChanges()
+        let query = PFQuery(className: "Groups")
+        query.getObjectInBackground(withId: objectId, block: {
+            (result, error) -> Void in
+            if error == nil {
+                if result != nil {
+                    let group = result! as PFObject
+                    let groupName = group["name"] as! String
+                    
+                    self.joinedGroupsObject[groupName] = group
+                    
+                    group.addUniqueObject(PFUser.current()!.objectId!, forKey: "subscriberObjects")
+                    let count = (group["subscriberObjects"] as! [String]).count
+                    group["subscribers"] = count
+                    group.saveInBackground()
+
+                    self.saveGroupChanges()
+                }
+            }
+        })
     }
     
     // Remove a group

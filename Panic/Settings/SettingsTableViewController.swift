@@ -115,7 +115,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 			if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways {
 				global.setBackgroundUpdate(true)
 			} else {
-				global.showAlert("Oops", message:NSLocalizedString("location_not_allowed", value: "To use this feature, you will need to grant Panic permission to use your location in the background. To do this, go to iPhone Settings > Privacy > Location Services > Panic > 'Always'", comment: "") )
+				global.showAlert("Oops", message:NSLocalizedString("location_not_allowed", value: "To use this feature, you will need to grant Brave permission to use your location in the background. To do this, go to iPhone Settings > Privacy > Location Services > Brave > 'Always'", comment: "") )
 			}
 		} else {
 			global.setBackgroundUpdate(false)
@@ -128,15 +128,15 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     
     // Show popup with information about panicConfirmation
     @IBAction func showInfoPanicConfirmation(_ sender: AnyObject) {
-        global.showAlert(NSLocalizedString("confirmation_info_title", value: "Panic Confirmation", comment: ""), message: NSLocalizedString("confirmation_info_text", value: "Enabling this will remove the 5 second delay before sending notifications, however you will have to manually select 'Yes' each time you activate Panic.", comment: ""))
+        global.showAlert(NSLocalizedString("confirmation_info_title", value: "Alert Confirmation", comment: ""), message: NSLocalizedString("confirmation_info_text", value: "Enabling this will remove the 5 second delay before sending notifications, however you will have to manually select 'Yes' each time you activate Panic.", comment: ""))
     }
 	
 	@IBAction func showInfoBackgroundUpdate(_ sender: AnyObject) {
-		global.showAlert(NSLocalizedString("background_update_info_title", value: "Background Update", comment: ""), message: NSLocalizedString("background_update_info_text", value: "Enabling background updates will let Panic continue to broadcast your location, even when the app is in the background and/or your iPhone is asleep, during activation.\n\nThis is disabled by default as it can be heavy on battery, can use more data then expected if left on for an extended period of time and because of the way iPhone handles background apps, can be unreliable (although rarely)", comment: ""))
+		global.showAlert(NSLocalizedString("background_update_info_title", value: "Background Update", comment: ""), message: NSLocalizedString("background_update_info_text", value: "Enabling background updates will let Brave continue to broadcast your location, even when the app is in the background and/or your iPhone is asleep, during activation.\n\nThis is disabled by default as it can be heavy on battery, can use more data then expected if left on for an extended period of time and because of the way iPhone handles background apps, can be unreliable (although rarely)", comment: ""))
 	}
 	
     @IBAction func showNotificationsInformation(_ sender: Any) {
-        global.showAlert(NSLocalizedString("allow_notifications_info_title", value: "Allow Notifications", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Allowing notifications means this device will recieve a notification when someone activates the panic button. If you disable this, you will not be notified when someone needs help.\n\nPlease keep in mind how you might feel when you're in need of help and someone has this deactivated.", comment: ""))
+        global.showAlert(NSLocalizedString("allow_notifications_info_title", value: "Allow Notifications", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Allowing notifications means this device will recieve a notification when someone activates the alert button. If you disable this, you will not be notified when someone needs help.\n\nPlease keep in mind how you might feel when you're in need of help and someone has this deactivated.", comment: ""))
     }
     
 	@IBAction func reportBug(_ sender: AnyObject) {
@@ -175,7 +175,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 	}
 	
 	@IBAction func logout(_ sender: AnyObject) {
-		global.showAlert("Note", message: NSLocalizedString("logout_message", value: "Logging out disables any Panic notifications. You will not be notified when someone activates their Panic button.\n\nOn the other hand, closing the app with the home button, or even the app switcher, logs you out in a way that you still receive notifications.", comment: ""))
+		global.showAlert("Note", message: NSLocalizedString("logout_message", value: "Logging out disables any Brave notifications. You will not be notified when someone activates an alert.\n\nOn the other hand, closing the app with the home button, or even the app switcher, logs you out in a way that you still receive notifications.", comment: ""))
 		if global.persistantSettings.object(forKey: "groups") != nil {
 			global.persistantSettings.removeObject(forKey: "groups")
 		}
@@ -184,11 +184,13 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 //        FBSDKLoginManager.init().logOut()
 		PFInstallation.current()?.setObject(["", "logged_out"], forKey: "channels")
 		PFInstallation.current()?.saveInBackground(block: nil)
+        groupsHandler.joinedGroupsObject = [:]
+        groupsHandler.nearbyGroupObjects = [:]
 		self.mainViewController.back()
 	}
 	
     @IBAction func deleteAccount(_ sender: AnyObject) {
-        var saveAlert = UIAlertController(title: NSLocalizedString("delete_account_confirmation_1_title", value: "Confirmation", comment: ""), message: NSLocalizedString("delete_account_confirmation_1_text", value: "Are you sure you want to delete your account?\n\nThis will remove all your details, free up your username, remove all Panic history and you will have to reregister if you want to use this app again.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
+        var saveAlert = UIAlertController(title: NSLocalizedString("delete_account_confirmation_1_title", value: "Confirmation", comment: ""), message: NSLocalizedString("delete_account_confirmation_1_text", value: "Are you sure you want to delete your account?\n\nThis will remove all your details, free up your username, remove all alert history and you will have to reregister if you want to use this app again.", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
         saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
             var saveAlert = UIAlertController(title: NSLocalizedString("delete_account_confirmation_2_title", value: "Final Confirmation", comment: ""), message: NSLocalizedString("delete_account_confirmation_2_text", value: "Permenently delete account?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
             saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
@@ -198,18 +200,13 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
                 queryDeleteAccount.findObjectsInBackground(block: {
 					(objects, error) in
 					if objects != nil {
-						if objects!.count > 0 {
-							PFObject.deleteAll(inBackground: objects!, block: {
-								(result, error) in
-								if result == true {
-									PFUser.current()!.deleteInBackground(block: nil)
-									if PFUser.current() != nil { PFUser.logOut() }
-									self.mainViewController.back()
-									global.showAlert("", message: "Thanks for using Panic. Goodbye.")
-								}
-							})
-						}
+						if objects!.count > 0 { PFObject.deleteAll(inBackground: objects) }
 					}
+                    
+                    PFUser.current()!.deleteInBackground(block: nil)
+                    if PFUser.current() != nil { PFUser.logOut() }
+                    self.mainViewController.back()
+                    global.showAlert("", message: "Thanks for using Brave. Goodbye.")
 				})
             }))
             saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .default, handler: { (action: UIAlertAction!) in

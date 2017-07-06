@@ -101,7 +101,6 @@ class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLoc
 	func checkForGroupDetails() {
 		print("Checked for group details")
 		showNotificationBar()
-//		populateDataSource()
 		if groupsHandler.groupsFetchFinished() {
 			tblGroups.reloadData()
 			lblLoading.isHidden = true
@@ -114,18 +113,6 @@ class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLoc
 			hideNotificationBar()
 		}
 	}
-    
-//    func populateDataSource() {
-//        joinGroupIdHolder = []
-//        for (id, _) in groupsHandler.joinedGroupsObject {
-//            joinGroupIdHolder.append(id)
-//        }
-//        
-//        nearbyGroupIdHolder = []
-//        for (id, _) in groupsHandler.nearbyGroupObjects {
-//            nearbyGroupIdHolder.append(id)
-//        }
-//    }
 	
 //	func registerGroup() {
 //		let query = PFQuery(className: "Groups")
@@ -145,15 +132,6 @@ class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLoc
 //				global.showAlert("", message: String(format: NSLocalizedString("group_not_exist_text", value: "The group '%@' does not exist. Check the spelling or use the New tab to create it", comment: ""), arguments: [groupsHandler.referalGroup!]))
 //			}
 //		})
-//	}
-	
-//	func checkIfAlreadyContainsGroup(_ groupName : String) -> Bool {
-//		for channel in PFInstallation.current()?.channels as! [String] {
-//			if channel.formatGroupForFlatValue() == groupName.formatGroupForFlatValue() {
-//				return true
-//			}
-//		}
-//		return true
 //	}
 	
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -288,7 +266,6 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
             let vc = storyboard?.instantiateViewController(withIdentifier: "createNewGroupViewController") as! CreateGroupViewController
             vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             self.present(vc, animated: true, completion: nil)
-            //			addGroup()
             break
             
         case 1:
@@ -305,7 +282,10 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
                             if result != nil {
                                 let group = result! as PFObject
                                 groupsHandler.addGroup(group: group)
-                                DispatchQueue.main.async(execute: { self.hideNotificationBar() })
+                                DispatchQueue.main.async(execute: {
+                                    self.tblGroups.reloadData()
+                                    self.hideNotificationBar()
+                                })
                             }
                         } else {
                             if (error! as NSError).code == 101 {
@@ -333,6 +313,7 @@ extension GroupsViewController: UITableViewDelegate, UITableViewDataSource {
             break
             
         case 2:
+            // Search and join public group
             let vc = storyboard?.instantiateViewController(withIdentifier: "addPublicGroupViewController") as! AddPublicGroupViewController
             vc.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
             vc.parentVC = self

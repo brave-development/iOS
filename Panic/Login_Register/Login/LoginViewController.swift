@@ -238,6 +238,16 @@ extension LoginViewController: LoginButtonDelegate {
                     PFUser.current()?.setValue(json["email"].string, forKey: "email")
                     PFUser.current()?.setValue(json["id"].string, forKey: "facebookId")
                     
+//                    let queryExistingUser = PFUser.query()
+//                    queryExistingUser?.whereKey("email", equalTo: json["email"].string)
+//                    queryExistingUser?.getFirstObjectInBackground(block: {
+//                        object, error in
+//                        
+//                        if object != nil {
+//                            
+//                        }
+//                    })
+                    
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let vc: RegisterViewController = storyboard.instantiateViewController(withIdentifier: "registerViewController") as! RegisterViewController
                     vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve

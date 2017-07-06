@@ -65,23 +65,23 @@ class Global: UIViewController {
     
     var isDESPilot: Bool {
         if betaID == "DESPilot" {
-            joinDESPilotGroup()
+//            joinDESPilotGroup()
+            groupsHandler.addBetaGroup(objectId: "Z7rmGeDACV")
             return true
         }
         return false
     }
     
     func joinDESPilotGroup() {
-        let query = PFQuery(className: "Groups")
-        query.getObjectInBackground(withId: "Z7rmGeDACV", block: {
-            (result, error) -> Void in
-            if error == nil {
-                if result != nil {
-                    let group = result! as PFObject
-//                    groupsHandler.addGroup(group: group)
-                }
-            }
-        })
+//        let query = PFQuery(className: "Groups")
+//        query.getObjectInBackground(withId: "Z7rmGeDACV", block: {
+//            (result, error) -> Void in
+//            if error == nil {
+//                if result != nil {
+//                    let group = result! as PFObject
+//                }
+//            }
+//        })
     }
 	
     func getUserInformation(callingVC: AnyObject) -> Bool {

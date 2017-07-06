@@ -213,7 +213,7 @@
 		75CF75EB1BCBE04F00B18480 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		75D869F71B29DEE20065DE37 /* GroupsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsHandler.swift; sourceTree = "<group>"; };
 		75D948781ED0539B00A733DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		75D9487B1ED054A000A733DA /* Panic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Panic.entitlements; sourceTree = "<group>"; };
+		75D9487B1ED054A000A733DA /* Panic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Panic.entitlements; path = ../Panic.entitlements; sourceTree = "<group>"; };
 		BA53505146F08CB3FB4B8662 /* Pods_Brave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD273ABF8657901CE1C1433E /* Pods-Brave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brave.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brave/Pods-Brave.release.xcconfig"; sourceTree = "<group>"; };
 		ECBA48090E5F8F3B6F6C7BE2 /* Pods-Panic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Panic/Pods-Panic.release.xcconfig"; sourceTree = "<group>"; };
@@ -440,7 +440,6 @@
 		75162DDC1A2B8B3E0094BA31 /* Panic */ = {
 			isa = PBXGroup;
 			children = (
-				75D9487B1ED054A000A733DA /* Panic.entitlements */,
 				75109B5B1EA025D60056BBCB /* Countries */,
 				75109B521EA024A60056BBCB /* Global */,
 				75109B4D1EA0208B0056BBCB /* Groups */,
@@ -459,6 +458,7 @@
 		75162DDD1A2B8B3E0094BA31 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				75D9487B1ED054A000A733DA /* Panic.entitlements */,
 				75109B531EA024CE0056BBCB /* SubClassed */,
 				75109B541EA025090056BBCB /* UI Elements */,
 				755D4ED31AB4760E001F4590 /* Drawing.swift */,
