@@ -141,8 +141,6 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 				if error == nil {
 					self.victimDetails = [:]
 					for object in objects! {
-//						let tempObject = object 
-//						self.victimDetails[(tempObject["user"] as! PFUser)["name"] as! String] = (tempObject)
                         self.victimDetails[object.objectId!] = object
 					}
 					self.updateAnnotations()

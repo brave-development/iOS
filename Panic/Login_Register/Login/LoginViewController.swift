@@ -119,7 +119,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func register(_ sender: AnyObject) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc: RegisterViewController = storyboard.instantiateViewController(withIdentifier: "registerViewController") as! RegisterViewController
+//        let vc: RegisterViewController = storyboard.instantiateViewController(withIdentifier: "registerViewController") as! RegisterViewController
+        let vc: RegistrationController_VC = storyboard.instantiateViewController(withIdentifier: "registrationController_vc") as! RegistrationController_VC
         vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         self.present(vc, animated: true, completion: nil)
     }
@@ -237,16 +238,6 @@ extension LoginViewController: LoginButtonDelegate {
                     PFUser.current()?.setValue(json["name"].string, forKey: "name")
                     PFUser.current()?.setValue(json["email"].string, forKey: "email")
                     PFUser.current()?.setValue(json["id"].string, forKey: "facebookId")
-                    
-//                    let queryExistingUser = PFUser.query()
-//                    queryExistingUser?.whereKey("email", equalTo: json["email"].string)
-//                    queryExistingUser?.getFirstObjectInBackground(block: {
-//                        object, error in
-//                        
-//                        if object != nil {
-//                            
-//                        }
-//                    })
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
                     let vc: RegisterViewController = storyboard.instantiateViewController(withIdentifier: "registerViewController") as! RegisterViewController

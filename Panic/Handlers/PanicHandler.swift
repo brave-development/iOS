@@ -46,6 +46,8 @@ class PanicHandler: UIViewController {
                     global.showAlert(NSLocalizedString("error_beginning_location_title", value: "Error beginning location", comment: ""), message: "\(error!.localizedDescription)\n" + NSLocalizedString("error_beginning_location_text", value: "Will try again in a few seconds", comment: ""))
                     self.updating = false
                 }
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
             })
         }
     }
@@ -154,6 +156,7 @@ class PanicHandler: UIViewController {
     
     func sendNotifications() {
         if queryObject?.objectId != nil {
+            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
             PFCloud.callFunction(inBackground: "pushFromId", withParameters: ["objectId" : queryObject.objectId!] ) {
                 response, error in
                 
@@ -161,7 +164,8 @@ class PanicHandler: UIViewController {
             }
         } else {
             if panicIsActive == true {
-                Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(sendNotifications), userInfo: nil, repeats: false)
+                NotificationCenter.default.addObserver(self, selector: #selector(sendNotifications), name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
+//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(sendNotifications), userInfo: nil, repeats: false)
             }
         }
     }

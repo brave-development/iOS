@@ -57,6 +57,7 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
         super.viewDidLoad()
 		query = PFQuery(className: "Groups")
 		searchBar.delegate = self
+//        searchBar.text.
 		hideNotificationBar()
 		tableView.layer.shadowOffset = CGSize.zero
 		tableView.layer.shadowRadius = 10
@@ -174,10 +175,6 @@ class AddPublicGroupViewController: UIViewController, UITableViewDelegate, UITab
 	
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		if searchBar.text?.characters.count >= 3 { fetchGroups() }
-		
-//		var pred: NSPredicate = NSPredicate(format: "SELF contains[c] %@", searchText)
-//		groupsDuringSearch = groups.filteredArrayUsingPredicate(pred)
-//		tblGroups.reloadData()
 	}
 	
 	func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {

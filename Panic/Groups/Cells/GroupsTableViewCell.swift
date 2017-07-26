@@ -179,7 +179,8 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
 	}
 	
 	func shareCode() {
-		global.showAlert(self.object!.objectId!, message: NSLocalizedString("share_code_text", value: "Share this code with others wanting to join this group", comment: ""))
+        UIPasteboard.general.string = self.object!.objectId!
+		global.showAlert(self.object!.objectId!, message: NSLocalizedString("share_code_text", value: "Share this code with others wanting to join this group. It has been copied to your clipboard.", comment: ""))
 	}
 	
 	func purchaseSuccessful() {

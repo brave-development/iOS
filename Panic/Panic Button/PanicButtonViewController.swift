@@ -10,6 +10,9 @@ import UIKit
 import Parse
 import CoreLocation
 import Toast
+import SCLAlertView
+import SZTextView
+import ChameleonFramework
 
 
 class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, UITextViewDelegate {
@@ -178,25 +181,35 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     func activateWithBetaChanges() {
         if global.isDESPilot {
-            var inputTextField: UITextField?
-            let codePrompt = UIAlertController(title: NSLocalizedString("enter_code_title", value: "Details", comment: ""), message: NSLocalizedString("enter_description_text", value: "Describe what's happening", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
             
-            codePrompt.addTextField(configurationHandler: {(textField: UITextField!) in
-                textField.placeholder = NSLocalizedString("alert_details_placeholder", value: "Details", comment: "Placeholder for details")
-                inputTextField = textField
-            })
+            let appearance = SCLAlertView.SCLAppearance(
+                kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+                kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+                kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+                showCloseButton: false
+            )
             
-            codePrompt.addAction(UIAlertAction(title: NSLocalizedString("no_details", value: "No Details", comment: ""), style: UIAlertActionStyle.destructive, handler: nil))
+            // Initialize SCLAlertView using custom Appearance
+            let alert = SCLAlertView(appearance: appearance)
             
-            codePrompt.addAction(UIAlertAction(title: NSLocalizedString("submit", value: "Submit", comment: "Submitting the details"), style: UIAlertActionStyle.default, handler: { (action) -> Void in
-                if inputTextField!.text!.trim().characters.count > 0 {
-                    panicHandler.updateDetails(inputTextField!.text!.trim())
-                } else {
-                    global.showAlert("", message: "Please enter some information or tap 'No Details'")
+            // Creat the subview
+            let textView = SZTextView(frame: CGRect(x: 0, y: 0, width: 210, height: 50))
+            textView.placeholder = "Tap here to type..."
+            
+            // Add the subview to the alert's UI property
+            alert.customSubview = textView
+            
+            alert.addButton("Submit") {
+                print("Submitted details...")
+                if textView.text!.trim().characters.count > 0 {
+                    panicHandler.updateDetails(textView.text!.trim())
                 }
-            }))
+            }
             
-            present(codePrompt, animated: true, completion: nil)
+            // Add Button with Duration Status and custom Colors
+            alert.addButton("No Details", backgroundColor: UIColor.flatRed, textColor: UIColor.white) { }
+            
+            alert.showInfo("Details about the event", subTitle: "")
             
         } else {
             UIView.animate(withDuration: 0.5, animations: {
@@ -280,13 +293,17 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         if panicHandler.panicIsActive == false || global.isDESPilot == false { return }
         
         if let accuracy = manager.location?.horizontalAccuracy {
-            if accuracy < CLLocationAccuracy(100) {
-                deativatePanic()
+            if accuracy < CLLocationAccuracy(100) && panicHandler.queryObject != nil {
+                Timer.scheduledTimer(withTimeInterval: 1, repeats: false, block: {_ in
+                    self.deativatePanic()
+                })
                 return
+            } else {
+                Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(manageAutoDeactivation), userInfo: nil, repeats: false)
             }
+        } else {
+            Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(manageAutoDeactivation), userInfo: nil, repeats: false)
         }
-
-        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(manageAutoDeactivation), userInfo: nil, repeats: false)
     }
     
     func updateResponderCount() {

@@ -11,6 +11,8 @@ import Parse
 import MessageUI
 import CustomBadge
 import SwiftyJSON
+import SCLAlertView
+import SZTextView
 
 class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailComposeViewControllerDelegate {
 	
@@ -178,17 +180,54 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 	}
 	
 	@IBAction func feedback(_ sender: AnyObject) {
-		let mail = MFMailComposeViewController()
-		if(MFMailComposeViewController.canSendMail()) {
-			
-			mail.mailComposeDelegate = self
-			mail.setSubject("Panic - Feedback")
-			mail.setToRecipients(["byron@panic-sec.org"])
-			self.present(mail, animated: true, completion: nil)
-		}
-		else {
-			global.showAlert(NSLocalizedString("error_email_title", value: "Could Not Send Email", comment: ""), message: NSLocalizedString("error_email_text", value: "Your device could not send e-mail.  Please check e-mail configuration and try again.", comment: ""))
-		}
+        
+        let appearance = SCLAlertView.SCLAppearance(
+            kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
+            kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
+            kButtonFont: UIFont(name: "HelveticaNeue-Bold", size: 14)!,
+            showCloseButton: false
+        )
+        
+        // Initialize SCLAlertView using custom Appearance
+        let alert = SCLAlertView(appearance: appearance)
+        
+        // Creat the subview
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: 210, height: 145))
+        
+        let subjectTextView = UITextField(frame: CGRect(x: 5, y: 0, width: 205, height: 35))
+        subjectTextView.placeholder = "Subject"
+        subjectTextView.font = UIFont(name: "Helvetica", size: 12)
+        container.addSubview(subjectTextView)
+        
+        let contentsTextView = SZTextView(frame: CGRect(x: 0, y: 45, width: 210, height: 100))
+        contentsTextView.placeholder = "Feedback"
+        container.addSubview(contentsTextView)
+        
+        // Add the subview to the alert's UI property
+        alert.customSubview = container
+        
+        alert.addButton("Submit") {
+            print("Submitted details...")
+            if contentsTextView.text!.trim().characters.count > 0 {
+                let newFeedback = PFObject(className: "Feedback")
+                newFeedback["subject"] = subjectTextView.text?.trim()
+                newFeedback["description"] = contentsTextView.text.trim()
+                newFeedback["user"] = PFUser.current()
+                newFeedback.saveInBackground(block: {
+                    success, error in
+                    
+                    if success {
+                        SCLAlertView().showSuccess("Thank you", subTitle: "Your feedback has been submitted")
+                    } else {
+                        SCLAlertView().showError("Oops", subTitle: "Something went wrong and your feedback was not saved. Please try again")
+                    }
+                })
+            }
+        }
+        
+        alert.addButton("Cancel", backgroundColor: UIColor.flatRed, textColor: UIColor.white) { }
+        
+        alert.showInfo("Feedback", subTitle: "")
 	}
 	
 	func openSidebarGesture(_ gesture: UIGestureRecognizer) {

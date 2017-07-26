@@ -4,9 +4,15 @@
 target 'Brave' do
 	use_frameworks!
 
+    pod 'ChameleonFramework/Swift', :git => 'https://github.com/ViccAlexander/Chameleon.git'
+    
+    pod 'UIScrollSlidingPages'
 	pod 'HMSegmentedControl'
 	pod 'CustomBadge'
 	pod 'Mapbox-iOS-SDK'
+    
+    pod 'SwiftValidate'
+    pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
     
 	pod 'Parse', '~> 1.14'
     pod 'ParseFacebookUtilsV4'
@@ -25,5 +31,7 @@ target 'Brave' do
     pod 'FacebookLogin'
 
     pod 'Toast'
+    pod 'SCLAlertView'
+    pod 'SZTextView'
 
 end
