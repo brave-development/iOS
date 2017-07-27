@@ -10,6 +10,7 @@ import UIKit
 import ChameleonFramework
 import Spring
 import SwiftValidate
+import Parse
 
 class Reg_Password_VC: Reg_IndividualScreen_VC {
     
@@ -21,6 +22,7 @@ class Reg_Password_VC: Reg_IndividualScreen_VC {
     
     @IBAction func next(_ sender: Any) {
             parentController.currentUser["password"] = txtPassword.text?.trim()
+            PFUser.current()?["password"] = txtPassword.text?.trim()
             nextPage()
     }
     

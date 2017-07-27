@@ -53,11 +53,14 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
         if user["country"] != nil {
             btnCountry.setTitle((user["country"] as! String), for: UIControlState())
         }
+        
         txtName.text = user["name"] as! String
         txtCell.text = user["cellNumber"] as! String
+        
         if user["email"] != nil {
             txtEmail.text = user["email"] as! String
         }
+        
         btnCountry.setTitle((user["country"] as! String), for: UIControlState())
         txtPassword.text = ""
         txtPassword.text = ""
@@ -79,9 +82,11 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     }
     
 	override func viewDidAppear(_ animated: Bool) {
-		if PFUser.current()!["country"] != nil {
-			if btnCountry.titleLabel?.text != (PFUser.current()!["country"] as! String) {
-				changed = true
+		if let country = PFUser.current()!["country"] as? String {
+			if btnCountry.titleLabel?.text != country {
+                if country != "" {
+                    changed = true
+                }
 			}
 		}
 	}
@@ -302,11 +307,21 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
                 PFInstallation.current()?.saveInBackground()
                 
                 let user = PFUser.current()!
+                
                 if self.newPassword != nil { user.password = self.newPassword! }
+                
                 user["name"] = self.txtName.text
                 user["cellNumber"] = self.txtCell.text
-                user["country"] = self.btnCountry.titleLabel?.text
-                if !self.txtEmail.text!.isEmpty { user["email"] = self.txtEmail.text }
+                
+                if let country = self.btnCountry.titleLabel?.text {
+                    user["country"] = self.btnCountry.titleLabel?.text
+                }
+                
+                if !self.txtEmail.text!.isEmpty {
+                    user["email"] = self.txtEmail.text?.trim()
+                    user["username"] = self.txtEmail.text?.trim()
+                }
+                
                 user.saveInBackground(block: {
                     (result, error) in
                     if result == true {

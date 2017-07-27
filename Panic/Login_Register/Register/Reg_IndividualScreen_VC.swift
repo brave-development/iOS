@@ -58,10 +58,6 @@ class Reg_IndividualScreen_VC: UIViewController {
                 self.imgIcon.animate()
             }
         })
-        
-//        Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: {_ in
-//            self.keyboardShown()
-//        })
     }
     
     func addShadow(imageView: SpringImageView) {
@@ -101,6 +97,7 @@ class Reg_IndividualScreen_VC: UIViewController {
             DispatchQueue.main.async {
                 
                 self.imgIcon.animation = "zoomIn"
+                self.imgIcon.delay = 0.2
                 self.imgIcon.animate()
                 
                 self.layoutCenterText?.constant = 50

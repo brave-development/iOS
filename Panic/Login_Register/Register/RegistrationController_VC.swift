@@ -14,7 +14,7 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
     
     @IBOutlet weak var btnBack: UIButton!
     
-    let pages = [Reg_Name_VC(), Reg_Email_VC(), Reg_Password_VC(), Reg_Permissions_VC(), Reg_Done_VC()]
+    var pages: [Reg_IndividualScreen_VC] = []
     
     var pageDots: UIPageControl!
     var scrollView: UIScrollView!
@@ -29,9 +29,13 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if currentUser == nil {
+        if PFUser.current() == nil {
             currentUser = PFUser()
+        } else {
+            currentUser = PFUser.current()
         }
+        
+        loadPages()
         
         delegate = self
         dataSource = self
@@ -77,6 +81,16 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
     override var prefersStatusBarHidden : Bool {
         return true
     }
+    
+    func loadPages() {
+        if currentUser["name"] == nil { pages.append(Reg_Name_VC()) }
+        if currentUser["email"] == nil { pages.append(Reg_Email_VC()) }
+        if currentUser["password"] == nil { pages.append(Reg_Password_VC()) }
+//        if currentUser["cellNumber"] == nil { pages.append(Reg_CellNumber_VC()) }
+        
+        pages.append(Reg_Permissions_VC())
+        pages.append(Reg_Done_VC())
+    }
 
     // SCROLLVIEW STUFF
     
@@ -107,7 +121,13 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
     
     func performManualScrolling(toIndex: Int32) {
         
-        if Int(toIndex) == pages.count || Int(toIndex) == -1 {
+        if Int(toIndex) == pages.count {
+            self.dismiss(animated: true, completion: nil)
+            return
+        }
+        
+        if Int(toIndex) == -1 {
+            PFUser.logOut()
             self.dismiss(animated: true, completion: nil)
             return
         }
@@ -135,17 +155,6 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
         var colour = UIColor.flatSkyBlue
         
         colour = UIColor.init(randomFlatColorOf: .dark)
-        
-//        switch index {
-//        case 0:
-//            colour = UIColor.flatSkyBlue
-//        case 1:
-//            colour = UIColor.flatGreen
-//        case 2:
-//            colour = UIColor.flatTeal
-//        default:
-//            colour = UIColor.white
-//        }
         
         UIView.animate(withDuration: 0.4, animations: {
             self.view.backgroundColor = colour

@@ -10,6 +10,7 @@ import UIKit
 import ChameleonFramework
 import SwiftValidate
 import Spring
+import Parse
 
 class Reg_Email_VC: Reg_IndividualScreen_VC {
 
@@ -21,6 +22,7 @@ class Reg_Email_VC: Reg_IndividualScreen_VC {
     
     @IBAction func next(_ sender: Any) {
         parentController.currentUser["email"] = txtEmail.text?.trim().lowercased()
+        PFUser.current()?["email"] = txtEmail.text?.trim().lowercased()
         nextPage()
     }
     

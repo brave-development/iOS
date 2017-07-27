@@ -381,7 +381,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 		imageSwipeRight.layoutIfNeeded()
 		animateChange(imageSwipeRight, controlLayout: layoutLeftSwipeRight, number: self.view.bounds.width - imageSwipeRight.bounds.width - 8, duration: 2)
 		if tutorial.swipeToOpenMenu == false {
-		_ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(MainViewController.animateSwipeRight), userInfo: nil, repeats: false)
+		_ = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(MainViewController.animateSwipeRight), userInfo: nil, repeats: true)
 		}
 	}
 	

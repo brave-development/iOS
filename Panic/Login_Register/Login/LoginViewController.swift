@@ -57,6 +57,10 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 		let layer = drawing.gradient(viewDarken, colours: [UIColor.clear.cgColor, UIColor.black.cgColor])
 		viewDarken.layer.insertSublayer(layer, at: 0)
 		
+        if PFUser.current()?["groups"] == nil {
+            PFUser.logOut()
+        }
+        
         let user = PFUser.current()
         if user != nil {
             startLoading()
@@ -240,7 +244,8 @@ extension LoginViewController: LoginButtonDelegate {
                     PFUser.current()?.setValue(json["id"].string, forKey: "facebookId")
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc: RegisterViewController = storyboard.instantiateViewController(withIdentifier: "registerViewController") as! RegisterViewController
+//                    let vc: RegisterViewController = storyboard.instantiateViewController(withIdentifier: "registerViewController") as! RegisterViewController
+                    let vc: RegistrationController_VC = storyboard.instantiateViewController(withIdentifier: "registrationController_vc") as! RegistrationController_VC
                     vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
                     self.present(vc, animated: true, completion: nil)
                 }

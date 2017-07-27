@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftValidate
+import Parse
 
 class Reg_Name_VC: Reg_IndividualScreen_VC {
     
@@ -18,7 +19,8 @@ class Reg_Name_VC: Reg_IndividualScreen_VC {
     }
     
     @IBAction func next(_ sender: Any) {
-        parentController.currentUser["name"] = txtName.text?.trim().lowercased()
+        parentController.currentUser["name"] = txtName.text?.trim()
+        PFUser.current()?["name"] = txtName.text?.trim()
         nextPage()
     }
     
