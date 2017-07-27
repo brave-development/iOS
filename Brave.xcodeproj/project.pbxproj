@@ -90,6 +90,10 @@
 		75CF75E71BCBA1C600B18480 /* LaunchImage-640x1136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E61BCBA1C600B18480 /* LaunchImage-640x1136@2x.png */; };
 		75D869F81B29DEE20065DE37 /* GroupsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D869F71B29DEE20065DE37 /* GroupsHandler.swift */; };
 		75D948791ED0539B00A733DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75D948781ED0539B00A733DA /* GoogleService-Info.plist */; };
+		75EFEFCE1F290F140064D76F /* Reg_Permissions_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EFEFCC1F290F140064D76F /* Reg_Permissions_VC.swift */; };
+		75EFEFCF1F290F140064D76F /* Reg_Permissions_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75EFEFCD1F290F140064D76F /* Reg_Permissions_VC.xib */; };
+		75EFEFD31F29D1AF0064D76F /* Reg_Name_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EFEFD11F29D1AF0064D76F /* Reg_Name_VC.swift */; };
+		75EFEFD41F29D1AF0064D76F /* Reg_Name_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75EFEFD21F29D1AF0064D76F /* Reg_Name_VC.xib */; };
 		75F8FAA81F22580200B95662 /* RegistrationController_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F8FAA71F22580200B95662 /* RegistrationController_VC.swift */; };
 		75F8FAAC1F225B3700B95662 /* Reg_Email_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F8FAAA1F225B3700B95662 /* Reg_Email_VC.swift */; };
 		75F8FAAD1F225B3700B95662 /* Reg_Email_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F8FAAB1F225B3700B95662 /* Reg_Email_VC.xib */; };
@@ -225,6 +229,10 @@
 		75D869F71B29DEE20065DE37 /* GroupsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsHandler.swift; sourceTree = "<group>"; };
 		75D948781ED0539B00A733DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75D9487B1ED054A000A733DA /* Panic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Panic.entitlements; path = ../Panic.entitlements; sourceTree = "<group>"; };
+		75EFEFCC1F290F140064D76F /* Reg_Permissions_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg_Permissions_VC.swift; sourceTree = "<group>"; };
+		75EFEFCD1F290F140064D76F /* Reg_Permissions_VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Reg_Permissions_VC.xib; sourceTree = "<group>"; };
+		75EFEFD11F29D1AF0064D76F /* Reg_Name_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg_Name_VC.swift; sourceTree = "<group>"; };
+		75EFEFD21F29D1AF0064D76F /* Reg_Name_VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Reg_Name_VC.xib; sourceTree = "<group>"; };
 		75F8FAA71F22580200B95662 /* RegistrationController_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationController_VC.swift; sourceTree = "<group>"; };
 		75F8FAAA1F225B3700B95662 /* Reg_Email_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg_Email_VC.swift; sourceTree = "<group>"; };
 		75F8FAAB1F225B3700B95662 /* Reg_Email_VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Reg_Email_VC.xib; sourceTree = "<group>"; };
@@ -610,13 +618,33 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		75EFEFCB1F290EE90064D76F /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				75EFEFCC1F290F140064D76F /* Reg_Permissions_VC.swift */,
+				75EFEFCD1F290F140064D76F /* Reg_Permissions_VC.xib */,
+			);
+			name = Permissions;
+			sourceTree = "<group>";
+		};
+		75EFEFD01F29D19C0064D76F /* Name */ = {
+			isa = PBXGroup;
+			children = (
+				75EFEFD11F29D1AF0064D76F /* Reg_Name_VC.swift */,
+				75EFEFD21F29D1AF0064D76F /* Reg_Name_VC.xib */,
+			);
+			name = Name;
+			sourceTree = "<group>";
+		};
 		75F8FAA61F22575E00B95662 /* New Registration */ = {
 			isa = PBXGroup;
 			children = (
 				75793E041F28B44D00148F42 /* Subclassed */,
-				75F8FAB31F225DF000B95662 /* Done */,
-				75F8FAAE1F225CE900B95662 /* Password */,
+				75EFEFD01F29D19C0064D76F /* Name */,
 				75F8FAA91F225A7600B95662 /* Email */,
+				75F8FAAE1F225CE900B95662 /* Password */,
+				75EFEFCB1F290EE90064D76F /* Permissions */,
+				75F8FAB31F225DF000B95662 /* Done */,
 				75F8FAA71F22580200B95662 /* RegistrationController_VC.swift */,
 			);
 			name = "New Registration";
@@ -780,6 +808,7 @@
 				752AA70F1B98465C005BE9FC /* floatTableViewCell.xib in Resources */,
 				75CF75E51BCBA0DD00B18480 /* LaunchImage-750x1334@2x.png in Resources */,
 				7551BB671BCD2EE80041A541 /* InfoPlist.strings in Resources */,
+				75EFEFD41F29D1AF0064D76F /* Reg_Name_VC.xib in Resources */,
 				75D948791ED0539B00A733DA /* GoogleService-Info.plist in Resources */,
 				75A875311B340415004A3E17 /* Location.png in Resources */,
 				7574A5FD1A2E425F00148645 /* history@2x.png in Resources */,
@@ -795,6 +824,7 @@
 				752AA7081B978C69005BE9FC /* noImage.png in Resources */,
 				752AA6FD1B94A382005BE9FC /* privateGroup.png in Resources */,
 				75F8FAB21F225D0200B95662 /* Reg_Password_VC.xib in Resources */,
+				75EFEFCF1F290F140064D76F /* Reg_Permissions_VC.xib in Resources */,
 				75162DE71A2B8B3E0094BA31 /* Images.xcassets in Resources */,
 				752AA7121B987EBD005BE9FC /* unlock.png in Resources */,
 				755EBDD81B3D8E9B00A4666F /* RespondersIcon.png in Resources */,
@@ -898,6 +928,7 @@
 				755100FD1B28A1F100148E90 /* GroupsTableViewCell.swift in Sources */,
 				752AA7391BB2E2FE005BE9FC /* AddPublicGroupViewController.swift in Sources */,
 				75162DE21A2B8B3E0094BA31 /* LoginViewController.swift in Sources */,
+				75EFEFD31F29D1AF0064D76F /* Reg_Name_VC.swift in Sources */,
 				75793E081F28EF5B00148F42 /* Reg_IndividualScreen_VC.swift in Sources */,
 				755D4ED41AB4760E001F4590 /* Drawing.swift in Sources */,
 				75A875331B3404B7004A3E17 /* LocalHistoryTableViewCell.swift in Sources */,
@@ -915,6 +946,7 @@
 				7545A6541A2BBDEC00B19E3E /* Global.swift in Sources */,
 				75F8FAA81F22580200B95662 /* RegistrationController_VC.swift in Sources */,
 				754B90341A4C2D0B00BDC20B /* Tutorial.swift in Sources */,
+				75EFEFCE1F290F140064D76F /* Reg_Permissions_VC.swift in Sources */,
 				752DE9991A3C4C2800784B94 /* SettingsTableViewController.swift in Sources */,
 				75D869F81B29DEE20065DE37 /* GroupsHandler.swift in Sources */,
 				7574A6041A2E4D4F00148645 /* GroupsViewController.swift in Sources */,

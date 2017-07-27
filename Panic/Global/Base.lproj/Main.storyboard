@@ -4262,8 +4262,30 @@
                     <view key="view" contentMode="scaleToFill" id="WUP-1F-TlT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hH2-dE-55Y">
+                                <rect key="frame" x="16" y="37" width="70" height="45"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="45" id="mnV-F9-Tb4"/>
+                                    <constraint firstAttribute="width" constant="70" id="pi6-8P-2Fd"/>
+                                </constraints>
+                                <state key="normal" title="Back">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="back:" destination="T0k-9E-QyE" eventType="touchUpInside" id="hfL-cU-3O6"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="hH2-dE-55Y" firstAttribute="leading" secondItem="WUP-1F-TlT" secondAttribute="leading" constant="16" id="cgd-n9-VbM"/>
+                            <constraint firstItem="hH2-dE-55Y" firstAttribute="top" secondItem="9gg-3H-nYD" secondAttribute="bottom" constant="17" id="htI-8Z-Umz"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="btnBack" destination="hH2-dE-55Y" id="KNQ-t3-CWe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uGn-7i-bhD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -1,42 +1,44 @@
 //
-//  Reg_Password_VC.swift
+//  Reg_Name_VC.swift
 //  Brave
 //
-//  Created by Byron Coetsee on 2017/07/21.
+//  Created by Byron Coetsee on 2017/07/27.
 //  Copyright © 2017 Byron Coetsee. All rights reserved.
 //
 
 import UIKit
-import ChameleonFramework
-import Spring
 import SwiftValidate
 
-class Reg_Password_VC: Reg_IndividualScreen_VC {
+class Reg_Name_VC: Reg_IndividualScreen_VC {
     
-    @IBOutlet weak var txtPassword: UITextField!
+    @IBOutlet weak var txtName: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
     
     @IBAction func next(_ sender: Any) {
-            parentController.currentUser["password"] = txtPassword.text?.trim()
-            nextPage()
+        parentController.currentUser["name"] = txtName.text?.trim().lowercased()
+        nextPage()
     }
     
     @IBAction func validate(_ sender: Any) {
+        
         let validation = ValidatorChain() {
-                $0.stopOnFirstError = true
-                $0.stopOnException = true
+            $0.stopOnFirstError = true
+            $0.stopOnException = true
             }
             <~~ ValidatorRequired()
             <~~ ValidatorEmpty()
             <~~ ValidatorStrLen() {
-                $0.minLength = 6
-                $0.maxLength = 30
+                $0.minLength = 5
+                $0.maxLength = 25
+        }
+            <~~ ValidatorRegex() {
+                $0.pattern = "[A-Za-z.-[:blank:]]+"
         }
         
-        if validation.validate(txtPassword.text?.trim(), context: nil) {
+        if validation.validate(txtName.text?.trim(), context: nil) {
             btnNext.showWithAnimation(animation: "zoomIn")
         } else {
             btnNext.hideWithDuration()

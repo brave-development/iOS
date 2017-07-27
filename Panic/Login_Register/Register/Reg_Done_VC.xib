@@ -11,6 +11,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Reg_Done_VC" customModule="Brave" customModuleProvider="target">
             <connections>
+                <outlet property="btnNext" destination="r84-rO-Jof" id="2Ty-PY-aIW"/>
+                <outlet property="imgIcon" destination="HBG-tT-hgJ" id="GfP-tR-ExF"/>
+                <outlet property="spinner" destination="e73-kv-ETp" id="KBq-gh-V0W"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,25 +22,12 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now let's log in!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd5-CE-OFr">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now let's log in..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd5-CE-OFr">
                     <rect key="frame" x="50" y="367.5" width="275" height="32.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="27"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sDl-Ru-jmj">
-                    <rect key="frame" x="16" y="0.0" width="70" height="45"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="70" id="D5p-JA-vEv"/>
-                        <constraint firstAttribute="height" constant="45" id="s95-Wd-9WC"/>
-                    </constraints>
-                    <state key="normal" title="Back">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="back:" destination="-1" eventType="touchUpInside" id="0W9-vL-Sx0"/>
-                    </connections>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark" translatesAutoresizingMaskIntoConstraints="NO" id="HBG-tT-hgJ" customClass="SpringImageView" customModule="Spring">
                     <rect key="frame" x="127" y="127.5" width="120" height="120"/>
                     <constraints>
@@ -45,27 +35,31 @@
                         <constraint firstAttribute="height" constant="120" id="ER3-yT-G1s"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r84-rO-Jof">
-                    <rect key="frame" x="137" y="460" width="100" height="45"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r84-rO-Jof" customClass="Sub_SpringButton" customModule="Brave" customModuleProvider="target">
+                    <rect key="frame" x="137" y="480" width="100" height="45"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="gkI-rs-mde"/>
                         <constraint firstAttribute="height" constant="45" id="mjX-eA-W4d"/>
                     </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
                     <state key="normal" title="Go!">
                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
-                        <action selector="next:" destination="-1" eventType="touchUpInside" id="hNf-b9-r3B"/>
+                        <action selector="next:" destination="-1" eventType="touchUpInside" id="Xzb-t5-tOO"/>
                     </connections>
                 </button>
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="e73-kv-ETp">
+                    <rect key="frame" x="177" y="533" width="20" height="20"/>
+                </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="r84-rO-Jof" firstAttribute="top" secondItem="Pd5-CE-OFr" secondAttribute="bottom" constant="60" id="GVa-SZ-KwZ"/>
-                <constraint firstItem="sDl-Ru-jmj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="PcZ-2p-4xF"/>
+                <constraint firstItem="e73-kv-ETp" firstAttribute="top" secondItem="r84-rO-Jof" secondAttribute="bottom" constant="8" id="G2r-xR-M9n"/>
+                <constraint firstItem="r84-rO-Jof" firstAttribute="top" secondItem="Pd5-CE-OFr" secondAttribute="bottom" constant="80" id="GVa-SZ-KwZ"/>
+                <constraint firstItem="e73-kv-ETp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JZC-EX-VOY"/>
                 <constraint firstItem="r84-rO-Jof" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="S3A-fj-Sl7"/>
                 <constraint firstAttribute="trailing" secondItem="Pd5-CE-OFr" secondAttribute="trailing" constant="50" id="Z7H-LK-TKS"/>
-                <constraint firstItem="sDl-Ru-jmj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="eSD-oD-6bs"/>
                 <constraint firstItem="Pd5-CE-OFr" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="50" id="exL-1W-PK5"/>
                 <constraint firstItem="Pd5-CE-OFr" firstAttribute="top" secondItem="HBG-tT-hgJ" secondAttribute="bottom" constant="120" id="fZU-L9-WGE"/>
                 <constraint firstItem="Pd5-CE-OFr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="j8O-UI-fT1"/>

@@ -13,7 +13,8 @@
             <connections>
                 <outlet property="btnNext" destination="Nag-EA-w7n" id="k8u-TM-PPP"/>
                 <outlet property="imgIcon" destination="ERp-qG-6hj" id="AAe-QD-1u2"/>
-                <outlet property="layoutCenterText" destination="Oss-e3-RF2" id="t14-Xz-eiu"/>
+                <outlet property="layoutCenterText" destination="Oss-e3-RF2" id="JBs-ZJ-VNJ"/>
+                <outlet property="lblCenterText" destination="Ydo-wj-49E" id="FgZ-CF-IJU"/>
                 <outlet property="txtEmail" destination="dNZ-Fo-RVY" id="61w-p2-9xC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -41,27 +42,14 @@
                         <action selector="validate:" destination="-1" eventType="editingChanged" id="jac-pH-bWW"/>
                     </connections>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBw-FA-aOZ" customClass="SpringButton" customModule="Spring">
-                    <rect key="frame" x="16" y="0.0" width="70" height="45"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="70" id="QhA-2l-dxJ"/>
-                        <constraint firstAttribute="height" constant="45" id="kbV-vq-ku0"/>
-                    </constraints>
-                    <state key="normal" title="Back">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="back:" destination="-1" eventType="touchUpInside" id="RcJ-KN-YbE"/>
-                    </connections>
-                </button>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mail" translatesAutoresizingMaskIntoConstraints="NO" id="ERp-qG-6hj" customClass="SpringImageView" customModule="Spring">
-                    <rect key="frame" x="127" y="127.5" width="120" height="120"/>
+                    <rect key="frame" x="127" y="125" width="120" height="120"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="120" id="SPP-qj-BNv"/>
                         <constraint firstAttribute="width" constant="120" id="g7y-az-MMn"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nag-EA-w7n" customClass="Sub_SpringButton" customModule="Brave" customModuleProvider="target">
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nag-EA-w7n" customClass="Sub_SpringButton" customModule="Brave" customModuleProvider="target">
                     <rect key="frame" x="289" y="0.0" width="70" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="Jte-Po-Qpk"/>
@@ -77,16 +65,13 @@
             </subviews>
             <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="Nag-EA-w7n" firstAttribute="centerY" secondItem="hBw-FA-aOZ" secondAttribute="centerY" id="1kA-mh-Eh9"/>
-                <constraint firstItem="hBw-FA-aOZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="F5z-ru-pbD"/>
                 <constraint firstAttribute="trailing" secondItem="dNZ-Fo-RVY" secondAttribute="trailing" constant="50" id="Fpm-q0-VXf"/>
                 <constraint firstAttribute="trailing" secondItem="Ydo-wj-49E" secondAttribute="trailing" constant="50" id="Gsd-hA-Qwk"/>
+                <constraint firstItem="ERp-qG-6hj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="125" id="Nyu-Mh-eGH"/>
                 <constraint firstItem="Ydo-wj-49E" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="50" id="Oss-e3-RF2"/>
                 <constraint firstAttribute="trailing" secondItem="Nag-EA-w7n" secondAttribute="trailing" constant="16" id="UV2-GB-YN1"/>
                 <constraint firstItem="Ydo-wj-49E" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="WZ8-x2-7yq"/>
-                <constraint firstItem="Ydo-wj-49E" firstAttribute="top" secondItem="ERp-qG-6hj" secondAttribute="bottom" constant="120" id="c9s-nL-Lek"/>
                 <constraint firstItem="dNZ-Fo-RVY" firstAttribute="top" secondItem="Ydo-wj-49E" secondAttribute="bottom" constant="30" id="eUT-a8-ovo"/>
-                <constraint firstItem="hBw-FA-aOZ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="qWj-ZV-SZ8"/>
                 <constraint firstItem="ERp-qG-6hj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="uKp-3d-2Hj"/>
                 <constraint firstItem="dNZ-Fo-RVY" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="xtD-BT-ZSe"/>
             </constraints>

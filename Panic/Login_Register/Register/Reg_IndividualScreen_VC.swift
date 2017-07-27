@@ -15,7 +15,9 @@ class Reg_IndividualScreen_VC: UIViewController {
     
     @IBOutlet weak var imgIcon: SpringImageView!
     @IBOutlet weak var btnNext: Sub_SpringButton!
-    @IBOutlet weak var layoutCenterText: NSLayoutConstraint!
+    
+    @IBOutlet weak var lblCenterText: UILabel?
+    @IBOutlet weak var layoutCenterText: NSLayoutConstraint?
     
     var parentController: RegistrationController_VC {
         return self.parent as! RegistrationController_VC
@@ -25,13 +27,20 @@ class Reg_IndividualScreen_VC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        parentController = self.parent as! RegistrationController_VC
         view.backgroundColor = UIColor.clear
         btnNext.alpha = 0
         
-        imgIcon.layer.shadowRadius = 4
-        imgIcon.layer.shadowOpacity = 0.4
-        imgIcon.layer.shadowOffset = CGSize(width: 0, height: 0)
+        addShadow(imageView: imgIcon)
+        
+        for txtField in view.subviews {
+            if txtField is UITextField {
+                let field = txtField as! UITextField
+                
+                if let placeholder = field.placeholder {
+                    field.attributedPlaceholder = NSAttributedString(string: placeholder, attributes:[NSForegroundColorAttributeName: UIColor.flatWhite.withAlphaComponent(0.5)])
+                }
+            }
+        }
         
         let tapDismissKeyboard = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         view.addGestureRecognizer(tapDismissKeyboard)
@@ -49,6 +58,16 @@ class Reg_IndividualScreen_VC: UIViewController {
                 self.imgIcon.animate()
             }
         })
+        
+//        Timer.scheduledTimer(withTimeInterval: 2, repeats: true, block: {_ in
+//            self.keyboardShown()
+//        })
+    }
+    
+    func addShadow(imageView: SpringImageView) {
+        imageView.layer.shadowRadius = 4
+        imageView.layer.shadowOpacity = 0.4
+        imageView.layer.shadowOffset = CGSize(width: 0, height: 0)
     }
     
     func nextPage() {
@@ -63,19 +82,31 @@ class Reg_IndividualScreen_VC: UIViewController {
     
     // Keyboard
     func keyboardShown() {
-        imgIcon.alpha = 0
-        keyboardVisible = true
-        
-        layoutCenterText.constant = -UIScreen.main.bounds.height/2 + 150
-        animateViews()
+        if keyboardVisible == false {
+            self.keyboardVisible = true
+            DispatchQueue.main.async(execute: {_ in
+                
+                self.imgIcon.animation = "zoomOut"
+                self.imgIcon.animate()
+                
+                self.layoutCenterText?.constant = -UIScreen.main.bounds.height/2 + 150
+                self.animateViews()
+            })
+        }
     }
     
     func keyboardHidden() {
-        imgIcon.alpha = 1
-        keyboardVisible = false
-        
-        layoutCenterText.constant = 50
-        animateViews()
+        if keyboardVisible == true {
+            self.keyboardVisible = false
+            DispatchQueue.main.async {
+                
+                self.imgIcon.animation = "zoomIn"
+                self.imgIcon.animate()
+                
+                self.layoutCenterText?.constant = 50
+                self.animateViews()
+            }
+        }
     }
     
     func dismissKeyboard() {
@@ -85,15 +116,12 @@ class Reg_IndividualScreen_VC: UIViewController {
     
     // View Management
     func animateViews() {
-        UIView.animate(withDuration: 0.5, animations: {_ in
-            for view in self.view.subviews {
-                view.layoutIfNeeded()
-            }
-        })
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.7, animations: {_ in
+                self.view.layoutIfNeeded()
+            })
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 }

@@ -28,8 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         //        testCrash()
         
         // Remote Notifications
-        let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-        application.registerUserNotificationSettings(settings)
+//        let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+//        application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         Messaging.messaging().remoteMessageDelegate = self
         
@@ -117,7 +117,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                                                      sourceApplication: sourceApplication,
                                                                      annotation: annotation)
     }
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) { UIApplication.shared.registerForRemoteNotifications() }
+    
+    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
+        UIApplication.shared.registerForRemoteNotifications()
+    }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         PFInstallation.current()?.setDeviceTokenFrom(deviceToken)

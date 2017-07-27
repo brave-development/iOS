@@ -12,12 +12,14 @@ import Parse
 
 class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesDataSource, TTSliddingPageDelegate {
     
-    @IBOutlet weak var lblInstruction: UILabel!
+    @IBOutlet weak var btnBack: UIButton!
     
-    let pages = [Reg_Email_VC(), Reg_Password_VC(), Reg_Done_VC()]
+    let pages = [Reg_Name_VC(), Reg_Email_VC(), Reg_Password_VC(), Reg_Permissions_VC(), Reg_Done_VC()]
+    
     var pageDots: UIPageControl!
+    var scrollView: UIScrollView!
     
-    let currentUser = PFUser()
+    var currentUser : PFUser!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -25,28 +27,36 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
+        
+        if currentUser == nil {
+            currentUser = PFUser()
+        }
         
         delegate = self
         dataSource = self
         zoomOutAnimationDisabled = true
         pagingEnabled = true
         
+        btnBack.alpha = 0
+        
         for view in view.subviews {
             if view is UIPageControl {
                 
                 pageDots = (view as! UIPageControl)
                 
-//                let origin_y = CGFloat(UIScreen.main.bounds.height-37)
                 pageDots.frame = CGRect(x: 0, y: 33, width: pageDots.frame.width, height: pageDots.frame.height)
                 pageDots.backgroundColor = UIColor.clear
                 pageDots.isUserInteractionEnabled = false
             }
             
             if view is UIScrollView {
-                (view as! UIScrollView).isScrollEnabled = false
-                (view as! UIScrollView).delegate = self
+                scrollView = (view as! UIScrollView)
+                
+                scrollView.isScrollEnabled = false
+                scrollView.delegate = self
+                
+                scrollView.alpha = 0
             }
         }
     }
@@ -54,6 +64,14 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         didScrollToView(at: 0)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIView.animate(withDuration: 0.5, animations: {_ in
+            self.scrollView.alpha = 1
+            self.btnBack.alpha = 1
+        })
     }
     
     override var prefersStatusBarHidden : Bool {
@@ -65,6 +83,10 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
     func nextPage() {
         let nextPageIndex = self.getCurrentDisplayedPage()+1
         performManualScrolling(toIndex: nextPageIndex)
+    }
+    
+    @IBAction func back(_ sender: Any) {
+        previousPage()
     }
     
     func previousPage() {
@@ -95,11 +117,13 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
     }
     
     func numberOfPages(forSlidingPagesViewController source: TTScrollSlidingPagesController!) -> Int32 {
-        return Int32(3)
+        return Int32(pages.count)
     }
     
     func page(forSlidingPagesViewController source: TTScrollSlidingPagesController!, at index: Int32) -> TTSlidingPage! {
         view.bringSubview(toFront: pageDots)
+        view.bringSubview(toFront: btnBack)
+        
         return TTSlidingPage(contentViewController: pages[Int(index)])
     }
     
@@ -110,16 +134,18 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
     func didScrollToView(at index: UInt) {
         var colour = UIColor.flatSkyBlue
         
-        switch index {
-        case 0:
-            colour = UIColor.flatSkyBlue
-        case 1:
-            colour = UIColor.flatGreen
-        case 2:
-            colour = UIColor.flatTeal
-        default:
-            colour = UIColor.white
-        }
+        colour = UIColor.init(randomFlatColorOf: .dark)
+        
+//        switch index {
+//        case 0:
+//            colour = UIColor.flatSkyBlue
+//        case 1:
+//            colour = UIColor.flatGreen
+//        case 2:
+//            colour = UIColor.flatTeal
+//        default:
+//            colour = UIColor.white
+//        }
         
         UIView.animate(withDuration: 0.4, animations: {
             self.view.backgroundColor = colour
