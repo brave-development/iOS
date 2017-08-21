@@ -1,28 +1,27 @@
 //
-//  Reg_Name_VC.swift
+//  Reg_CellNumber_VC.swift
 //  Brave
 //
-//  Created by Byron Coetsee on 2017/07/27.
+//  Created by Byron Coetsee on 2017/08/10.
 //  Copyright © 2017 Byron Coetsee. All rights reserved.
 //
 
 import UIKit
-import SwiftValidate
 import Parse
-import Toast
+import SwiftValidate
 
-class Reg_Name_VC: Reg_IndividualScreen_VC {
+class Reg_CellNumber_VC: Reg_IndividualScreen_VC {
     
-    @IBOutlet weak var txtName: UITextField!
-
+    @IBOutlet weak var txtNumber: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        txtName.delegate = self
+        txtNumber.delegate = self
     }
     
     @IBAction func next(_ sender: Any) {
-        parentController.currentUser["name"] = txtName.text?.trim()
-        PFUser.current()?["name"] = txtName.text?.trim()
+        parentController.currentUser["cellNumber"] = txtNumber.text?.trim()
+        PFUser.current()?["cellNumber"] = txtNumber.text?.trim()
         nextPage()
     }
     
@@ -41,25 +40,24 @@ class Reg_Name_VC: Reg_IndividualScreen_VC {
             }
             <~~ ValidatorRequired()
             <~~ ValidatorEmpty()
+            <~~ ValidatorNumeric()
             <~~ ValidatorStrLen() {
-                $0.minLength = 5
-                $0.maxLength = 25
-            }
-            <~~ ValidatorRegex() {
-                $0.pattern = "[A-Za-z.-[:blank:]]+"
+                $0.minLength = 6
+                $0.maxLength = 15
         }
         
-        return validation.validate(txtName.text?.trim(), context: nil)
+        return validation.validate(txtNumber.text?.trim(), context: nil)
     }
 }
 
-extension Reg_Name_VC: UITextFieldDelegate {
+extension Reg_CellNumber_VC: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if validInput() { btnNext.sendActions(for: .touchUpInside) }
         else {
-            let toastCenter = CGPoint(x: txtName.center.x, y: txtName.center.y-70)
-            view.makeToast("Required\nOnly A-Z letters\nMin 5\nMax 25", duration: 5, position: NSValue(cgPoint: toastCenter))
+            let toastCenter = CGPoint(x: txtNumber.center.x, y: txtNumber.center.y-70)
+            view.makeToast("Required\nOnly numbers\nMin 6\nMax 15", duration: 5, position: NSValue(cgPoint: toastCenter))
         }
         return false
     }
 }
+

@@ -23,9 +23,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var btnRegister: UIButton!
     @IBOutlet weak var btnForgotPassword: UIButton!
     @IBOutlet weak var spinner: UIActivityIndicatorView!
+    @IBOutlet weak var imgBackground: UIImageView!
 	@IBOutlet weak var viewDarken: UIView!
     
     var selectedTextField : UITextField!
+    @IBOutlet weak var layoutBackgroundLeft: NSLayoutConstraint!
     @IBOutlet weak var bottomLayout : NSLayoutConstraint!
     
     var facebookButton: LoginButton!
@@ -81,6 +83,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 				})
 			}
             spinner.stopAnimating()
+            
+            self.beginBackgroundAnimation()
         }
     }
     
@@ -126,6 +130,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 //        let vc: RegisterViewController = storyboard.instantiateViewController(withIdentifier: "registerViewController") as! RegisterViewController
         let vc: RegistrationController_VC = storyboard.instantiateViewController(withIdentifier: "registrationController_vc") as! RegistrationController_VC
         vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+//        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc, animated: true, completion: nil)
     }
 	
@@ -149,6 +154,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 		alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: ""), style: UIAlertActionStyle.default, handler: nil))
 		self.present(alert, animated: true, completion: nil)
 	}
+    
+    func beginBackgroundAnimation() {
+        // Move right
+        layoutBackgroundLeft.constant = -imgBackground.frame.width + UIScreen.main.bounds.width
+        UIView.animate(withDuration: 60, animations: {_ in
+            self.view.layoutIfNeeded()
+        }, completion: {_ in
+            
+            // Move left again
+            self.layoutBackgroundLeft.constant = 0
+            UIView.animate(withDuration: 60, animations: {_ in
+                self.view.layoutIfNeeded()
+            }, completion: {_ in
+                
+                // Restart
+                self.beginBackgroundAnimation()
+            })
+        })
+    }
     
     func startLoading () {
         spinner.startAnimating()

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Reg_Done_VC" customModule="Brave" customModuleProvider="target">
             <connections>
+                <outlet property="blurView" destination="cuv-4R-mKp" id="Mo3-1B-VTe"/>
                 <outlet property="btnNext" destination="r84-rO-Jof" id="2Ty-PY-aIW"/>
                 <outlet property="imgIcon" destination="HBG-tT-hgJ" id="GfP-tR-ExF"/>
                 <outlet property="spinner" destination="e73-kv-ETp" id="KBq-gh-V0W"/>
@@ -22,6 +23,41 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ayY-46-Jey">
+                    <rect key="frame" x="119.5" y="609" width="136" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="bQC-pd-bK8"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <state key="normal" title="Got a referral code?">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="referalCode:" destination="-1" eventType="touchUpInside" id="b97-7a-XyY"/>
+                    </connections>
+                </button>
+                <visualEffectView opaque="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cuv-4R-mKp">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="QHW-nV-QI6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r84-rO-Jof" customClass="Sub_SpringButton" customModule="Brave" customModuleProvider="target">
+                    <rect key="frame" x="289" y="11" width="70" height="45"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="70" id="gkI-rs-mde"/>
+                        <constraint firstAttribute="height" constant="45" id="mjX-eA-W4d"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="Go!">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="next:" destination="-1" eventType="touchUpInside" id="Xzb-t5-tOO"/>
+                    </connections>
+                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Now let's log in..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pd5-CE-OFr">
                     <rect key="frame" x="50" y="367.5" width="275" height="32.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="27"/>
@@ -35,35 +71,26 @@
                         <constraint firstAttribute="height" constant="120" id="ER3-yT-G1s"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r84-rO-Jof" customClass="Sub_SpringButton" customModule="Brave" customModuleProvider="target">
-                    <rect key="frame" x="137" y="480" width="100" height="45"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="100" id="gkI-rs-mde"/>
-                        <constraint firstAttribute="height" constant="45" id="mjX-eA-W4d"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
-                    <state key="normal" title="Go!">
-                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="next:" destination="-1" eventType="touchUpInside" id="Xzb-t5-tOO"/>
-                    </connections>
-                </button>
-                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="e73-kv-ETp">
+                <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" ambiguous="YES" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="e73-kv-ETp">
                     <rect key="frame" x="177" y="533" width="20" height="20"/>
                 </activityIndicatorView>
             </subviews>
             <color key="backgroundColor" red="0.90588235289999997" green="0.29803921570000003" blue="0.23529411759999999" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="e73-kv-ETp" firstAttribute="top" secondItem="r84-rO-Jof" secondAttribute="bottom" constant="8" id="G2r-xR-M9n"/>
-                <constraint firstItem="r84-rO-Jof" firstAttribute="top" secondItem="Pd5-CE-OFr" secondAttribute="bottom" constant="80" id="GVa-SZ-KwZ"/>
+                <constraint firstItem="r84-rO-Jof" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="11" id="GtJ-ue-Noa"/>
                 <constraint firstItem="e73-kv-ETp" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="JZC-EX-VOY"/>
-                <constraint firstItem="r84-rO-Jof" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="S3A-fj-Sl7"/>
+                <constraint firstItem="ayY-46-Jey" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MtB-xN-9Zp"/>
+                <constraint firstAttribute="trailing" secondItem="r84-rO-Jof" secondAttribute="trailing" constant="16" id="Puz-gA-uBT"/>
+                <constraint firstItem="cuv-4R-mKp" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="Rb7-3n-kDc"/>
                 <constraint firstAttribute="trailing" secondItem="Pd5-CE-OFr" secondAttribute="trailing" constant="50" id="Z7H-LK-TKS"/>
+                <constraint firstAttribute="bottom" secondItem="cuv-4R-mKp" secondAttribute="bottom" id="b1U-uM-q3e"/>
                 <constraint firstItem="Pd5-CE-OFr" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="50" id="exL-1W-PK5"/>
                 <constraint firstItem="Pd5-CE-OFr" firstAttribute="top" secondItem="HBG-tT-hgJ" secondAttribute="bottom" constant="120" id="fZU-L9-WGE"/>
                 <constraint firstItem="Pd5-CE-OFr" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="50" id="j8O-UI-fT1"/>
+                <constraint firstItem="cuv-4R-mKp" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="kzi-AK-jd0"/>
                 <constraint firstItem="HBG-tT-hgJ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="lhY-CW-Khy"/>
+                <constraint firstAttribute="trailing" secondItem="cuv-4R-mKp" secondAttribute="trailing" id="lwK-0x-JH6"/>
+                <constraint firstAttribute="bottom" secondItem="ayY-46-Jey" secondAttribute="bottom" constant="8" id="ugQ-xn-BDq"/>
             </constraints>
             <point key="canvasLocation" x="49" y="57"/>
         </view>

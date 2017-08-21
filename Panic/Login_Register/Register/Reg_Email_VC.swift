@@ -18,6 +18,7 @@ class Reg_Email_VC: Reg_IndividualScreen_VC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtEmail.delegate = self
     }
     
     @IBAction func next(_ sender: Any) {
@@ -27,18 +28,54 @@ class Reg_Email_VC: Reg_IndividualScreen_VC {
     }
     
     @IBAction func validate(_ sender: Any) {
-        let validation = ValidatorEmail()
-        
-        do {
-            if try validation.validate(txtEmail.text?.trim(), context: [:]) {
-                btnNext.showWithAnimation(animation: "zoomIn")
-            } else {
-                btnNext.hideWithDuration()
+        let validation = ValidatorChain() {
+            $0.stopOnFirstError = true
+            $0.stopOnException = true
             }
-        } catch {
+            <~~ ValidatorRequired()
+            <~~ ValidatorEmpty()
+            <~~ ValidatorStrLen() {
+                $0.minLength = 5
+                $0.maxLength = 25
+            }
+            <~~ ValidatorRegex() {
+                $0.pattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        }
+        
+        if validation.validate(txtEmail.text?.trim(), context: nil) {
+            btnNext.showWithAnimation(animation: "zoomIn")
+        } else {
             btnNext.hideWithDuration()
         }
     }
+    
+    func validInput() -> Bool {
+        let validation = ValidatorChain() {
+            $0.stopOnFirstError = true
+            $0.stopOnException = true
+            }
+            <~~ ValidatorRequired()
+            <~~ ValidatorEmpty()
+            <~~ ValidatorStrLen() {
+                $0.minLength = 6
+                $0.maxLength = 25
+            }
+            <~~ ValidatorRegex() {
+                $0.pattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"
+        }
+        
+        return validation.validate(txtEmail.text?.trim(), context: nil)
+    }
 }
 
+extension Reg_Email_VC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if validInput() { btnNext.sendActions(for: .touchUpInside) }
+        else {
+            let toastCenter = CGPoint(x: txtEmail.center.x, y: txtEmail.center.y-70)
+            view.makeToast("Required\nMust be a valid address\nMin 6\nMax 25", duration: 5, position: NSValue(cgPoint: toastCenter))
+        }
+        return false
+    }
+}
 

@@ -56,6 +56,7 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
             
             if view is UIScrollView {
                 scrollView = (view as! UIScrollView)
+                scrollView.bounds = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
                 
                 scrollView.isScrollEnabled = false
                 scrollView.delegate = self
@@ -86,7 +87,7 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
         if currentUser["name"] == nil { pages.append(Reg_Name_VC()) }
         if currentUser["email"] == nil { pages.append(Reg_Email_VC()) }
         if currentUser["password"] == nil { pages.append(Reg_Password_VC()) }
-//        if currentUser["cellNumber"] == nil { pages.append(Reg_CellNumber_VC()) }
+        if currentUser["cellNumber"] == nil { pages.append(Reg_CellNumber_VC()) }
         
         pages.append(Reg_Permissions_VC())
         pages.append(Reg_Done_VC())
@@ -155,6 +156,21 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
         var colour = UIColor.flatSkyBlue
         
         colour = UIColor.init(randomFlatColorOf: .dark)
+        
+        if Int(index) == pages.count-1 {
+            colour = UIColor.init(averageColorFrom: UIImage(named: "Background")!)
+        }
+        
+//        colour = UIColor.init(averageColorFrom: UIImage(named: "Background")!)
+        
+//        let percentage = Double(arc4random_uniform(5)+5)/10
+//        let lightDark = arc4random_uniform(1)
+//        
+//        if lightDark == 0 {
+//            colour = colour.darken(byPercentage: CGFloat(percentage))!
+//        } else {
+//            colour = colour.lighten(byPercentage: CGFloat(percentage))!
+//        }
         
         UIView.animate(withDuration: 0.4, animations: {
             self.view.backgroundColor = colour

@@ -90,6 +90,8 @@
 		75CF75E71BCBA1C600B18480 /* LaunchImage-640x1136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E61BCBA1C600B18480 /* LaunchImage-640x1136@2x.png */; };
 		75D869F81B29DEE20065DE37 /* GroupsHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D869F71B29DEE20065DE37 /* GroupsHandler.swift */; };
 		75D948791ED0539B00A733DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75D948781ED0539B00A733DA /* GoogleService-Info.plist */; };
+		75E91B061F3C642A003C1169 /* Reg_CellNumber_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E91B041F3C642A003C1169 /* Reg_CellNumber_VC.swift */; };
+		75E91B071F3C642A003C1169 /* Reg_CellNumber_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75E91B051F3C642A003C1169 /* Reg_CellNumber_VC.xib */; };
 		75EFEFCE1F290F140064D76F /* Reg_Permissions_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EFEFCC1F290F140064D76F /* Reg_Permissions_VC.swift */; };
 		75EFEFCF1F290F140064D76F /* Reg_Permissions_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75EFEFCD1F290F140064D76F /* Reg_Permissions_VC.xib */; };
 		75EFEFD31F29D1AF0064D76F /* Reg_Name_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EFEFD11F29D1AF0064D76F /* Reg_Name_VC.swift */; };
@@ -229,6 +231,8 @@
 		75D869F71B29DEE20065DE37 /* GroupsHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsHandler.swift; sourceTree = "<group>"; };
 		75D948781ED0539B00A733DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75D9487B1ED054A000A733DA /* Panic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Panic.entitlements; path = ../Panic.entitlements; sourceTree = "<group>"; };
+		75E91B041F3C642A003C1169 /* Reg_CellNumber_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg_CellNumber_VC.swift; sourceTree = "<group>"; };
+		75E91B051F3C642A003C1169 /* Reg_CellNumber_VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Reg_CellNumber_VC.xib; sourceTree = "<group>"; };
 		75EFEFCC1F290F140064D76F /* Reg_Permissions_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg_Permissions_VC.swift; sourceTree = "<group>"; };
 		75EFEFCD1F290F140064D76F /* Reg_Permissions_VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Reg_Permissions_VC.xib; sourceTree = "<group>"; };
 		75EFEFD11F29D1AF0064D76F /* Reg_Name_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg_Name_VC.swift; sourceTree = "<group>"; };
@@ -618,6 +622,15 @@
 			path = Icons;
 			sourceTree = "<group>";
 		};
+		75E91B031F3C6406003C1169 /* Cell Number */ = {
+			isa = PBXGroup;
+			children = (
+				75E91B041F3C642A003C1169 /* Reg_CellNumber_VC.swift */,
+				75E91B051F3C642A003C1169 /* Reg_CellNumber_VC.xib */,
+			);
+			name = "Cell Number";
+			sourceTree = "<group>";
+		};
 		75EFEFCB1F290EE90064D76F /* Permissions */ = {
 			isa = PBXGroup;
 			children = (
@@ -640,6 +653,7 @@
 			isa = PBXGroup;
 			children = (
 				75793E041F28B44D00148F42 /* Subclassed */,
+				75E91B031F3C6406003C1169 /* Cell Number */,
 				75EFEFD01F29D19C0064D76F /* Name */,
 				75F8FAA91F225A7600B95662 /* Email */,
 				75F8FAAE1F225CE900B95662 /* Password */,
@@ -813,6 +827,7 @@
 				75A875311B340415004A3E17 /* Location.png in Resources */,
 				7574A5FD1A2E425F00148645 /* history@2x.png in Resources */,
 				75CF75E71BCBA1C600B18480 /* LaunchImage-640x1136@2x.png in Resources */,
+				75E91B071F3C642A003C1169 /* Reg_CellNumber_VC.xib in Resources */,
 				757DA8611A40A4F60037995C /* Countries.txt in Resources */,
 				752AA6F41B94976C005BE9FC /* cross.png in Resources */,
 				7565AF9D1BBAFC990015ABD0 /* group.png in Resources */,
@@ -915,6 +930,7 @@
 			files = (
 				7586AC541A30DAB5003DC023 /* PublicHistoryTableViewCell.swift in Sources */,
 				752AA70E1B98465C005BE9FC /* floatTableViewCell.m in Sources */,
+				75E91B061F3C642A003C1169 /* Reg_CellNumber_VC.swift in Sources */,
 				752AA7101B98465C005BE9FC /* VCFloatingActionButton.m in Sources */,
 				757DA85F1A3F965D0037995C /* CountriesViewController.swift in Sources */,
 				754C76DA1A42E9B50007C53B /* RegisterTableViewController.swift in Sources */,

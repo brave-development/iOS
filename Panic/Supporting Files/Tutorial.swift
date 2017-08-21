@@ -65,6 +65,18 @@ class Tutorial {
 		
 		global.persistantSettings.synchronize()
 	}
+    
+    func disable() {
+        print("Disabling tutorial")
+        panic = true
+        swipeToOpenMenu = true
+        groupsButton = true
+        addNewGroup = true
+        addNewGroupView = true
+        publicHistory = true
+        localHistory = true
+        save()
+    }
 	
 	func reset() {
 		print("Resetting tutorial settings")

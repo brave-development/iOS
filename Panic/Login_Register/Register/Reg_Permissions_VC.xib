@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -36,7 +36,7 @@
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="i7I-Qg-s0N" customClass="Sub_SpringButton" customModule="Brave" customModuleProvider="target">
-                            <rect key="frame" x="289" y="0.0" width="70" height="45"/>
+                            <rect key="frame" x="289" y="12" width="70" height="45"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="45" id="W93-9W-OEC"/>
                                 <constraint firstAttribute="width" constant="70" id="ac1-aZ-AAk"/>
@@ -55,8 +55,8 @@
                                 <constraint firstAttribute="width" constant="50" id="QgF-bX-220"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pretty please?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eE9-y4-BA3">
-                            <rect key="frame" x="102" y="297" width="170" height="32.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap them" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eE9-y4-BA3">
+                            <rect key="frame" x="131" y="297" width="112" height="32.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="27"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
@@ -69,7 +69,7 @@
                         <constraint firstItem="rDF-ch-gpM" firstAttribute="centerX" secondItem="v8y-hB-FRw" secondAttribute="centerX" id="EBz-77-Plv"/>
                         <constraint firstItem="eE9-y4-BA3" firstAttribute="centerX" secondItem="v8y-hB-FRw" secondAttribute="centerX" id="FBY-UZ-LV9"/>
                         <constraint firstAttribute="trailing" secondItem="i7I-Qg-s0N" secondAttribute="trailing" constant="16" id="dLu-Vz-smC"/>
-                        <constraint firstItem="i7I-Qg-s0N" firstAttribute="top" secondItem="v8y-hB-FRw" secondAttribute="top" id="pAd-Uv-jE8"/>
+                        <constraint firstItem="i7I-Qg-s0N" firstAttribute="top" secondItem="v8y-hB-FRw" secondAttribute="top" constant="12" id="pAd-Uv-jE8"/>
                         <constraint firstAttribute="bottom" secondItem="eE9-y4-BA3" secondAttribute="bottom" constant="4" id="sGe-W8-DUT"/>
                         <constraint firstItem="rDF-ch-gpM" firstAttribute="trailing" secondItem="8Ik-DV-48Z" secondAttribute="trailing" id="uZD-fn-Z0v"/>
                     </constraints>
@@ -91,8 +91,8 @@
                                 <constraint firstAttribute="height" constant="50" id="eG8-As-Xk0"/>
                             </constraints>
                         </imageView>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(Tap them)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQB-v0-P0y">
-                            <rect key="frame" x="148" y="4" width="79" height="19.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pretty please" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQB-v0-P0y">
+                            <rect key="frame" x="140" y="4" width="95.5" height="19.5"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <color key="textColor" red="0.98613516115320499" green="0.98960137086490374" blue="1" alpha="0.74791309931506844" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -30,14 +30,14 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="&quot;Thomas Edison&quot;" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xja-z8-jbj">
+                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Tap here to type" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xja-z8-jbj">
                     <rect key="frame" x="50" y="446" width="275" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="vfz-Nf-oDL"/>
                     </constraints>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="words" returnKeyType="next"/>
                     <connections>
                         <action selector="validate:" destination="-1" eventType="editingChanged" id="DYy-St-whJ"/>
                     </connections>
@@ -49,8 +49,8 @@
                         <constraint firstAttribute="width" constant="120" id="mpU-LD-ngD"/>
                     </constraints>
                 </imageView>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rDE-3S-Aht" customClass="Sub_SpringButton" customModule="Brave" customModuleProvider="target">
-                    <rect key="frame" x="289" y="0.0" width="70" height="45"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rDE-3S-Aht" customClass="Sub_SpringButton" customModule="Brave" customModuleProvider="target">
+                    <rect key="frame" x="289" y="10" width="70" height="45"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="45" id="Umz-v8-cUG"/>
                         <constraint firstAttribute="width" constant="70" id="dWs-m3-cHN"/>
@@ -74,6 +74,7 @@
                 <constraint firstAttribute="trailing" secondItem="Zom-H0-m7t" secondAttribute="trailing" constant="50" id="Ohp-BY-tXQ"/>
                 <constraint firstItem="Zom-H0-m7t" firstAttribute="centerY" secondItem="dt9-vv-pmY" secondAttribute="centerY" constant="50" id="ZjG-I2-Lgi"/>
                 <constraint firstItem="Xja-z8-jbj" firstAttribute="leading" secondItem="dt9-vv-pmY" secondAttribute="leading" constant="50" id="dXK-Vj-mBM"/>
+                <constraint firstItem="rDE-3S-Aht" firstAttribute="top" secondItem="dt9-vv-pmY" secondAttribute="top" constant="10" id="wh5-TK-OZh"/>
             </constraints>
             <point key="canvasLocation" x="23.5" y="131.5"/>
         </view>

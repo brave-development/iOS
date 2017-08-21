@@ -18,6 +18,7 @@ class Reg_Password_VC: Reg_IndividualScreen_VC {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        txtPassword.delegate = self
     }
     
     @IBAction func next(_ sender: Any) {
@@ -27,9 +28,17 @@ class Reg_Password_VC: Reg_IndividualScreen_VC {
     }
     
     @IBAction func validate(_ sender: Any) {
+        if validInput() {
+            btnNext.showWithAnimation(animation: "zoomIn")
+        } else {
+            btnNext.hideWithDuration()
+        }
+    }
+    
+    func validInput() -> Bool {
         let validation = ValidatorChain() {
-                $0.stopOnFirstError = true
-                $0.stopOnException = true
+            $0.stopOnFirstError = true
+            $0.stopOnException = true
             }
             <~~ ValidatorRequired()
             <~~ ValidatorEmpty()
@@ -38,10 +47,17 @@ class Reg_Password_VC: Reg_IndividualScreen_VC {
                 $0.maxLength = 30
         }
         
-        if validation.validate(txtPassword.text?.trim(), context: nil) {
-            btnNext.showWithAnimation(animation: "zoomIn")
-        } else {
-            btnNext.hideWithDuration()
+        return validation.validate(txtPassword.text?.trim(), context: nil)
+    }
+}
+
+extension Reg_Password_VC: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if validInput() { btnNext.sendActions(for: .touchUpInside) }
+        else {
+            let toastCenter = CGPoint(x: txtPassword.center.x, y: txtPassword.center.y-60)
+            view.makeToast("Required\nMin 6\nMax 30", duration: 5, position: NSValue(cgPoint: toastCenter))
         }
+        return false
     }
 }

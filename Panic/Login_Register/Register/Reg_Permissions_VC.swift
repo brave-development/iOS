@@ -65,6 +65,7 @@ class Reg_Permissions_VC: Reg_IndividualScreen_VC {
     func validate() {
         if notificationPermissionsRequested && locationPermissionsRequested {
             btnNext.showWithAnimation(animation: "zoomIn")
+            btnNext.sendActions(for: .touchUpInside)
         }
     }
 }
@@ -116,12 +117,14 @@ extension Reg_Permissions_VC: UNUserNotificationCenterDelegate {
             SCLAlertView().showWarning("That's a pity", subTitle: "When someone needs your help and you are within helping distance, you've chosen not to show an Act of Kindness.")
             self.imgNotificationStatus.image = UIImage(named: "cross")
         }
+//        validate()
     }
     
     func allowNotifications() {
         DispatchQueue.main.async {
             self.imgNotificationStatus.image = UIImage(named: "checkmark")
         }
+//        validate()
     }
 }
 
@@ -153,10 +156,12 @@ extension Reg_Permissions_VC: CLLocationManagerDelegate {
     func disallowLocation() {
         SCLAlertView().showWarning("That's a pity", subTitle: "Brave is heavily reliant on your location to function. When you are in need of an Urgent Act of Kindness, your request will not have a location and people won't recieve any alerts.")
         imgLocationStatus.image = UIImage(named: "cross")
+//        validate()
     }
     
     func allowLocation() {
         imgLocationStatus.image = UIImage(named: "checkmark")
+//        validate()
     }
     
     func requestLocation() {

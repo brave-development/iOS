@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -23,7 +23,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView opaque="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Background.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="lZh-fR-Il8">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1280" height="667"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="dYY-fh-JDM" appends="YES" id="nla-7n-z8P"/>
@@ -176,7 +176,6 @@
                             <constraint firstItem="2GP-AI-Vqy" firstAttribute="top" secondItem="tvr-sb-QJd" secondAttribute="bottom" constant="8" id="iH5-I4-vZv"/>
                             <constraint firstItem="lZh-fR-Il8" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="top" id="jcw-4h-SSd"/>
                             <constraint firstItem="qjF-3i-aXm" firstAttribute="top" secondItem="cnS-e7-o1F" secondAttribute="bottom" constant="115" id="ltQ-Kx-dVi"/>
-                            <constraint firstAttribute="trailing" secondItem="lZh-fR-Il8" secondAttribute="trailing" id="nb6-o7-1T1"/>
                             <constraint firstItem="lZh-fR-Il8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="pDW-eA-sCM"/>
                             <constraint firstItem="da7-nT-cOy" firstAttribute="top" secondItem="qjF-3i-aXm" secondAttribute="bottom" constant="6" id="rKa-Ch-Mie"/>
                             <constraint firstAttribute="centerX" secondItem="2GP-AI-Vqy" secondAttribute="centerX" id="yc5-oU-SME"/>
@@ -189,6 +188,8 @@
                         <outlet property="btnForgotPassword" destination="WrF-Ts-mIm" id="Y0Q-Kp-KGN"/>
                         <outlet property="btnLogin" destination="tvr-sb-QJd" id="8jR-CZ-mm3"/>
                         <outlet property="btnRegister" destination="2GP-AI-Vqy" id="4bu-qK-VU1"/>
+                        <outlet property="imgBackground" destination="lZh-fR-Il8" id="6Hj-e0-5tH"/>
+                        <outlet property="layoutBackgroundLeft" destination="pDW-eA-sCM" id="VwA-3S-obP"/>
                         <outlet property="spinner" destination="da7-nT-cOy" id="xlO-U7-eNM"/>
                         <outlet property="txtPassword" destination="oaH-Fd-aDe" id="WWq-VN-95C"/>
                         <outlet property="txtUsername" destination="DY6-w9-oQe" id="5XA-2Y-zVf"/>
