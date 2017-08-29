@@ -1,4 +1,6 @@
 PODS:
+  - Alamofire (4.5.0)
+  - BBLocationManager (1.0)
   - Bolts (1.8.4):
     - Bolts/AppLinks (= 1.8.4)
     - Bolts/Tasks (= 1.8.4)
@@ -80,6 +82,8 @@ PODS:
   - UIScrollSlidingPages (1.4)
 
 DEPENDENCIES:
+  - Alamofire
+  - BBLocationManager
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Crashlytics
   - CustomBadge
@@ -118,6 +122,8 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
+  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
+  BBLocationManager: b22dd6d5f815456527bafe0ae26064f12ebaf64a
   Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
@@ -148,6 +154,6 @@ SPEC CHECKSUMS:
   Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
   UIScrollSlidingPages: 92a3ed2c444b31f7f1b259f7b91720b53295346a
 
-PODFILE CHECKSUM: 0ed000e2cc9460ff9f19c2f4325605f2d215dc94
+PODFILE CHECKSUM: 0da9e027ddba20c393d55ec5972c9f9a874cdd3b
 
 COCOAPODS: 1.2.1

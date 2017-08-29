@@ -33,5 +33,8 @@ target 'Brave' do
     pod 'Toast'
     pod 'SCLAlertView'
     pod 'SZTextView'
+    
+    pod 'BBLocationManager'
+    pod 'Alamofire'
 
 end

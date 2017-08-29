@@ -94,20 +94,20 @@ class Global: UIViewController {
 					groupsHandler.getGroups()
 					global.persistantSettings.set(PFUser.current()!["numberOfGroups"] as! Int, forKey: "numberOfGroups")
 					if PFUser.current()!["username"] as! String == "byroncoetsee" {
-						PFInstallation.current()?.addUniqueObject("panic_global", forKey: "channels")
-					}
-					PFInstallation.current()?.saveInBackground(block: nil)
-				}
-			})
-			
-			if checkInternetConnectivity() == false {
-				showAlert("No internet", message: "Although you have been logged in, an internet connection cannot be established. Please note this will have negative effects on the Panic system. If you activate Panic, it will continue to try connect, but success cannot be guaranteed")
-			}
-			tutorial.load()
+                        PFInstallation.current()?.addUniqueObject("panic_global", forKey: "channels")
+                    }
+                    PFInstallation.current()?.saveInBackground(block: nil)
+                }
+            })
             
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
-                vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+            if checkInternetConnectivity() == false {
+                showAlert("No internet", message: "Although you have been logged in, an internet connection cannot be established. Please note this will have negative effects on the Panic system. If you activate Panic, it will continue to try connect, but success cannot be guaranteed")
+            }
+            tutorial.load()
+            
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
+            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
             
             switch callingVC {
             case (is LoginViewController):
@@ -120,7 +120,9 @@ class Global: UIViewController {
                 
             default: print("NO TYPE FOUND FOR CALLING VIEW CONRTOLLER"); break
             }
-		}
+            
+            locationHandler
+        }
 		return false
 	}
 	

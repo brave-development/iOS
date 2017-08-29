@@ -15,6 +15,7 @@ import FirebaseCore
 import FirebaseMessaging
 import UserNotifications
 import FacebookCore
+import Alamofire
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -63,6 +64,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if JSON(launchOptions)["lat"] != nil {
             global.notificationDictionary = JSON(launchOptions)
             global.openedViaNotification = true
+        }
+        
+        // Launch background significant location updates
+        if launchOptions?[UIApplicationLaunchOptionsKey.location] != nil {
+            locationHandler
         }
         
         return true

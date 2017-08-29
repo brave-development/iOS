@@ -61,6 +61,7 @@
 	<string>We need to choose an image from your camera roll</string>
 	<key>UIBackgroundModes</key>
 	<array>
+		<string>fetch</string>
 		<string>location</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
