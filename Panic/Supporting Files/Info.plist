@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.3</string>
+	<string>3.4</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -33,7 +33,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>6</string>
+	<string>0</string>
 	<key>FacebookAppID</key>
 	<string>830346543706378</string>
 	<key>FacebookDisplayName</key>
@@ -54,7 +54,7 @@
 		<true/>
 	</dict>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Location permission while the app is in the background or if your phone is asleep is essential for Panic to continue tracking you in an emergency. This can be disabled in the Settings.</string>
+	<string>Location permission while the app is in the background or if your phone is asleep is essential for Brave to continue tracking you in an emergency. This can be disabled in the Settings.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>
 	<key>NSPhotoLibraryUsageDescription</key>
