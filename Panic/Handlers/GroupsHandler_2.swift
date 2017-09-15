@@ -167,16 +167,20 @@ class GroupsHandler_2: UIViewController {
     }
     
     // Addes a new group to the DB or returns false if it's there already
-    func createNewGroup(group: PFObject) -> Bool {
+    func createNewGroup(group: PFObject, completion: @escaping (_ success: Bool, _ object: PFObject) -> Void) {
         let query = PFQuery(className: "Groups")
         query.whereKey("flatValue", equalTo: (group["name"] as! String).formatGroupForFlatValue())
         
         do {
             try query.getFirstObject()
-            return false
+            
+            // Found another group with same name
+            completion(false, group)
         } catch {
-            print()
-            return true
+            group.saveInBackground(block: {
+                success, error in
+                completion(success, group)
+            })
         }
     }
     

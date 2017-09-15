@@ -193,8 +193,8 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
             let alert = SCLAlertView(appearance: appearance)
             
             // Creat the subview
-            let textView = SZTextView(frame: CGRect(x: 0, y: 0, width: 210, height: 50))
-            textView.placeholder = "Tap here to type..."
+            let textView = SZTextView(frame: CGRect(x: 0, y: 0, width: 210, height: 100))
+            textView.placeholder = "Tap here to type...\n\n\n\n\nYou have lots of space :)"
             
             // Add the subview to the alert's UI property
             alert.customSubview = textView
@@ -203,11 +203,14 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
                 print("Submitted details...")
                 if textView.text!.trim().characters.count > 0 {
                     panicHandler.updateDetails(textView.text!.trim())
+                    panicHandler.clearPanic()
                 }
             }
             
             // Add Button with Duration Status and custom Colors
-            alert.addButton("No Details", backgroundColor: UIColor.flatRed, textColor: UIColor.white) { }
+            alert.addButton("No Details", backgroundColor: UIColor.flatRed, textColor: UIColor.white) {
+                panicHandler.clearPanic()
+            }
             
             alert.showInfo("Details about the event", subTitle: "")
             

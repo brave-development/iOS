@@ -360,7 +360,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 		if (availableIdentifiers.contains(segue.identifier!)) {
 			
 			for btn in tabBarButtons {
-				btn.titleLabel?.textColor = UIColor.gray
+				btn.titleLabel?.textColor = UIColor.lightGray
 			}
 			
 			let senderBtn = sender as! UIButton

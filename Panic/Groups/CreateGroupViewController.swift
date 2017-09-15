@@ -165,19 +165,33 @@ class CreateGroupViewController: UIViewController, UINavigationControllerDelegat
 	func newGroup() {
 		var message: String = NSLocalizedString("group_set_to_private_text", value: "This group is set to private. It will therfore NOT SHOW in any searches or nearby suggestions.", comment: "")  // If set to PRIVATE
 		if self.publicGroup == true { message = NSLocalizedString("group_set_to_public_text", value: "This group is set to public. It will therfore SHOW in all searches and nearby suggestions and anyone will be able to join it", comment: "")}
-		let saveAlert = UIAlertController(title: NSLocalizedString("are_you_sure", value: "Are you sure?", comment: ""), message: message, preferredStyle: UIAlertControllerStyle.alert)
-		saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
-			// Clicked YES
+        let saveAlert = UIAlertController(title: NSLocalizedString("are_you_sure", value: "Are you sure?", comment: ""), message: message, preferredStyle: UIAlertControllerStyle.alert)
+        saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
+            // Clicked YES
             self.prepareForUpload()
             
             self.group = PFObject(className: "Groups")
             let newGroup = self.createGroupObject()
-			if groupsHandler.checkIfGroupExists(newGroup) == false {
-//				groupsHandler.createGroup(newGroup, country: self)
-			} else {
-                self.uploadFinished()
-			}
-		}))
+            groupsHandler.createNewGroup(group: newGroup, completion: {
+                success, group in
+                let name = group["name"] as! String
+                
+                DispatchQueue.main.async(execute: {
+                    if success {
+                        
+                        self.uploadFinished()
+                        groupsHandler.addGroup(group: group)
+                        global.showAlert(NSLocalizedString("successful", value: "Successful", comment: ""), message: String(format: NSLocalizedString("joined_group_text", value: "Successfully created and joined the group %@.", comment: ""), arguments: [name]))
+                        
+                    } else {
+                        
+                        self.uploadFinished(dismissViewController: false)
+                        global.showAlert(NSLocalizedString("unsuccessful", value: "Hmm..", comment: ""), message: String(format: NSLocalizedString("group_already_exists_text", value: "A group with the name %@ already exists.", comment: ""), arguments: [name]))
+                    }
+                    
+                })
+            })
+        }))
 		saveAlert.addAction(UIAlertAction(title: NSLocalizedString("no", value: "No", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
 			self.tooltipLock.show()
 		}))
@@ -209,7 +223,7 @@ class CreateGroupViewController: UIViewController, UINavigationControllerDelegat
         self.btnLock.isEnabled = false
     }
     
-    func uploadFinished() {
+    func uploadFinished(dismissViewController: Bool = true) {
         self.spinner.stopAnimating()
         self.btnClose.isEnabled = true
         self.btnFinish.isEnabled = true
@@ -218,7 +232,7 @@ class CreateGroupViewController: UIViewController, UINavigationControllerDelegat
         self.btnEditBackground.isEnabled = true
         self.btnLock.isEnabled = true
         NotificationCenter.default.post(name: Notification.Name(rawValue: "gotNearbyGroups"), object: nil)
-        dismiss(animated: true, completion: nil)
+        if dismissViewController { dismiss(animated: true, completion: nil) }
     }
     
     func createGroupObject() -> PFObject {

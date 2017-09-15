@@ -66,21 +66,22 @@ class Global: UIViewController {
             groupsHandler.addBetaGroup(objectId: "Z7rmGeDACV")
             tutorial.disable()
             return true
-        } 
+        }
         
-        if betaID == "Feedback" { return true }
-        if betaID == "Testing" { return true }
+        if betaID == "Testing" {
+            groupsHandler.addBetaGroup(objectId: "WwfXIFOeud")
+            tutorial.disable()
+            return true
+        }
+        
+        if betaID == "Feedback" {
+            groupsHandler.addBetaGroup(objectId: "O9K1RsGfto")
+            tutorial.disable()
+            return true
+        }
         
         return false
     }
-    
-//    var isFeedback: Bool {
-//        return betaID == "Feedback"
-//    }
-//    
-//    var isTesting: Bool {
-//        return betaID == "Testing"
-//    }
 	
     func getUserInformation(callingVC: AnyObject) -> Bool {
 		

@@ -140,7 +140,7 @@ class PanicHandler: UIViewController {
         query.cancel()
 		timer?.invalidate()
         if queryObject != nil {
-            if global.isDESPilot == false { queryObject["active"] = false }
+            if !global.isDESPilot { queryObject["active"] = false }
             queryObject.saveInBackground(block: {
                 (result, error) in
                 if error == nil {
@@ -150,6 +150,9 @@ class PanicHandler: UIViewController {
                 }
             })
         }
+    }
+    
+    func clearPanic() {
         objectInUse = false
         queryObject = nil
     }
