@@ -58,7 +58,7 @@ class Reg_Email_VC: Reg_IndividualScreen_VC {
             <~~ ValidatorEmpty()
             <~~ ValidatorStrLen() {
                 $0.minLength = 6
-                $0.maxLength = 25
+                $0.maxLength = 50
             }
             <~~ ValidatorRegex() {
                 $0.pattern = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}"

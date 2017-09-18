@@ -160,7 +160,10 @@ class PanicHandler: UIViewController {
     func sendNotifications() {
         if queryObject?.objectId != nil {
             NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
-            PFCloud.callFunction(inBackground: "pushFromId", withParameters: ["objectId" : queryObject.objectId!] ) {
+            PFCloud.callFunction(inBackground: "pushFromId", withParameters: [
+                "objectId" : queryObject.objectId!,
+                "installationId" : PFInstallation.current()!.objectId!
+            ] ) {
                 response, error in
                 
                 print(response)
@@ -168,7 +171,6 @@ class PanicHandler: UIViewController {
         } else {
             if panicIsActive == true {
                 NotificationCenter.default.addObserver(self, selector: #selector(sendNotifications), name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
-//                Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(sendNotifications), userInfo: nil, repeats: false)
             }
         }
     }

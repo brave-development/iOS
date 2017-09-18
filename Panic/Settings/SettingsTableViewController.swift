@@ -12,6 +12,8 @@ import MessageUI
 import CoreLocation
 import FacebookCore
 import ParseFacebookUtilsV4
+import SCLAlertView
+
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
 fileprivate func < <T : Comparable>(lhs: T?, rhs: T?) -> Bool {
@@ -32,6 +34,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
     @IBOutlet weak var txtPasswordConfirm: UITextField!
+    @IBOutlet weak var txtBetaCode: UITextField!
     @IBOutlet weak var viewPasswordConfirm: UIView!
     @IBOutlet weak var switchPanicConfirmation: UISwitch!
 	@IBOutlet weak var switchBackgroundUpdate: UISwitch!
@@ -65,6 +68,10 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
         txtPassword.text = ""
         txtPassword.text = ""
         txtPasswordConfirm.isEnabled = false
+        
+        if user["betaID"] != nil {
+            txtBetaCode.text = user["betaID"] as! String
+        }
         
         if global.panicConfirmation == true {
             switchPanicConfirmation.isOn = true
@@ -185,8 +192,6 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 			global.persistantSettings.removeObject(forKey: "groups")
 		}
 		PFUser.logOut()
-//        PFFacebookUtils.facebookLoginManager().logOut()
-//        FBSDKLoginManager.init().logOut()
 		PFInstallation.current()?.setObject(["", "logged_out"], forKey: "channels")
 		PFInstallation.current()?.saveInBackground(block: nil)
         groupsHandler.joinedGroupsObject = [:]
@@ -232,8 +237,9 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         if validateTextField(textField) == true {
-            if textField.text != currentlySelectedTextFieldValue {
-                changed = true
+            if textField.text != currentlySelectedTextFieldValue { changed = true }
+            if textField == txtBetaCode {
+                SCLAlertView().showInfo("Referral Code changed", subTitle: "If you have changed the referral code, you will need to log out and back in again for changes to take effect.")
             }
         } else {
             textField.text = currentlySelectedTextFieldValue
@@ -321,6 +327,8 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
                     user["email"] = self.txtEmail.text?.trim()
                     user["username"] = self.txtEmail.text?.trim()
                 }
+                
+                user["betaID"] = self.txtBetaCode.text?.trim()
                 
                 user.saveInBackground(block: {
                     (result, error) in

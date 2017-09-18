@@ -42,7 +42,7 @@ class Reg_Name_VC: Reg_IndividualScreen_VC {
             <~~ ValidatorRequired()
             <~~ ValidatorEmpty()
             <~~ ValidatorStrLen() {
-                $0.minLength = 5
+                $0.minLength = 3
                 $0.maxLength = 25
             }
             <~~ ValidatorRegex() {
