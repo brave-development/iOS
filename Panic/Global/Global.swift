@@ -64,23 +64,17 @@ class Global: UIViewController {
     var isDESPilot: Bool {
         if betaID == "DTES" {
             groupsHandler.addBetaGroup(objectId: "Z7rmGeDACV")
-            tutorial.disable()
-            return true
         }
         
         if betaID == "Testing" {
             groupsHandler.addBetaGroup(objectId: "WwfXIFOeud")
-            tutorial.disable()
-            return true
         }
         
         if betaID == "Feedback" {
             groupsHandler.addBetaGroup(objectId: "O9K1RsGfto")
-            tutorial.disable()
-            return true
         }
         
-        return false
+        return true
     }
 	
     func getUserInformation(callingVC: AnyObject) -> Bool {

@@ -181,10 +181,10 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 		self.dismiss(animated: true, completion: nil)
 	}
 	
-	@IBAction func tutorialReset(_ sender: AnyObject) {
-		tutorial.reset()
-		global.showAlert("", message: NSLocalizedString("tutorials_reset_text", value: "Tutorials have been re-enabled. Go back to the main Home screen to view them as you did the first time the app was opened.", comment: ""))
-	}
+//	@IBAction func tutorialReset(_ sender: AnyObject) {
+//		tutorial.reset()
+//		global.showAlert("", message: NSLocalizedString("tutorials_reset_text", value: "Tutorials have been re-enabled. Go back to the main Home screen to view them as you did the first time the app was opened.", comment: ""))
+//	}
 	
 	@IBAction func logout(_ sender: AnyObject) {
 		global.showAlert("Note", message: NSLocalizedString("logout_message", value: "Logging out disables any Brave notifications. You will not be notified when someone activates an alert.\n\nOn the other hand, closing the app with the home button, or even the app switcher, logs you out in a way that you still receive notifications.", comment: ""))
