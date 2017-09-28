@@ -21,6 +21,10 @@ class Reg_Password_VC: Reg_IndividualScreen_VC {
         txtPassword.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+//        txtPassword.becomeFirstResponder()
+    }
+    
     @IBAction func next(_ sender: Any) {
             parentController.currentUser["password"] = txtPassword.text?.trim()
             PFUser.current()?["password"] = txtPassword.text?.trim()

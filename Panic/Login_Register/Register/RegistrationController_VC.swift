@@ -92,6 +92,10 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
         pages.append(Reg_Permissions_VC())
         pages.append(Reg_Done_VC())
     }
+    
+    func openKeyboard(forPage pageIndex: Int) {
+        pages[pageIndex].showKeyboard()
+    }
 
     // SCROLLVIEW STUFF
     
@@ -161,24 +165,14 @@ class RegistrationController_VC: TTScrollSlidingPagesController, TTSlidingPagesD
             colour = UIColor.init(averageColorFrom: UIImage(named: "Background")!)
         }
         
-//        colour = UIColor.init(averageColorFrom: UIImage(named: "Background")!)
-        
-//        let percentage = Double(arc4random_uniform(5)+5)/10
-//        let lightDark = arc4random_uniform(1)
-//        
-//        if lightDark == 0 {
-//            colour = colour.darken(byPercentage: CGFloat(percentage))!
-//        } else {
-//            colour = colour.lighten(byPercentage: CGFloat(percentage))!
-//        }
-        
         UIView.animate(withDuration: 0.4, animations: {
             self.view.backgroundColor = colour
         })
+        
+        openKeyboard(forPage: Int(index))
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 }

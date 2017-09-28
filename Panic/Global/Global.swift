@@ -71,6 +71,7 @@ class Global: UIViewController {
     }
     
     func joinPilotGroup() {
+        groupsHandler.getGroups()
         if betaID == "DTES" { groupsHandler.addBetaGroup(objectId: "Z7rmGeDACV") }
         if betaID == "Testing" { groupsHandler.addBetaGroup(objectId: "WwfXIFOeud") }
         if betaID == "Feedback" { groupsHandler.addBetaGroup(objectId: "O9K1RsGfto") }

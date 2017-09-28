@@ -77,6 +77,15 @@ class Reg_IndividualScreen_VC: UIViewController {
     
     
     // Keyboard
+    func showKeyboard() {
+        for txtField in view.subviews {
+            if txtField is UITextField {
+                let field = txtField as! UITextField
+                field.becomeFirstResponder()
+            }
+        }
+    }
+    
     func keyboardShown() {
         if keyboardVisible == false {
             self.keyboardVisible = true

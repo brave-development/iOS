@@ -659,10 +659,10 @@
 			isa = PBXGroup;
 			children = (
 				75793E041F28B44D00148F42 /* Subclassed */,
-				75E91B031F3C6406003C1169 /* Cell Number */,
-				75EFEFD01F29D19C0064D76F /* Name */,
 				75F8FAA91F225A7600B95662 /* Email */,
 				75F8FAAE1F225CE900B95662 /* Password */,
+				75EFEFD01F29D19C0064D76F /* Name */,
+				75E91B031F3C6406003C1169 /* Cell Number */,
 				75EFEFCB1F290EE90064D76F /* Permissions */,
 				75F8FAB31F225DF000B95662 /* Done */,
 				75F8FAA71F22580200B95662 /* RegistrationController_VC.swift */,

@@ -19,6 +19,10 @@ class Reg_CellNumber_VC: Reg_IndividualScreen_VC {
         txtNumber.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+//        txtNumber.becomeFirstResponder()
+    }
+    
     @IBAction func next(_ sender: Any) {
         parentController.currentUser["cellNumber"] = txtNumber.text?.trim()
         PFUser.current()?["cellNumber"] = txtNumber.text?.trim()

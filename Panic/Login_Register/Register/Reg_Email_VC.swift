@@ -21,6 +21,10 @@ class Reg_Email_VC: Reg_IndividualScreen_VC {
         txtEmail.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+//        txtEmail.becomeFirstResponder()
+    }
+    
     @IBAction func next(_ sender: Any) {
         parentController.currentUser["email"] = txtEmail.text?.trim().lowercased()
         PFUser.current()?["email"] = txtEmail.text?.trim().lowercased()

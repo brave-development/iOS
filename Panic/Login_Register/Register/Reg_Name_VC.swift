@@ -20,6 +20,10 @@ class Reg_Name_VC: Reg_IndividualScreen_VC {
         txtName.delegate = self
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+//        txtName.becomeFirstResponder()
+    }
+    
     @IBAction func next(_ sender: Any) {
         parentController.currentUser["name"] = txtName.text?.trim()
         PFUser.current()?["name"] = txtName.text?.trim()
