@@ -93,6 +93,7 @@
 		75D948791ED0539B00A733DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75D948781ED0539B00A733DA /* GoogleService-Info.plist */; };
 		75E91B061F3C642A003C1169 /* Reg_CellNumber_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E91B041F3C642A003C1169 /* Reg_CellNumber_VC.swift */; };
 		75E91B071F3C642A003C1169 /* Reg_CellNumber_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75E91B051F3C642A003C1169 /* Reg_CellNumber_VC.xib */; };
+		75EB2A0E1F7D21EB0070D5BC /* SwiftyMD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB2A0D1F7D21EA0070D5BC /* SwiftyMD5.swift */; };
 		75EFEFCE1F290F140064D76F /* Reg_Permissions_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EFEFCC1F290F140064D76F /* Reg_Permissions_VC.swift */; };
 		75EFEFCF1F290F140064D76F /* Reg_Permissions_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75EFEFCD1F290F140064D76F /* Reg_Permissions_VC.xib */; };
 		75EFEFD31F29D1AF0064D76F /* Reg_Name_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EFEFD11F29D1AF0064D76F /* Reg_Name_VC.swift */; };
@@ -235,6 +236,7 @@
 		75D9487B1ED054A000A733DA /* Panic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Panic.entitlements; path = ../Panic.entitlements; sourceTree = "<group>"; };
 		75E91B041F3C642A003C1169 /* Reg_CellNumber_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg_CellNumber_VC.swift; sourceTree = "<group>"; };
 		75E91B051F3C642A003C1169 /* Reg_CellNumber_VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Reg_CellNumber_VC.xib; sourceTree = "<group>"; };
+		75EB2A0D1F7D21EA0070D5BC /* SwiftyMD5.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftyMD5.swift; sourceTree = "<group>"; };
 		75EFEFCC1F290F140064D76F /* Reg_Permissions_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg_Permissions_VC.swift; sourceTree = "<group>"; };
 		75EFEFCD1F290F140064D76F /* Reg_Permissions_VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Reg_Permissions_VC.xib; sourceTree = "<group>"; };
 		75EFEFD11F29D1AF0064D76F /* Reg_Name_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg_Name_VC.swift; sourceTree = "<group>"; };
@@ -502,6 +504,7 @@
 				7551BB751BCD52DC0041A541 /* Localizable.strings */,
 				7545A6381A2BBC0500B19E3E /* Panic-Bridging-Header.h */,
 				754B90331A4C2D0B00BDC20B /* Tutorial.swift */,
+				75EB2A0D1F7D21EA0070D5BC /* SwiftyMD5.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -953,6 +956,7 @@
 				75A875331B3404B7004A3E17 /* LocalHistoryTableViewCell.swift in Sources */,
 				75162DE01A2B8B3E0094BA31 /* AppDelegate.swift in Sources */,
 				75F8FAAC1F225B3700B95662 /* Reg_Email_VC.swift in Sources */,
+				75EB2A0E1F7D21EB0070D5BC /* SwiftyMD5.swift in Sources */,
 				752AA71C1BA5D7E4005BE9FC /* Tooltip.swift in Sources */,
 				7574A5EB1A2DB81F00148645 /* MapViewController.swift in Sources */,
 				75606E7E1A37B9210089744C /* LocalHistoryViewController.swift in Sources */,

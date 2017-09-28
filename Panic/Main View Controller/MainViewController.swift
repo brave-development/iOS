@@ -18,14 +18,14 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 	
 	// Controls
 	
-	@IBOutlet var tabbarView : UIView!
+	@IBOutlet var tabbarView : UIVisualEffectView!
 	@IBOutlet var placeholderView: UIView!
 	@IBOutlet var tabBarButtons: Array<UIButton>!
 	@IBOutlet weak var tabbarBottomLayout: NSLayoutConstraint!
 	@IBOutlet weak var sidebarLeftLayout: NSLayoutConstraint!
 	@IBOutlet weak var btnHome: UIButton!
 	@IBOutlet var btnLogout : UIButton!
-	@IBOutlet weak var viewSidebar: UIView!
+	@IBOutlet weak var viewSidebar: UIVisualEffectView!
 	@IBOutlet weak var profilePic: UIImageView!
 	@IBOutlet weak var lblName: UILabel!
 	@IBOutlet weak var btnGroups: UIButton!
@@ -51,7 +51,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 	var recognizer : UIScreenEdgePanGestureRecognizer!
 	var amAtHome: Bool = true
 	var tapRecognizer : UITapGestureRecognizer!
-	var badge: CustomBadge!
+//    var badge: CustomBadge!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -77,19 +77,19 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 		placeholderView.addGestureRecognizer(closeRecognizer)
 		viewSidebar.addGestureRecognizer(closeRecognizer)
 		
-		badge = CustomBadge(string: "1000")
-		badge.translatesAutoresizingMaskIntoConstraints = false
-		badge.backgroundColor = UIColor.clear
-		self.tabbarView.addSubview(badge)
+//        badge = CustomBadge(string: "1000")
+//        badge.translatesAutoresizingMaskIntoConstraints = false
+//        badge.backgroundColor = UIColor.clear
+//        self.tabbarView.addSubview(badge)
 		
 		// Naming relative to badge
-		let leftConstraint = NSLayoutConstraint(item: badge, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: tabBarButtons[0], attribute: NSLayoutAttribute.left, multiplier: 1, constant: -10)
-		let bottomConstraint = NSLayoutConstraint(item: badge, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: tabBarButtons[0], attribute: NSLayoutAttribute.top, multiplier: 1, constant: -badge.frame.height + 10)
+//        let leftConstraint = NSLayoutConstraint(item: badge, attribute: NSLayoutAttribute.right, relatedBy: NSLayoutRelation.equal, toItem: tabBarButtons[0], attribute: NSLayoutAttribute.left, multiplier: 1, constant: -10)
+//        let bottomConstraint = NSLayoutConstraint(item: badge, attribute: NSLayoutAttribute.top, relatedBy: NSLayoutRelation.equal, toItem: tabBarButtons[0], attribute: NSLayoutAttribute.top, multiplier: 1, constant: -badge.frame.height + 10)
+//
+//        tabbarView.addConstraint(leftConstraint)
+//        tabbarView.addConstraint(bottomConstraint)
 		
-		tabbarView.addConstraint(leftConstraint)
-		tabbarView.addConstraint(bottomConstraint)
-		
-		panicHandler.getActivePanics()
+//        panicHandler.getActivePanics()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {

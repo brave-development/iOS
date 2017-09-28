@@ -14,6 +14,7 @@ var panicHandler = PanicHandler()
 class PanicHandler: UIViewController {
     
     let query : PFQuery = PFQuery(className: "Panics")
+    var lastQueryObjectId : String? = nil
     var queryObject : PFObject!
     var updating = false
     var objectInUse = false // Set to true when beginPanic() is called and object is created successfully on server. Only updates locations if set to true.
@@ -41,6 +42,7 @@ class PanicHandler: UIViewController {
                 if result {
                     self.updating = false
                     self.objectInUse = true
+                    self.lastQueryObjectId = self.queryObject.objectId
 					self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.getResponderCount), userInfo: nil, repeats: true)
                 } else if error != nil {
                     global.showAlert(NSLocalizedString("error_beginning_location_title", value: "Error beginning location", comment: ""), message: "\(error!.localizedDescription)\n" + NSLocalizedString("error_beginning_location_text", value: "Will try again in a few seconds", comment: ""))
@@ -97,9 +99,9 @@ class PanicHandler: UIViewController {
 	}
 	
 	func getResponderCount() {
-		if updateResponderCountQuery == nil && queryObject != nil{
+		if updateResponderCountQuery == nil && lastQueryObjectId != nil{
 			updateResponderCountQuery = PFQuery(className: "Panics")
-			updateResponderCountQuery!.whereKey("objectId", equalTo: queryObject.objectId!)
+			updateResponderCountQuery!.whereKey("objectId", equalTo: lastQueryObjectId!)
 			updateResponderCountQuery!.getFirstObjectInBackground(block: {
 				(object, error) in
 				if object != nil {
@@ -140,7 +142,7 @@ class PanicHandler: UIViewController {
         query.cancel()
 		timer?.invalidate()
         if queryObject != nil {
-            if !global.isDESPilot { queryObject["active"] = false }
+//            if !global.isDESPilot { queryObject["active"] = false }
             queryObject.saveInBackground(block: {
                 (result, error) in
                 if error == nil {

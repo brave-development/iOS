@@ -50,25 +50,25 @@ class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLoc
 		
 		viewTutorial.isHidden = true
 		
-		let buttonRect = CGRect(x: self.view.frame.width - 100, y: self.view.frame.height - 100, width: 65, height: 65)
-		let floatingButton = VCFloatingActionButton(frame: buttonRect, normalImage: UIImage(named: "plus"), andPressedImage: UIImage(named: "cross"), withScrollview: tblGroups)
-		floatingButton?.normalImageView.frame = CGRect(x: (floatingButton?.normalImageView.frame.width)!/2 - 10, y: (floatingButton?.normalImageView.frame.height)!/2 - 10, width: 20, height: 20)
-		floatingButton?.pressedImageView.frame = CGRect(x: (floatingButton?.pressedImageView.frame.width)!/2 - 10, y: (floatingButton?.pressedImageView.frame.height)!/2 - 10, width: 20, height: 20)
-		floatingButton?.layer.cornerRadius  = 0.5 * ((floatingButton?.frame.width)!)
-		floatingButton?.layer.shadowColor = UIColor.black.cgColor
-		floatingButton?.layer.shadowOffset = CGSize.zero
-		floatingButton?.layer.shadowOpacity = 0.6
-		floatingButton?.layer.shadowRadius = 3
-		floatingButton?.backgroundColor = UIColor.red
-		floatingButton?.delegate = self
-		floatingButton?.hideWhileScrolling = true
-		
-		let optionsImages: [String] = ["create", "privateGroup", "RespondersIcon"]
-		let optionsTitles = [NSLocalizedString("group_create", value: "Create your own", comment: ""), NSLocalizedString("group_join_private", value: "Join Private Group", comment: ""), NSLocalizedString("group_join_public", value: "Join a Community", comment: "")]
-		floatingButton?.labelArray = optionsTitles
-		floatingButton?.imageArray = optionsImages
-		
-		self.view.addSubview(floatingButton!)
+        let buttonRect = CGRect(x: self.view.frame.width - 100, y: self.view.frame.height - 100, width: 65, height: 65)
+        let floatingButton = VCFloatingActionButton(frame: buttonRect, normalImage: UIImage(named: "plus"), andPressedImage: UIImage(named: "cross"), withScrollview: tblGroups)
+        floatingButton?.normalImageView.frame = CGRect(x: (floatingButton?.normalImageView.frame.width)!/2 - 10, y: (floatingButton?.normalImageView.frame.height)!/2 - 10, width: 20, height: 20)
+        floatingButton?.pressedImageView.frame = CGRect(x: (floatingButton?.pressedImageView.frame.width)!/2 - 10, y: (floatingButton?.pressedImageView.frame.height)!/2 - 10, width: 20, height: 20)
+        floatingButton?.layer.cornerRadius  = 0.5 * ((floatingButton?.frame.width)!)
+        floatingButton?.layer.shadowColor = UIColor.black.cgColor
+        floatingButton?.layer.shadowOffset = CGSize.zero
+        floatingButton?.layer.shadowOpacity = 0.6
+        floatingButton?.layer.shadowRadius = 3
+        floatingButton?.backgroundColor = UIColor.red
+        floatingButton?.delegate = self
+        floatingButton?.hideWhileScrolling = true
+
+        let optionsImages: [String] = ["create", "privateGroup", "RespondersIcon"]
+        let optionsTitles = [NSLocalizedString("group_create", value: "Create your own", comment: ""), NSLocalizedString("group_join_private", value: "Join Private Group", comment: ""), NSLocalizedString("group_join_public", value: "Join a Community", comment: "")]
+        floatingButton?.labelArray = optionsTitles
+        floatingButton?.imageArray = optionsImages
+
+        self.view.addSubview(floatingButton!)
 		
 		layoutNotificationTop.constant = -viewNotificationBar.frame.height
 		viewNotificationBar.layoutIfNeeded()

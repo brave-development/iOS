@@ -28,7 +28,6 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     var pendingPushNotifications = false // Tracks the button status. Dont send push if Panic isnt active.
     var allowAddToPushQue = true // Tracks if a push has been sent. Should not allow another push to be queued if false.
     var locationPermission = false
-    var tapGesture: UITapGestureRecognizer!
     var timer: Timer?
     
     @IBOutlet weak var viewNeedle: UIView!
@@ -36,7 +35,6 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     @IBOutlet weak var btnNeedle: UIButton!
     @IBOutlet weak var btnPanic: UIButton!
     @IBOutlet weak var background: UIImageView!
-    @IBOutlet weak var txtDetails: UITextView!
     @IBOutlet weak var lblResponders: UILabel!
     @IBOutlet weak var lblRespondersLabel: UILabel!
     
@@ -54,14 +52,8 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways) || (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse) {
         }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(updateActivePanics), name: NSNotification.Name(rawValue: "updatedActivePanics"), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(updateActivePanics), name: NSNotification.Name(rawValue: "updatedActivePanics"), object: nil)
         
-        tapGesture = UITapGestureRecognizer(target: self, action: #selector(resignKeyboard))
-        
-        txtDetails.backgroundColor = UIColor(white: 0, alpha: 0.2)
-        txtDetails.layer.cornerRadius = 5
-        txtDetails.delegate = self
-        txtDetails.alpha = 0.0
         lblResponders.alpha = 0.0
         lblRespondersLabel.alpha = 0.0
         
@@ -120,7 +112,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     @IBAction func panicPressed(_ sender: AnyObject) {
         mainViewController.closeSidebar()
         if tutorial.swipeToOpenMenu == true {
-            if (btnPanic.titleLabel?.text == NSLocalizedString("activate", value: "Activate", comment: "Button title to activate the Panic button")) {
+            if (btnPanic.titleLabel?.text == NSLocalizedString("activate", value: "Send Alert", comment: "Button title to activate the Panic button")) {
                 
                 if locationPermissionGranted() {
                     
@@ -158,7 +150,6 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
             self.viewMenuButton.isHidden = true
         })
         
-        background.addGestureRecognizer(tapGesture)
         panicHandler.panicIsActive = true
         mainViewController.panicIsActive = true
         manager.startUpdatingLocation()
@@ -180,8 +171,8 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     func activateWithBetaChanges() {
-        if global.isDESPilot {
-            
+//        if global.isDESPilot {
+        
             let appearance = SCLAlertView.SCLAppearance(
                 kTitleFont: UIFont(name: "HelveticaNeue", size: 20)!,
                 kTextFont: UIFont(name: "HelveticaNeue", size: 14)!,
@@ -213,14 +204,11 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
             }
             
             alert.showInfo("Details about the event", subTitle: "")
-            
-        } else {
+        
             UIView.animate(withDuration: 0.5, animations: {
-                self.txtDetails.alpha = 1.0
                 self.lblResponders.alpha = 1.0
                 self.lblRespondersLabel.alpha = 1.0
             })
-        }
     }
     
     func changeButtonStyle(to style: PanicButtonStyle) {
@@ -235,7 +223,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         case .deactivate:
             btnPanic.layer.borderColor = UIColor.green.cgColor
             btnPanic.layer.shadowColor = UIColor.green.cgColor
-            btnPanic.setTitle(NSLocalizedString("activate", value: "Activate", comment: "Button title to activate the Panic button"), for: UIControlState())
+            btnPanic.setTitle(NSLocalizedString("activate", value: "Send Alert", comment: "Button title to activate the Panic button"), for: UIControlState())
             break
             
         default: break
@@ -244,7 +232,6 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     func deativatePanic() {
         UIApplication.shared.isIdleTimerDisabled = false
-        background.removeGestureRecognizer(tapGesture)
         
         self.viewMenuButton.isHidden = false
         UIView.animate(withDuration: 0.3, animations: {
@@ -256,8 +243,6 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         mainViewController.panicIsActive = false
         global.getLocalHistory()
         
-        timer?.invalidate()
-        
         self.mainViewController.tabbarView.isUserInteractionEnabled = true
         UIView.animate(withDuration: 0.3, animations: {
             self.mainViewController.showTabbar() })
@@ -265,14 +250,6 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         panicHandler.endPanic()
         manager.stopUpdatingLocation()
         changeButtonStyle(to: .deactivate)
-        UIView.animate(withDuration: 0.5, animations: {
-            self.txtDetails.alpha = 0.0
-            self.lblResponders.alpha = 0.0
-            self.lblRespondersLabel.alpha = 0.0
-            self.lblResponders.text = "0"
-            self.txtDetails.text = ""
-        })
-        txtDetails.resignFirstResponder()
     }
     
     func buttonGlow() {
@@ -293,7 +270,12 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     func manageAutoDeactivation() {
-        if panicHandler.panicIsActive == false || global.isDESPilot == false { return }
+        if panicHandler.panicIsActive == false { return }
+        
+        if panicHandler.objectInUse == false {
+            Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(manageAutoDeactivation), userInfo: nil, repeats: false)
+            return
+        }
         
         if let accuracy = manager.location?.horizontalAccuracy {
             if accuracy < CLLocationAccuracy(100) && panicHandler.queryObject != nil {
@@ -339,15 +321,11 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         panicHandler.updateDetails(textView.text)
     }
     
-    func resignKeyboard() {
-        txtDetails.resignFirstResponder()
-    }
-    
-    func updateActivePanics() {
-        mainViewController.badge.autoBadgeSize(with: "\(panicHandler.activePanicCount)")
-        mainViewController.badge.isHidden = panicHandler.activePanicCount == 0
-        print("Updated Panic count from Main")
-    }
+//    func updateActivePanics() {
+//        mainViewController.badge.autoBadgeSize(with: "\(panicHandler.activePanicCount)")
+//        mainViewController.badge.isHidden = panicHandler.activePanicCount == 0
+//        print("Updated Panic count from Main")
+//    }
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updatedActivePanics"), object: nil)

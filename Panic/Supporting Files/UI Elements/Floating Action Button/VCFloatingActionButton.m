@@ -36,7 +36,7 @@ CGFloat buttonToScreenHeight;
         _buttonView = [[UIView alloc]initWithFrame:frame];
         _buttonView.backgroundColor = [UIColor clearColor];
         _buttonView.userInteractionEnabled = YES;
-
+        
         buttonToScreenHeight = SCREEN_HEIGHT - CGRectGetMaxY(self.frame);
         
         _menuTable = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/4, 0, 0.75*SCREEN_WIDTH,SCREEN_HEIGHT - (SCREEN_HEIGHT - CGRectGetMaxY(self.frame)) )];
@@ -54,7 +54,7 @@ CGFloat buttonToScreenHeight;
         previousOffset = scrView.contentOffset.y;
         
         bgScroller = scrView;
-
+        
         _pressedImage = activeImage;
         _normalImage = passiveImage;
         [self setupButton];
@@ -94,13 +94,13 @@ CGFloat buttonToScreenHeight;
     UIBlurEffect *blur = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     UIVisualEffectView *vsview = [[UIVisualEffectView alloc]initWithEffect:blur];
     
-
+    
     _bgView = [[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
     _bgView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.8];
     _bgView.alpha = 0;
     _bgView.userInteractionEnabled = YES;
     UITapGestureRecognizer *buttonTap2 = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
-
+    
     buttonTap2.cancelsTouchesInView = NO;
     vsview.frame = _bgView.bounds;
     _bgView = vsview;
@@ -108,14 +108,13 @@ CGFloat buttonToScreenHeight;
     
     
     _normalImageView = [[UIImageView alloc]initWithFrame:self.bounds];
-//	_normalImageView.frame = [CGRectMake(_normalImageView.frame.origin.x, _normalImageView.frame.origin.y, _normalImageView.frame.size.width - 20,  _normalImageView.frame.size.height - 20)]
     _normalImageView.userInteractionEnabled = YES;
     _normalImageView.contentMode = UIViewContentModeScaleAspectFit;
     _normalImageView.layer.shadowColor = [UIColor blackColor].CGColor;
     _normalImageView.layer.shadowRadius = 5.f;
     _normalImageView.layer.shadowOffset = CGSizeMake(-10, -10);
-
-
+    
+    
     
     _pressedImageView  = [[UIImageView alloc]initWithFrame:self.bounds];
     _pressedImageView.contentMode = UIViewContentModeScaleAspectFit;
@@ -125,18 +124,19 @@ CGFloat buttonToScreenHeight;
     _normalImageView.image = _normalImage;
     _pressedImageView.image = _pressedImage;
     
+    //crash fixed iOS11 - [_bgView addSubview:_menuTable];
+    [[(UIVisualEffectView *)_bgView contentView] addSubview:_menuTable];
     
-    [_bgView addSubview:_menuTable];
     
     [_buttonView addSubview:_pressedImageView];
     [_buttonView addSubview:_normalImageView];
     [self addSubview:_normalImageView];
-
+    
 }
 
 -(void)handleTap:(id)sender //Show Menu
 {
-
+    
     
     if (_isMenuVisible)
     {
@@ -171,21 +171,21 @@ CGFloat buttonToScreenHeight;
      {
          self.bgView.alpha = 1;
          
-        
+         
          self.normalImageView.transform = CGAffineTransformMakeRotation(-M_PI);
          self.normalImageView.alpha = 0.0; //0.7
-
+         
          
          self.pressedImageView.transform = CGAffineTransformIdentity;
          self.pressedImageView.alpha = 1;
          noOfRows = _labelArray.count;
          [_menuTable reloadData];
-
+         
      }
-         completion:^(BOOL finished)
+                     completion:^(BOOL finished)
      {
      }];
-
+    
 }
 
 -(void) dismissMenu:(id) sender
@@ -253,8 +253,8 @@ CGFloat buttonToScreenHeight;
     if ([keyPath isEqualToString:@"contentOffset"])
     {
         
-//        NSLog(@"%f",bgScroller.contentOffset.y);
-		
+        NSLog(@"%f",bgScroller.contentOffset.y);
+        
         CGFloat diff = previousOffset - bgScroller.contentOffset.y;
         
         if (ABS(diff) > 15)
@@ -271,7 +271,7 @@ CGFloat buttonToScreenHeight;
             
             
         }
-
+        
     }
 }
 
@@ -302,34 +302,34 @@ CGFloat buttonToScreenHeight;
     
     //KeyFrame animation
     
-//    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"position.y"];
-//    anim.fromValue = @((indexPath.row+1)*CGRectGetHeight(cell.imgView.frame)*-1);
-//    anim.toValue   = @(cell.frame.origin.y);
-//    anim.duration  = animationTime/2;
-//    anim.timingFunction = [CAMediaTimingFunction  functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-//    [cell.layer addAnimation:anim forKey:@"position.y"];
+    //    CABasicAnimation *anim = [CABasicAnimation animationWithKeyPath:@"position.y"];
+    //    anim.fromValue = @((indexPath.row+1)*CGRectGetHeight(cell.imgView.frame)*-1);
+    //    anim.toValue   = @(cell.frame.origin.y);
+    //    anim.duration  = animationTime/2;
+    //    anim.timingFunction = [CAMediaTimingFunction  functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    //    [cell.layer addAnimation:anim forKey:@"position.y"];
     
     
     
     
     double delay = (indexPath.row*indexPath.row) * 0.004;  //Quadratic time function for progressive delay
-
-
+    
+    
     CGAffineTransform scaleTransform = CGAffineTransformMakeScale(0.95, 0.95);
     CGAffineTransform translationTransform = CGAffineTransformMakeTranslation(0,-(indexPath.row+1)*CGRectGetHeight(cell.imgView.frame));
     cell.transform = CGAffineTransformConcat(scaleTransform, translationTransform);
     cell.alpha = 0.f;
     
     [UIView animateWithDuration:animationTime/2 delay:delay options:UIViewAnimationOptionCurveEaseOut animations:^
-    {
-        
-        cell.transform = CGAffineTransformIdentity;
-        cell.alpha = 1.f;
-        
-    } completion:^(BOOL finished)
-    {
-        
-    }];
+     {
+         
+         cell.transform = CGAffineTransformIdentity;
+         cell.alpha = 1.f;
+         
+     } completion:^(BOOL finished)
+     {
+         
+     }];
     
 }
 
@@ -343,22 +343,22 @@ CGFloat buttonToScreenHeight;
         cell = [_menuTable dequeueReusableCellWithIdentifier:identifier];
     }
     
-//    NSLog(@"%@",[_menuItemSet allKeys]);
-//    NSLog(@"%@",[_menuItemSet allValues]);
+    //    NSLog(@"%@",[_menuItemSet allKeys]);
+    //    NSLog(@"%@",[_menuItemSet allValues]);
     
-//    cell.imgView.image = [UIImage imageNamed:[[_menuItemSet allKeys]objectAtIndex:indexPath.row]];
-//        cell.title.text = [[_menuItemSet allValues]objectAtIndex:indexPath.row];
-	
+    //    cell.imgView.image = [UIImage imageNamed:[[_menuItemSet allKeys]objectAtIndex:indexPath.row]];
+    //        cell.title.text = [[_menuItemSet allValues]objectAtIndex:indexPath.row];
+    
     cell.imgView.image = [UIImage imageNamed:[_imageArray objectAtIndex:indexPath.row]];
     cell.title.text    = [_labelArray objectAtIndex:indexPath.row];
-
+    
     
     return cell;
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    NSLog(@"selected CEll: %tu",indexPath.row);
+    //    NSLog(@"selected CEll: %tu",indexPath.row);
     [delegate didSelectMenuOptionAtIndex:indexPath.row];
     
 }

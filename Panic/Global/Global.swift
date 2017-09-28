@@ -21,7 +21,6 @@ extension String {
 			finalString = finalString.replacingOccurrences(of: String(char), with: "")
 		}
 		return finalString
-//		return String(filter(self) {find(chars, $0) == nil})
 	}
 	
 	func formatGroupForChannel() -> String {
@@ -61,20 +60,20 @@ class Global: UIViewController {
         return nil
     }
     
-    var isDESPilot: Bool {
-        if betaID == "DTES" {
-            groupsHandler.addBetaGroup(objectId: "Z7rmGeDACV")
-        }
+    var isDESPilot: Bool { return betaID == "DTES" }
+    
+    var isPilot: Bool {
+        if betaID == "DTES" { return true }
+        if betaID == "Testing" { return true }
+        if betaID == "Feedback" { return true }
         
-        if betaID == "Testing" {
-            groupsHandler.addBetaGroup(objectId: "WwfXIFOeud")
-        }
-        
-        if betaID == "Feedback" {
-            groupsHandler.addBetaGroup(objectId: "O9K1RsGfto")
-        }
-        
-        return true
+        return false
+    }
+    
+    func joinPilotGroup() {
+        if betaID == "DTES" { groupsHandler.addBetaGroup(objectId: "Z7rmGeDACV") }
+        if betaID == "Testing" { groupsHandler.addBetaGroup(objectId: "WwfXIFOeud") }
+        if betaID == "Feedback" { groupsHandler.addBetaGroup(objectId: "O9K1RsGfto") }
     }
 	
     func getUserInformation(callingVC: AnyObject) -> Bool {
@@ -99,6 +98,7 @@ class Global: UIViewController {
                 showAlert("No internet", message: "Although you have been logged in, an internet connection cannot be established. Please note this will have negative effects on the Panic system. If you activate Panic, it will continue to try connect, but success cannot be guaranteed")
             }
             tutorial.load()
+            joinPilotGroup()
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController

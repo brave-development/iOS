@@ -13,6 +13,8 @@ import CoreLocation
 import FacebookCore
 import ParseFacebookUtilsV4
 import SCLAlertView
+import Alamofire
+import SwiftyJSON
 
 // FIXME: comparison operators with optionals were removed from the Swift Standard Libary.
 // Consider refactoring the code to use the non-optional operators.
@@ -39,6 +41,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     @IBOutlet weak var switchPanicConfirmation: UISwitch!
 	@IBOutlet weak var switchBackgroundUpdate: UISwitch!
     @IBOutlet weak var switchAllowNotifications: UISwitch!
+    @IBOutlet weak var switchNewsletter: UISwitch!
     @IBOutlet weak var btnCountry: UIButton!
     
     var mainViewController : MainViewController!
@@ -46,6 +49,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     var currentlySelectedTextFieldValue = ""
     var newPassword : String?
 	var mail: MFMailComposeViewController!
+    var newsletterToggleChanged = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +93,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     }
     
 	override func viewDidAppear(_ animated: Bool) {
+        checkSubStatus()
 		if let country = PFUser.current()!["country"] as? String {
 			if btnCountry.titleLabel?.text != country {
                 if country != "" {
@@ -150,6 +155,12 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     @IBAction func showNotificationsInformation(_ sender: Any) {
         global.showAlert(NSLocalizedString("allow_notifications_info_title", value: "Allow Notifications", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Allowing notifications means this device will recieve a notification when someone activates the alert button. If you disable this, you will not be notified when someone needs help.\n\nPlease keep in mind how you might feel when you're in need of help and someone has this deactivated.", comment: ""))
     }
+    
+    @IBAction func toggleNewsletterSub(_ sender: Any) {
+        newsletterToggleChanged = true
+        changed = true
+    }
+    
     
 	@IBAction func reportBug(_ sender: AnyObject) {
 		mail = MFMailComposeViewController()
@@ -309,6 +320,11 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
             
             // YES
             saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
+                
+                if self.newsletterToggleChanged {
+                    self.updateNewsLetterSub()
+                }
+                
                 PFInstallation.current()?.setValue(self.switchAllowNotifications.isOn, forKey: "allowNotifications")
                 PFInstallation.current()?.saveInBackground()
                 
@@ -347,6 +363,48 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
             
             // PRESENT
             present(saveAlert, animated: true, completion: nil)
+        }
+    }
+    
+    func checkSubStatus() {
+        let emailHashed = PFUser.current()!.email!.md5String
+        
+        let url: URLConvertible = "https://us3.api.mailchimp.com/3.0/lists/ee9ec9ef13/members/\(emailHashed)"
+        
+        let headers : HTTPHeaders = [
+            "Authorization" : "Basic YmxhaDo4ODhlNzFiYmVlMmQyOTUzOTJhNjc3ODBjMjE2ZDg4MC11czM="
+        ]
+        
+        Alamofire.request(url ,method: .get, headers: headers).responseJSON {
+            response in
+            let json = JSON(response.value)
+            
+            if let status = json["status"].string {
+                if status == "subscribed" {
+                    self.switchNewsletter.setOn(true, animated: true)
+                } else {
+                    self.switchNewsletter.setOn(false, animated: true)
+                }
+            }
+        }
+    }
+    
+    func updateNewsLetterSub() {
+        let emailHashed = PFUser.current()!.email!.md5String
+        
+        let url: URLConvertible = "https://us3.api.mailchimp.com/3.0/lists/ee9ec9ef13/members/\(emailHashed)"
+        
+        let headers : HTTPHeaders = [
+            "Authorization" : "Basic YmxhaDo4ODhlNzFiYmVlMmQyOTUzOTJhNjc3ODBjMjE2ZDg4MC11czM="
+        ]
+        
+        let params : Parameters = [
+            "status" : switchNewsletter.isOn ? "subscribed" : "unsubscribed"
+        ]
+        
+        Alamofire.request(url ,method: .patch, parameters: params, encoding: JSONEncoding.default, headers: headers).responseJSON {
+            response in
+            debugPrint(response)
         }
     }
 
