@@ -30,7 +30,7 @@ class PanicHandler: UIViewController {
         if updating == false && queryObject == nil {
             print("BEGIN")
             updating = true
-			panicIsActive = true //
+			panicIsActive = true
             queryObject = PFObject(className: "Panics")
             queryObject["user"] = PFUser.current()
             queryObject["location"] = PFGeoPoint(location: location)
@@ -65,11 +65,9 @@ class PanicHandler: UIViewController {
                 queryObject.saveInBackground(block: {
                     (result, error) in
                     print("updatePanic - saveInBackground")
-                    if result == true {
-                        self.updating = false
-                    } else if error != nil {
+                    self.updating = false
+                    if error != nil {
                         global.showAlert(NSLocalizedString("error_updating_location_title", value: "Error updating location", comment: ""), message: "\(error!.localizedDescription)\n" + NSLocalizedString("error_updating_location_text", value: "Will try again in a few seconds", comment: ""))
-                        self.updating = false
                     }
                 })
             }
@@ -140,9 +138,8 @@ class PanicHandler: UIViewController {
         print("END")
 		if paused == false { panicIsActive = false }
         query.cancel()
-		timer?.invalidate()
+//        timer?.invalidate()
         if queryObject != nil {
-//            if !global.isDESPilot { queryObject["active"] = false }
             queryObject.saveInBackground(block: {
                 (result, error) in
                 if error == nil {
@@ -160,10 +157,10 @@ class PanicHandler: UIViewController {
     }
     
     func sendNotifications() {
-        if queryObject?.objectId != nil {
+        if lastQueryObjectId != nil {
             NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
             PFCloud.callFunction(inBackground: "pushFromId", withParameters: [
-                "objectId" : queryObject.objectId!,
+                "objectId" : lastQueryObjectId!,
                 "installationId" : PFInstallation.current()!.objectId!
             ] ) {
                 response, error in

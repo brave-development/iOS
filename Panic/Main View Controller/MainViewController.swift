@@ -316,7 +316,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 		let message = global.notificationDictionary?["aps"]["alert"].stringValue
 		let alertController = UIAlertController(title: NSLocalizedString("someone_needs_help", value: "Someone needs help", comment: "Popup which shows when someone else activates and the current user is busy within the app"), message: message, preferredStyle: .alert)
 		
-		let cancelAction = UIAlertAction(title: NSLocalizedString("dont_respond", value: "Dont respond", comment: ""), style: .cancel) { (action) in
+		let cancelAction = UIAlertAction(title: NSLocalizedString("dont_respond", value: "Not Now", comment: ""), style: .cancel) { (action) in
 			global.notificationDictionary = [:]
 			global.openedViaNotification = false
 		}

@@ -137,9 +137,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         if (panicHandler.panicIsActive == false && !userInfo.isEmpty) {
-            if ( application.applicationState == UIApplicationState.inactive || application.applicationState == UIApplicationState.background  )
-            {
-                //opened from a push notification when the app was on background
+            if ( application.applicationState == UIApplicationState.inactive || application.applicationState == UIApplicationState.background  ) {
+                //opened from a push notification when the app was in background
                 print("Got notif userInfo - \(userInfo)")
                 if userInfo["lat"] != nil {
                     print("Should open map")

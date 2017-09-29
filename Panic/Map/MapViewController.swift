@@ -15,6 +15,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     var do_centerMapLocation = 0
     var do_locationError = 0
+    var do_openNotificationPin = 0
     
     @IBOutlet weak var map: MKMapView!
 	
@@ -70,7 +71,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			locationPermission = true
 		}
 		
-		let theSpan: MKCoordinateSpan = MKCoordinateSpanMake(0.5, 0.5)
+		let theSpan: MKCoordinateSpan = MKCoordinateSpanMake(0.3, 0.3)
 		var theRegion: MKCoordinateRegion!
 		if global.openedViaNotification == true {
 			let lat = global.notificationDictionary!["lat"].doubleValue
@@ -81,6 +82,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
                 map.setRegion(theRegion, animated: true)
                 do_centerMapLocation = 1
             }
+            
+            do_openNotificationPin = 1
+            global.openedViaNotification = false
             
 		} else {
 			theRegion = MKCoordinateRegionMake(CLLocationCoordinate2DMake(-33.9206605, 18.424724), theSpan)
@@ -212,6 +216,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 		
 		for (_, anno) in liveDict {
 			map.addAnnotation(anno)
+            
+            if do_openNotificationPin == 1 {
+                if anno.id == global.notificationDictionary?["objectId"].string {
+                    map.selectAnnotation(anno as! MKAnnotation, animated: false)
+                    showDetailsView()
+                    do_openNotificationPin = 0
+                }
+            }
 		}
 	}
 	

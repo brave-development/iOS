@@ -239,7 +239,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         })
         
         panicHandler.panicIsActive = false
-        pendingPushNotifications = false
+//        pendingPushNotifications = false
         mainViewController.panicIsActive = false
         global.getLocalHistory()
         
@@ -272,7 +272,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     func manageAutoDeactivation() {
         if panicHandler.panicIsActive == false { return }
         
-        if panicHandler.objectInUse == false {
+        if panicHandler.updating == true {
             Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(manageAutoDeactivation), userInfo: nil, repeats: false)
             return
         }
