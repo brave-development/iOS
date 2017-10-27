@@ -134,39 +134,26 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
 	
     func getVictims() {
-        panicHandler.getActiveAlerts()
 		print("Getting victims from mapViewController")
-		if queryPanicsIsActive == false {
-			queryPanics.cancel()
-			queryPanics.whereKey("active", equalTo: true)
-			queryPanics.includeKey("user")
-			queryPanics.findObjectsInBackground(block: {
-				(objects, error) in
-				self.queryPanicsIsActive = true
-				if error == nil {
-					self.victimDetails = [:]
-					for object in objects! {
-                        self.victimDetails[object.objectId!] = object
-					}
-					self.updateAnnotations()
-				} else {
-                    global.showAlert("Could not get the list of Panics", message: NSLocalizedString("could_not_get_panic_history", value: "Could not get the list of Panics. Please check your internet connection and try again", comment: ""))
-				}
-				self.queryPanicsIsActive = false
-			})
-		}
-		
-        // CHANGE TO 30 SECONDS BEFORE RELEASE.........
-		
-        if viewIsActive == true {
-            timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(getVictims), userInfo: nil, repeats: false)
-        } else if viewIsActive == false {
-            manager.stopUpdatingLocation()
-            manager.delegate = nil
-            map.delegate = nil
-            print("Disabled timer")
-            timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(freeMem), userInfo: nil, repeats: false)
-        }
+        panicHandler.getActivePanics(completion: {
+            objects in
+            
+            self.victimDetails = [:]
+            for object in objects {
+                self.victimDetails[object.objectId!] = object
+            }
+            self.updateAnnotations()
+            
+            if self.viewIsActive == true {
+                self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.getVictims), userInfo: nil, repeats: false)
+            } else if self.viewIsActive == false {
+                self.manager.stopUpdatingLocation()
+                self.manager.delegate = nil
+                self.map.delegate = nil
+                print("Disabled timer")
+                self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.freeMem), userInfo: nil, repeats: false)
+            }
+        })
     }
     
     // Updating annotations

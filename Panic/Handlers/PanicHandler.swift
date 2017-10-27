@@ -94,43 +94,6 @@ class PanicHandler: UIViewController {
         }
     }
     
-    func getActiveAlerts() {
-        
-        var groups : [[String : Any]] = []
-        
-        for (_, group) in groupsHandler.joinedGroupsObject {
-            groups.append(buildGroupPointer(objectId: group.objectId!))
-        }
-        
-        
-        PFCloud.callFunction(inBackground: "getActiveAlerts", withParameters: [
-            "groups" : groups
-        ] ) {
-            response, error in
-            
-            print(response)
-        }
-        
-        
-//
-//        let url = "https://panicing-turtle.herokuapp.com/parse/functions/getActiveAlerts"
-//
-//        let headers : HTTPHeaders = [
-//            "X-Parse-Application-Id" : "PANICING-TURTLE",
-//            "X-Parse-REST-API-Key" : "PANICINGTURTLE3847TR386TB281XN1NY7YNXM",
-//            "Content-Type" : "application/json"
-//        ]
-//
-//        let body : Parameters = [ "groups" : groups ]
-//
-//        Alamofire.request(url ,method: .post, parameters: body, encoding: JSONEncoding.default, headers: headers).responseJSON {
-//            response in
-//
-//            print("Got all active Alerts ..... oiwejfoiwefj")
-//            debugPrint(response)
-//        }
-    }
-    
     func buildGroupPointer(objectId : String) -> Parameters {
         return [
             "__type": "Pointer",
@@ -260,21 +223,43 @@ class PanicHandler: UIViewController {
     }
     
     // Get active panics, count them and show the number on the tabbar
-    func getActivePanics() {
-        print("Getting victims from mapViewController")
-        let queryPanics = PFQuery(className: "Panics")
-        queryPanics.whereKey("active", equalTo: true)
-        queryPanics.findObjectsInBackground(block: {
-            (objects, error) in
-            if objects != nil {
-                DispatchQueue.main.async(execute: {
-                    self.activePanicCount = objects!.count
-                    NotificationCenter.default.post(NSNotification(name: NSNotification.Name(rawValue: "updatedActivePanics"), object: nil) as Notification)
-                })
+    func getActivePanics(completion: @escaping ([PFObject])->Void) {
+        var groups : [[String : Any]] = []
+        
+        for (_, group) in groupsHandler.joinedGroupsObject {
+            groups.append(buildGroupPointer(objectId: group.objectId!))
+        }
+        
+        PFCloud.callFunction(inBackground: "getActiveAlerts", withParameters: [ "groups" : groups ] ) {
+            response, error in
+            
+            if let objects = response as? [PFObject] {
+                var alerts : [PFObject] = []
+                
+                for object in objects {
+                    (object["panic"] as! PFObject).setObject(object["user"], forKey: "user")
+                    alerts.append(object["panic"] as! PFObject)
+                }
+                completion(alerts)
             } else {
-                self.activePanicCount = 0
+                completion([])
             }
-            self.getActivePanicsTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.getActivePanics), userInfo: nil, repeats: false)
-        })
+        }
+        
+//        print("Getting victims from mapViewController")
+//        let queryPanics = PFQuery(className: "Panics")
+//        queryPanics.whereKey("active", equalTo: true)
+//        queryPanics.findObjectsInBackground(block: {
+//            (objects, error) in
+//            if objects != nil {
+//                DispatchQueue.main.async(execute: {
+//                    self.activePanicCount = objects!.count
+//                    NotificationCenter.default.post(NSNotification(name: NSNotification.Name(rawValue: "updatedActivePanics"), object: nil) as Notification)
+//                })
+//            } else {
+//                self.activePanicCount = 0
+//            }
+//            self.getActivePanicsTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.getActivePanics), userInfo: nil, repeats: false)
+//        })
     }
 }
