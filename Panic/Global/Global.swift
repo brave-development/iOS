@@ -36,6 +36,14 @@ extension String {
 	}
 }
 
+extension Dictionary {
+    mutating func combine(other:Dictionary) {
+        for (key,value) in other {
+            self.updateValue(value, forKey:key)
+        }
+    }
+}
+
 class Global: UIViewController {
 	
 	var victimInformation : [String : [String]] = [:]

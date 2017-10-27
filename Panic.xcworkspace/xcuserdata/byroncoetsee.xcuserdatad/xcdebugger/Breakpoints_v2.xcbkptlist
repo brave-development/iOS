@@ -26,7 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.321464"
+            timestampString = "529448241.690377"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "91"
@@ -42,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.321575"
+            timestampString = "529448241.690449"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
@@ -58,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Global/AppDelegate.swift"
-            timestampString = "528397245.321654"
+            timestampString = "530812997.00563"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "134"
-            endingLineNumber = "134"
+            startingLineNumber = "135"
+            endingLineNumber = "135"
             landmarkName = "application(_:didRegisterForRemoteNotificationsWithDeviceToken:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -202,13 +202,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Global/Global.swift"
-            timestampString = "528298342.584258"
+            timestampString = "530812997.005922"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "340"
-            endingLineNumber = "340"
-            landmarkName = "Global"
-            landmarkType = "3">
+            startingLineNumber = "348"
+            endingLineNumber = "348"
+            landmarkName = "didChangeAuthStatus(_:status:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -218,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.627416"
+            timestampString = "530714619.649043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "86"
@@ -234,12 +234,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.321948"
+            timestampString = "530812997.006018"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "162"
-            endingLineNumber = "162"
-            landmarkName = "sendNotifications()"
+            startingLineNumber = "247"
+            endingLineNumber = "247"
+            landmarkName = "endPanic(_:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -282,12 +282,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.322691"
+            timestampString = "530812997.006795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "169"
-            endingLineNumber = "169"
-            landmarkName = "sendNotifications()"
+            startingLineNumber = "254"
+            endingLineNumber = "254"
+            landmarkName = "endPanic(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -298,12 +298,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.323273"
+            timestampString = "530812997.00742"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
-            landmarkName = "sendNotifications()"
+            startingLineNumber = "250"
+            endingLineNumber = "250"
+            landmarkName = "endPanic(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -314,11 +314,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Global/AppDelegate.swift"
-            timestampString = "528397245.323857"
+            timestampString = "530812997.008022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "application(_:didReceiveRemoteNotification:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -346,11 +346,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Login_Register/Login/LoginViewController.swift"
-            timestampString = "523039369.640219"
+            timestampString = "530812997.008111"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "262"
-            endingLineNumber = "262"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
             landmarkName = "getFBUserData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -426,12 +426,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Global/Global.swift"
-            timestampString = "528298342.584895"
+            timestampString = "530812997.00824"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "130"
-            endingLineNumber = "130"
-            landmarkName = "getVictimInformation(_:)"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
+            landmarkName = "getUserInformation(callingVC:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -442,13 +442,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Global/Global.swift"
-            timestampString = "528298342.585221"
+            timestampString = "530812997.008292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "132"
-            endingLineNumber = "132"
-            landmarkName = "getVictimInformation(_:)"
-            landmarkType = "7">
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "Global"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -458,11 +458,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Global/Global.swift"
-            timestampString = "528298342.585533"
+            timestampString = "530812997.008342"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
+            startingLineNumber = "144"
+            endingLineNumber = "144"
             landmarkName = "getVictimInformation(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -490,7 +490,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Login_Register/Login/LoginViewController.swift"
-            timestampString = "523039369.640219"
+            timestampString = "530812997.008434"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "187"
@@ -506,7 +506,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Login_Register/Login/LoginViewController.swift"
-            timestampString = "523038806.566024"
+            timestampString = "530812997.008491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "99"
@@ -522,7 +522,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Login_Register/Login/LoginViewController.swift"
-            timestampString = "523038806.566024"
+            timestampString = "530812997.008543"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
@@ -586,7 +586,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.324228"
+            timestampString = "529448241.691833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "438"
@@ -634,11 +634,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.324376"
+            timestampString = "530812997.008714"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "232"
-            endingLineNumber = "232"
+            startingLineNumber = "233"
+            endingLineNumber = "233"
             landmarkName = "mapView(_:didSelect:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -650,11 +650,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.324479"
+            timestampString = "530812997.008769"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "195"
-            endingLineNumber = "195"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
             landmarkName = "addAnnotations(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -666,11 +666,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.324589"
+            timestampString = "530812997.008833"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "200"
-            endingLineNumber = "200"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
             landmarkName = "addAnnotations(_:)"
             landmarkType = "7">
             <Locations>
@@ -714,11 +714,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.324683"
+            timestampString = "530812997.008885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "getAddress()"
             landmarkType = "7">
             <Locations>
@@ -762,11 +762,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.324757"
+            timestampString = "530812997.008935"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
+            startingLineNumber = "241"
+            endingLineNumber = "241"
             landmarkName = "mapView(_:viewFor:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -778,11 +778,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.324834"
+            timestampString = "530812997.008985"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "241"
-            endingLineNumber = "241"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
             landmarkName = "mapView(_:viewFor:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -906,7 +906,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Groups/GroupsViewController.swift"
-            timestampString = "528296246.631648"
+            timestampString = "530712303.386618"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "102"
@@ -1098,7 +1098,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Groups/GroupsViewController.swift"
-            timestampString = "528296246.632574"
+            timestampString = "530712303.387562"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "212"
@@ -1114,7 +1114,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Groups/GroupsViewController.swift"
-            timestampString = "528296246.632903"
+            timestampString = "530712303.38808"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "94"
@@ -1210,7 +1210,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/GroupsHandler_2.swift"
-            timestampString = "528397245.325524"
+            timestampString = "530712514.400821"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "47"
@@ -1226,7 +1226,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Groups/GroupsViewController.swift"
-            timestampString = "528296246.633441"
+            timestampString = "530712303.388679"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "184"
@@ -1242,7 +1242,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Groups/GroupsViewController.swift"
-            timestampString = "528296246.633692"
+            timestampString = "530712303.389177"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "104"
@@ -1290,7 +1290,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/GroupsHandler_2.swift"
-            timestampString = "528397245.325701"
+            timestampString = "530712514.401491"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "85"
@@ -1306,7 +1306,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.634099"
+            timestampString = "530714619.652517"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "223"
@@ -1322,11 +1322,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Login_Register/Login/LoginViewController.swift"
-            timestampString = "523039369.640219"
+            timestampString = "530812997.009822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "275"
-            endingLineNumber = "275"
+            startingLineNumber = "277"
+            endingLineNumber = "277"
             landmarkName = "getFBUserData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1338,11 +1338,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Login_Register/Login/LoginViewController.swift"
-            timestampString = "523039369.640219"
+            timestampString = "530812997.009877"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "266"
-            endingLineNumber = "266"
+            startingLineNumber = "268"
+            endingLineNumber = "268"
             landmarkName = "getFBUserData()"
             landmarkType = "7">
          </BreakpointContent>
@@ -1354,7 +1354,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.32589"
+            timestampString = "529448241.693001"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "74"
@@ -1370,7 +1370,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.325981"
+            timestampString = "529448241.693061"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "75"
@@ -1386,7 +1386,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.326088"
+            timestampString = "529448241.693118"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "299"
@@ -1402,13 +1402,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.326169"
+            timestampString = "530812997.010015"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "160"
-            endingLineNumber = "160"
-            landmarkName = "sendNotifications()"
-            landmarkType = "7">
+            startingLineNumber = "245"
+            endingLineNumber = "245"
+            landmarkName = "PanicHandler"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -1418,7 +1418,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.326811"
+            timestampString = "529448241.693241"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "187"
@@ -1434,7 +1434,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Global/AppDelegate.swift"
-            timestampString = "528397245.326922"
+            timestampString = "530812997.010671"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "66"
@@ -1450,7 +1450,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.327007"
+            timestampString = "529448241.693603"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "164"
@@ -1466,12 +1466,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.327101"
+            timestampString = "530812997.010754"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "168"
-            endingLineNumber = "168"
-            landmarkName = "sendNotifications()"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
+            landmarkName = "endPanic(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -1482,11 +1482,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.32772"
+            timestampString = "530812997.011353"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "40"
-            endingLineNumber = "40"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
             landmarkName = "beginPanic(_:)"
             landmarkType = "7">
             <Locations>
@@ -1530,11 +1530,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.328335"
+            timestampString = "530812997.011947"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
             landmarkName = "beginPanic(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -1546,7 +1546,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Global/AppDelegate.swift"
-            timestampString = "528397245.32891"
+            timestampString = "530812997.012534"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "64"
@@ -1562,7 +1562,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.329002"
+            timestampString = "529448241.694117"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "211"
@@ -1578,7 +1578,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.329117"
+            timestampString = "529448241.694171"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "219"
@@ -1594,7 +1594,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.329192"
+            timestampString = "529448241.694223"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "216"
@@ -1642,7 +1642,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.329287"
+            timestampString = "529448241.694274"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "204"
@@ -2138,7 +2138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Login_Register/Login/LoginViewController.swift"
-            timestampString = "523038806.566024"
+            timestampString = "530812997.013412"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "62"
@@ -2154,7 +2154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Login_Register/Login/LoginViewController.swift"
-            timestampString = "523038806.566024"
+            timestampString = "530812997.013472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "63"
@@ -2170,7 +2170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.640044"
+            timestampString = "530714619.656167"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "342"
@@ -2186,7 +2186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.640271"
+            timestampString = "530714619.656219"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "335"
@@ -2202,7 +2202,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.640493"
+            timestampString = "530714619.65627"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "337"
@@ -2218,7 +2218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.640709"
+            timestampString = "530714619.656321"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "339"
@@ -2298,12 +2298,12 @@
                   moduleName = "Brave"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic%20(Github)/Panic/Login_Register/Register/Reg_Done_VC.swift"
-                  timestampString = "528397245.588411"
+                  timestampString = "530812998.069523"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "90"
                   endingLineNumber = "90"
-                  offsetFromSymbolStart = "166">
+                  offsetFromSymbolStart = "180">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -2313,12 +2313,12 @@
                   moduleName = "Brave"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic%20(Github)/Panic/Login_Register/Register/Reg_Done_VC.swift"
-                  timestampString = "528397245.591616"
+                  timestampString = "530812998.072551"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "92"
                   endingLineNumber = "92"
-                  offsetFromSymbolStart = "42">
+                  offsetFromSymbolStart = "40">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -2496,7 +2496,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.330288"
+            timestampString = "530812997.014046"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "54"
@@ -2512,7 +2512,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.330367"
+            timestampString = "530812997.0141"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "55"
@@ -2528,11 +2528,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.330456"
+            timestampString = "530812997.01415"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "455"
-            endingLineNumber = "455"
+            startingLineNumber = "456"
+            endingLineNumber = "456"
             landmarkName = "locationAllowed()"
             landmarkType = "7">
          </BreakpointContent>
@@ -2544,27 +2544,27 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.330567"
+            timestampString = "530812997.014201"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "454"
+            endingLineNumber = "454"
+            landmarkName = "locationAllowed()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Panic/Map/MapViewController.swift"
+            timestampString = "530812997.014251"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "453"
             endingLineNumber = "453"
-            landmarkName = "locationAllowed()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.330641"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "452"
-            endingLineNumber = "452"
             landmarkName = "MapViewController"
             landmarkType = "3">
          </BreakpointContent>
@@ -2576,7 +2576,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.330736"
+            timestampString = "530812997.0143"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "115"
@@ -2624,7 +2624,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.330846"
+            timestampString = "530812997.014351"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "118"
@@ -2640,7 +2640,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.330924"
+            timestampString = "530812997.014402"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "123"
@@ -2656,7 +2656,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.331013"
+            timestampString = "530812997.014452"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "133"
@@ -2928,12 +2928,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.331396"
+            timestampString = "530812997.014878"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "updateDetails(_:)"
+            startingLineNumber = "170"
+            endingLineNumber = "170"
+            landmarkName = "updatePanic(_:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -2976,12 +2976,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.331993"
+            timestampString = "530812997.015499"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "87"
-            endingLineNumber = "87"
-            landmarkName = "updateDetails(_:)"
+            startingLineNumber = "172"
+            endingLineNumber = "172"
+            landmarkName = "updatePanic(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -2992,7 +2992,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/GroupsHandler_2.swift"
-            timestampString = "528397245.332582"
+            timestampString = "530712514.40405"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "178"
@@ -3008,7 +3008,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/GroupsHandler_2.swift"
-            timestampString = "528397245.332655"
+            timestampString = "530712514.404472"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "172"
@@ -3024,7 +3024,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/GroupsHandler_2.swift"
-            timestampString = "528397245.332742"
+            timestampString = "530712514.404885"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"
@@ -3072,7 +3072,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/GroupsHandler_2.swift"
-            timestampString = "528397245.332916"
+            timestampString = "530712514.405347"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "182"
@@ -3088,44 +3088,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.332988"
+            timestampString = "530812997.016292"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "updateDetails(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.333593"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "updateDetails(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.334226"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "155"
-            endingLineNumber = "155"
-            landmarkName = "clearPanic()"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
+            landmarkName = "resumePanic()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3136,7 +3104,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.334778"
+            timestampString = "529448241.696397"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "280"
@@ -3152,7 +3120,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.334854"
+            timestampString = "529448241.69645"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "273"
@@ -3168,7 +3136,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.334926"
+            timestampString = "529448241.696504"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "159"
@@ -3184,7 +3152,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.334997"
+            timestampString = "529448241.696557"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "128"
@@ -3200,7 +3168,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.335067"
+            timestampString = "529448241.696609"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "132"
@@ -3216,7 +3184,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.335138"
+            timestampString = "529448241.696663"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "254"
@@ -3232,7 +3200,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.335208"
+            timestampString = "529448241.696722"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "268"
@@ -3248,7 +3216,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.335276"
+            timestampString = "529448241.696961"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "290"
@@ -3264,7 +3232,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.335344"
+            timestampString = "529448241.697182"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "294"
@@ -3280,7 +3248,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.335412"
+            timestampString = "529448241.697322"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "295"
@@ -3296,7 +3264,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.335479"
+            timestampString = "529448241.697457"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "158"
@@ -3312,7 +3280,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Groups/GroupsViewController.swift"
-            timestampString = "528296246.651748"
+            timestampString = "530712303.392349"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "203"
@@ -3328,7 +3296,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.33557"
+            timestampString = "529448241.69766"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "281"
@@ -3344,7 +3312,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.33564"
+            timestampString = "529448241.697801"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "282"
@@ -3392,7 +3360,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/GroupsHandler_2.swift"
-            timestampString = "528397245.335711"
+            timestampString = "530712514.406167"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "81"
@@ -3440,13 +3408,13 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Global/Global.swift"
-            timestampString = "528298342.589183"
+            timestampString = "530812997.017326"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "76"
-            endingLineNumber = "76"
-            landmarkName = "joinPilotGroup()"
-            landmarkType = "7">
+            startingLineNumber = "84"
+            endingLineNumber = "84"
+            landmarkName = "isPilot"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -3456,11 +3424,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Global/Global.swift"
-            timestampString = "528298342.589507"
+            timestampString = "530812997.01738"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "102"
-            endingLineNumber = "102"
+            startingLineNumber = "110"
+            endingLineNumber = "110"
             landmarkName = "getUserInformation(callingVC:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3472,7 +3440,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/GroupsHandler_2.swift"
-            timestampString = "528397245.335823"
+            timestampString = "530712514.406631"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "90"
@@ -3488,7 +3456,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.335892"
+            timestampString = "529448241.698316"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "295"
@@ -3504,11 +3472,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Global/Global.swift"
-            timestampString = "528298342.58986"
+            timestampString = "530812997.017487"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
             landmarkName = "getUserInformation(callingVC:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3520,7 +3488,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.335982"
+            timestampString = "529448241.698506"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "276"
@@ -3536,11 +3504,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.336052"
+            timestampString = "530812997.017568"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "beginPanic(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -3552,12 +3520,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.336877"
+            timestampString = "530812997.018196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "103"
-            endingLineNumber = "103"
-            landmarkName = "getResponderCount()"
+            startingLineNumber = "188"
+            endingLineNumber = "188"
+            landmarkName = "updateDetails(_:)"
             landmarkType = "7">
             <Locations>
                <Location
@@ -3600,12 +3568,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.33748"
+            timestampString = "530812997.018825"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
-            landmarkName = "getResponderCount()"
+            startingLineNumber = "190"
+            endingLineNumber = "190"
+            landmarkName = "updateDetails(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3616,12 +3584,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.338043"
+            timestampString = "530812997.020086"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "getResponderCount()"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "updateDetails(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3632,7 +3600,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.338596"
+            timestampString = "529448241.699233"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "157"
@@ -3648,7 +3616,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.655894"
+            timestampString = "530714619.663414"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "407"
@@ -3664,7 +3632,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.656164"
+            timestampString = "530714619.663468"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "405"
@@ -3712,7 +3680,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.656372"
+            timestampString = "530714619.663519"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "397"
@@ -3728,7 +3696,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.656591"
+            timestampString = "530714619.663569"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "380"
@@ -3744,7 +3712,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.656829"
+            timestampString = "530714619.663619"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "374"
@@ -3760,7 +3728,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.65705"
+            timestampString = "530714619.66367"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "382"
@@ -3776,7 +3744,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Settings/SettingsTableViewController.swift"
-            timestampString = "528296246.657266"
+            timestampString = "530714619.66372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "383"
@@ -3792,7 +3760,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/GroupsHandler_2.swift"
-            timestampString = "528397245.33881"
+            timestampString = "530712514.407403"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "122"
@@ -3808,7 +3776,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/GroupsHandler_2.swift"
-            timestampString = "528397245.338886"
+            timestampString = "530712514.407816"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
@@ -3824,7 +3792,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.340266"
+            timestampString = "529448241.702008"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "301"
@@ -3840,7 +3808,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.340361"
+            timestampString = "529448241.702115"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "309"
@@ -3856,7 +3824,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Panic Button/PanicButtonViewController.swift"
-            timestampString = "528397245.340437"
+            timestampString = "529448241.702216"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "307"
@@ -3872,7 +3840,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Main View Controller/MainViewController.swift"
-            timestampString = "528397245.340512"
+            timestampString = "529448241.702317"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "327"
@@ -3888,7 +3856,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.340589"
+            timestampString = "530812997.022478"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "77"
@@ -3904,23 +3872,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.340668"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
-            landmarkName = "addAnnotations(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.340737"
+            timestampString = "530812997.022594"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "221"
@@ -3936,7 +3888,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Map/MapViewController.swift"
-            timestampString = "528397245.340808"
+            timestampString = "530812997.022695"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "222"
@@ -3948,16 +3900,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.34088"
+            filePath = "Panic/Map/MapViewController.swift"
+            timestampString = "530812997.022793"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "100"
-            endingLineNumber = "100"
-            landmarkName = "getResponderCount()"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "addAnnotations(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -3968,12 +3920,220 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Panic/Handlers/PanicHandler.swift"
-            timestampString = "528397245.341522"
+            timestampString = "530812997.022895"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "185"
+            endingLineNumber = "185"
+            landmarkName = "updatePanic(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Panic/Handlers/PanicHandler.swift"
+            timestampString = "530812997.024103"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "beginPanic(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Panic/Handlers/GroupsHandler_2.swift"
+            timestampString = "530712514.408497"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "40"
+            endingLineNumber = "40"
+            landmarkName = "getGroupDetails()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Panic/Handlers/PanicHandler.swift"
+            timestampString = "530812997.025339"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "beginPanic(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Panic/Handlers/GroupsHandler_2.swift"
+            timestampString = "530712514.411978"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "getGroupDetails()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Panic/Handlers/GroupsHandler_2.swift"
+            timestampString = "530712514.41274"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "getGroupDetails()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Brave.GroupsHandler_2.getGroupDetails() -&gt; ()"
+                  moduleName = "Brave"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic%20(Github)/Panic/Handlers/GroupsHandler_2.swift"
+                  timestampString = "530712810.736137"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "580">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.PFObject&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in Brave.GroupsHandler_2.getGroupDetails() -&gt; ()"
+                  moduleName = "Brave"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic%20(Github)/Panic/Handlers/GroupsHandler_2.swift"
+                  timestampString = "530712810.738102"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Panic/Handlers/PanicHandler.swift"
+            timestampString = "530812997.028952"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
+            landmarkName = "addToAlertGroupTable()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Brave.PanicHandler.addToAlertGroupTable() -&gt; ()"
+                  moduleName = "Brave"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic%20(Github)/Panic/Handlers/PanicHandler.swift"
+                  timestampString = "530807584.152056"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "90"
+                  endingLineNumber = "90"
+                  offsetFromSymbolStart = "2296">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in Brave.PanicHandler.addToAlertGroupTable() -&gt; ()"
+                  moduleName = "Brave"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic%20(Github)/Panic/Handlers/PanicHandler.swift"
+                  timestampString = "530807584.153959"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "93"
+                  endingLineNumber = "93"
+                  offsetFromSymbolStart = "20">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Panic/Handlers/PanicHandler.swift"
+            timestampString = "530812997.029845"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
+            landmarkName = "addToAlertGroupTable()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Panic/Handlers/PanicHandler.swift"
+            timestampString = "530812997.030576"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "getActiveAlerts()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Panic/Handlers/PanicHandler.swift"
+            timestampString = "530812997.031289"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "getActiveAlerts()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

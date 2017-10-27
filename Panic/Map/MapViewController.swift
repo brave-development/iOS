@@ -134,6 +134,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
 	
     func getVictims() {
+        panicHandler.getActiveAlerts()
 		print("Getting victims from mapViewController")
 		if queryPanicsIsActive == false {
 			queryPanics.cancel()
