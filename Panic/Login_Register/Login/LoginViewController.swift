@@ -142,14 +142,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 		})
 		alert.addAction(UIAlertAction(title: NSLocalizedString("reset", value: "Reset", comment: ""), style: UIAlertActionStyle.destructive, handler: {
 			_ in
-			PFUser.requestPasswordResetForEmail(inBackground: (alert.textFields!.first! as UITextField).text!, block: {
-				(result, error) in
-				if error == nil {
-					global.showAlert(NSLocalizedString("email_sent_title", value: "Email sent", comment: ""), message: NSLocalizedString("email_sent_text", value: "An email has been sent to the email address you supplied with password reset instructions", comment: ""))
+            
+            PFCloud.callFunction(inBackground: "resetPassword", withParameters: [ "email" : (alert.textFields!.first! as UITextField).text! ] ) {
+                response, error in
+                
+                if let message = response as? String {
+                    global.showAlert("", message: message)
                 } else {
-                    if (error! as NSError).code == 125 { global.showAlert("Oops", message: NSLocalizedString("email_address_not_found", value: "Email address not found", comment: "")) }
-				}
-			})
+                    global.showAlert("", message: "Please check your email for reset instructions.")
+                }
+            }
+            
+//            PFUser.requestPasswordResetForEmail(inBackground: (alert.textFields!.first! as UITextField).text!, block: {
+//                (result, error) in
+//                if error == nil {
+//                    global.showAlert(NSLocalizedString("email_sent_title", value: "Email sent", comment: ""), message: NSLocalizedString("email_sent_text", value: "An email has been sent to the email address you supplied with password reset instructions", comment: ""))
+//                } else {
+//                    if (error! as NSError).code == 125 { global.showAlert("Oops", message: NSLocalizedString("email_address_not_found", value: "Email address not found", comment: "")) }
+//                }
+//            })
 		}))
 		alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: ""), style: UIAlertActionStyle.default, handler: nil))
 		self.present(alert, animated: true, completion: nil)
@@ -270,7 +281,6 @@ extension LoginViewController: LoginButtonDelegate {
                     PFUser.current()?.setValue(json["id"].string, forKey: "facebookId")
                     
                     let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                    let vc: RegisterViewController = storyboard.instantiateViewController(withIdentifier: "registerViewController") as! RegisterViewController
                     let vc: RegistrationController_VC = storyboard.instantiateViewController(withIdentifier: "registrationController_vc") as! RegistrationController_VC
                     vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
                     self.present(vc, animated: true, completion: nil)
