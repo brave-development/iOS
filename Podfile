@@ -36,5 +36,7 @@ target 'Brave' do
     
     pod 'BBLocationManager'
     pod 'Alamofire'
+    
+    pod 'MessageKit'
 
 end

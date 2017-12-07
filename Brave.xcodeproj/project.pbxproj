@@ -106,6 +106,14 @@
 		75F8FAB61F225E0300B95662 /* Reg_Done_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75F8FAB41F225E0300B95662 /* Reg_Done_VC.swift */; };
 		75F8FAB71F225E0300B95662 /* Reg_Done_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75F8FAB51F225E0300B95662 /* Reg_Done_VC.xib */; };
 		7D9F5B023B8BC332B27F2CD6 /* Pods_Brave.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BA53505146F08CB3FB4B8662 /* Pods_Brave.framework */; };
+		912801621FCD63EB00C571A1 /* AlertBox_Container_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912801611FCD63EB00C571A1 /* AlertBox_Container_VC.swift */; };
+		912801641FCD673400C571A1 /* AlertBox_Individual_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912801631FCD673400C571A1 /* AlertBox_Individual_VC.swift */; };
+		912801661FCDA48200C571A1 /* AlertStage_1_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912801651FCDA48200C571A1 /* AlertStage_1_VC.swift */; };
+		9128016F1FCDC19A00C571A1 /* AlertBox_Text_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9128016D1FCDC19A00C571A1 /* AlertBox_Text_VC.swift */; };
+		912801701FCDC19A00C571A1 /* AlertBox_Text_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9128016E1FCDC19A00C571A1 /* AlertBox_Text_VC.xib */; };
+		912801741FCE8C7100C571A1 /* AlertStage_2_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912801731FCE8C7100C571A1 /* AlertStage_2_VC.swift */; };
+		912801761FCE8FCA00C571A1 /* Alert_Chat_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912801751FCE8FCA00C571A1 /* Alert_Chat_VC.swift */; };
+		912801791FCEB87300C571A1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912801781FCEB87300C571A1 /* Message.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -248,6 +256,14 @@
 		75F8FAB01F225D0200B95662 /* Reg_Password_VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Reg_Password_VC.xib; sourceTree = "<group>"; };
 		75F8FAB41F225E0300B95662 /* Reg_Done_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg_Done_VC.swift; sourceTree = "<group>"; };
 		75F8FAB51F225E0300B95662 /* Reg_Done_VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Reg_Done_VC.xib; sourceTree = "<group>"; };
+		912801611FCD63EB00C571A1 /* AlertBox_Container_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBox_Container_VC.swift; sourceTree = "<group>"; };
+		912801631FCD673400C571A1 /* AlertBox_Individual_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBox_Individual_VC.swift; sourceTree = "<group>"; };
+		912801651FCDA48200C571A1 /* AlertStage_1_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStage_1_VC.swift; sourceTree = "<group>"; };
+		9128016D1FCDC19A00C571A1 /* AlertBox_Text_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertBox_Text_VC.swift; sourceTree = "<group>"; };
+		9128016E1FCDC19A00C571A1 /* AlertBox_Text_VC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertBox_Text_VC.xib; sourceTree = "<group>"; };
+		912801731FCE8C7100C571A1 /* AlertStage_2_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStage_2_VC.swift; sourceTree = "<group>"; };
+		912801751FCE8FCA00C571A1 /* Alert_Chat_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert_Chat_VC.swift; sourceTree = "<group>"; };
+		912801781FCEB87300C571A1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		BA53505146F08CB3FB4B8662 /* Pods_Brave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD273ABF8657901CE1C1433E /* Pods-Brave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brave.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brave/Pods-Brave.release.xcconfig"; sourceTree = "<group>"; };
 		ECBA48090E5F8F3B6F6C7BE2 /* Pods-Panic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Panic/Pods-Panic.release.xcconfig"; sourceTree = "<group>"; };
@@ -476,6 +492,7 @@
 		75162DDC1A2B8B3E0094BA31 /* Panic */ = {
 			isa = PBXGroup;
 			children = (
+				912801601FCD62F600C571A1 /* Alert Flow */,
 				75109B5B1EA025D60056BBCB /* Countries */,
 				75109B521EA024A60056BBCB /* Global */,
 				75109B4D1EA0208B0056BBCB /* Groups */,
@@ -697,6 +714,61 @@
 			name = Done;
 			sourceTree = "<group>";
 		};
+		912801601FCD62F600C571A1 /* Alert Flow */ = {
+			isa = PBXGroup;
+			children = (
+				912801771FCEB85D00C571A1 /* Messages */,
+				912801711FCE8C3A00C571A1 /* Stage 1 */,
+				912801721FCE8C4A00C571A1 /* Stage 2 */,
+			);
+			path = "Alert Flow";
+			sourceTree = "<group>";
+		};
+		912801671FCDA67100C571A1 /* Alert Boxes */ = {
+			isa = PBXGroup;
+			children = (
+				912801631FCD673400C571A1 /* AlertBox_Individual_VC.swift */,
+				9128016A1FCDC09300C571A1 /* Text */,
+			);
+			path = "Alert Boxes";
+			sourceTree = "<group>";
+		};
+		9128016A1FCDC09300C571A1 /* Text */ = {
+			isa = PBXGroup;
+			children = (
+				9128016D1FCDC19A00C571A1 /* AlertBox_Text_VC.swift */,
+				9128016E1FCDC19A00C571A1 /* AlertBox_Text_VC.xib */,
+			);
+			path = Text;
+			sourceTree = "<group>";
+		};
+		912801711FCE8C3A00C571A1 /* Stage 1 */ = {
+			isa = PBXGroup;
+			children = (
+				912801651FCDA48200C571A1 /* AlertStage_1_VC.swift */,
+				912801611FCD63EB00C571A1 /* AlertBox_Container_VC.swift */,
+				912801671FCDA67100C571A1 /* Alert Boxes */,
+			);
+			path = "Stage 1";
+			sourceTree = "<group>";
+		};
+		912801721FCE8C4A00C571A1 /* Stage 2 */ = {
+			isa = PBXGroup;
+			children = (
+				912801731FCE8C7100C571A1 /* AlertStage_2_VC.swift */,
+				912801751FCE8FCA00C571A1 /* Alert_Chat_VC.swift */,
+			);
+			path = "Stage 2";
+			sourceTree = "<group>";
+		};
+		912801771FCEB85D00C571A1 /* Messages */ = {
+			isa = PBXGroup;
+			children = (
+				912801781FCEB87300C571A1 /* Message.swift */,
+			);
+			path = Messages;
+			sourceTree = "<group>";
+		};
 		DCDDD9D7B495CB80AAEE5571 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -824,6 +896,7 @@
 				75606E741A3793110089744C /* call@2x.png in Resources */,
 				752AA6FB1B94A34A005BE9FC /* create.png in Resources */,
 				754EF2B61B380B7A0046ACC1 /* UserIcon.png in Resources */,
+				912801701FCDC19A00C571A1 /* AlertBox_Text_VC.xib in Resources */,
 				752AA6F01B94973B005BE9FC /* plus.png in Resources */,
 				752AA70F1B98465C005BE9FC /* floatTableViewCell.xib in Resources */,
 				75CF75E51BCBA0DD00B18480 /* LaunchImage-750x1334@2x.png in Resources */,
@@ -875,9 +948,60 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Brave/Pods-Brave-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BBLocationManager/BBLocationManager.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
+				"${BUILT_PRODUCTS_DIR}/CustomBadge/CustomBadge.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookCore/FacebookCore.framework",
+				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
+				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Parse/Parse.framework",
+				"${BUILT_PRODUCTS_DIR}/ParseFacebookUtilsV4/ParseFacebookUtilsV4.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SZTextView/SZTextView.framework",
+				"${BUILT_PRODUCTS_DIR}/Spring/Spring.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftValidate/SwiftValidate.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast/Toast.framework",
+				"${BUILT_PRODUCTS_DIR}/UIScrollSlidingPages/UIScrollSlidingPages.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BBLocationManager.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CustomBadge.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookCore.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Parse.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ParseFacebookUtilsV4.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SZTextView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Spring.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftValidate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIScrollSlidingPages.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -905,13 +1029,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Brave-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		755F4C891B264A700086CC3E /* ShellScript */ = {
@@ -943,12 +1070,14 @@
 				750A7D4C1AB6D01D006EAA97 /* TextViewCustom.swift in Sources */,
 				7545A65C1A2C8A3100B19E3E /* CustomNavigationSegue.swift in Sources */,
 				75162E041A2B9EA10094BA31 /* PanicButtonViewController.swift in Sources */,
+				912801621FCD63EB00C571A1 /* AlertBox_Container_VC.swift in Sources */,
 				75B508921EFC014C00C22E8F /* GroupsHandler_2.swift in Sources */,
 				752AA7001B94F56E005BE9FC /* CreateGroupViewController.swift in Sources */,
 				75606E6E1A36E4110089744C /* PanicHandler.swift in Sources */,
 				754C76E61A45A67B0007C53B /* HistoryDetailsViewController.swift in Sources */,
 				755100FD1B28A1F100148E90 /* GroupsTableViewCell.swift in Sources */,
 				752AA7391BB2E2FE005BE9FC /* AddPublicGroupViewController.swift in Sources */,
+				912801661FCDA48200C571A1 /* AlertStage_1_VC.swift in Sources */,
 				75162DE21A2B8B3E0094BA31 /* LoginViewController.swift in Sources */,
 				75EFEFD31F29D1AF0064D76F /* Reg_Name_VC.swift in Sources */,
 				75793E081F28EF5B00148F42 /* Reg_IndividualScreen_VC.swift in Sources */,
@@ -958,20 +1087,25 @@
 				75F8FAAC1F225B3700B95662 /* Reg_Email_VC.swift in Sources */,
 				75EB2A0E1F7D21EB0070D5BC /* SwiftyMD5.swift in Sources */,
 				752AA71C1BA5D7E4005BE9FC /* Tooltip.swift in Sources */,
+				9128016F1FCDC19A00C571A1 /* AlertBox_Text_VC.swift in Sources */,
 				7574A5EB1A2DB81F00148645 /* MapViewController.swift in Sources */,
 				75606E7E1A37B9210089744C /* LocalHistoryViewController.swift in Sources */,
 				750A7D501AB70ABF006EAA97 /* AnnotationCustom.swift in Sources */,
+				912801641FCD673400C571A1 /* AlertBox_Individual_VC.swift in Sources */,
 				7545A6561A2BBE8C00B19E3E /* RegisterViewController.swift in Sources */,
 				75F8FAB61F225E0300B95662 /* Reg_Done_VC.swift in Sources */,
+				912801761FCE8FCA00C571A1 /* Alert_Chat_VC.swift in Sources */,
 				75F8FAB11F225D0200B95662 /* Reg_Password_VC.swift in Sources */,
 				7545A65A1A2C899800B19E3E /* MainViewController.swift in Sources */,
 				75793E061F28B46B00148F42 /* Sub_SpringButton.swift in Sources */,
 				7545A6541A2BBDEC00B19E3E /* Global.swift in Sources */,
 				75F8FAA81F22580200B95662 /* RegistrationController_VC.swift in Sources */,
 				75183A171F5573A10021ED36 /* LocationHandler.swift in Sources */,
+				912801741FCE8C7100C571A1 /* AlertStage_2_VC.swift in Sources */,
 				754B90341A4C2D0B00BDC20B /* Tutorial.swift in Sources */,
 				75EFEFCE1F290F140064D76F /* Reg_Permissions_VC.swift in Sources */,
 				752DE9991A3C4C2800784B94 /* SettingsTableViewController.swift in Sources */,
+				912801791FCEB87300C571A1 /* Message.swift in Sources */,
 				75D869F81B29DEE20065DE37 /* GroupsHandler.swift in Sources */,
 				7574A6041A2E4D4F00148645 /* GroupsViewController.swift in Sources */,
 			);
@@ -1140,6 +1274,7 @@
 				CODE_SIGN_ENTITLEMENTS = Panic/Panic.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7A6ZJ37YMY;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1155,7 +1290,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SoC.Panic;
 				PRODUCT_NAME = Brave;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic (Github)/Panic/Supporting Files/Panic-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/byron/Documents/Brave/iOS App/Panic/Supporting Files/Panic-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1172,6 +1307,7 @@
 				CODE_SIGN_ENTITLEMENTS = Panic/Panic.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = 7A6ZJ37YMY;
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1187,7 +1323,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = SoC.Panic;
 				PRODUCT_NAME = Brave;
 				PROVISIONING_PROFILE = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "/Users/byroncoetsee/Documents/Programming/Swift/Panic/Panic (Github)/Panic/Supporting Files/Panic-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/byron/Documents/Brave/iOS App/Panic/Supporting Files/Panic-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
