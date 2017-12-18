@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="HRb-kh-Lbc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="rkV-MH-jrY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -4578,6 +4578,10 @@
         <scene sceneID="KIf-bl-czf">
             <objects>
                 <viewController storyboardIdentifier="alertBoxContainer_VC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="SBJ-jf-FbA" customClass="AlertBox_Container_VC" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YAe-vx-4MD"/>
+                        <viewControllerLayoutGuide type="bottom" id="94B-se-O8C"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TbE-Kv-iJ6">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="537"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4592,6 +4596,10 @@
         <scene sceneID="Jl4-8k-jgA">
             <objects>
                 <viewController id="HRb-kh-Lbc" customClass="Alert_Chat_VC" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DCS-9w-CEi"/>
+                        <viewControllerLayoutGuide type="bottom" id="V8X-SR-L7Q"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="XTC-S2-8NS">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="565"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

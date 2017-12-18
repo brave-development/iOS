@@ -114,6 +114,7 @@
 		912801741FCE8C7100C571A1 /* AlertStage_2_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912801731FCE8C7100C571A1 /* AlertStage_2_VC.swift */; };
 		912801761FCE8FCA00C571A1 /* Alert_Chat_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912801751FCE8FCA00C571A1 /* Alert_Chat_VC.swift */; };
 		912801791FCEB87300C571A1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912801781FCEB87300C571A1 /* Message.swift */; };
+		913A28FE1FE2BA3E00AB3369 /* Alert_Chat_MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913A28FD1FE2BA3E00AB3369 /* Alert_Chat_MessageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +265,7 @@
 		912801731FCE8C7100C571A1 /* AlertStage_2_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertStage_2_VC.swift; sourceTree = "<group>"; };
 		912801751FCE8FCA00C571A1 /* Alert_Chat_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert_Chat_VC.swift; sourceTree = "<group>"; };
 		912801781FCEB87300C571A1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
+		913A28FD1FE2BA3E00AB3369 /* Alert_Chat_MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert_Chat_MessageController.swift; sourceTree = "<group>"; };
 		BA53505146F08CB3FB4B8662 /* Pods_Brave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD273ABF8657901CE1C1433E /* Pods-Brave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brave.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brave/Pods-Brave.release.xcconfig"; sourceTree = "<group>"; };
 		ECBA48090E5F8F3B6F6C7BE2 /* Pods-Panic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Panic/Pods-Panic.release.xcconfig"; sourceTree = "<group>"; };
@@ -757,6 +759,7 @@
 			children = (
 				912801731FCE8C7100C571A1 /* AlertStage_2_VC.swift */,
 				912801751FCE8FCA00C571A1 /* Alert_Chat_VC.swift */,
+				913A28FD1FE2BA3E00AB3369 /* Alert_Chat_MessageController.swift */,
 			);
 			path = "Stage 2";
 			sourceTree = "<group>";
@@ -950,6 +953,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Brave/Pods-Brave-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Atlas/Atlas.framework",
 				"${BUILT_PRODUCTS_DIR}/BBLocationManager/BBLocationManager.framework",
 				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
@@ -960,6 +964,7 @@
 				"${BUILT_PRODUCTS_DIR}/FacebookLogin/FacebookLogin.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/HMSegmentedControl/HMSegmentedControl.framework",
+				"${PODS_ROOT}/LayerKit/LayerKit.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
 				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/MessageKit/MessageKit.framework",
@@ -978,6 +983,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Atlas.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BBLocationManager.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ChameleonFramework.framework",
@@ -988,6 +994,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FacebookLogin.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HMSegmentedControl.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LayerKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
 				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MessageKit.framework",
@@ -1105,6 +1112,7 @@
 				754B90341A4C2D0B00BDC20B /* Tutorial.swift in Sources */,
 				75EFEFCE1F290F140064D76F /* Reg_Permissions_VC.swift in Sources */,
 				752DE9991A3C4C2800784B94 /* SettingsTableViewController.swift in Sources */,
+				913A28FE1FE2BA3E00AB3369 /* Alert_Chat_MessageController.swift in Sources */,
 				912801791FCEB87300C571A1 /* Message.swift in Sources */,
 				75D869F81B29DEE20065DE37 /* GroupsHandler.swift in Sources */,
 				7574A6041A2E4D4F00148645 /* GroupsViewController.swift in Sources */,
