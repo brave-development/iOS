@@ -166,7 +166,7 @@ class GroupsHandler: UIViewController {
 			PFInstallation.current()?.saveInBackground(block: nil)
             
             if silentAdd == false {
-                global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Panic. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
+                global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Brave. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
             }
 		}
 	}

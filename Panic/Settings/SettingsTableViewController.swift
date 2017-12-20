@@ -145,7 +145,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     
     // Show popup with information about panicConfirmation
     @IBAction func showInfoPanicConfirmation(_ sender: AnyObject) {
-        global.showAlert(NSLocalizedString("confirmation_info_title", value: "Alert Confirmation", comment: ""), message: NSLocalizedString("confirmation_info_text", value: "Enabling this will remove the 5 second delay before sending notifications, however you will have to manually select 'Yes' each time you activate Panic.", comment: ""))
+        global.showAlert(NSLocalizedString("confirmation_info_title", value: "Alert Confirmation", comment: ""), message: NSLocalizedString("confirmation_info_text", value: "Enabling this will remove the 5 second delay before sending notifications, however you will have to manually select 'Yes' each time you activate Brave.", comment: ""))
     }
 	
 	@IBAction func showInfoBackgroundUpdate(_ sender: AnyObject) {

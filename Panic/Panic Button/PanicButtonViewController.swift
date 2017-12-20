@@ -72,7 +72,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         btnPanic.layer.borderColor = UIColor.green.cgColor
         
         if global.isDESPilot {
-            viewNeedle.isHidden = false
+//            viewNeedle.isHidden = false
             btnNeedle.layer.cornerRadius = btnNeedle.frame.size.height/2
             btnNeedle.layer.masksToBounds = true
             viewNeedle.layer.shadowOffset = CGSize(width: 0, height: 0)
