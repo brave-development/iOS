@@ -38,6 +38,5 @@ target 'Brave' do
     pod 'Alamofire'
     
     pod 'MessageKit'
-    pod 'Atlas'
 
 end

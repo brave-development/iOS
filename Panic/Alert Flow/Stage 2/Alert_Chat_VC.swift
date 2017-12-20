@@ -12,7 +12,6 @@ import MessageKit
 class Alert_Chat_VC: MessagesViewController {
     
     var messages: [MessageType] = []
-    let textInputBar = ALTextInputBar()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,17 +56,6 @@ class Alert_Chat_VC: MessagesViewController {
             now = date
             return date
         }
-    }
-    
-    override var inputAccessoryView: UIView? {
-        get {
-            return textInputBar
-        }
-    }
-    
-    // Another ingredient in the magic sauce
-    override var canBecomeFirstResponder: Bool {
-        return true
     }
 
     override func didReceiveMemoryWarning() {
