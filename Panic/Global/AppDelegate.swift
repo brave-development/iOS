@@ -23,19 +23,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        
         configureParse(launchOptions: launchOptions)
         FirebaseApp.configure()
         
         //        testCrash()
         
-        // Remote Notifications
-//        let settings: UIUserNotificationSettings = UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-//        application.registerUserNotificationSettings(settings)
         application.registerForRemoteNotifications()
         Messaging.messaging().remoteMessageDelegate = self
         
         // Facebook
-//        SDKApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
         
         // Get Countries
@@ -100,6 +97,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         PFAnalytics.trackAppOpenedWithLaunchOptions(inBackground: launchOptions, block: nil)
         PFUser.enableRevocableSessionInBackground()
         
+        Sub_PFMessages.registerSubclass()
+        Sub_PFAlert.registerSubclass()
+        
         PFInstallation.current()?.badge = 0
         PFInstallation.current()?.saveEventually(nil)
     }
@@ -137,19 +137,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        if (panicHandler.panicIsActive == false && !userInfo.isEmpty) {
-            if ( application.applicationState == UIApplicationState.inactive || application.applicationState == UIApplicationState.background  ) {
-                //opened from a push notification when the app was in background
-                print("Got notif userInfo - \(userInfo)")
-                if userInfo["lat"] != nil {
-                    print("Should open map")
-                    global.notificationDictionary = JSON(userInfo)// as NSDictionary
-                    global.openedViaNotification = true
-                    NotificationCenter.default.post(name: Notification.Name(rawValue: "showMapBecauseOfHandleNotification"), object: nil)
-                }
-            } else {
-                global.notificationDictionary = JSON(userInfo)// as NSDictionary
-                NotificationCenter.default.post(name: Notification.Name(rawValue: "showMapBecauseOfHandleNotification"), object: nil)
+//        if (panicHandler.panicIsActive == false && !userInfo.isEmpty) {
+//            if ( application.applicationState == UIApplicationState.inactive || application.applicationState == UIApplicationState.background  ) {
+//                //opened from a push notification when the app was in background
+//
+//                print("Got notif userInfo - \(userInfo)")
+//                if userInfo["lat"] != nil {
+//                    global.notificationDictionary = JSON(userInfo)// as NSDictionary
+//                    global.openedViaNotification = true
+//                    NotificationCenter.default.post(name: Notification.Name(rawValue: "showMapBecauseOfHandleNotification"), object: nil)
+//                }
+//
+//
+//            } else {
+//                global.notificationDictionary = JSON(userInfo)// as NSDictionary
+//                NotificationCenter.default.post(name: Notification.Name(rawValue: "showMapBecauseOfHandleNotification"), object: nil)
+//            }
+//        }
+        
+        // NEW
+        
+        if !userInfo.isEmpty {
+            let json = JSON(userInfo)
+            
+            switch json["type"].stringValue {
+            case "newMessage": messagesController.fetchNewMessage(objectId: json["messageId"].stringValue)
+            case "newAlert": NotificationCenter.default.post(name: Notification.Name(rawValue: "showMapBecauseOfHandleNotification"), object: nil)
+            default: return
             }
         }
     }

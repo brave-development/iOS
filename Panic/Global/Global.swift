@@ -45,6 +45,8 @@ extension Dictionary {
 }
 
 class Global: UIViewController {
+    
+    let themeBlue = UIColor(red:0.29, green:0.56, blue:0.89, alpha:1.00)
 	
 	var victimInformation : [String : [String]] = [:]
 	var persistantSettings : UserDefaults = UserDefaults.standard
@@ -69,6 +71,7 @@ class Global: UIViewController {
     }
     
     var isDESPilot: Bool { return betaID == "DTES" }
+    var isChatPilot: Bool { return betaID == "Chat" }
     
     var isPilot: Bool {
         if betaID == "DTES" { return true }

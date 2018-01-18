@@ -115,6 +115,10 @@
 		912801761FCE8FCA00C571A1 /* Alert_Chat_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912801751FCE8FCA00C571A1 /* Alert_Chat_VC.swift */; };
 		912801791FCEB87300C571A1 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912801781FCEB87300C571A1 /* Message.swift */; };
 		913A28FE1FE2BA3E00AB3369 /* Alert_Chat_MessageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913A28FD1FE2BA3E00AB3369 /* Alert_Chat_MessageController.swift */; };
+		913A29001FEFD42300AB3369 /* Alert_InputMessageBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913A28FF1FEFD42300AB3369 /* Alert_InputMessageBar.swift */; };
+		913A29031FF5353D00AB3369 /* Sub_PFMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913A29021FF5353D00AB3369 /* Sub_PFMessages.swift */; };
+		913A29051FF5385E00AB3369 /* Sub_PFAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913A29041FF5385E00AB3369 /* Sub_PFAlert.swift */; };
+		91E656092010D88E001B3F93 /* AlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E656082010D88E001B3F93 /* AlertHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -266,6 +270,10 @@
 		912801751FCE8FCA00C571A1 /* Alert_Chat_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert_Chat_VC.swift; sourceTree = "<group>"; };
 		912801781FCEB87300C571A1 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		913A28FD1FE2BA3E00AB3369 /* Alert_Chat_MessageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert_Chat_MessageController.swift; sourceTree = "<group>"; };
+		913A28FF1FEFD42300AB3369 /* Alert_InputMessageBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert_InputMessageBar.swift; sourceTree = "<group>"; };
+		913A29021FF5353D00AB3369 /* Sub_PFMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub_PFMessages.swift; sourceTree = "<group>"; };
+		913A29041FF5385E00AB3369 /* Sub_PFAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub_PFAlert.swift; sourceTree = "<group>"; };
+		91E656082010D88E001B3F93 /* AlertHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHandler.swift; sourceTree = "<group>"; };
 		BA53505146F08CB3FB4B8662 /* Pods_Brave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD273ABF8657901CE1C1433E /* Pods-Brave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brave.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brave/Pods-Brave.release.xcconfig"; sourceTree = "<group>"; };
 		ECBA48090E5F8F3B6F6C7BE2 /* Pods-Panic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Panic/Pods-Panic.release.xcconfig"; sourceTree = "<group>"; };
@@ -370,6 +378,7 @@
 		75109B521EA024A60056BBCB /* Global */ = {
 			isa = PBXGroup;
 			children = (
+				913A29011FF534D300AB3369 /* PF SubClassing */,
 				75162DDF1A2B8B3E0094BA31 /* AppDelegate.swift */,
 				7545A6531A2BBDEC00B19E3E /* Global.swift */,
 				75162DE61A2B8B3E0094BA31 /* Images.xcassets */,
@@ -433,6 +442,7 @@
 				75606E6D1A36E4110089744C /* PanicHandler.swift */,
 				75B508911EFC014C00C22E8F /* GroupsHandler_2.swift */,
 				75183A161F5573A10021ED36 /* LocationHandler.swift */,
+				91E656082010D88E001B3F93 /* AlertHandler.swift */,
 			);
 			path = Handlers;
 			sourceTree = "<group>";
@@ -760,6 +770,7 @@
 				912801731FCE8C7100C571A1 /* AlertStage_2_VC.swift */,
 				912801751FCE8FCA00C571A1 /* Alert_Chat_VC.swift */,
 				913A28FD1FE2BA3E00AB3369 /* Alert_Chat_MessageController.swift */,
+				913A28FF1FEFD42300AB3369 /* Alert_InputMessageBar.swift */,
 			);
 			path = "Stage 2";
 			sourceTree = "<group>";
@@ -770,6 +781,15 @@
 				912801781FCEB87300C571A1 /* Message.swift */,
 			);
 			path = Messages;
+			sourceTree = "<group>";
+		};
+		913A29011FF534D300AB3369 /* PF SubClassing */ = {
+			isa = PBXGroup;
+			children = (
+				913A29021FF5353D00AB3369 /* Sub_PFMessages.swift */,
+				913A29041FF5385E00AB3369 /* Sub_PFAlert.swift */,
+			);
+			path = "PF SubClassing";
 			sourceTree = "<group>";
 		};
 		DCDDD9D7B495CB80AAEE5571 /* Pods */ = {
@@ -1068,13 +1088,16 @@
 			files = (
 				7586AC541A30DAB5003DC023 /* PublicHistoryTableViewCell.swift in Sources */,
 				752AA70E1B98465C005BE9FC /* floatTableViewCell.m in Sources */,
+				913A29051FF5385E00AB3369 /* Sub_PFAlert.swift in Sources */,
 				75E91B061F3C642A003C1169 /* Reg_CellNumber_VC.swift in Sources */,
 				752AA7101B98465C005BE9FC /* VCFloatingActionButton.m in Sources */,
 				757DA85F1A3F965D0037995C /* CountriesViewController.swift in Sources */,
 				754C76DA1A42E9B50007C53B /* RegisterTableViewController.swift in Sources */,
 				750A7D4C1AB6D01D006EAA97 /* TextViewCustom.swift in Sources */,
 				7545A65C1A2C8A3100B19E3E /* CustomNavigationSegue.swift in Sources */,
+				913A29031FF5353D00AB3369 /* Sub_PFMessages.swift in Sources */,
 				75162E041A2B9EA10094BA31 /* PanicButtonViewController.swift in Sources */,
+				91E656092010D88E001B3F93 /* AlertHandler.swift in Sources */,
 				912801621FCD63EB00C571A1 /* AlertBox_Container_VC.swift in Sources */,
 				75B508921EFC014C00C22E8F /* GroupsHandler_2.swift in Sources */,
 				752AA7001B94F56E005BE9FC /* CreateGroupViewController.swift in Sources */,
@@ -1094,6 +1117,7 @@
 				752AA71C1BA5D7E4005BE9FC /* Tooltip.swift in Sources */,
 				9128016F1FCDC19A00C571A1 /* AlertBox_Text_VC.swift in Sources */,
 				7574A5EB1A2DB81F00148645 /* MapViewController.swift in Sources */,
+				913A29001FEFD42300AB3369 /* Alert_InputMessageBar.swift in Sources */,
 				75606E7E1A37B9210089744C /* LocalHistoryViewController.swift in Sources */,
 				750A7D501AB70ABF006EAA97 /* AnnotationCustom.swift in Sources */,
 				912801641FCD673400C571A1 /* AlertBox_Individual_VC.swift in Sources */,

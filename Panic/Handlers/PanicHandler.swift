@@ -27,6 +27,9 @@ class PanicHandler: UIViewController {
     var getActivePanicsTimer : Timer?
     var activePanicCount = 0
     
+    var respondingAlertObject: PFObject? = nil
+    var respondingAlertObjectId: String? = nil
+    
     func beginPanic (_ location : CLLocation) {
         if updating == false && queryObject == nil {
             print("BEGIN")

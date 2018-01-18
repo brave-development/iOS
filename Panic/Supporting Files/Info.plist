@@ -56,7 +56,7 @@
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location permission while the app is in the background or if your phone is asleep is essential for Brave to continue tracking you in an emergency. This can be disabled in the Settings.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Location permission while the app is in the background or if your phone is asleep is essential for Brave to continue tracking you in an emergency. This can be disabled in the Settings.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need to choose an image from your camera roll</string>
 	<key>UIBackgroundModes</key>

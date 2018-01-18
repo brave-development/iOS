@@ -10,54 +10,35 @@ import UIKit
 import MessageKit
 
 class Alert_Chat_VC: MessagesViewController {
-    
-    var messages: [MessageType] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor.clear
+        messagesCollectionView.backgroundColor = UIColor.clear
 
         messagesCollectionView.messagesDataSource = self as! MessagesDataSource
         messagesCollectionView.messagesLayoutDelegate = self
         messagesCollectionView.messagesDisplayDelegate = self
         
-        loadFakeMessage()
+        messageInputBar = Alert_InputMessageBar()
+        reloadInputViews()
+        self.becomeFirstResponder()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(reloadMessages), name: NSNotification.Name(rawValue: "reloadMessages"), object: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        let when = DispatchTime.now() + .seconds(3)
+        let when = DispatchTime.now() + .seconds(1)
         DispatchQueue.main.asyncAfter(deadline: when) {
-            let newMessage = Message(text: "Hello tester Sender", sender: Sender(id: "0001", displayName: "Steven"), messageId: "\(Int(arc4random_uniform(UInt32(100))))", date: self.dateAddingRandomTime())
-            self.messages.append(newMessage)
-            self.messagesCollectionView.reloadData()
+            self.becomeFirstResponder()
         }
     }
     
-    func loadFakeMessage() {
-        let newMessage = Message(text: "Hello tester Sender", sender: Sender(id: "0001", displayName: "Steven"), messageId: "\(Int(arc4random_uniform(UInt32(100))))", date: dateAddingRandomTime())
-        let newMessage2 = Message(text: "Hello tester Paul", sender: Sender(id: "0002", displayName: "Paul"), messageId: "\(Int(arc4random_uniform(UInt32(100))))", date: dateAddingRandomTime())
-        let newMessage3 = Message(text: "Hello tester Luise", sender: Sender(id: "0003", displayName: "Luise"), messageId: "\(Int(arc4random_uniform(UInt32(100))))", date: dateAddingRandomTime())
-        messages.append(newMessage)
-        messages.append(newMessage2)
-        messages.append(newMessage2)
-        messages.append(newMessage3)
+    func reloadMessages() {
+        self.messagesCollectionView.reloadData()
+        messagesCollectionView.scrollToBottom()
     }
     
-    func dateAddingRandomTime() -> Date {
-        var now = Date()
-        let randomNumber = Int(arc4random_uniform(UInt32(10)))
-        if randomNumber % 2 == 0 {
-            let date = Calendar.current.date(byAdding: .hour, value: randomNumber, to: now)!
-            now = date
-            return date
-        } else {
-            let randomMinute = Int(arc4random_uniform(UInt32(59)))
-            let date = Calendar.current.date(byAdding: .minute, value: randomMinute, to: now)!
-            now = date
-            return date
-        }
-    }
-
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }

@@ -11,17 +11,25 @@ import BBLocationManager
 import Parse
 import Alamofire
 
-let locationHandler = LocationHandler()
+let locationHandler = LocationHandler(withSignificantLocationChange: true)
 
 class LocationHandler: NSObject, BBLocationManagerDelegate {
     
     let manager = BBLocationManager()
     
-    override init() {
+    init(withSignificantLocationChange : Bool = false) {
         super.init()
         
         manager.delegate = self
-        manager.getSingificantLocationChange(withDelegate: self)
+        
+        if withSignificantLocationChange {
+//            manager.desiredAcuracy = 0
+            manager.getSingificantLocationChange(withDelegate: self)
+        } else {
+            manager.desiredAcuracy = 0
+//            manager.get
+//            NotificationCenter.default.addObserver(self, selector: "didUpdateLocation", name: "didUpdateLocation", object: nil)
+        }
     }
     
     /**
@@ -66,9 +74,25 @@ class LocationHandler: NSObject, BBLocationManagerDelegate {
             PFUser.current()?.saveEventually()
         }
         
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "didUpdateLocation"), object: nil, userInfo: latLongAltitudeDictionary)
+        
 //        let parameters: Parameters = latLongAltitudeDictionary as! Parameters
 //        
 //        Alamofire.request("https://requestb.in/1n91z3d1", method: .post, parameters: parameters)
+    }
+    
+    func getLocationWithAccuracy(accuracy: Double, timeout: TimeInterval, completionHandler handler: @escaping ([String : Double]) -> Void) {
+        manager.getCurrentLocation { (success, latLongDictionary, error) in
+            if error == nil {
+                let lat = latLongDictionary!["latitude"] as! Double
+                let long = latLongDictionary!["longitude"] as! Double
+                
+                print(lat)
+                print(long)
+                
+                handler(["test" : lat])
+            }
+        }
     }
     
     

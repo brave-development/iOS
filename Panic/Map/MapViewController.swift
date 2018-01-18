@@ -371,7 +371,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	@IBAction func call(_ sender: AnyObject) {
 		let victimInfo = selectedVictim!["user"] as! PFUser
 		let cell = victimInfo["cellNumber"] as? String
-//		print(cell!)
+        
 		if cell != nil {
 			let url = URL(string: "tel://\(cell!)")
 			UIApplication.shared.openURL(url!)
@@ -383,10 +383,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			selectedVictim!.removeObjects(in: [PFUser.current()!.objectId!], forKey: "responders")
 			btnRespond.setTitle(NSLocalizedString("respond", value: "Respond", comment: ""), for: UIControlState())
 			btnRespond.backgroundColor = UIColor(red:0.18, green:0.8, blue:0.44, alpha:1)
+            panicHandler.respondingAlertObjectId = nil
+            panicHandler.respondingAlertObject = nil
 		} else {
 			selectedVictim!.addUniqueObject(PFUser.current()!.objectId!, forKey: "responders")
 			btnRespond.setTitle(NSLocalizedString("stop_responding", value: "Stop Responding", comment: ""), for: UIControlState())
 			btnRespond.backgroundColor = UIColor(red:0.91, green:0.3, blue:0.24, alpha:1)
+            panicHandler.respondingAlertObjectId = selectedVictim!.objectId
+            panicHandler.respondingAlertObject = selectedVictim
 		}
 		
 		selectedVictim!.saveInBackground(block: {

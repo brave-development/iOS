@@ -9,6 +9,7 @@
 import UIKit
 import MessageKit
 import CoreLocation
+import Parse
 
 struct Message: MessageType {
     
@@ -25,7 +26,17 @@ struct Message: MessageType {
     }
     
     init(text: String, sender: Sender, messageId: String, date: Date) {
-        self.init(data: .text(text), sender: sender, messageId: messageId, date: date)
+//        let oldText = NSMutableAttributedString(string: "\(sender.displayName)\n\(text)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 18)])
+        let oldText = NSMutableAttributedString(string: "\(text)", attributes: [NSFontAttributeName: UIFont.systemFont(ofSize: 18)])
+//        oldText.addAttributes([NSFontAttributeName: UIFont.systemFont(ofSize: 9)], range: NSRange(location: 0, length: sender.displayName.length))
+        
+        if sender.id == PFUser.current()!.objectId {
+            oldText.addAttributes([NSForegroundColorAttributeName : UIColor.flatBlack], range: NSRange(location: 0, length: oldText.length))
+        } else {
+            oldText.addAttributes([NSForegroundColorAttributeName : UIColor.white], range: NSRange(location: 0, length: oldText.length))
+        }
+        
+        self.init(data: .attributedText(oldText), sender: sender, messageId: messageId, date: date)
     }
     
     init(attributedText: NSAttributedString, sender: Sender, messageId: String, date: Date) {

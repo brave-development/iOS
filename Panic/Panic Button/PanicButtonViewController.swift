@@ -71,13 +71,24 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         btnPanic.layer.borderWidth = 2
         btnPanic.layer.borderColor = UIColor.green.cgColor
         
-        if global.isDESPilot {
-//            viewNeedle.isHidden = false
-            btnNeedle.layer.cornerRadius = btnNeedle.frame.size.height/2
-            btnNeedle.layer.masksToBounds = true
-            viewNeedle.layer.shadowOffset = CGSize(width: 0, height: 0)
-            viewNeedle.layer.shadowRadius = 4
-            viewNeedle.layer.shadowOpacity = 0.7
+//        if global.isDESPilot {
+//            styleChatButton()
+//        }
+        
+        if global.isChatPilot {
+            styleChatButton()
+        }
+    }
+    
+    func styleChatButton() {
+        btnNeedle.layer.cornerRadius = btnNeedle.frame.size.height/2
+        btnNeedle.layer.masksToBounds = true
+        viewNeedle.layer.shadowOffset = CGSize(width: 0, height: 0)
+        viewNeedle.layer.shadowRadius = 4
+        viewNeedle.layer.shadowOpacity = 0.7
+        
+        if panicHandler.respondingAlertObject != nil {
+            viewNeedle.isHidden = false
         }
     }
     
@@ -86,6 +97,17 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     @IBAction func needleDropPressed(_ sender: Any) {
+        if global.isChatPilot {
+            let vc = storyboard!.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
+//            let vc = storyboard!.instantiateViewController(withIdentifier: "alert_Chat_VC") as! Alert_Chat_VC
+            vc.modalTransitionStyle = .crossDissolve
+            vc.modalPresentationStyle = .overCurrentContext
+            self.present(vc, animated: true, completion: nil)
+            
+            return
+        }
+        
+        
         if locationPermissionGranted() {
             btnNeedle.setImage(UIImage(), for: .normal)
             spinnerNeedle.startAnimating()
@@ -135,6 +157,8 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     func activatePanic() {
+        
+        
         PFAnalytics.trackEvent(inBackground: "Activate_Panic", dimensions: nil, block: nil)
         UIApplication.shared.isIdleTimerDisabled = true
         
@@ -223,7 +247,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         case .deactivate:
             btnPanic.layer.borderColor = UIColor.green.cgColor
             btnPanic.layer.shadowColor = UIColor.green.cgColor
-            btnPanic.setTitle(NSLocalizedString("activate", value: "Send Alert", comment: "Button title to activate the Panic button"), for: UIControlState())
+            btnPanic.setTitle(NSLocalizedString("activate", value: "Overdose Alert", comment: "Button title to activate the Panic button"), for: UIControlState())
             break
             
         default: break
