@@ -99,6 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         Sub_PFMessages.registerSubclass()
         Sub_PFAlert.registerSubclass()
+        Sub_PFNeedle.registerSubclass()
         
         PFInstallation.current()?.badge = 0
         PFInstallation.current()?.saveEventually(nil)

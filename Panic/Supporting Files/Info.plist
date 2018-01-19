@@ -74,6 +74,8 @@
 	</array>
 	<key>UIRequiresFullScreen</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location permission while the app is in the background or if your phone is asleep is essential for Brave to continue tracking you in an emergency. This can be disabled in the Settings.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

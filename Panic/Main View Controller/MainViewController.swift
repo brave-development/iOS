@@ -298,12 +298,12 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 	}
 	
 	func showTabbar() {
-		if panicIsActive == false {
+//        if panicIsActive == false {
 			
 			self.tabbarBottomLayout.constant = 0
 			UIView.animate(withDuration: 0.3, animations: {
 				self.tabbarView.layoutIfNeeded()  })
-		}
+//        }
 	}
     
 	func hideTabbar() {

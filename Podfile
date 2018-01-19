@@ -35,6 +35,7 @@ target 'Brave' do
     pod 'SZTextView'
     
     pod 'BBLocationManager'
+    pod 'SwiftLocation', '~> 3.1.0'
     pod 'Alamofire'
     
     pod 'MessageKit'

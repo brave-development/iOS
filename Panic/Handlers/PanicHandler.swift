@@ -207,23 +207,23 @@ class PanicHandler: UIViewController {
         queryObject = nil
     }
     
-    func sendNotifications() {
-        if lastQueryObjectId != nil {
-            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
-            PFCloud.callFunction(inBackground: "pushFromId", withParameters: [
-                "objectId" : lastQueryObjectId!,
-                "installationId" : PFInstallation.current()!.objectId!
-            ] ) {
-                response, error in
-                
-                print(response)
-            }
-        } else {
-            if panicIsActive == true {
-                NotificationCenter.default.addObserver(self, selector: #selector(sendNotifications), name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
-            }
-        }
-    }
+//    func sendNotifications() {
+//        if lastQueryObjectId != nil {
+//            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
+//            PFCloud.callFunction(inBackground: "pushFromId", withParameters: [
+//                "objectId" : lastQueryObjectId!,
+//                "installationId" : PFInstallation.current()!.objectId!
+//            ] ) {
+//                response, error in
+//
+//                print(response)
+//            }
+//        } else {
+//            if panicIsActive == true {
+//                NotificationCenter.default.addObserver(self, selector: #selector(sendNotifications), name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
+//            }
+//        }
+//    }
     
     // Get active panics, count them and show the number on the tabbar
     func getActivePanics(completion: @escaping ([PFObject])->Void) {

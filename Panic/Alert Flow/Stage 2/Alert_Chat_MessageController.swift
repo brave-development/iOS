@@ -26,6 +26,8 @@ class MessagesController: NSObject {
     func loadExisting() {
         let query = PFQuery(className: "Messages")
         query.includeKey("user")
+        query.order(byAscending: "updatedAt")
+        query.whereKey("alert", equalTo: alertHandler.currentAlert)
         query.findObjectsInBackground { (messagesArray, error) in
             
             if error == nil {
@@ -42,7 +44,7 @@ class MessagesController: NSObject {
     }
     
     func sendNew(text: String) {
-        let messageObject = Sub_PFMessages(text: text, user: PFUser.current()!, alert: panicHandler.respondingAlertObject)
+        let messageObject = Sub_PFMessages(text: text, alert: alertHandler.currentAlert)
         messageObject.saveInBackground(block: {
             (success, error) in
             

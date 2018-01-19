@@ -119,6 +119,7 @@
 		913A29031FF5353D00AB3369 /* Sub_PFMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913A29021FF5353D00AB3369 /* Sub_PFMessages.swift */; };
 		913A29051FF5385E00AB3369 /* Sub_PFAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 913A29041FF5385E00AB3369 /* Sub_PFAlert.swift */; };
 		91E656092010D88E001B3F93 /* AlertHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E656082010D88E001B3F93 /* AlertHandler.swift */; };
+		91E6560B20120EB8001B3F93 /* Sub_PFNeedle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6560A20120EB8001B3F93 /* Sub_PFNeedle.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -274,6 +275,7 @@
 		913A29021FF5353D00AB3369 /* Sub_PFMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub_PFMessages.swift; sourceTree = "<group>"; };
 		913A29041FF5385E00AB3369 /* Sub_PFAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub_PFAlert.swift; sourceTree = "<group>"; };
 		91E656082010D88E001B3F93 /* AlertHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHandler.swift; sourceTree = "<group>"; };
+		91E6560A20120EB8001B3F93 /* Sub_PFNeedle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub_PFNeedle.swift; sourceTree = "<group>"; };
 		BA53505146F08CB3FB4B8662 /* Pods_Brave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD273ABF8657901CE1C1433E /* Pods-Brave.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Brave.release.xcconfig"; path = "Pods/Target Support Files/Pods-Brave/Pods-Brave.release.xcconfig"; sourceTree = "<group>"; };
 		ECBA48090E5F8F3B6F6C7BE2 /* Pods-Panic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Panic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Panic/Pods-Panic.release.xcconfig"; sourceTree = "<group>"; };
@@ -788,6 +790,7 @@
 			children = (
 				913A29021FF5353D00AB3369 /* Sub_PFMessages.swift */,
 				913A29041FF5385E00AB3369 /* Sub_PFAlert.swift */,
+				91E6560A20120EB8001B3F93 /* Sub_PFNeedle.swift */,
 			);
 			path = "PF SubClassing";
 			sourceTree = "<group>";
@@ -993,6 +996,7 @@
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SZTextView/SZTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/Spring/Spring.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftLocation/SwiftLocation.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftValidate/SwiftValidate.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/Toast/Toast.framework",
@@ -1022,6 +1026,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SZTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Spring.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftLocation.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftValidate.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast.framework",
@@ -1101,6 +1106,7 @@
 				912801621FCD63EB00C571A1 /* AlertBox_Container_VC.swift in Sources */,
 				75B508921EFC014C00C22E8F /* GroupsHandler_2.swift in Sources */,
 				752AA7001B94F56E005BE9FC /* CreateGroupViewController.swift in Sources */,
+				91E6560B20120EB8001B3F93 /* Sub_PFNeedle.swift in Sources */,
 				75606E6E1A36E4110089744C /* PanicHandler.swift in Sources */,
 				754C76E61A45A67B0007C53B /* HistoryDetailsViewController.swift in Sources */,
 				755100FD1B28A1F100148E90 /* GroupsTableViewCell.swift in Sources */,

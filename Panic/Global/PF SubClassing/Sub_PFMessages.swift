@@ -22,10 +22,10 @@ class Sub_PFMessages: PFObject, PFSubclassing {
         super.init()
     }
     
-    init(text: String, user: PFUser, alert: PFObject?) {
+    init(text: String, alert: PFObject?) {
         super.init()
         
-        self.user = user
+        self.user = PFUser.current()!
         self.text = text
         self.alert = alert
     }
