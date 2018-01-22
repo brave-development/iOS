@@ -34,6 +34,8 @@ class AlertStage_2_VC: UIViewController {
         viewContainer.addSubview(vc.view)
 
         vc.didMove(toParentViewController: self)
+        
+        messagesController.loadExisting()
     }
     
     @IBAction func back(_ sender: Any) {

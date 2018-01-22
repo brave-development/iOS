@@ -839,7 +839,7 @@
                                     <constraint firstAttribute="trailing" secondItem="WHG-ek-t4K" secondAttribute="trailing" id="v8S-C5-FxJ"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ds4-Nh-T1n">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ds4-Nh-T1n">
                                 <rect key="frame" x="148" y="449" width="80" height="80"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QJ-2S-67s">
@@ -859,7 +859,7 @@
                                         <rect key="frame" x="30" y="30" width="20" height="20"/>
                                     </activityIndicatorView>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="65E-BH-FJk"/>
                                     <constraint firstItem="4QJ-2S-67s" firstAttribute="centerX" secondItem="Ds4-Nh-T1n" secondAttribute="centerX" id="9rf-Im-YB3"/>
@@ -881,10 +881,35 @@
                                 <color key="textColor" red="0.87161552906036377" green="0.20686993002891541" blue="0.18183755874633789" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dv7-jQ-zya">
+                                <rect key="frame" x="155" y="40" width="65" height="65"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZMX-mN-yBx">
+                                        <rect key="frame" x="0.0" y="0.0" width="65" height="65"/>
+                                        <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
+                                        <state key="normal" image="chat"/>
+                                        <connections>
+                                            <action selector="openChat:" destination="kdS-kf-ljO" eventType="touchUpInside" id="1re-49-Gxr"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="ZMX-mN-yBx" secondAttribute="bottom" id="1pf-Pg-aUE"/>
+                                    <constraint firstAttribute="width" constant="65" id="T0y-Hs-Y4M"/>
+                                    <constraint firstItem="ZMX-mN-yBx" firstAttribute="leading" secondItem="dv7-jQ-zya" secondAttribute="leading" id="W90-e3-Pj4"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZMX-mN-yBx" secondAttribute="trailing" id="Ygx-Sy-Ohx"/>
+                                    <constraint firstItem="ZMX-mN-yBx" firstAttribute="top" secondItem="dv7-jQ-zya" secondAttribute="top" id="f0k-ZL-d0F"/>
+                                    <constraint firstAttribute="height" constant="65" id="uVB-T5-NTc"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4LH-bn-u96" firstAttribute="leading" secondItem="Nll-Pv-wqE" secondAttribute="leading" id="5Nd-5T-PgM"/>
+                            <constraint firstItem="dv7-jQ-zya" firstAttribute="centerX" secondItem="Nll-Pv-wqE" secondAttribute="centerX" id="5jg-u7-x7X"/>
                             <constraint firstItem="Ds4-Nh-T1n" firstAttribute="centerX" secondItem="PNW-kY-sep" secondAttribute="centerX" id="8Js-5u-wAP"/>
                             <constraint firstItem="UPD-xJ-xwG" firstAttribute="top" secondItem="Nll-Pv-wqE" secondAttribute="top" constant="20" id="BlM-Pk-yLp"/>
                             <constraint firstItem="PNW-kY-sep" firstAttribute="top" secondItem="oMo-ex-xQP" secondAttribute="bottom" constant="12" id="E9w-JF-ZXy"/>
@@ -892,6 +917,7 @@
                             <constraint firstItem="oMo-ex-xQP" firstAttribute="top" secondItem="pnC-SN-7NU" secondAttribute="bottom" constant="4" id="NzB-po-TpM"/>
                             <constraint firstAttribute="centerX" secondItem="PNW-kY-sep" secondAttribute="centerX" id="QuM-Jt-Roo"/>
                             <constraint firstAttribute="centerY" secondItem="PNW-kY-sep" secondAttribute="centerY" id="SUw-GH-0bT"/>
+                            <constraint firstItem="dv7-jQ-zya" firstAttribute="top" secondItem="Nll-Pv-wqE" secondAttribute="topMargin" constant="20" id="Ts0-M9-klD"/>
                             <constraint firstItem="Ds4-Nh-T1n" firstAttribute="top" secondItem="PNW-kY-sep" secondAttribute="bottom" constant="20" id="VZX-Ym-mAp"/>
                             <constraint firstItem="4LH-bn-u96" firstAttribute="top" secondItem="Nll-Pv-wqE" secondAttribute="top" id="dT4-CK-c48"/>
                             <constraint firstItem="oMo-ex-xQP" firstAttribute="centerX" secondItem="Nll-Pv-wqE" secondAttribute="centerX" id="iNH-Jd-dbD"/>
@@ -903,11 +929,13 @@
                     <tabBarItem key="tabBarItem" title="Item" id="u2g-Sj-fNe"/>
                     <connections>
                         <outlet property="background" destination="4LH-bn-u96" id="aZc-5i-9W1"/>
+                        <outlet property="btnChat" destination="ZMX-mN-yBx" id="NnR-24-3Ib"/>
                         <outlet property="btnNeedle" destination="4QJ-2S-67s" id="w8Z-r6-3Wd"/>
                         <outlet property="btnPanic" destination="PNW-kY-sep" id="Cul-ZW-Lqf"/>
                         <outlet property="lblResponders" destination="pnC-SN-7NU" id="Fut-mj-iMl"/>
                         <outlet property="lblRespondersLabel" destination="oMo-ex-xQP" id="UUO-Ft-Pgc"/>
                         <outlet property="spinnerNeedle" destination="dub-cO-Mkg" id="nm2-VK-rsc"/>
+                        <outlet property="viewChat" destination="dv7-jQ-zya" id="QLt-yc-zSM"/>
                         <outlet property="viewMenuButton" destination="WHG-ek-t4K" id="bmq-5E-yPx"/>
                         <outlet property="viewNeedle" destination="Ds4-Nh-T1n" id="Lvo-hp-mfV"/>
                     </connections>
@@ -3854,7 +3882,7 @@
                                                 <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="call:" destination="1kK-cU-hBn" eventType="touchUpInside" id="Z1R-dQ-hQB"/>
+                                                <action selector="chat:" destination="1kK-cU-hBn" eventType="touchUpInside" id="6zj-xj-zXg"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Surname" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nTx-6c-gQa">
@@ -4001,7 +4029,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="Y9K-q5-eXe"/>
                     <connections>
-                        <outlet property="btnCall" destination="KSE-k4-hkw" id="kGL-2z-wv3"/>
+                        <outlet property="btnChat" destination="KSE-k4-hkw" id="Kt3-Tk-CWl"/>
                         <outlet property="btnCloseDetails" destination="2PS-eG-BAV" id="dyT-2o-RBH"/>
                         <outlet property="btnMapType" destination="nqd-aR-Bo6" id="5Br-6v-BAa"/>
                         <outlet property="btnRespond" destination="aHI-Dd-8ei" id="lZp-Od-xqV"/>
@@ -4116,7 +4144,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <blurEffect style="light"/>
+                                <blurEffect style="dark"/>
                             </visualEffectView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -4659,6 +4687,7 @@
         <image name="WriteIcon.png" width="32" height="32"/>
         <image name="blank.png" width="10" height="10"/>
         <image name="camera.png" width="128" height="128"/>
+        <image name="chat" width="64" height="64"/>
         <image name="close@3" width="40" height="40"/>
         <image name="down_arrow" width="45" height="15"/>
         <image name="group.png" width="64" height="64"/>

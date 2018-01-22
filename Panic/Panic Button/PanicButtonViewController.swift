@@ -33,6 +33,8 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     @IBOutlet weak var viewNeedle: UIView!
     @IBOutlet weak var spinnerNeedle: UIActivityIndicatorView!
+    @IBOutlet weak var viewChat: UIView!
+    @IBOutlet weak var btnChat: UIButton!
     @IBOutlet weak var btnNeedle: UIButton!
     @IBOutlet weak var btnPanic: UIButton!
     @IBOutlet weak var background: UIImageView!
@@ -59,38 +61,37 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         btnPanic.layer.borderWidth = 2
         btnPanic.layer.borderColor = UIColor.green.cgColor
         
-        if global.isChatPilot {
-            styleChatButton()
+        styleButton(button: btnChat, shadowView: viewChat)
+        styleButton(button: btnNeedle, shadowView: viewNeedle)
+        
+        if alertHandler.currentAlert != nil {
+            viewChat.isHidden = false
+        } else {
+            viewChat.isHidden = true
         }
     }
     
-    func styleChatButton() {
-        btnNeedle.layer.cornerRadius = btnNeedle.frame.size.height/2
-        btnNeedle.layer.masksToBounds = true
-        viewNeedle.layer.shadowOffset = CGSize(width: 0, height: 0)
-        viewNeedle.layer.shadowRadius = 4
-        viewNeedle.layer.shadowOpacity = 0.7
-        
-        if alertHandler.currentAlert != nil {
-            viewNeedle.isHidden = false
-        }
+    func styleButton(button: UIButton, shadowView: UIView? = nil) {
+        button.layer.cornerRadius = button.frame.size.height/2
+        button.layer.masksToBounds = true
+        shadowView?.layer.shadowOffset = .zero
+        shadowView?.layer.shadowRadius = 4
+        shadowView?.layer.shadowOpacity = 0.7
     }
     
     @IBAction func menuButton(_ sender: AnyObject) {
         self.mainViewController.openSidebar(true)
     }
     
+    @IBAction func openChat(_ sender: Any) {
+        let vc = storyboard!.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
+        //            let vc = storyboard!.instantiateViewController(withIdentifier: "alert_Chat_VC") as! Alert_Chat_VC
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: true, completion: nil)
+    }
+    
     @IBAction func needleDropPressed(_ sender: Any) {
-        if global.isChatPilot {
-            let vc = storyboard!.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
-            //            let vc = storyboard!.instantiateViewController(withIdentifier: "alert_Chat_VC") as! Alert_Chat_VC
-            vc.modalTransitionStyle = .crossDissolve
-            vc.modalPresentationStyle = .overCurrentContext
-            self.present(vc, animated: true, completion: nil)
-            
-            return
-        }
-        
         btnNeedle.setImage(UIImage(), for: .normal)
         btnNeedle.isEnabled = false
         spinnerNeedle.startAnimating()
@@ -125,7 +126,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
                 isEnabled in
                 
                 if isEnabled {
-                    if global.panicConfirmation == true {
+                    if global.panicConfirmation {
                         self.showActivationConfirmation()
                     } else {
                         self.activateAlert()
@@ -156,7 +157,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
             
             if success {
                 self.showDetailsInput()
-                self.viewNeedle.isHidden = false
+                self.viewChat.isHidden = false
                 
                 self.timer = Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateResponderCount), userInfo: nil, repeats: true)
                 
@@ -244,7 +245,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
             btnPanic.layer.borderColor = UIColor.red.cgColor
             btnPanic.layer.shadowColor = UIColor.red.cgColor
             btnPanic.tag = 1
-            buttonGlow()
+//            buttonGlow()
             break
             
         case .deactivate:
@@ -256,22 +257,22 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
     }
     
-    func buttonGlow() {
-        if panicHandler.panicIsActive == true {
-            self.btnPanic.layer.shadowRadius = 20
-            UIView.animate(withDuration: 2, animations: {
-                self.btnPanic.layer.shadowRadius = 8
-            }, completion: {
-                (result) in
-                UIView.animate(withDuration: 2, animations: {
-                    self.btnPanic.layer.shadowRadius = 4
-                }, completion: {
-                    (result) in
-                    self.buttonGlow()
-                })
-            })
-        }
-    }
+//    func buttonGlow() {
+//        if panicHandler.panicIsActive == true {
+//            self.btnPanic.layer.shadowRadius = 20
+//            UIView.animate(withDuration: 2, animations: {
+//                self.btnPanic.layer.shadowRadius = 8
+//            }, completion: {
+//                (result) in
+//                UIView.animate(withDuration: 2, animations: {
+//                    self.btnPanic.layer.shadowRadius = 4
+//                }, completion: {
+//                    (result) in
+//                    self.buttonGlow()
+//                })
+//            })
+//        }
+//    }
     
     func updateResponderCount() {
         lblResponders.text = "\(panicHandler.responderCount)"

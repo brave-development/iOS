@@ -220,49 +220,37 @@ class PanicHandler: UIViewController {
 //            }
 //        } else {
 //            if panicIsActive == true {
-//                NotificationCenter.default.addObserver(self, selector: #selector(sendNotifications), name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
-//            }
-//        }
-//    }
+    //                NotificationCenter.default.addObserver(self, selector: #selector(sendNotifications), name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
+    //            }
+    //        }
+    //    }
     
     // Get active panics, count them and show the number on the tabbar
     func getActivePanics(completion: @escaping ([PFObject])->Void) {
         var groups : [[String : Any]] = []
         
         for (_, group) in groupsHandler.joinedGroupsObject {
-            groups.append(buildGroupPointer(objectId: group.objectId!))
-        }
-        
-        PFCloud.callFunction(inBackground: "getActiveAlerts", withParameters: [ "groups" : groups ] ) {
-            response, error in
-            
-            if let objects = response as? [PFObject] {
-                var alerts : [PFObject] = []
-                
-                for object in objects {
-                    (object["panic"] as! PFObject).setObject(object["user"], forKey: "user")
-                    alerts.append(object["panic"] as! PFObject)
-                }
-                completion(alerts)
-            } else {
-                completion([])
+            if let groupObjectId = group.objectId {
+                groups.append(buildGroupPointer(objectId: groupObjectId))
             }
         }
         
-//        print("Getting victims from mapViewController")
-//        let queryPanics = PFQuery(className: "Panics")
-//        queryPanics.whereKey("active", equalTo: true)
-//        queryPanics.findObjectsInBackground(block: {
-//            (objects, error) in
-//            if objects != nil {
-//                DispatchQueue.main.async(execute: {
-//                    self.activePanicCount = objects!.count
-//                    NotificationCenter.default.post(NSNotification(name: NSNotification.Name(rawValue: "updatedActivePanics"), object: nil) as Notification)
-//                })
-//            } else {
-//                self.activePanicCount = 0
-//            }
-//            self.getActivePanicsTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.getActivePanics), userInfo: nil, repeats: false)
-//        })
+        if groups.count > 0 {
+            PFCloud.callFunction(inBackground: "getActiveAlerts", withParameters: [ "groups" : groups ] ) {
+                response, error in
+                
+                if let objects = response as? [PFObject] {
+                    var alerts : [PFObject] = []
+                    
+                    for object in objects {
+                        (object["panic"] as! PFObject).setObject(object["user"], forKey: "user")
+                        alerts.append(object["panic"] as! PFObject)
+                    }
+                    completion(alerts)
+                } else {
+                    completion([])
+                }
+            }
+        }
     }
 }

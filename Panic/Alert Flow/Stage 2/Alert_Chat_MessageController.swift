@@ -20,7 +20,8 @@ class MessagesController: NSObject {
     
     override init() {
         super.init()
-        if !initialCheck { loadExisting() }
+//        if !initialCheck { loadExisting() }
+        loadExisting()
     }
     
     func loadExisting() {
@@ -29,15 +30,16 @@ class MessagesController: NSObject {
         query.order(byAscending: "updatedAt")
         query.whereKey("alert", equalTo: alertHandler.currentAlert)
         query.findObjectsInBackground { (messagesArray, error) in
+            self.messages = []
             
-            if error == nil {
+            if messagesArray != nil {
                 for message in messagesArray! {
                     let newMessage =  message as! Sub_PFMessages
                     self.messages.append(newMessage.toMessageType())
                 }
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "reloadMessages"), object: nil)
                 self.initialCheck = true
-            } else {
+            } else if error != nil {
                 print("OOPS.... \(error) ... sdjcnksdbnsjc")
             }
         }

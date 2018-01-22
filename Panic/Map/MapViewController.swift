@@ -27,7 +27,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	@IBOutlet weak var lblResponders: UILabel!
 	@IBOutlet weak var lblTime: UILabel!
 	@IBOutlet weak var lblAddress: UILabel!
-	@IBOutlet weak var btnCall: UIButton!
+	@IBOutlet weak var btnChat: UIButton!
 	@IBOutlet weak var btnRespond: UIButton!
 	@IBOutlet weak var btnCloseDetails: UIButton!
 	@IBOutlet weak var btnMapType: UIButton!
@@ -228,12 +228,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			let btnViewRight: UIButton = UIButton(type: UIButtonType.detailDisclosure)
             btnViewRight.addTarget(self, action: #selector(showDetailsView), for: UIControlEvents.touchUpInside)
 			
-			let btnViewLeft: UIButton = UIButton(type: UIButtonType.detailDisclosure)
-            btnViewLeft.setImage(UIImage(named: "call"), for: UIControlState())
-			btnViewLeft.addTarget(self, action: #selector(callVictim), for: UIControlEvents.touchUpInside)
+//            let btnViewLeft: UIButton = UIButton(type: UIButtonType.detailDisclosure)
+//            btnViewLeft.setImage(UIImage(named: "call"), for: UIControlState())
+//            btnViewLeft.addTarget(self, action: #selector(callVictim), for: UIControlEvents.touchUpInside)
 			
 			view.rightCalloutAccessoryView = btnViewRight
-			view.leftCalloutAccessoryView = btnViewLeft
+//            view.leftCalloutAccessoryView = btnViewLeft
 			
             view.image = UIImage(named: "mapPin")
             view.isEnabled = true
@@ -304,12 +304,15 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 		lblTime.text = dateFormatter.string(from: panicDetails.createdAt!)
 		getAddress()
 		
-		if isResponding() == true {
+		if isResponding() {
 			btnRespond.setTitle(NSLocalizedString("stop_responding", value: "Stop Responding", comment: ""), for: UIControlState())
 			btnRespond.backgroundColor = UIColor(red:0.91, green:0.3, blue:0.24, alpha:1)
+            alertHandler.currentAlert = Sub_PFAlert(parseObject: selectedVictim!)
+            btnChat.isEnabled = true
 		} else {
 			btnRespond.setTitle(NSLocalizedString("respond", value: "Respond", comment: ""), for: UIControlState())
 			btnRespond.backgroundColor = UIColor(red:0.18, green:0.8, blue:0.44, alpha:1)
+            btnChat.isEnabled = false
 		}
 	}
 	
@@ -363,19 +366,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			}
 		})
 	}
-	
-	func callVictim() {
-		call(btnCall)
-	}
     
-	@IBAction func call(_ sender: AnyObject) {
-		let victimInfo = selectedVictim!["user"] as! PFUser
-		let cell = victimInfo["cellNumber"] as? String
-        
-		if cell != nil {
-			let url = URL(string: "tel://\(cell!)")
-			UIApplication.shared.openURL(url!)
-		}
+	@IBAction func chat(_ sender: AnyObject) {
+        let vc = storyboard!.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: true, completion: nil)
 	}
 	
 	@IBAction func respond(_ sender: AnyObject) {
@@ -385,22 +381,30 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			btnRespond.backgroundColor = UIColor(red:0.18, green:0.8, blue:0.44, alpha:1)
             panicHandler.respondingAlertObjectId = nil
             panicHandler.respondingAlertObject = nil
+            
+            alertHandler.currentAlert!.removeResponder()
+            alertHandler.currentAlert = nil
+            btnChat.isEnabled = false
 		} else {
-			selectedVictim!.addUniqueObject(PFUser.current()!.objectId!, forKey: "responders")
+            selectedVictim!.addUniqueObject(PFUser.current()!.objectId!, forKey: "responders")
 			btnRespond.setTitle(NSLocalizedString("stop_responding", value: "Stop Responding", comment: ""), for: UIControlState())
 			btnRespond.backgroundColor = UIColor(red:0.91, green:0.3, blue:0.24, alpha:1)
             panicHandler.respondingAlertObjectId = selectedVictim!.objectId
             panicHandler.respondingAlertObject = selectedVictim
+            
+            alertHandler.currentAlert = Sub_PFAlert(parseObject: selectedVictim!)
+            alertHandler.currentAlert!.addResponder()
+            btnChat.isEnabled = true
 		}
 		
-		selectedVictim!.saveInBackground(block: {
-			(result, error) in
-			if result == true {
-				print("done")
-			} else if error != nil {
-				global.showAlert("", message: String(format: NSLocalizedString("error_becoming_a_responder", value: "%@\nWill try again in a few seconds.", comment: ""), arguments: [error!.localizedDescription]))
-			}
-		})
+        Sub_PFAlert(parseObject: selectedVictim!).saveInBackground(block: {
+            (result, error) in
+            if result {
+                print("done")
+            } else if error != nil {
+                global.showAlert("", message: String(format: NSLocalizedString("error_becoming_a_responder", value: "%@\nWill try again in a few seconds.", comment: ""), arguments: [error!.localizedDescription]))
+            }
+        })
 
 		// Add current user object to array... Use same way as adding channels to installation. "AddUnique" or something
 	}

@@ -10,6 +10,7 @@ import Parse
 import MessageKit
 
 class Sub_PFMessages: PFObject, PFSubclassing {
+    @NSManaged var displayName: String!
     @NSManaged var user: PFUser!
     @NSManaged var alert: PFObject?
     @NSManaged var text: String!
@@ -26,6 +27,7 @@ class Sub_PFMessages: PFObject, PFSubclassing {
         super.init()
         
         self.user = PFUser.current()!
+        self.displayName = PFUser.current()!["name"] as! String
         self.text = text
         self.alert = alert
     }
@@ -35,6 +37,7 @@ class Sub_PFMessages: PFObject, PFSubclassing {
         
         self.text = parseObject["text"] as! String
         self.user = parseObject["user"] as! PFUser
+        self.displayName = parseObject["name"] as! String
         self.alert = parseObject["alert"] as? PFObject
     }
     
