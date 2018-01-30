@@ -29,6 +29,7 @@ target 'Brave' do
     
     pod 'FacebookCore'
     pod 'FacebookLogin'
+    pod 'pop'
 
     pod 'Toast'
     pod 'SCLAlertView'
@@ -39,5 +40,7 @@ target 'Brave' do
     pod 'Alamofire'
     
     pod 'MessageKit'
+    
+    pod 'ESTabBarController-swift'
 
 end

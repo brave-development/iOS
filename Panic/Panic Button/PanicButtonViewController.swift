@@ -23,7 +23,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         case deactivate
     }
     
-    var mainViewController : MainViewController!
+    var mainViewController : MainViewController?
 //    var manager : CLLocationManager!
     var pushQuery : PFQuery = PFInstallation.query()!
     var pendingPushNotifications = false // Tracks the button status. Dont send push if Panic isnt active.
@@ -31,11 +31,10 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     var locationPermission = false
     var timer: Timer?
     
-    @IBOutlet weak var viewNeedle: UIView!
-    @IBOutlet weak var spinnerNeedle: UIActivityIndicatorView!
+    @IBOutlet weak var spinner: UIActivityIndicatorView!
     @IBOutlet weak var viewChat: UIView!
+    @IBOutlet weak var btnMenu: UIButton!
     @IBOutlet weak var btnChat: UIButton!
-    @IBOutlet weak var btnNeedle: UIButton!
     @IBOutlet weak var btnPanic: UIButton!
     @IBOutlet weak var background: UIImageView!
     @IBOutlet weak var lblResponders: UILabel!
@@ -62,13 +61,14 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         btnPanic.layer.borderColor = UIColor.green.cgColor
         
         styleButton(button: btnChat, shadowView: viewChat)
-        styleButton(button: btnNeedle, shadowView: viewNeedle)
         
         if alertHandler.currentAlert != nil {
             viewChat.isHidden = false
         } else {
             viewChat.isHidden = true
         }
+        
+        if global.isChatPilot { viewMenuButton.isHidden = true }
     }
     
     func styleButton(button: UIButton, shadowView: UIView? = nil) {
@@ -80,7 +80,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     @IBAction func menuButton(_ sender: AnyObject) {
-        self.mainViewController.openSidebar(true)
+        self.mainViewController?.openSidebar(true)
     }
     
     @IBAction func openChat(_ sender: Any) {
@@ -91,36 +91,8 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         self.present(vc, animated: true, completion: nil)
     }
     
-    @IBAction func needleDropPressed(_ sender: Any) {
-        btnNeedle.setImage(UIImage(), for: .normal)
-        btnNeedle.isEnabled = false
-        spinnerNeedle.startAnimating()
-        
-        Locator.currentPosition(accuracy: .room, timeout: Timeout.after(60), onSuccess: {
-            location in
-            let needle = Sub_PFNeedle(location: location)
-            needle.saveInBackground(block: {
-                (success, error) in
-                self.spinnerNeedle.stopAnimating()
-                self.btnNeedle.setImage(UIImage(named: "needle"), for: .normal)
-                self.btnNeedle.isEnabled = true
-                if success {
-                    self.view.makeToast("Needle position saved!", duration: 3, position: CSToastPositionCenter)
-                } else {
-                    self.view.makeToast("error!.localizedDescription", duration: 3, position: CSToastPositionCenter)
-                }
-            })
-        }) {
-            (error, location) in
-            self.spinnerNeedle.stopAnimating()
-            self.btnNeedle.setImage(UIImage(named: "needle"), for: .normal)
-            self.btnNeedle.isEnabled = true
-            self.view.makeToast("Something went wrong...\n\n\(error.localizedDescription)", duration: 5, position: CSToastPositionCenter)
-        }
-    }
-    
     @IBAction func panicPressed(_ sender: AnyObject) {
-        mainViewController.closeSidebar()
+        mainViewController?.closeSidebar()
         if btnPanic.tag == 0 {
             locationHandler.isLocationEnabled(completionHandler: {
                 isEnabled in
@@ -163,7 +135,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
                 
                 if self.pendingPushNotifications == false {
                     self.pendingPushNotifications = true
-                    if global.panicConfirmation == true || global.isDESPilot {
+                    if global.panicConfirmation == true {
                         self.prepareForSendNotification()
                     } else {
                         Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.prepareForSendNotification), userInfo: nil, repeats: false)
@@ -180,26 +152,34 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     
     func activate_UIChanges() {
         UIApplication.shared.isIdleTimerDisabled = true
-        mainViewController.tabbarView.isUserInteractionEnabled = false
-        self.changeButtonStyle(to: .activate)
+        mainViewController?.tabbarView.isUserInteractionEnabled = false
+        changeButtonStyle(to: .activate)
+        spinner.startAnimating()
         
         UIView.animate(withDuration: 0.3, animations: {
-            self.mainViewController.hideTabbar()
+            self.mainViewController?.hideTabbar()
             self.viewMenuButton.alpha = 0.0
         }, completion: { _ in
             self.viewMenuButton.isHidden = true
         })
+        
+        Timer.scheduledTimer(withTimeInterval: 4, repeats: false) {_ in
+            if self.spinner.isAnimating {
+                self.view.makeToast("Waiting for better GPS accuracy...")
+            }
+        }
     }
     
     func deativate_UIChanges() {
         UIApplication.shared.isIdleTimerDisabled = false
+        spinner.stopAnimating()
         
-        self.viewMenuButton.isHidden = false
+        if !global.isChatPilot { viewMenuButton.isHidden = false }
         
-        mainViewController.tabbarView.isUserInteractionEnabled = true
+        mainViewController?.tabbarView.isUserInteractionEnabled = true
         UIView.animate(withDuration: 0.3, animations: {
             self.viewMenuButton.alpha = 1.0
-            self.mainViewController.showTabbar()
+            self.mainViewController?.showTabbar()
         })
         
         changeButtonStyle(to: .deactivate)
@@ -245,7 +225,6 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
             btnPanic.layer.borderColor = UIColor.red.cgColor
             btnPanic.layer.shadowColor = UIColor.red.cgColor
             btnPanic.tag = 1
-//            buttonGlow()
             break
             
         case .deactivate:
@@ -257,25 +236,13 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         }
     }
     
-//    func buttonGlow() {
-//        if panicHandler.panicIsActive == true {
-//            self.btnPanic.layer.shadowRadius = 20
-//            UIView.animate(withDuration: 2, animations: {
-//                self.btnPanic.layer.shadowRadius = 8
-//            }, completion: {
-//                (result) in
-//                UIView.animate(withDuration: 2, animations: {
-//                    self.btnPanic.layer.shadowRadius = 4
-//                }, completion: {
-//                    (result) in
-//                    self.buttonGlow()
-//                })
-//            })
-//        }
-//    }
-    
     func updateResponderCount() {
-        lblResponders.text = "\(panicHandler.responderCount)"
+        if let count = alertHandler.currentAlert?.responders.count {
+            lblResponders.text = "\(count)"
+            global.mainTabbar?.viewControllers?[2].tabBarItem.badgeValue = "\(count)"
+        } else {
+            global.mainTabbar?.viewControllers?[2].tabBarItem.badgeValue = nil
+        }
     }
     
     func prepareForSendNotification() {

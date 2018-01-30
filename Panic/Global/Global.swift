@@ -11,6 +11,7 @@ import Parse
 import SystemConfiguration
 import Social
 import SwiftyJSON
+import ESTabBarController_swift
 
 var global : Global = Global()
 
@@ -45,6 +46,8 @@ extension Dictionary {
 }
 
 class Global: UIViewController {
+    
+    var mainTabbar: ESTabBarController?
     
     let themeBlue = UIColor(red:0.29, green:0.56, blue:0.89, alpha:1.00)
 	
@@ -112,20 +115,24 @@ class Global: UIViewController {
             tutorial.load()
             joinPilotGroup()
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
-            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            
-            switch callingVC {
-            case (is LoginViewController):
-                (callingVC as! LoginViewController).present(vc, animated: true, completion: nil)
-                break
+            if global.isChatPilot {
+                (callingVC as! LoginViewController).present(Main_Tabbar_NC(), animated: true, completion: nil)
+            } else {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
+                vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
                 
-            case (is RegisterViewController):
-                (callingVC as! RegisterViewController).present(vc, animated: true, completion: nil)
-                break
-                
-            default: print("NO TYPE FOUND FOR CALLING VIEW CONRTOLLER"); break
+                switch callingVC {
+                case (is LoginViewController):
+                    (callingVC as! LoginViewController).present(vc, animated: true, completion: nil)
+                    break
+                    
+                case (is RegisterViewController):
+                    (callingVC as! RegisterViewController).present(vc, animated: true, completion: nil)
+                    break
+                    
+                default: print("NO TYPE FOUND FOR CALLING VIEW CONRTOLLER"); break
+                }
             }
             
             locationHandler

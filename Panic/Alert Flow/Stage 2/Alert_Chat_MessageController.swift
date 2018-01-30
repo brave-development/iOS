@@ -9,6 +9,7 @@
 import MessageKit
 import Parse
 import ChameleonFramework
+import SwiftyJSON
 
 let messagesController = MessagesController()
 
@@ -47,9 +48,10 @@ class MessagesController: NSObject {
     
     func sendNew(text: String) {
         let messageObject = Sub_PFMessages(text: text, alert: alertHandler.currentAlert)
+        
         messageObject.saveInBackground(block: {
             (success, error) in
-            
+
             if success {
                 self.recieveNew(messageObject: messageObject)
             } else if error != nil {
@@ -170,7 +172,7 @@ extension Alert_Chat_VC: MessagesLayoutDelegate {
     }
     
     func avatar(for message: MessageType, at indexPath: IndexPath, in messagesCollectionView: MessagesCollectionView) -> Avatar {
-        let initials = message.sender.displayName.components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.characters.first!)") + "\($1.characters.first!)" }
+        let initials = message.sender.displayName.trim().components(separatedBy: " ").reduce("") { ($0 == "" ? "" : "\($0.characters.first!)") + "\($1.characters.first!)" }
         return Avatar(image: nil, initals: initials)
     }
 }

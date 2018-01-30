@@ -773,7 +773,7 @@
         <!--Panic-->
         <scene sceneID="he3-Zq-kvr">
             <objects>
-                <viewController storyboardIdentifier="panicViewController" title="Panic" id="kdS-kf-ljO" customClass="PanicButtonViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="panicViewController" title="Panic" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kdS-kf-ljO" customClass="PanicButtonViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Tm4-aW-TwQ"/>
                         <viewControllerLayoutGuide type="bottom" id="vb9-Dn-ssc"/>
@@ -839,36 +839,6 @@
                                     <constraint firstAttribute="trailing" secondItem="WHG-ek-t4K" secondAttribute="trailing" id="v8S-C5-FxJ"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ds4-Nh-T1n">
-                                <rect key="frame" x="148" y="449" width="80" height="80"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4QJ-2S-67s">
-                                        <rect key="frame" x="8" y="7.5" width="65" height="65"/>
-                                        <color key="backgroundColor" red="0.18039215689999999" green="0.80000000000000004" blue="0.4431372549" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="65" id="NeG-iZ-dJc"/>
-                                            <constraint firstAttribute="width" constant="65" id="xxd-Yk-jh5"/>
-                                        </constraints>
-                                        <inset key="imageEdgeInsets" minX="20" minY="20" maxX="20" maxY="20"/>
-                                        <state key="normal" image="needle"/>
-                                        <connections>
-                                            <action selector="needleDropPressed:" destination="kdS-kf-ljO" eventType="touchUpInside" id="fDb-Ra-dII"/>
-                                        </connections>
-                                    </button>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="dub-cO-Mkg">
-                                        <rect key="frame" x="30" y="30" width="20" height="20"/>
-                                    </activityIndicatorView>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="65E-BH-FJk"/>
-                                    <constraint firstItem="4QJ-2S-67s" firstAttribute="centerX" secondItem="Ds4-Nh-T1n" secondAttribute="centerX" id="9rf-Im-YB3"/>
-                                    <constraint firstItem="dub-cO-Mkg" firstAttribute="centerX" secondItem="Ds4-Nh-T1n" secondAttribute="centerX" id="WbB-c7-EDy"/>
-                                    <constraint firstItem="4QJ-2S-67s" firstAttribute="centerY" secondItem="Ds4-Nh-T1n" secondAttribute="centerY" id="sB7-iw-RMm"/>
-                                    <constraint firstItem="dub-cO-Mkg" firstAttribute="centerY" secondItem="Ds4-Nh-T1n" secondAttribute="centerY" id="wO8-5q-w2g"/>
-                                    <constraint firstAttribute="height" constant="80" id="z4r-yz-44P"/>
-                                </constraints>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Responders" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMo-ex-xQP">
                                 <rect key="frame" x="153.5" y="212.5" width="68" height="14.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
@@ -905,12 +875,14 @@
                                     <constraint firstAttribute="height" constant="65" id="uVB-T5-NTc"/>
                                 </constraints>
                             </view>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="hRP-1P-fd7">
+                                <rect key="frame" x="178" y="509" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="4LH-bn-u96" firstAttribute="leading" secondItem="Nll-Pv-wqE" secondAttribute="leading" id="5Nd-5T-PgM"/>
                             <constraint firstItem="dv7-jQ-zya" firstAttribute="centerX" secondItem="Nll-Pv-wqE" secondAttribute="centerX" id="5jg-u7-x7X"/>
-                            <constraint firstItem="Ds4-Nh-T1n" firstAttribute="centerX" secondItem="PNW-kY-sep" secondAttribute="centerX" id="8Js-5u-wAP"/>
                             <constraint firstItem="UPD-xJ-xwG" firstAttribute="top" secondItem="Nll-Pv-wqE" secondAttribute="top" constant="20" id="BlM-Pk-yLp"/>
                             <constraint firstItem="PNW-kY-sep" firstAttribute="top" secondItem="oMo-ex-xQP" secondAttribute="bottom" constant="12" id="E9w-JF-ZXy"/>
                             <constraint firstItem="UPD-xJ-xwG" firstAttribute="leading" secondItem="Nll-Pv-wqE" secondAttribute="leading" id="Fw4-6u-5gE"/>
@@ -918,26 +890,26 @@
                             <constraint firstAttribute="centerX" secondItem="PNW-kY-sep" secondAttribute="centerX" id="QuM-Jt-Roo"/>
                             <constraint firstAttribute="centerY" secondItem="PNW-kY-sep" secondAttribute="centerY" id="SUw-GH-0bT"/>
                             <constraint firstItem="dv7-jQ-zya" firstAttribute="top" secondItem="Nll-Pv-wqE" secondAttribute="topMargin" constant="20" id="Ts0-M9-klD"/>
-                            <constraint firstItem="Ds4-Nh-T1n" firstAttribute="top" secondItem="PNW-kY-sep" secondAttribute="bottom" constant="20" id="VZX-Ym-mAp"/>
+                            <constraint firstItem="hRP-1P-fd7" firstAttribute="top" secondItem="PNW-kY-sep" secondAttribute="bottom" constant="80" id="VxU-4f-rfQ"/>
                             <constraint firstItem="4LH-bn-u96" firstAttribute="top" secondItem="Nll-Pv-wqE" secondAttribute="top" id="dT4-CK-c48"/>
                             <constraint firstItem="oMo-ex-xQP" firstAttribute="centerX" secondItem="Nll-Pv-wqE" secondAttribute="centerX" id="iNH-Jd-dbD"/>
                             <constraint firstItem="pnC-SN-7NU" firstAttribute="centerX" secondItem="Nll-Pv-wqE" secondAttribute="centerX" id="pYe-oZ-6Ht"/>
                             <constraint firstItem="vb9-Dn-ssc" firstAttribute="top" secondItem="4LH-bn-u96" secondAttribute="bottom" id="u80-3m-24h"/>
                             <constraint firstAttribute="trailing" secondItem="4LH-bn-u96" secondAttribute="trailing" id="xv5-gI-CBV"/>
+                            <constraint firstItem="hRP-1P-fd7" firstAttribute="centerX" secondItem="Nll-Pv-wqE" secondAttribute="centerX" id="xzm-Z7-5l4"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Item" id="u2g-Sj-fNe"/>
                     <connections>
                         <outlet property="background" destination="4LH-bn-u96" id="aZc-5i-9W1"/>
                         <outlet property="btnChat" destination="ZMX-mN-yBx" id="NnR-24-3Ib"/>
-                        <outlet property="btnNeedle" destination="4QJ-2S-67s" id="w8Z-r6-3Wd"/>
+                        <outlet property="btnMenu" destination="dkP-1K-lDE" id="nlU-wS-JgZ"/>
                         <outlet property="btnPanic" destination="PNW-kY-sep" id="Cul-ZW-Lqf"/>
                         <outlet property="lblResponders" destination="pnC-SN-7NU" id="Fut-mj-iMl"/>
                         <outlet property="lblRespondersLabel" destination="oMo-ex-xQP" id="UUO-Ft-Pgc"/>
-                        <outlet property="spinnerNeedle" destination="dub-cO-Mkg" id="nm2-VK-rsc"/>
+                        <outlet property="spinner" destination="hRP-1P-fd7" id="lcy-ka-EoQ"/>
                         <outlet property="viewChat" destination="dv7-jQ-zya" id="QLt-yc-zSM"/>
-                        <outlet property="viewMenuButton" destination="WHG-ek-t4K" id="bmq-5E-yPx"/>
-                        <outlet property="viewNeedle" destination="Ds4-Nh-T1n" id="Lvo-hp-mfV"/>
+                        <outlet property="viewMenuButton" destination="WHG-ek-t4K" id="MRC-Kh-9LO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lNF-JW-uFe" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2105,7 +2077,7 @@
         <!--Groups-->
         <scene sceneID="RHy-Yd-uWt">
             <objects>
-                <viewController storyboardIdentifier="contactsViewController" title="Groups" id="Uey-Pa-0Xe" customClass="GroupsViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="contactsViewController" title="Groups" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Uey-Pa-0Xe" customClass="GroupsViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="S7v-xg-9gG"/>
                         <viewControllerLayoutGuide type="bottom" id="bxb-fG-FRu"/>
@@ -3147,7 +3119,7 @@
         <!--Settings-->
         <scene sceneID="LBL-g1-CbC">
             <objects>
-                <tableViewController storyboardIdentifier="settingsViewController" title="Settings" id="bf1-M8-Ukx" customClass="SettingsTableViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="settingsViewController" title="Settings" useStoryboardIdentifierAsRestorationIdentifier="YES" id="bf1-M8-Ukx" customClass="SettingsTableViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="onDrag" dataMode="static" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="25" sectionFooterHeight="22" id="Tiz-MW-x4Q">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -3836,7 +3808,7 @@
         <!--Map-->
         <scene sceneID="G4y-oy-ky6">
             <objects>
-                <viewController storyboardIdentifier="mapViewController" title="Map" id="1kK-cU-hBn" customClass="MapViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="mapViewController" title="Map" useStoryboardIdentifierAsRestorationIdentifier="YES" id="1kK-cU-hBn" customClass="MapViewController" customModule="Brave" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PEF-wp-qyL"/>
                         <viewControllerLayoutGuide type="bottom" id="xNI-Yb-tKY"/>
@@ -4697,7 +4669,6 @@
         <image name="lock.png" width="64" height="64"/>
         <image name="logo" width="512" height="512"/>
         <image name="logout.png" width="20" height="20"/>
-        <image name="needle" width="64" height="64"/>
         <image name="noImage.png" width="64" height="64"/>
         <image name="plus@2.png" width="60" height="60"/>
         <image name="settings.png" width="32" height="32"/>

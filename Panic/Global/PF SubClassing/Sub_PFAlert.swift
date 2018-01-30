@@ -15,6 +15,15 @@ class Sub_PFAlert: PFObject, PFSubclassing {
     @NSManaged var responders: [String]!
     @NSManaged var location: PFGeoPoint!
     
+    var isActive: Bool {
+        get {
+            return true
+        }
+        
+        set(newValue) {
+            
+        }
+    }
     
     static func parseClassName() -> String {
         return "Panics"
@@ -63,9 +72,5 @@ class Sub_PFAlert: PFObject, PFSubclassing {
         self["responders"] = self.responders
         
         super.saveInBackground(block: block)
-        
-//        super.saveInBackground { (success, error) in
-//            print(self.objectId)
-//        }
     }
 }

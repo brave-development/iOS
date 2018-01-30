@@ -79,7 +79,7 @@ class PanicHandler: UIViewController {
             "user" : [
                 "__type" : "Pointer",
                 "className": "_User",
-                "objectId": "NovecOw0Qt"
+                "objectId": PFUser.current()!.objectId!
             ],
             "groups" : groups,
             "panic" : [
@@ -207,19 +207,19 @@ class PanicHandler: UIViewController {
         queryObject = nil
     }
     
-//    func sendNotifications() {
-//        if lastQueryObjectId != nil {
-//            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
-//            PFCloud.callFunction(inBackground: "pushFromId", withParameters: [
-//                "objectId" : lastQueryObjectId!,
-//                "installationId" : PFInstallation.current()!.objectId!
-//            ] ) {
-//                response, error in
-//
-//                print(response)
-//            }
-//        } else {
-//            if panicIsActive == true {
+    //    func sendNotifications() {
+    //        if lastQueryObjectId != nil {
+    //            NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
+    //            PFCloud.callFunction(inBackground: "pushFromId", withParameters: [
+    //                "objectId" : lastQueryObjectId!,
+    //                "installationId" : PFInstallation.current()!.objectId!
+    //            ] ) {
+    //                response, error in
+    //
+    //                print(response)
+    //            }
+    //        } else {
+    //            if panicIsActive == true {
     //                NotificationCenter.default.addObserver(self, selector: #selector(sendNotifications), name: NSNotification.Name(rawValue: "objectCreated"), object: nil)
     //            }
     //        }
@@ -254,3 +254,5 @@ class PanicHandler: UIViewController {
         }
     }
 }
+//}
+

@@ -17,7 +17,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>3.8</string>
+	<string>3.9</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleURLTypes</key>
@@ -53,6 +53,8 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location permission while the app is in the background or if your phone is asleep is essential for Brave to continue tracking you in an emergency. This can be disabled in the Settings.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Location permission while the app is in the background or if your phone is asleep is essential for Brave to continue tracking you in an emergency. This can be disabled in the Settings.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
@@ -74,8 +76,6 @@
 	</array>
 	<key>UIRequiresFullScreen</key>
 	<true/>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Location permission while the app is in the background or if your phone is asleep is essential for Brave to continue tracking you in an emergency. This can be disabled in the Settings.</string>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

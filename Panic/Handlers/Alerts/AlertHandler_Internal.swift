@@ -30,6 +30,7 @@ class AlertHandler: NSObject {
                 
                 if success {
                     self.addToAlertGroupTable()
+                    Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateCurrentAlert), userInfo: nil, repeats: false)
                     handler(true)
                 } else {
                     self.currentAlert = nil
@@ -46,6 +47,18 @@ class AlertHandler: NSObject {
     func updateDetails(details: String) {
         currentAlert!.details = details
         currentAlert!.saveInBackground(block: nil)
+    }
+    
+    @objc func updateCurrentAlert() {
+        currentAlert?.fetchInBackground(block: {
+            alert, error in
+            
+            if self.currentAlert != nil {
+                self.currentAlert = alert as! Sub_PFAlert
+                
+                Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateCurrentAlert), userInfo: nil, repeats: false)
+            }
+        })
     }
     
     func sendPushNotification() {
@@ -77,11 +90,6 @@ extension AlertHandler {
         ]
         
         let body : Parameters = [
-            "user" : [
-                "__type" : "Pointer",
-                "className": "_User",
-                "objectId": "NovecOw0Qt"
-            ],
             "groups" : groups,
             "panic" : [
                 "__type": "Pointer",

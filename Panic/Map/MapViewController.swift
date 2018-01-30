@@ -135,7 +135,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	
     func getVictims() {
 		print("Getting victims from mapViewController")
-        panicHandler.getActivePanics(completion: {
+        alertHandler.getActivePanics(completion: {
             objects in
             
             self.victimDetails = [:]
