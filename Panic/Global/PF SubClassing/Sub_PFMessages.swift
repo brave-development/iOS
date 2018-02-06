@@ -32,16 +32,16 @@ class Sub_PFMessages: PFObject, PFSubclassing {
         self.alert = alert
     }
     
-    init(parseObject: PFObject) {
-        super.init()
-        
-        self.text = parseObject["text"] as! String
-        self.user = parseObject["user"] as! PFUser
-        self.displayName = parseObject["name"] as! String
-        self.alert = parseObject["alert"] as? PFObject
-    }
+//    init(parseObject: PFObject) {
+//        super.init()
+//        
+//        self.text = parseObject["text"] as! String
+//        self.user = parseObject["user"] as! PFUser
+//        self.displayName = parseObject["name"] as! String
+//        self.alert = parseObject["alert"] as? PFObject
+//    }
     
-    func toMessageType() -> MessageType {
+    func toMessageType() -> Message {
         let senderId = user.objectId!
         let senderName = user["name"] as! String
         

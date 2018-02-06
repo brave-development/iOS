@@ -53,7 +53,8 @@ class MessagesController: NSObject {
             (success, error) in
 
             if success {
-                self.recieveNew(messageObject: messageObject)
+                self.showNew(message: messageObject.toMessageType())
+//                self.recieveNew(messageObject: messageObject)
             } else if error != nil {
                 print("OOPS... \(error!)")
             } else {
@@ -66,14 +67,17 @@ class MessagesController: NSObject {
         let query = PFQuery(className: "Messages")
         query.includeKey("user")
         query.whereKey("objectId", equalTo: objectId)
-        do {
-            try recieveNew(messageObject: query.getObjectWithId(objectId))
-        } catch {
-            print("Error fetching new message.... idkjvhiew874sercy8")
-        }
+        
+        query.getFirstObjectInBackground(block: {
+            (message, error) in
+            if error != nil { print("Error fetching new message.... idkjvhiew874sercy8") }
+            if message != nil { self.recieveNew(messageObject: message! as! Sub_PFMessages) }
+        })
     }
     
-    func recieveNew(messageObject: PFObject) {
+    func recieveNew(messageObject: Sub_PFMessages) {
+        if messageObject.user == PFUser.current() { return }
+        
         let text = messageObject["text"] as! String
         let senderId = (messageObject["user"] as! PFObject).objectId
         let senderName = (messageObject["user"] as! PFObject)["name"] as! String

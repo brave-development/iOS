@@ -81,14 +81,6 @@ extension AlertHandler {
             groups.append(buildGroupPointer(objectId: group.objectId!))
         }
         
-        let url = "https://panicing-turtle.herokuapp.com/parse/functions/newAlertHook"
-        
-        let headers : HTTPHeaders = [
-            "X-Parse-Application-Id" : "PANICING-TURTLE",
-            "X-Parse-REST-API-Key" : "PANICINGTURTLE3847TR386TB281XN1NY7YNXM",
-            "Content-Type" : "application/json"
-        ]
-        
         let body : Parameters = [
             "groups" : groups,
             "panic" : [
@@ -98,11 +90,9 @@ extension AlertHandler {
             ]
         ]
         
-        Alamofire.request(url ,method: .post, parameters: body, encoding: JSONEncoding.default, headers: headers).responseJSON {
-            response in
-            
-            print("Finished update kjbdvksdbv")
-            debugPrint(response)
+        PFCloud.callFunction(inBackground: "newAlertHook", withParameters: body) {
+            response, _ in
+            print(response)
         }
     }
     

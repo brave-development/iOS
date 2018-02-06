@@ -11,7 +11,7 @@ import Parse
 
 extension AlertHandler {
 
-    func getActivePanics(completion: @escaping ([PFObject])->Void) {
+    func getActivePanics(completion: @escaping ([Sub_PFAlert])->Void) {
         var groups : [[String : Any]] = []
         
         for (_, group) in groupsHandler.joinedGroupsObject {
@@ -25,11 +25,11 @@ extension AlertHandler {
                 response, error in
                 
                 if let objects = response as? [PFObject] {
-                    var alerts : [PFObject] = []
+                    var alerts : [Sub_PFAlert] = []
                     
                     for object in objects {
-                        (object["panic"] as! PFObject).setObject(object["user"], forKey: "user")
-                        alerts.append(object["panic"] as! PFObject)
+                        (object["panic"] as! Sub_PFAlert).setObject(object["user"], forKey: "user")
+                        alerts.append(object["panic"] as! Sub_PFAlert)
                     }
                     completion(alerts)
                 } else {
@@ -40,5 +40,4 @@ extension AlertHandler {
             completion([])
         }
     }
-    
 }

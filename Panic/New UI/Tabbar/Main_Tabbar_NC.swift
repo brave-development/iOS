@@ -36,6 +36,10 @@ class Main_Tabbar_NC: ESTabBarController {
         
         global.mainTabbar = self
     }
+    
+    func updateTabbarAlertCount(alerts: [Sub_PFAlert]) {
+        viewControllers![0].tabBarItem.badgeValue = alerts.count == 0 ? nil : "\(alerts.count)"
+    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

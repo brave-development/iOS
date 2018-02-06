@@ -144,14 +144,18 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
             self.updateAnnotations()
             
-            if self.viewIsActive == true {
+//            if self.viewIsActive == true {
                 self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.getVictims), userInfo: nil, repeats: false)
-            } else if self.viewIsActive == false {
-                self.manager.stopUpdatingLocation()
-                self.manager.delegate = nil
-                self.map.delegate = nil
-                print("Disabled timer")
-                self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.freeMem), userInfo: nil, repeats: false)
+//            } else if self.viewIsActive == false {
+//                self.manager.stopUpdatingLocation()
+//                self.manager.delegate = nil
+//                self.map.delegate = nil
+//                print("Disabled timer")
+//                self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.freeMem), userInfo: nil, repeats: false)
+//            }
+            
+            if let tabbar = global.mainTabbar as? Main_Tabbar_NC {
+                tabbar.updateTabbarAlertCount(alerts: objects)
             }
         })
     }
@@ -207,7 +211,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             if do_openNotificationPin == 1 {
                 if anno.id == global.notificationDictionary?["objectId"].string {
-                    map.selectAnnotation(anno as! MKAnnotation, animated: false)
+                    map.selectAnnotation(anno as MKAnnotation, animated: false)
                     showDetailsView()
                     do_openNotificationPin = 0
                 }
@@ -317,7 +321,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	}
 	
 	func getDetails() {
-		if let panicDetails = victimDetails[selectedVictim!.objectId!] as? PFObject {
+        if let panicDetails = victimDetails[selectedVictim!.objectId!] {
 			if panicDetails["details"] != nil {
 				lblDetails.text = panicDetails["details"] as? String
             } else {
@@ -434,7 +438,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
         if do_locationError == 0 {
-            global.showAlert("Something went wrong", message: error.localizedDescription)
+//            global.showAlert("Something went wrong", message: error.localizedDescription)
             do_locationError = 1
         }
     }
