@@ -9,9 +9,9 @@
 import UIKit
 import Parse
 import ParseFacebookUtilsV4
-import CoreLocation
 import FacebookCore
 import FacebookLogin
+import CoreLocation
 import SwiftyJSON
 
 class LoginViewController: UIViewController, UITextFieldDelegate {
@@ -152,15 +152,6 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
                     global.showAlert("", message: "Please check your email for reset instructions.")
                 }
             }
-            
-//            PFUser.requestPasswordResetForEmail(inBackground: (alert.textFields!.first! as UITextField).text!, block: {
-//                (result, error) in
-//                if error == nil {
-//                    global.showAlert(NSLocalizedString("email_sent_title", value: "Email sent", comment: ""), message: NSLocalizedString("email_sent_text", value: "An email has been sent to the email address you supplied with password reset instructions", comment: ""))
-//                } else {
-//                    if (error! as NSError).code == 125 { global.showAlert("Oops", message: NSLocalizedString("email_address_not_found", value: "Email address not found", comment: "")) }
-//                }
-//            })
 		}))
 		alert.addAction(UIAlertAction(title: NSLocalizedString("cancel", value: "Cancel", comment: ""), style: UIAlertActionStyle.default, handler: nil))
 		self.present(alert, animated: true, completion: nil)
