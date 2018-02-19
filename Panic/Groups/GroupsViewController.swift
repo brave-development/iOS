@@ -50,7 +50,7 @@ class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLoc
 		
 		viewTutorial.isHidden = true
 		
-        let buttonRect = CGRect(x: self.view.frame.width - 100, y: self.view.frame.height - 100, width: 65, height: 65)
+        let buttonRect = CGRect(x: self.view.frame.width - 100, y: self.view.frame.height - 145, width: 65, height: 65)
         let floatingButton = VCFloatingActionButton(frame: buttonRect, normalImage: UIImage(named: "plus"), andPressedImage: UIImage(named: "cross"), withScrollview: tblGroups)
         floatingButton?.normalImageView.frame = CGRect(x: (floatingButton?.normalImageView.frame.width)!/2 - 10, y: (floatingButton?.normalImageView.frame.height)!/2 - 10, width: 20, height: 20)
         floatingButton?.pressedImageView.frame = CGRect(x: (floatingButton?.pressedImageView.frame.width)!/2 - 10, y: (floatingButton?.pressedImageView.frame.height)!/2 - 10, width: 20, height: 20)

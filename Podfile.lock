@@ -1,84 +1,108 @@
 PODS:
-  - Alamofire (4.5.0)
-  - BBLocationManager (1.0)
-  - Bolts (1.8.4):
-    - Bolts/AppLinks (= 1.8.4)
-    - Bolts/Tasks (= 1.8.4)
-  - Bolts/AppLinks (1.8.4):
+  - Alamofire (4.6.0)
+  - BBLocationManager (1.1)
+  - Bolts (1.9.0):
+    - Bolts/AppLinks (= 1.9.0)
+    - Bolts/Tasks (= 1.9.0)
+  - Bolts-Swift (1.3.0)
+  - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
-  - Bolts/Tasks (1.8.4)
+  - Bolts/Tasks (1.9.0)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
-  - Crashlytics (3.8.5):
-    - Fabric (~> 1.6.3)
+  - Crashlytics (3.10.0):
+    - Fabric (~> 1.7.3)
   - CustomBadge (3.0.0)
-  - Fabric (1.6.12)
-  - FacebookCore (0.2.0):
+  - ESTabBarController-swift (2.5)
+  - Fabric (1.7.3)
+  - FacebookCore (0.3.0):
     - Bolts (~> 1.8)
-    - FBSDKCoreKit (~> 4.15)
-  - FacebookLogin (0.2.0):
+    - FBSDKCoreKit (~> 4.27)
+  - FacebookLogin (0.3.0):
     - Bolts (~> 1.8)
-    - FacebookCore (~> 0.2)
-    - FBSDKCoreKit (~> 4.15)
-    - FBSDKLoginKit (~> 4.15)
-  - FBSDKCoreKit (4.24.0):
+    - FacebookCore (~> 0.3)
+    - FBSDKCoreKit (~> 4.27)
+    - FBSDKLoginKit (~> 4.27)
+  - FBSDKCoreKit (4.28.0):
     - Bolts (~> 1.7)
-  - FBSDKLoginKit (4.24.0):
+  - FBSDKLoginKit (4.28.0):
     - FBSDKCoreKit
-  - Firebase/Core (4.0.3):
-    - FirebaseAnalytics (= 4.0.2)
-    - FirebaseCore (= 4.0.3)
-  - Firebase/Messaging (4.0.3):
+  - Firebase/Core (4.8.2):
+    - FirebaseAnalytics (= 4.0.9)
+    - FirebaseCore (= 4.0.14)
+  - Firebase/Messaging (4.8.2):
     - Firebase/Core
-    - FirebaseMessaging (= 2.0.0)
-  - Firebase/RemoteConfig (4.0.3):
+    - FirebaseMessaging (= 2.0.8)
+  - Firebase/RemoteConfig (4.8.2):
     - Firebase/Core
-    - FirebaseRemoteConfig (= 2.0.1)
-  - FirebaseAnalytics (4.0.2):
+    - FirebaseRemoteConfig (= 2.1.1)
+  - FirebaseABTesting (1.0.0):
+    - FirebaseCore (~> 4.0)
+    - Protobuf (~> 3.1)
+  - FirebaseAnalytics (4.0.9):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseCore (4.0.3):
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.14):
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (2.0.0):
+  - FirebaseInstanceID (2.0.8):
     - FirebaseCore (~> 4.0)
-  - FirebaseMessaging (2.0.0):
+  - FirebaseMessaging (2.0.8):
     - FirebaseAnalytics (~> 4.0)
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
-  - FirebaseRemoteConfig (2.0.1):
+  - FirebaseRemoteConfig (2.1.1):
+    - FirebaseABTesting (~> 1.0)
     - FirebaseAnalytics (~> 4.0)
+    - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
     - GoogleToolboxForMac/NSData+zlib (~> 2.1)
     - Protobuf (~> 3.1)
-  - GoogleToolboxForMac/Defines (2.1.1)
-  - GoogleToolboxForMac/Logger (2.1.1):
-    - GoogleToolboxForMac/Defines (= 2.1.1)
-  - GoogleToolboxForMac/NSData+zlib (2.1.1):
-    - GoogleToolboxForMac/Defines (= 2.1.1)
+  - GoogleToolboxForMac/Defines (2.1.3)
+  - GoogleToolboxForMac/Logger (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
+  - GoogleToolboxForMac/NSData+zlib (2.1.3):
+    - GoogleToolboxForMac/Defines (= 2.1.3)
   - HMSegmentedControl (1.5.4)
-  - Mapbox-iOS-SDK (3.6.0)
-  - Parse (1.15.0):
-    - Bolts/Tasks (~> 1.8)
-  - ParseFacebookUtilsV4 (1.11.1):
-    - Bolts/Tasks (>= 1.6)
-    - FBSDKCoreKit (~> 4.10)
-    - FBSDKLoginKit (~> 4.10)
-    - FBSDKTVOSKit (~> 4.10)
-    - Parse (~> 1.12)
-  - Protobuf (3.3.0)
+  - Mapbox-iOS-SDK (3.7.4)
+  - MessageKit (0.10.2)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - Parse (1.16.0):
+    - Parse/Core (= 1.16.0)
+  - Parse/Core (1.16.0):
+    - Bolts/Tasks (~> 1.9)
+  - Parse/FacebookUtils (1.16.0):
+    - FBSDKCoreKit (~> 4.28.0)
+    - FBSDKLoginKit (~> 4.28.0)
+    - FBSDKShareKit (~> 4.28.0)
+    - FBSDKTVOSKit (~> 4.28.0)
+    - Parse/Core
+  - ParseLiveQuery (2.3.0):
+    - Bolts-Swift (~> 1.3.0)
+    - Parse (~> 1.16.0)
+    - Starscream (~> 3.0.4)
+  - pop (1.0.10)
+  - Protobuf (3.5.0)
   - SCLAlertView (0.7.0)
-  - SDWebImage (4.0.0):
-    - SDWebImage/Core (= 4.0.0)
-  - SDWebImage/Core (4.0.0)
+  - SDWebImage (4.3.0):
+    - SDWebImage/Core (= 4.3.0)
+  - SDWebImage/Core (4.3.0)
   - Spring (1.0.3)
+  - Starscream (3.0.4)
+  - SwiftLocation (3.1.0):
+    - SwiftyJSON (~> 4.0.0-alpha.1)
   - SwiftValidate (2.0.1)
-  - SwiftyJSON (3.1.4)
+  - SwiftyJSON (4.0.0)
   - SZTextView (1.3.0)
-  - Toast (3.1.0)
+  - Toast (4.0.0)
   - UIScrollSlidingPages (1.4)
 
 DEPENDENCIES:
@@ -87,6 +111,7 @@ DEPENDENCIES:
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Crashlytics
   - CustomBadge
+  - ESTabBarController-swift
   - Fabric
   - FacebookCore
   - FacebookLogin
@@ -95,11 +120,15 @@ DEPENDENCIES:
   - Firebase/RemoteConfig
   - HMSegmentedControl
   - Mapbox-iOS-SDK
-  - Parse (~> 1.14)
-  - ParseFacebookUtilsV4
+  - MessageKit (~> 0.10.2)
+  - Parse
+  - Parse/FacebookUtils
+  - ParseLiveQuery
+  - pop
   - SCLAlertView
   - SDWebImage
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
+  - SwiftLocation (~> 3.1.0)
   - SwiftValidate
   - SwiftyJSON
   - SZTextView
@@ -122,38 +151,46 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
-  Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
-  BBLocationManager: b22dd6d5f815456527bafe0ae26064f12ebaf64a
-  Bolts: 8a7995239dbe724f9cba2248b766d48b7ebdd322
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  BBLocationManager: a0ab2f0b31076cae313f874077786b19667c379d
+  Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  Bolts-Swift: fa98d1b59fc1acea9b21a21306dcdca1c85e3737
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
-  Crashlytics: dfbae35ef22ca189240d230ad501feea4ee85d2d
+  Crashlytics: a989ef242b66605577a425733797f810bd2725eb
   CustomBadge: c60738d213e7ef019b0bf1caa7948333f280ea9b
-  Fabric: f050464eac45a2ce5a8e6e6a07e977c0df32fe28
-  FacebookCore: 2cb3f0fbff218e9d3119cec84bae983b232412de
-  FacebookLogin: c9d606504735780a9e3002465a615512e0a691a5
-  FBSDKCoreKit: f8c9eb0dd34a9cd277c7b60da4b32226d142502d
-  FBSDKLoginKit: 1214c6d5a1c4995b694d8db8a9ba6910c6028acf
-  Firebase: 9e33fdfbca37cab635c693883caa90a4475b842b
-  FirebaseAnalytics: ad41720e3e67fc63fbe3d2948d3e26932a8de311
-  FirebaseCore: c709067051de07bdaffdc4e735cd7299a23c463a
-  FirebaseInstanceID: 9fbf536668f4d3f0880e7438456dabd1376e294b
-  FirebaseMessaging: 227406c05b0dc9290702d2e9f18ab5528f0c2cf2
-  FirebaseRemoteConfig: 328244399f64226cfdfa32efee596bb010ef5665
-  GoogleToolboxForMac: 8e329f1b599f2512c6b10676d45736bcc2cbbeb0
+  ESTabBarController-swift: 8daa432f2a9be8ebd25101dc46c84472fd760512
+  Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
+  FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
+  FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
+  FBSDKCoreKit: ca961e279113f691fd83dc634c0bbad9d4e3f370
+  FBSDKLoginKit: b077381c27d800f21661757e8140cf2c80a91e4a
+  Firebase: 7d3b8cd837ad9fcd391657734c0d56dab8e9a5a3
+  FirebaseABTesting: d07d0ee833b842d5153549e4c7e2e2cb1c23a3f9
+  FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
+  FirebaseCore: 2e0b98fb2d64ca8140136beff15772bdd14d2dd7
+  FirebaseInstanceID: 81df5805a08001e69138664bdd02c6719a9ac80f
+  FirebaseMessaging: dfdcd307c2382290a1e297a81d0f18370f5b1bcd
+  FirebaseRemoteConfig: 3310f264fff78b6c2e78b24dcfc4c1b3d6766209
+  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   HMSegmentedControl: b25bc4ec44766e073d62c473188fb354ee244b76
-  Mapbox-iOS-SDK: c911b1875a00f12bb74253b763ac483425bd4225
-  Parse: c0519f8fbf57bd0334f75cd22ac032d86ee55464
-  ParseFacebookUtilsV4: 2f30c2b7021c8005d3042781da7ef87d06589421
-  Protobuf: d582fecf68201eac3d79ed61369ef45734394b9c
+  Mapbox-iOS-SDK: fb994b9e46df7b909f58dd0c5df5a44f58cdab04
+  MessageKit: 2642b9641290691650cfa2612ad672512799a71c
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Parse: 5b36dc2c2f0a2fd82a257ae018bc3d68cf2c24e7
+  ParseLiveQuery: 8c7025d6dd4330db29e3ee5c3bc64eff58a80ad2
+  pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
+  Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
   SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
-  SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
+  SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
+  Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
+  SwiftLocation: 8f5ef4f510a45e43239de57a3145b3669301e898
   SwiftValidate: b25159abe77d99690c628a9060e2f6ac43409cad
-  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
-  SZTextView: '094dc6acc9beec537685c545d6e3e0d4975174e1'
-  Toast: 14a93686d6c8bfe2727afd342414e35660a8a1f3
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  SZTextView: 094dc6acc9beec537685c545d6e3e0d4975174e1
+  Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   UIScrollSlidingPages: 92a3ed2c444b31f7f1b259f7b91720b53295346a
 
-PODFILE CHECKSUM: 0da9e027ddba20c393d55ec5972c9f9a874cdd3b
+PODFILE CHECKSUM: f884a78bf1ea2e4ef932ff067d519d5a9440c1fb
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1

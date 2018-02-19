@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-# platform :ios, '9.0'
+ platform :ios, '10.0'
 
 target 'Brave' do
 	use_frameworks!
@@ -14,8 +14,9 @@ target 'Brave' do
     pod 'SwiftValidate'
     pod 'Spring', :git => 'https://github.com/MengTo/Spring.git', :branch => 'swift3'
     
-	pod 'Parse', '~> 1.14'
-    pod 'ParseFacebookUtilsV4'
+	pod 'Parse'
+    pod 'Parse/FacebookUtils'
+    pod 'ParseLiveQuery'
 
     pod 'SwiftyJSON'
     pod 'SDWebImage'
@@ -29,12 +30,36 @@ target 'Brave' do
     
     pod 'FacebookCore'
     pod 'FacebookLogin'
+    pod 'pop'
 
     pod 'Toast'
     pod 'SCLAlertView'
     pod 'SZTextView'
     
     pod 'BBLocationManager'
+    pod 'SwiftLocation', '~> 3.1.0'
     pod 'Alamofire'
+    
+    pod 'MessageKit', '~> 0.10.2'
+    
+    pod 'ESTabBarController-swift'
 
 end
+
+
+post_install do |installer|
+    installer.pods_project.targets.each do |target|
+        if target.name.end_with? 'Bolts-Swift'
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '3.0'
+            end
+        end
+
+        if target.name == 'MessageKit'
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '4.0'
+            end
+        end
+    end
+end
+

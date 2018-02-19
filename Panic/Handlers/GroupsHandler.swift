@@ -1,292 +1,216 @@
 //
-//  GroupsHandler.swift
-//  Panic
+//  GroupsHandler_2.swift
+//  Panic (Pty) Ltd
 //
-//  Created by Byron Coetsee on 2015/06/11.
-//  Copyright (c) 2015 Byron Coetsee. All rights reserved.
+//  Created by Byron Coetsee on 2017/06/22.
+//  Copyright © 2017 Byron Coetsee. All rights reserved.
 //
 
 import UIKit
 import Parse
-import Social
 
-var groupsHandler_OLD : GroupsHandler = GroupsHandler()
+let groupsHandler = GroupsHandler()
 
 class GroupsHandler: UIViewController {
-	
-	var joinedGroups : [String] = []
-	var joinedGroupsObject: [String : PFObject] = [:]
-	var nearbyGroups : [String] = []
-	var nearbyGroupObjects : [String : PFObject] = [:]
-	
-	// Referals
-	
-	var referalType : String?
-	var referalGroup : String?
-	var referalMember : String?
-	
-	// Trackers
-	
-	var gotGroupDetails = false
-	var gotNearbyGroupDetails = false
-	var imagesFetched = false
-	var purchaseRunning = false
-	
-	func getGroups() {
+    
+    var joinedGroupsObject: [String : PFObject] = [:]
+    var nearbyGroupObjects : [String : PFObject] = [:]
+    
+    var purchaseRunning = false
+    
+    func getGroups() {
         var groupFormatted: [String] = []
         
         let user = PFUser.current()!
         for group in user["groups"] as! [String] {
-            if joinedGroups.index(of: group) == nil {
-                joinedGroups.append(group)
-                groupFormatted.append(group.formatGroupForChannel())
+            
+            joinedGroupsObject[group] = PFObject(className: "Groups")
+            groupFormatted.append(group.formatGroupForChannel())
+        }
+        
+        getGroupDetails()
+        PFInstallation.current()?.setObject([""], forKey: "channels")
+        PFInstallation.current()?.addUniqueObjects(from: groupFormatted, forKey: "channels")
+        PFInstallation.current()?.saveInBackground(block: nil)
+    }
+    
+    // Pass nil for all groups
+    func getGroupDetails() {
+        
+        for group in joinedGroupsObject.keys {
+            let query = PFQuery(className: "Groups")
+            query.whereKey("flatValue", equalTo: group.formatGroupForFlatValue())
+            
+            query.getFirstObjectInBackground(block: {
+                (object, error) in
+                
+                if object != nil {
+                    self.joinedGroupsObject[group] = object!
+                    
+                    // Making sure the user is a subscriber of the group object
+                    object!.addUniqueObject(PFUser.current()!.objectId!, forKey: "subscriberObjects")
+                    object?.saveInBackground()
+                }
+            })
+        }
+    }
+    
+    // Adding a group
+    func addGroup(group : PFObject) {
+        let groupName = group["name"] as! String
+        
+        if joinedGroupsObject.count <= PFUser.current()!["numberOfGroups"] as! Int {
+            joinedGroupsObject[groupName] = group
+            
+            group.addUniqueObject(PFUser.current()!.objectId!, forKey: "subscriberObjects")
+            
+            let count = (group["subscriberObjects"] as! [String]).count
+            group["subscribers"] = count
+            group.saveInBackground()
+            
+            global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Brave. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
+            
+            saveGroupChanges()
+        }
+    }
+    
+    // Adding the user to a beta group
+    func addBetaGroup(objectId: String) {
+        
+        let query = PFQuery(className: "Groups")
+        query.getObjectInBackground(withId: objectId, block: {
+            (result, error) -> Void in
+            if error == nil {
+                if result != nil {
+                    let group = result! as PFObject
+                    let groupName = group["name"] as! String
+                    
+                    self.joinedGroupsObject[groupName] = group
+                    
+                    group.addUniqueObject(PFUser.current()!.objectId!, forKey: "subscriberObjects")
+                    let count = (group["subscriberObjects"] as! [String]).count
+                    group["subscribers"] = count
+                    group.saveInBackground()
+
+                    self.saveGroupChanges()
+                }
+            }
+        })
+    }
+    
+    // Remove a group
+    func removeGroup(group : PFObject) {
+        let groupName = group["name"] as! String
+        
+        joinedGroupsObject[groupName] = nil
+        
+        group.remove(PFUser.current()!.objectId!, forKey: "subscriberObjects")
+        
+        let count = (group["subscriberObjects"] as! [String]).count
+        group["subscribers"] = count
+        group.saveInBackground()
+        
+        saveGroupChanges()
+    }
+    
+    // Updates and saves any changes to groups in the current User object and Installation object
+    func saveGroupChanges() {
+        
+        // Clearing arrays - thus taking care of deletions
+        PFUser.current()!["groups"] = []
+        PFInstallation.current()!["channels"] = []
+        for group in joinedGroupsObject.keys {
+            PFUser.current()!.addUniqueObject(group, forKey: "groups")
+            PFInstallation.current()?.addUniqueObject(group.formatGroupForChannel(), forKey: "channels")
+        }
+        
+        PFUser.current()!.saveInBackground()
+        PFInstallation.current()!.saveInBackground()
+    }
+    
+    // Checks if all the groups details have finished being retrieved
+    func groupsFetchFinished() -> Bool {
+        for (_, object) in joinedGroupsObject {
+            if object.objectId == nil {
+                return false
             }
         }
         
-        if joinedGroups.count == 0 { gotGroupDetails = true }
+        for (_, object) in nearbyGroupObjects {
+            if object.objectId == nil {
+                return false
+            }
+        }
         
-		getGroupDetails(nil)
-		PFInstallation.current()?.setObject([""], forKey: "channels")
-		PFInstallation.current()?.addUniqueObjects(from: groupFormatted, forKey: "channels")
-		PFInstallation.current()?.saveInBackground(block: nil)
-	}
-	
-	func getNearbyGroups(_ location : CLLocation, refresh: Bool = false) {
-		if nearbyGroupObjects.isEmpty || refresh == true {
-			nearbyGroupObjects = [:]
-			nearbyGroups = []
-			gotNearbyGroupDetails = false
-			let currentGroups = PFUser.current()!["groups"] as! [String]
-			let queryHistory = PFQuery(className: "Groups")
-			queryHistory.whereKey("location", nearGeoPoint: PFGeoPoint(location: location), withinKilometers: 5000)
-			queryHistory.whereKey("public", equalTo: true)
-			queryHistory.whereKey("name", notContainedIn: currentGroups)
-			queryHistory.limit = 2
-			queryHistory.findObjectsInBackground(block: {
-				(objects, error) in
-				if error == nil {
-					print(objects!)
-					self.nearbyGroups = []
-					for objectRaw in objects! {
-						let object = objectRaw 
-						self.nearbyGroups.append(object["flatValue"] as! String)
-						self.nearbyGroupObjects[object["flatValue"] as! String] = object
-					}
-					NotificationCenter.default.post(name: NSNotification.Name(rawValue: "gotNearbyGroups"), object: nil)
-				} else {
-					print(error!)
-				}
-				if self.nearbyGroups.count == self.nearbyGroupObjects.count {
-					self.gotNearbyGroupDetails = true
-				}
-			})
-			print(location)
-		}
-	}
-	
-	// Pass nil for all groups
-	func getGroupDetails(_ groupName : String?) {
-		self.gotGroupDetails = false
-		var groupArray : [String] = []
-		if groupName == nil {
-			groupArray = joinedGroups
-			if groupArray.isEmpty { gotGroupDetails = true }
-		} else {
-			groupArray = [groupName!]
-			joinedGroups.append(groupName!)
-		}
-		
-		for group in groupArray {
-			let queryHistory = PFQuery(className: "Groups")
-			queryHistory.whereKey("flatValue", equalTo: group.formatGroupForFlatValue())
-			queryHistory.findObjectsInBackground(block: {
-				(objects, error) in
-				if error == nil {
-					for objectRaw in objects! {
-						let object = objectRaw 
-						object.addUniqueObject(PFUser.current()!.objectId!, forKey: "subscriberObjects")
-						object.saveInBackground(block: nil)
-						self.joinedGroupsObject[object["flatValue"] as! String] = object
-					}
-				} else {
-					print(error!)
-				}
-				if self.joinedGroups.count == self.joinedGroupsObject.count {
-					self.gotGroupDetails = true
-				}
-			})
-		}
-	}
-	
-	func handlePurchase(_ parent: GroupsViewController) {
-		let saveAlert = UIAlertController(title: "Purchase additional group slot", message: "You need to purchase extra group slots in order to join more groups", preferredStyle: UIAlertControllerStyle.alert)
-		saveAlert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action: UIAlertAction!) in
-			NotificationCenter.default.post(name: Notification.Name(rawValue: "purchaseStarted"), object: nil)
-			self.purchaseRunning = true
-			global.showAlert(NSLocalizedString("please_wait_title", value: "Please wait", comment: ""), message: NSLocalizedString("please_wait_text", value: "Processing your request. Please be patient.", comment: ""))
-			PFPurchase.buyProduct("SoC.Panic.groupPurchaseConsumable", block: {
-				(error) in
-				if error == nil {
-					
-					PFAnalytics.trackEvent(inBackground: "Group_Purchases", dimensions: nil, block: nil)
-
-					print("BOUGHT ADD GROUP")
-					global.persistantSettings.synchronize()
-					PFUser.current()!["numberOfGroups"] = self.joinedGroups.count + 1
-					PFUser.current()!.saveEventually(nil)
-					NotificationCenter.default.post(name: NSNotification.Name(rawValue: "purchaseSuccessful"), object: nil)
-				} else {
-					NotificationCenter.default.post(name: NSNotification.Name(rawValue: "purchaseFail"), object: nil)
-					if error?.localizedDescription != "" {
-						global.showAlert(NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: ""), message: (error?.localizedDescription)!)
-					} else {
-						global.showAlert(NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: ""), message: NSLocalizedString("error_purchase_text", value: "Your purchase was unsuccessful. Please try again. No money has been debited from your account.", comment: ""))
-					}
-					print("FAILED PURCHASE -- \(error!)")
-				}
-				NotificationCenter.default.post(name: NSNotification.Name(rawValue: "purchaseEnded"), object: nil)
-				self.purchaseRunning = false
-			})
-		}))
-		saveAlert.addAction(UIAlertAction(title: "No", style: .default, handler: { (action: UIAlertAction!) in }))
-		parent.present(saveAlert, animated: true, completion: nil)
-	}
-	
-    func addGroup(_ groupName : String, silentAdd: Bool = false) {
-		if joinedGroups.count <= PFUser.current()!["numberOfGroups"] as! Int {
-            
-            if joinedGroups.index(of: groupName) == nil {
-                joinedGroups.append(groupName)
-            }
-//			PFUser.current()?.addUniqueObject(groupName, forKey: "groups")
-            
-			getGroupDetails(groupName)
-			updateGroups(groupName, add: true)
-			PFInstallation.current()?.addUniqueObject(groupName.formatGroupForChannel(), forKey: "channels")
-			PFInstallation.current()?.saveInBackground(block: nil)
-            
-            if silentAdd == false {
-                global.shareGroup(String(format: NSLocalizedString("share_joined_group", value: "I just joined the group %@ using Panic. Help me make our communities safer, as well as ourselves!", comment: ""), arguments: [groupName]), viewController: self)
-            }
-		}
-	}
-	
-	func removeGroup(_ groupName : String) {
-		print(groupName)
-		joinedGroups.remove(at: joinedGroups.index(of: groupName)!)
-		joinedGroupsObject[groupName.formatGroupForFlatValue()] = nil
-		updateGroups(groupName, add: false)
-		print(groupName)
-		PFInstallation.current()?.saveInBackground(block: nil)
-		PFInstallation.current()?.remove(groupName.formatGroupForChannel(), forKey: "channels")
-		PFInstallation.current()?.saveInBackground(block: nil)
-	}
-	
-	func updateGroups(_ group : String = "", add: Bool = true) {
-		PFUser.current()!["groups"] = joinedGroups
-		PFUser.current()!.saveInBackground(block: nil)
-		
-		if group != "" {
-			PFQuery(className: "Groups").whereKey("flatValue", equalTo: group.formatGroupForFlatValue()).getFirstObjectInBackground(block: {
-				(object, error) in
-				if object != nil {
-					if add == true {
-						object!.addUniqueObject(PFUser.current()!.objectId!, forKey: "subscriberObjects")
-					} else {
-						object!.remove(PFUser.current()!.objectId!, forKey: "subscriberObjects")
-					}
-					if object!["subscriberObjects"] != nil {
-						let count = (object!["subscriberObjects"] as! [String]).count
-						object!["subscribers"] = count
-					}
-					object!.saveInBackground(block: nil)
-					object!.saveEventually(nil)
-					NotificationCenter.default.post(name: Notification.Name(rawValue: "gotNearbyGroups"), object: nil)
-				}
-			})
-		}
-		
-		global.persistantSettings.set(joinedGroups, forKey: "groups")
-		global.persistantSettings.synchronize()
-	}
-	
-	// CREATE GROUP
-	func createGroup(_ groupObject: PFObject, parent: CreateGroupViewController) {
-		if checkIfAlreadyContainsGroup(groupObject) == false {
-			if checkIfGroupExists(groupObject) == false {
-				groupObject.saveInBackground(block: {
-					(result, error) in
-					if result == true {
-						DispatchQueue.main.async(execute: {
-							let name = groupObject["name"] as! String
-							global.showAlert(NSLocalizedString("successful", value: "Successful", comment: ""), message: String(format: NSLocalizedString("joined_group_text", value: "Successfully created and joined the group %@.", comment: ""), arguments: [name]))
-							self.addGroup(name)
-                            parent.uploadFinished()
-						})
-					} else {
-						global.showAlert("Oops", message: error!.localizedDescription)
-					}
-				})
-			}
-		} else {
-			global.showAlert("Hmm...", message: NSLocalizedString("already_joined_group", value: "You already belong to this group.", comment: ""))
-		}
-	}
-	
-	func checkIfAlreadyContainsGroup(_ group: PFObject) -> Bool {
-		for channel in (PFInstallation.current()?.channels!)! {
-			if (group["name"] as! String).formatGroupForFlatValue() == channel {
-				return true
-			}
-		}
-		return false
-	}
-	
-	func checkIfGroupExists(_ group: PFObject) -> Bool {
-		let query = PFQuery(className: "Groups")
-		query.whereKey("flatValue", equalTo: (group["name"] as! String).formatGroupForFlatValue())
-		let objects = try! query.findObjects()
-		
-		if objects != nil {
-			if objects.count == 0 {
-				return false
-			} else {
-				let pfObject = objects.first!
-				let name = pfObject["name"] as! String
-				let country = pfObject["country"] as! String
+        return true
+    }
+    
+    // Need to clean up...
+    // Checks the DB to see if a group with the same name already exists
+    func checkIfGroupExists(_ group: PFObject) -> Bool {
+        let query = PFQuery(className: "Groups")
+        query.whereKey("flatValue", equalTo: (group["name"] as! String).formatGroupForFlatValue())
+        let objects = try! query.findObjects()
+        
+        if objects != nil {
+            if objects.count == 0 {
+                return false
+            } else {
+                let pfObject = objects.first!
+                let name = pfObject["name"] as! String
+                let country = pfObject["country"] as! String
                 
-				global.showAlert(NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: ""), message: String(format: NSLocalizedString("group_already_exists", value: "Group '%@' already exists in %@", comment: ""), arguments: [name, country]))
-			}
-		}
-		return true
-	}
-	
-	// Used to create a group with user = Panic
-	func createGroup(_ groupName: String, country: String) {
-		let query = PFQuery(className: "Groups")
-		query.whereKey("flatValue", equalTo: groupName.formatGroupForFlatValue())
-		query.findObjectsInBackground(block: {
-			(object, error) in
-			if object == nil {
-				print("NO GROUP FOUND. CREATING - '\(groupName)'")
-				let newGroupObject : PFObject = PFObject(className: "Groups")
-				newGroupObject["name"] = groupName
-				newGroupObject["flatValue"] = groupName.formatGroupForFlatValue()
-				newGroupObject["country"] = country
-                newGroupObject["admin"] = PFUser.init(withoutDataWithObjectId: "qP9SOINr4X")
-				newGroupObject["public"] = true
-				newGroupObject.saveInBackground(block: {
-					(result, error) in
-					if result == true {
-						print("GROUP CREATED")
-					} else {
-						print(error!)
-					}
-					print(error!)
-				})
-			} else {
-				print("FOUND GROUP")
-			}
-		})
-	}
+                global.showAlert(NSLocalizedString("unsuccessful", value: "Unsuccessful", comment: ""), message: String(format: NSLocalizedString("group_already_exists", value: "Group '%@' already exists in %@", comment: ""), arguments: [name, country]))
+            }
+        }
+        return true
+    }
+    
+    // Addes a new group to the DB or returns false if it's there already
+    func createNewGroup(group: PFObject, completion: @escaping (_ success: Bool, _ object: PFObject) -> Void) {
+        let query = PFQuery(className: "Groups")
+        query.whereKey("flatValue", equalTo: (group["name"] as! String).formatGroupForFlatValue())
+        
+        do {
+            try query.getFirstObject()
+            
+            // Found another group with same name
+            completion(false, group)
+        } catch {
+            group.saveInBackground(block: {
+                success, error in
+                completion(success, group)
+            })
+        }
+    }
+    
+    // Creates a new group for an area
+    func createNewAreaGroup(name: String, country: String) {
+        let query = PFQuery(className: "Groups")
+        query.whereKey("flatValue", equalTo: name.formatGroupForFlatValue())
+        query.findObjectsInBackground(block: {
+            (object, error) in
+            if object == nil {
+                print("NO GROUP FOUND. CREATING - '\(name)'")
+                let newGroupObject : PFObject = PFObject(className: "Groups")
+                newGroupObject["name"] = name
+                newGroupObject["flatValue"] = name.formatGroupForFlatValue()
+                newGroupObject["country"] = country
+                newGroupObject["admin"] = PFUser.init(withoutDataWithObjectId: "GX2qQyNGm7")
+                newGroupObject["public"] = true
+                newGroupObject.saveInBackground(block: {
+                    (result, error) in
+                    if result == true {
+                        print("GROUP CREATED")
+                    } else {
+                        print(error!)
+                    }
+                    print(error!)
+                })
+            } else {
+                print("FOUND GROUP")
+            }
+        })
+    }
+
 }

@@ -11,6 +11,7 @@ import Parse
 import SystemConfiguration
 import Social
 import SwiftyJSON
+import ESTabBarController_swift
 
 var global : Global = Global()
 
@@ -44,7 +45,22 @@ extension Dictionary {
     }
 }
 
+extension PFObject {
+    func pointer()->[String : Any] {
+        guard self.objectId != nil else { return [:] }
+        return [
+            "__type" : "Pointer",
+            "className" : self.parseClassName,
+            "objectId" : self.objectId!
+        ]
+    }
+}
+
 class Global: UIViewController {
+    
+    var mainTabbar: ESTabBarController?
+    
+    let themeBlue = UIColor(red:0.29, green:0.56, blue:0.89, alpha:1.00)
 	
 	var victimInformation : [String : [String]] = [:]
 	var persistantSettings : UserDefaults = UserDefaults.standard
@@ -69,6 +85,7 @@ class Global: UIViewController {
     }
     
     var isDESPilot: Bool { return betaID == "DTES" }
+    var isChatPilot: Bool { return betaID == "Chat" }
     
     var isPilot: Bool {
         if betaID == "DTES" { return true }
@@ -104,25 +121,29 @@ class Global: UIViewController {
             })
             
             if checkInternetConnectivity() == false {
-                showAlert("No internet", message: "Although you have been logged in, an internet connection cannot be established. Please note this will have negative effects on the Panic system. If you activate Panic, it will continue to try connect, but success cannot be guaranteed")
+                showAlert("No internet", message: "Although you have been logged in, an internet connection cannot be established. Please note this will have negative effects on the Brave system. If you activate Brave, it will continue to try connect, but success cannot be guaranteed")
             }
             tutorial.load()
             joinPilotGroup()
             
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
-            vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-            
-            switch callingVC {
-            case (is LoginViewController):
-                (callingVC as! LoginViewController).present(vc, animated: true, completion: nil)
-                break
+            if global.isChatPilot {
+                (callingVC as! LoginViewController).present(Main_Tabbar_NC(), animated: true, completion: nil)
+            } else {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
+                vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
                 
-            case (is RegisterViewController):
-                (callingVC as! RegisterViewController).present(vc, animated: true, completion: nil)
-                break
-                
-            default: print("NO TYPE FOUND FOR CALLING VIEW CONRTOLLER"); break
+                switch callingVC {
+                case (is LoginViewController):
+                    (callingVC as! LoginViewController).present(vc, animated: true, completion: nil)
+                    break
+                    
+                case (is RegisterViewController):
+                    (callingVC as! RegisterViewController).present(vc, animated: true, completion: nil)
+                    break
+                    
+                default: print("NO TYPE FOUND FOR CALLING VIEW CONRTOLLER"); break
+                }
             }
             
             locationHandler
@@ -333,7 +354,7 @@ class Global: UIViewController {
 			if (status == CLAuthorizationStatus.authorizedAlways) || (status == CLAuthorizationStatus.authorizedWhenInUse) {
 				return true
 			} else {
-				global.showAlert(NSLocalizedString("location_not_allowed_title", value: "Location Not Allowed", comment: ""), message: NSLocalizedString("location_not_aloowed_text", value: "Please enable location services for Panic by going to Settings > Privacy > Location Services.\nWithout location services, no one will be able to respond to your emergency.", comment: ""))
+				global.showAlert(NSLocalizedString("location_not_allowed_title", value: "Location Not Allowed", comment: ""), message: NSLocalizedString("location_not_aloowed_text", value: "Please enable location services for Brave by going to Settings > Privacy > Location Services.\nWithout location services, no one will be able to respond to your emergency.", comment: ""))
 				return false
 			}
 		}

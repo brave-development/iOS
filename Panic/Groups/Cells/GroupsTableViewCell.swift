@@ -215,60 +215,12 @@ class GroupsTableViewCell: UITableViewCell, MFMailComposeViewControllerDelegate 
             self.imgBackground.sd_showActivityIndicatorView()
             self.imgBackground.sd_setImage(with: URL(string: imageUrl))
         }
-//		let getImageDispatch: DispatchQueue = DispatchQueue(label: "getImageDispatch", attributes: [])
-//		getImageDispatch.async(execute: {
-//			if let image: PFFile = self.object!["imageFile"] as? PFFile {
-//				image.getDataInBackground {
-//					(imageData, error) in
-//					if error == nil { self.finishedDownload(UIImage(data:imageData!)!) }
-//				}
-//			} else if let imageUrl: String = self.object!["image"] as? String {
-//				let url = URL(string: imageUrl)
-//				if let imageData = try? Data(contentsOf: url!){
-//					self.finishedDownload(UIImage(data:imageData)!)
-//				}
-//			} else {
-//				DispatchQueue.main.async(execute: {
-//					self.imgBackground.backgroundColor = UIColor(white: 1, alpha: 0.7)
-//					self.imgBackground.image = UIImage(named: "noImage")
-//					self.imgBackground.contentMode = UIViewContentMode.center
-//				})
-//			}
-//		})
 	}
-	
-//	func finishedDownload(_ image: UIImage) {
-//		let groupName = self.object!["flatValue"] as! String
-//		let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
-//		
-//		imgBackground.image = image
-//		let destinationPath = URL(string: documentsPath)?.appendingPathComponent("\(groupName).jpg", isDirectory: true)
-//		try? UIImageJPEGRepresentation(image,1.0)!.write(to: URL(fileURLWithPath: destinationPath!.absoluteString), options: [.atomic])
-//	}
 	
 	func setImage() {
 		self.imgBackground.backgroundColor = UIColor.white
 		self.imgBackground.image = nil
-		
-//		let documentsPath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] 
-//		let groupName = self.object!["flatValue"] as! String
-//		let getImagePath = URL(string: documentsPath)?.appendingPathComponent("\(groupName).jpg", isDirectory: true)
-//		
-//		let checkValidation = FileManager.default
-//		if (checkValidation.fileExists(atPath: getImagePath!.absoluteString)) {
-//			let image = UIImage(contentsOfFile: getImagePath!.absoluteString)
-//			self.imgBackground.image = image
-//			do {
-//				let fileAttrs = try FileManager.default.attributesOfItem(atPath: getImagePath!.absoluteString)
-//				let modDate = fileAttrs[FileAttributeKey.modificationDate] as! Date
-//				if Date().timeIntervalSince(modDate) > 86400 {
-//					print("Fetching new image for \(groupName)")
-//					getImage()
-//				}
-//			} catch { }
-//		} else {
-			getImage()
-//		}
+        getImage()
 	}
 	
 	func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?) {

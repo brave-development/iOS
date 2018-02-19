@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation
 import MapKit
 import Parse
+import ParseLiveQuery
 
 class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewDelegate {
     
@@ -27,7 +28,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	@IBOutlet weak var lblResponders: UILabel!
 	@IBOutlet weak var lblTime: UILabel!
 	@IBOutlet weak var lblAddress: UILabel!
-	@IBOutlet weak var btnCall: UIButton!
+	@IBOutlet weak var btnChat: UIButton!
 	@IBOutlet weak var btnRespond: UIButton!
 	@IBOutlet weak var btnCloseDetails: UIButton!
 	@IBOutlet weak var btnMapType: UIButton!
@@ -45,6 +46,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	var dateFormatter = DateFormatter()
     
     let queryPanics : PFQuery = PFQuery(className: "Panics")
+    var subscription_victim_added : Subscription<PFObject>!
+    var subscription_victim_updated : Subscription<PFObject>!
+    var subscription_victim_removed : Subscription<PFObject>!
+    var subscription_victim_entered : Subscription<PFObject>!
+    var subscription_victim_left : Subscription<PFObject>!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -132,27 +138,72 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             map.setRegion(theRegion, animated: true)
         }
     }
+    
+    func addSubscriptions() {
+        let query = PFQuery(className: "PanicGroup")
+        query.includeKey("user")
+        query.includeKey("panic")
+        query.includeKey("group")
+        query.whereKeyExists("group")
+        query.whereKeyExists("user")
+        query.whereKeyExists("panic")
+        query.whereKey("active", equalTo: true)
+        query.whereKey("group", containedIn: groupsHandler.joinedGroupsObject.map {$0.value.pointer()})
+        
+        subscription_victim_added = Client.shared.subscribe(query).handle(Event.created) { _, alert in self.handleVictomUpdate(alert: alert as! Sub_PFAlertGroup) }
+        subscription_victim_updated = Client.shared.subscribe(query).handle(Event.updated) { _, alert in self.handleVictomUpdate(alert: alert as! Sub_PFAlertGroup) }
+        subscription_victim_removed = Client.shared.subscribe(query).handle(Event.deleted) { _, alert in self.handleVictomUpdate(alert: alert as! Sub_PFAlertGroup, delete: true) }
+        subscription_victim_entered = Client.shared.subscribe(query).handle(Event.entered) { _, alert in self.handleVictomUpdate(alert: alert as! Sub_PFAlertGroup) }
+        subscription_victim_left = Client.shared.subscribe(query).handle(Event.left) { _, alert in self.handleVictomUpdate(alert: alert as! Sub_PFAlertGroup, delete: true) }
+    }
+    
+    func handleVictomUpdate(alert: Sub_PFAlertGroup, delete: Bool = false) {
+        
+        func update() {
+            DispatchQueue.main.async {
+                self.updateAnnotations()
+                
+                guard let tabbar = global.mainTabbar as? Main_Tabbar_NC else { return }
+                tabbar.updateTabbarAlertCount(alerts: self.victimDetails.map {$0.value} as! [Sub_PFAlert])
+            }
+        }
+        
+        if delete {
+            self.victimDetails[alert.panic.objectId!] = nil
+            update()
+        } else {
+            let query = Sub_PFAlert.query()!.whereKey("objectId", equalTo: alert.panic.objectId!)
+            query.includeKey("user")
+            query.getFirstObjectInBackground(block: {
+                panic, error in
+                
+                if panic != nil {
+                    self.victimDetails[panic!.objectId!] = panic
+                    update()
+                }
+            })
+        }
+    }
 	
     func getVictims() {
-		print("Getting victims from mapViewController")
-        panicHandler.getActivePanics(completion: {
+        print("Getting victims from mapViewController") 
+        alertHandler.getActivePanics(completion: {
             objects in
             
             self.victimDetails = [:]
-            for object in objects {
-                self.victimDetails[object.objectId!] = object
-            }
+            objects.forEach{ self.victimDetails[$0.objectId!] = $0 }
             self.updateAnnotations()
-            
-            if self.viewIsActive == true {
-                self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.getVictims), userInfo: nil, repeats: false)
-            } else if self.viewIsActive == false {
-                self.manager.stopUpdatingLocation()
-                self.manager.delegate = nil
-                self.map.delegate = nil
-                print("Disabled timer")
-                self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.freeMem), userInfo: nil, repeats: false)
+            self.addSubscriptions()
+                
+            if let tabbar = global.mainTabbar as? Main_Tabbar_NC {
+                tabbar.updateTabbarAlertCount(alerts: objects)
             }
+            
+            guard groupsHandler.joinedGroupsObject.first?.value.objectId != nil else {
+                self.timer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(self.getVictims), userInfo: nil, repeats: false)
+                return
+            }
+            print("Victim subscription added")
         })
     }
     
@@ -207,7 +258,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             
             if do_openNotificationPin == 1 {
                 if anno.id == global.notificationDictionary?["objectId"].string {
-                    map.selectAnnotation(anno as! MKAnnotation, animated: false)
+                    map.selectAnnotation(anno as MKAnnotation, animated: false)
                     showDetailsView()
                     do_openNotificationPin = 0
                 }
@@ -228,12 +279,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			let btnViewRight: UIButton = UIButton(type: UIButtonType.detailDisclosure)
             btnViewRight.addTarget(self, action: #selector(showDetailsView), for: UIControlEvents.touchUpInside)
 			
-			let btnViewLeft: UIButton = UIButton(type: UIButtonType.detailDisclosure)
-            btnViewLeft.setImage(UIImage(named: "call"), for: UIControlState())
-			btnViewLeft.addTarget(self, action: #selector(callVictim), for: UIControlEvents.touchUpInside)
+//            let btnViewLeft: UIButton = UIButton(type: UIButtonType.detailDisclosure)
+//            btnViewLeft.setImage(UIImage(named: "call"), for: UIControlState())
+//            btnViewLeft.addTarget(self, action: #selector(callVictim), for: UIControlEvents.touchUpInside)
 			
 			view.rightCalloutAccessoryView = btnViewRight
-			view.leftCalloutAccessoryView = btnViewLeft
+//            view.leftCalloutAccessoryView = btnViewLeft
 			
             view.image = UIImage(named: "mapPin")
             view.isEnabled = true
@@ -304,17 +355,20 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 		lblTime.text = dateFormatter.string(from: panicDetails.createdAt!)
 		getAddress()
 		
-		if isResponding() == true {
+		if isResponding() {
 			btnRespond.setTitle(NSLocalizedString("stop_responding", value: "Stop Responding", comment: ""), for: UIControlState())
 			btnRespond.backgroundColor = UIColor(red:0.91, green:0.3, blue:0.24, alpha:1)
+            alertHandler.currentAlert = Sub_PFAlert(parseObject: selectedVictim!)
+            btnChat.isEnabled = true
 		} else {
 			btnRespond.setTitle(NSLocalizedString("respond", value: "Respond", comment: ""), for: UIControlState())
 			btnRespond.backgroundColor = UIColor(red:0.18, green:0.8, blue:0.44, alpha:1)
+            btnChat.isEnabled = false
 		}
 	}
 	
 	func getDetails() {
-		if let panicDetails = victimDetails[selectedVictim!.objectId!] as? PFObject {
+        if let panicDetails = victimDetails[selectedVictim!.objectId!] {
 			if panicDetails["details"] != nil {
 				lblDetails.text = panicDetails["details"] as? String
             } else {
@@ -363,19 +417,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			}
 		})
 	}
-	
-	func callVictim() {
-		call(btnCall)
-	}
     
-	@IBAction func call(_ sender: AnyObject) {
-		let victimInfo = selectedVictim!["user"] as! PFUser
-		let cell = victimInfo["cellNumber"] as? String
-//		print(cell!)
-		if cell != nil {
-			let url = URL(string: "tel://\(cell!)")
-			UIApplication.shared.openURL(url!)
-		}
+	@IBAction func chat(_ sender: AnyObject) {
+        let vc = storyboard!.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        self.present(vc, animated: true, completion: nil)
 	}
 	
 	@IBAction func respond(_ sender: AnyObject) {
@@ -383,20 +430,32 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			selectedVictim!.removeObjects(in: [PFUser.current()!.objectId!], forKey: "responders")
 			btnRespond.setTitle(NSLocalizedString("respond", value: "Respond", comment: ""), for: UIControlState())
 			btnRespond.backgroundColor = UIColor(red:0.18, green:0.8, blue:0.44, alpha:1)
+            panicHandler.respondingAlertObjectId = nil
+            panicHandler.respondingAlertObject = nil
+            
+            alertHandler.currentAlert!.removeResponder()
+            alertHandler.currentAlert = nil
+            btnChat.isEnabled = false
 		} else {
-			selectedVictim!.addUniqueObject(PFUser.current()!.objectId!, forKey: "responders")
+            selectedVictim!.addUniqueObject(PFUser.current()!.objectId!, forKey: "responders")
 			btnRespond.setTitle(NSLocalizedString("stop_responding", value: "Stop Responding", comment: ""), for: UIControlState())
 			btnRespond.backgroundColor = UIColor(red:0.91, green:0.3, blue:0.24, alpha:1)
+            panicHandler.respondingAlertObjectId = selectedVictim!.objectId
+            panicHandler.respondingAlertObject = selectedVictim
+            
+            alertHandler.currentAlert = Sub_PFAlert(parseObject: selectedVictim!)
+            alertHandler.currentAlert!.addResponder()
+            btnChat.isEnabled = true
 		}
 		
-		selectedVictim!.saveInBackground(block: {
-			(result, error) in
-			if result == true {
-				print("done")
-			} else if error != nil {
-				global.showAlert("", message: String(format: NSLocalizedString("error_becoming_a_responder", value: "%@\nWill try again in a few seconds.", comment: ""), arguments: [error!.localizedDescription]))
-			}
-		})
+        Sub_PFAlert(parseObject: selectedVictim!).saveInBackground(block: {
+            (result, error) in
+            if result {
+                print("done")
+            } else if error != nil {
+                global.showAlert("", message: String(format: NSLocalizedString("error_becoming_a_responder", value: "%@\nWill try again in a few seconds.", comment: ""), arguments: [error!.localizedDescription]))
+            }
+        })
 
 		// Add current user object to array... Use same way as adding channels to installation. "AddUnique" or something
 	}
@@ -426,7 +485,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
         if do_locationError == 0 {
-            global.showAlert("Something went wrong", message: error.localizedDescription)
+//            global.showAlert("Something went wrong", message: error.localizedDescription)
             do_locationError = 1
         }
     }
