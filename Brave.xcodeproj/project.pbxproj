@@ -122,6 +122,7 @@
 		917FA4B7201F721A00427A96 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 917FA4B6201F721A00427A96 /* Images.xcassets */; };
 		917FA4BA20205EAE00427A96 /* AlertHandler_External.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917FA4B920205EAE00427A96 /* AlertHandler_External.swift */; };
 		91A617E7203AD37C00B4A352 /* Sub_PFAlertGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A617E6203AD37C00B4A352 /* Sub_PFAlertGroup.swift */; };
+		91A617E9203C328E00B4A352 /* Map_Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A617E8203C328E00B4A352 /* Map_Details.swift */; };
 		91E656092010D88E001B3F93 /* AlertHandler_Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E656082010D88E001B3F93 /* AlertHandler_Internal.swift */; };
 		91E6560B20120EB8001B3F93 /* Sub_PFNeedle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6560A20120EB8001B3F93 /* Sub_PFNeedle.swift */; };
 /* End PBXBuildFile section */
@@ -282,6 +283,7 @@
 		917FA4B6201F721A00427A96 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		917FA4B920205EAE00427A96 /* AlertHandler_External.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHandler_External.swift; sourceTree = "<group>"; };
 		91A617E6203AD37C00B4A352 /* Sub_PFAlertGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub_PFAlertGroup.swift; sourceTree = "<group>"; };
+		91A617E8203C328E00B4A352 /* Map_Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map_Details.swift; sourceTree = "<group>"; };
 		91E656082010D88E001B3F93 /* AlertHandler_Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHandler_Internal.swift; sourceTree = "<group>"; };
 		91E6560A20120EB8001B3F93 /* Sub_PFNeedle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub_PFNeedle.swift; sourceTree = "<group>"; };
 		BA53505146F08CB3FB4B8662 /* Pods_Brave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -325,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				7574A5EA1A2DB81F00148645 /* MapViewController.swift */,
+				91A617E8203C328E00B4A352 /* Map_Details.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1150,6 +1153,7 @@
 				75E91B061F3C642A003C1169 /* Reg_CellNumber_VC.swift in Sources */,
 				752AA7101B98465C005BE9FC /* VCFloatingActionButton.m in Sources */,
 				757DA85F1A3F965D0037995C /* CountriesViewController.swift in Sources */,
+				91A617E9203C328E00B4A352 /* Map_Details.swift in Sources */,
 				754C76DA1A42E9B50007C53B /* RegisterTableViewController.swift in Sources */,
 				750A7D4C1AB6D01D006EAA97 /* TextViewCustom.swift in Sources */,
 				7545A65C1A2C8A3100B19E3E /* CustomNavigationSegue.swift in Sources */,

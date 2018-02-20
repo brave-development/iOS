@@ -138,31 +138,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-//        if (panicHandler.panicIsActive == false && !userInfo.isEmpty) {
-//            if ( application.applicationState == UIApplicationState.inactive || application.applicationState == UIApplicationState.background  ) {
-//                //opened from a push notification when the app was in background
-//
-//                print("Got notif userInfo - \(userInfo)")
-//                if userInfo["lat"] != nil {
-//                    global.notificationDictionary = JSON(userInfo)// as NSDictionary
-//                    global.openedViaNotification = true
-//                    NotificationCenter.default.post(name: Notification.Name(rawValue: "showMapBecauseOfHandleNotification"), object: nil)
-//                }
-//
-//
-//            } else {
-//                global.notificationDictionary = JSON(userInfo)// as NSDictionary
-//                NotificationCenter.default.post(name: Notification.Name(rawValue: "showMapBecauseOfHandleNotification"), object: nil)
-//            }
-//        }
-        
         // NEW
         
         if !userInfo.isEmpty {
             let json = JSON(userInfo)
             
             switch json["gcm.notification.type"].stringValue {
-//            case "newMessage": messagesController.fetchNewMessage(objectId: json["gcm.notification.id"].stringValue)
+            case "newMessage":
+                //                messagesController.fetchNewMessage(objectId: json["gcm.notification.id"].stringValue)
+                guard alertHandler.currentAlert != nil else { return }
+                guard let topVc = UIApplication.shared.topMostViewController() else { return }
+                let vc = topVc.storyboard!.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .overCurrentContext
+                topVc.present(vc, animated: true, completion: nil)
             case "newAlert": NotificationCenter.default.post(name: Notification.Name(rawValue: "showMapBecauseOfHandleNotification"), object: nil)
             default: return
             }
