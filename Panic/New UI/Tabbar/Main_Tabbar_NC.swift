@@ -14,7 +14,7 @@ class Main_Tabbar_NC: ESTabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tabBar.backgroundColor = .red 
+        tabBar.backgroundColor = .red
         tabBar.isTranslucent = false
         tabBar.barTintColor = UIColor.flatBlack
         
