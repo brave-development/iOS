@@ -19,10 +19,8 @@ class Reg_Password_VC: Reg_IndividualScreen_VC {
     override func viewDidLoad() {
         super.viewDidLoad()
         txtPassword.delegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-//        txtPassword.becomeFirstResponder()
+        
+        title = "Password"
     }
     
     @IBAction func next(_ sender: Any) {

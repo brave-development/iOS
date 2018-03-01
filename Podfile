@@ -17,14 +17,10 @@ target 'Brave' do
 	pod 'Parse'
     pod 'Parse/FacebookUtils'
     pod 'ParseLiveQuery'
-
-    pod 'SwiftyJSON'
-    pod 'SDWebImage'
     
     pod 'Firebase/Core'
     pod 'Firebase/Messaging'
     pod 'Firebase/RemoteConfig'
-    
     pod 'Fabric'
     pod 'Crashlytics'
     
@@ -32,17 +28,17 @@ target 'Brave' do
     pod 'FacebookLogin'
     pod 'pop'
 
+    pod 'SwiftyJSON'
+    pod 'SDWebImage'
     pod 'Toast'
     pod 'SCLAlertView'
     pod 'SZTextView'
-    
     pod 'BBLocationManager'
     pod 'SwiftLocation', '~> 3.1.0'
     pod 'Alamofire'
-    
     pod 'MessageKit', '~> 0.10.2'
-    
     pod 'ESTabBarController-swift'
+    pod 'NotificationBannerSwift'
 
 end
 

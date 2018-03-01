@@ -22,7 +22,7 @@ class Reg_Done_VC: Reg_IndividualScreen_VC {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        btnNext.alpha = 1
+        title = "Final"
     }
     
     override func viewDidAppear(_ animated: Bool) {

@@ -37,7 +37,7 @@ class Alert_InputMessageBar: MessageInputBar {
         sendButton.imageView?.contentMode = .scaleAspectFit
         sendButton.contentEdgeInsets = UIEdgeInsets(top: 2, left: 2, bottom: 8, right: 2)
         sendButton.setSize(CGSize(width: 32, height: 32), animated: true)
-        sendButton.image = #imageLiteral(resourceName: "plus.png")
+        sendButton.image = #imageLiteral(resourceName: "send")
         sendButton.title = nil
 //        sendButton.imageView?.layer.cornerRadius = 0
 //        sendButton.backgroundColor = .clear

@@ -10,6 +10,7 @@ import UIKit
 import Spring
 import SwiftValidate
 import ChameleonFramework
+import Firebase
 
 class Reg_IndividualScreen_VC: UIViewController {
     
@@ -47,6 +48,7 @@ class Reg_IndividualScreen_VC: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardShown), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHidden), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(applicationWillTerminate), name: NSNotification.Name.UIApplicationWillTerminate, object: nil)
 
     }
     
@@ -127,6 +129,10 @@ class Reg_IndividualScreen_VC: UIViewController {
                 self.view.layoutIfNeeded()
             })
         }
+    }
+    
+    func applicationWillTerminate() {
+        Analytics.logEvent("Registration_Dropoff_Screen", parameters: ["Screen": self.title])
     }
 
     override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }

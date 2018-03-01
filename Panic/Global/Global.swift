@@ -142,6 +142,7 @@ class Global: UIViewController {
 					if PFUser.current()!["username"] as! String == "byroncoetsee" {
                         PFInstallation.current()?.addUniqueObject("panic_global", forKey: "channels")
                     }
+                    PFInstallation.current()?["currentUser"] = object!
                     PFInstallation.current()?.saveInBackground(block: nil)
                 }
             })

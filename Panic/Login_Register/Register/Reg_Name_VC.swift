@@ -18,10 +18,7 @@ class Reg_Name_VC: Reg_IndividualScreen_VC {
     override func viewDidLoad() {
         super.viewDidLoad()
         txtName.delegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-//        txtName.becomeFirstResponder()
+        title = "Name"
     }
     
     @IBAction func next(_ sender: Any) {

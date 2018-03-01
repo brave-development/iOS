@@ -17,10 +17,8 @@ class Reg_CellNumber_VC: Reg_IndividualScreen_VC {
     override func viewDidLoad() {
         super.viewDidLoad()
         txtNumber.delegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-//        txtNumber.becomeFirstResponder()
+        
+        title = "Cellphone Number"
     }
     
     @IBAction func next(_ sender: Any) {

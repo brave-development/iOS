@@ -19,10 +19,8 @@ class Reg_Email_VC: Reg_IndividualScreen_VC {
     override func viewDidLoad() {
         super.viewDidLoad()
         txtEmail.delegate = self
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-//        txtEmail.becomeFirstResponder()
+        
+        title = "Email"
     }
     
     @IBAction func next(_ sender: Any) {

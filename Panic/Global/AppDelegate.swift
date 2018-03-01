@@ -16,6 +16,7 @@ import FirebaseMessaging
 import UserNotifications
 import FacebookCore
 import Alamofire
+import NotificationBannerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -91,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let configuration = ParseClientConfiguration {
             $0.applicationId = "PANICING-TURTLE"
             $0.server = "https://panicing-turtle.herokuapp.com/parse"
-//            $0.server = "http://192.168.8.102:1337/parse"
+//            $0.server = "http://192.168.0.103:1337/parse"
         }
         Parse.initialize(with: configuration)
         PFAnalytics.trackAppOpenedWithLaunchOptions(inBackground: launchOptions, block: nil)
@@ -139,25 +140,50 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
         // NEW
+        let state = UIApplication.shared.applicationState
         
-        if !userInfo.isEmpty {
-            let json = JSON(userInfo)
+        switch state {
+        case .background: break
             
-            switch json["gcm.notification.type"].stringValue {
-            case "newMessage":
-                //                messagesController.fetchNewMessage(objectId: json["gcm.notification.id"].stringValue)
-                guard alertHandler.currentAlert != nil else { return }
-                guard let topVc = UIApplication.shared.topMostViewController() else { return }
-                let vc = topVc.storyboard!.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
-                vc.modalTransitionStyle = .crossDissolve
-                vc.modalPresentationStyle = .overCurrentContext
-                topVc.present(vc, animated: true, completion: nil)
-            case "newAlert": NotificationCenter.default.post(name: Notification.Name(rawValue: "showMapBecauseOfHandleNotification"), object: nil)
-            default: return
+        case .inactive:
+            if !userInfo.isEmpty {
+                let json = JSON(userInfo)
+                
+                switch json["gcm.notification.type"].stringValue {
+                case "newMessage":
+                    guard alertHandler.currentAlert != nil else { return }
+                    self.openChat()
+                case "newAlert": NotificationCenter.default.post(name: Notification.Name(rawValue: "showMapBecauseOfHandleNotification"), object: nil)
+                default: return
+                }
             }
+            break
+            
+        case .active:
+            guard alertHandler.currentAlert != nil else { return }
+            guard let name = JSON(userInfo)["aps"]["alert"]["title"].string, let message = JSON(userInfo)["aps"]["alert"]["body"].string else { return }
+            showNewMessagePrompt(name: name, message: message)
+            break
         }
     }
     
+    func showNewMessagePrompt(name: String, message: String) {
+        let banner = NotificationBanner(title: name, subtitle: message, style: .success)
+        banner.backgroundColor = UIColor.flatSkyBlue
+        banner.autoDismiss = true
+        banner.dismissOnTap = true
+        banner.dismissOnSwipeUp = true
+        banner.onTap = { self.openChat() }
+        banner.show()
+    }
+    
+    func openChat() {
+        guard let topVc = UIApplication.shared.topMostViewController() else { return }
+        let vc = topVc.storyboard!.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
+        vc.modalTransitionStyle = .crossDissolve
+        vc.modalPresentationStyle = .overCurrentContext
+        topVc.present(vc, animated: true, completion: nil)
+    }
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) { }
     func applicationWillResignActive(_ application: UIApplication) { }
@@ -187,12 +213,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         FBSDKAppEvents.activateApp()
     }
     
+//    func registrationScreenName(screen: Reg_IndividualScreen_VC)->String {
+//
+//        switch screen {
+//            case is Reg_Name_VC: return "Name"
+//            case is Reg_Email_VC: return "Email"
+//            case is Reg_Password_VC: return "Password"
+//            default: return "Something isn't right"
+//        }
+//
+//    }
+    
     func applicationWillTerminate(_ application: UIApplication) {
         global.victimInformation = [:]
         panicHandler.endPanic()
         if global.persistantSettings.object(forKey: "queryObjectId") != nil {
             global.persistantSettings.removeObject(forKey: "queryObjectId")
         }
+        
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "applicationWillTerminate"), object: nil)
+        
+//        if let topVc = global.topMostViewController() as? Reg_IndividualScreen_VC {
+//            Analytics.logEvent("Order_Placed", parameters: ["Registration_Dropoff_Screen": registrationScreenName(screen: topVc)])
+//        }
     }
 }
 

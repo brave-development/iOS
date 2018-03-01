@@ -45,6 +45,8 @@ class Reg_Permissions_VC: Reg_IndividualScreen_VC {
         
         let tapLocation = UITapGestureRecognizer(target: self, action: #selector(tappedLocation))
         imgIcon.addGestureRecognizer(tapLocation)
+        
+        title = "Permissions"
     }
     
     override func viewDidAppear(_ animated: Bool) {
