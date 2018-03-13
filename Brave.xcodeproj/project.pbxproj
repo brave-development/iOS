@@ -121,6 +121,8 @@
 		917FA4B5201F506100427A96 /* Main_Tabbar_NC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917FA4B4201F506100427A96 /* Main_Tabbar_NC.swift */; };
 		917FA4B7201F721A00427A96 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 917FA4B6201F721A00427A96 /* Images.xcassets */; };
 		917FA4BA20205EAE00427A96 /* AlertHandler_External.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917FA4B920205EAE00427A96 /* AlertHandler_External.swift */; };
+		91A40F6A2057D68E000EA18B /* ConversationScript_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A40F692057D68E000EA18B /* ConversationScript_VC.swift */; };
+		91A5F4752056D99400218805 /* LocationSimulation.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 91A5F4742056D99400218805 /* LocationSimulation.gpx */; };
 		91A617E7203AD37C00B4A352 /* Sub_PFAlertGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A617E6203AD37C00B4A352 /* Sub_PFAlertGroup.swift */; };
 		91A617E9203C328E00B4A352 /* Map_Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A617E8203C328E00B4A352 /* Map_Details.swift */; };
 		91E656092010D88E001B3F93 /* AlertHandler_Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E656082010D88E001B3F93 /* AlertHandler_Internal.swift */; };
@@ -282,6 +284,8 @@
 		917FA4B4201F506100427A96 /* Main_Tabbar_NC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main_Tabbar_NC.swift; sourceTree = "<group>"; };
 		917FA4B6201F721A00427A96 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		917FA4B920205EAE00427A96 /* AlertHandler_External.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHandler_External.swift; sourceTree = "<group>"; };
+		91A40F692057D68E000EA18B /* ConversationScript_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationScript_VC.swift; sourceTree = "<group>"; };
+		91A5F4742056D99400218805 /* LocationSimulation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocationSimulation.gpx; sourceTree = "<group>"; };
 		91A617E6203AD37C00B4A352 /* Sub_PFAlertGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub_PFAlertGroup.swift; sourceTree = "<group>"; };
 		91A617E8203C328E00B4A352 /* Map_Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map_Details.swift; sourceTree = "<group>"; };
 		91E656082010D88E001B3F93 /* AlertHandler_Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHandler_Internal.swift; sourceTree = "<group>"; };
@@ -516,6 +520,7 @@
 		75162DDC1A2B8B3E0094BA31 /* Panic */ = {
 			isa = PBXGroup;
 			children = (
+				91A40F682057D66B000EA18B /* Conversation Script */,
 				917FA4AE201F17BC00427A96 /* New UI */,
 				912801601FCD62F600C571A1 /* Alert Flow */,
 				75109B5B1EA025D60056BBCB /* Countries */,
@@ -536,6 +541,7 @@
 		75162DDD1A2B8B3E0094BA31 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				91A5F4742056D99400218805 /* LocationSimulation.gpx */,
 				917FA4BC2020609900427A96 /* Retired Code */,
 				75D9487B1ED054A000A733DA /* Panic.entitlements */,
 				75109B531EA024CE0056BBCB /* SubClassed */,
@@ -842,6 +848,14 @@
 			path = "Retired Code";
 			sourceTree = "<group>";
 		};
+		91A40F682057D66B000EA18B /* Conversation Script */ = {
+			isa = PBXGroup;
+			children = (
+				91A40F692057D68E000EA18B /* ConversationScript_VC.swift */,
+			);
+			path = "Conversation Script";
+			sourceTree = "<group>";
+		};
 		DCDDD9D7B495CB80AAEE5571 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -959,6 +973,7 @@
 				917FA4B7201F721A00427A96 /* Images.xcassets in Resources */,
 				75CF75E31BCB9F9200B18480 /* LaunchImage-1242x2208@2x.png in Resources */,
 				754B90251A47707F00BDC20B /* blank.png in Resources */,
+				91A5F4752056D99400218805 /* LocationSimulation.gpx in Resources */,
 				752AA71A1BA059EB005BE9FC /* ArrowUp.png in Resources */,
 				75162DE51A2B8B3E0094BA31 /* Main.storyboard in Resources */,
 				7551BB731BCD52DC0041A541 /* Localizable.strings in Resources */,
@@ -1205,6 +1220,7 @@
 				912801741FCE8C7100C571A1 /* AlertStage_2_VC.swift in Sources */,
 				754B90341A4C2D0B00BDC20B /* Tutorial.swift in Sources */,
 				75EFEFCE1F290F140064D76F /* Reg_Permissions_VC.swift in Sources */,
+				91A40F6A2057D68E000EA18B /* ConversationScript_VC.swift in Sources */,
 				752DE9991A3C4C2800784B94 /* SettingsTableViewController.swift in Sources */,
 				913A28FE1FE2BA3E00AB3369 /* Alert_Chat_MessageController.swift in Sources */,
 				912801791FCEB87300C571A1 /* Message.swift in Sources */,

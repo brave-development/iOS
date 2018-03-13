@@ -210,7 +210,7 @@ class LocalHistoryViewController: UIViewController, UITableViewDelegate, UIGestu
         
         if count == 0 {
             print("Starting timer")
-            _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(LocalHistoryViewController.reloadTable), userInfo: nil, repeats: false)
+//            _ = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(LocalHistoryViewController.reloadTable), userInfo: nil, repeats: false)
         } else {
             tblHistory.reloadData()
         }

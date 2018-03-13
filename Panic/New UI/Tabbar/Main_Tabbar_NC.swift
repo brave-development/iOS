@@ -21,15 +21,15 @@ class Main_Tabbar_NC: ESTabBarController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         let v1 = storyboard.instantiateViewController(withIdentifier: "mapViewController") as! MapViewController
-        let v2 = UIViewController()
+        let v2 = storyboard.instantiateViewController(withIdentifier: "localHistoryViewController") as! LocalHistoryViewController
         let v3 = storyboard.instantiateViewController(withIdentifier: "panicViewController") as! PanicButtonViewController
-        let v4 = storyboard.instantiateViewController(withIdentifier: "contactsViewController") as! GroupsViewController
+        let v4 = storyboard.instantiateViewController(withIdentifier: "conversationScript_vc") as! ConversationScript_VC
         let v5 = storyboard.instantiateViewController(withIdentifier: "settingsViewController") as! SettingsTableViewController
         
         v1.tabBarItem = ESTabBarItem.init(StandardESTabbarButton(), title: nil, image: UIImage(named: "map_unselected"), selectedImage: UIImage(named: "map_selected"))
         v2.tabBarItem = ESTabBarItem.init(StandardESTabbarButton(), title: "???", image: UIImage(named: "find"), selectedImage: UIImage(named: "find_1"))
         v3.tabBarItem = ESTabBarItem.init(LargeESTabbarButton(), title: nil, image: UIImage(named: "alert"), selectedImage: UIImage(named: "alert"))
-        v4.tabBarItem = ESTabBarItem.init(StandardESTabbarButton(), title: nil, image: UIImage(named: "groups_unselected"), selectedImage: UIImage(named: "groups_selected"))
+        v4.tabBarItem = ESTabBarItem.init(StandardESTabbarButton(), title: nil, image: UIImage(named: "conversationScript_unselected"), selectedImage: UIImage(named: "conversationScript_selected"))
         v5.tabBarItem = ESTabBarItem.init(StandardESTabbarButton(), title: nil, image: UIImage(named: "profile_unselected"), selectedImage: UIImage(named: "profile_selected"))
         
         viewControllers = [v1, v2, v3, v4, v5]

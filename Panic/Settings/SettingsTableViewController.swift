@@ -42,6 +42,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 	@IBOutlet weak var switchBackgroundUpdate: UISwitch!
     @IBOutlet weak var switchAllowNotifications: UISwitch!
     @IBOutlet weak var switchNewsletter: UISwitch!
+    @IBOutlet weak var switchAvailability: UISwitch!
     @IBOutlet weak var btnCountry: UIButton!
     
     var mainViewController : MainViewController?
@@ -50,6 +51,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     var newPassword : String?
 	var mail: MFMailComposeViewController!
     var newsletterToggleChanged = false
+    var availabilityToggleChanged = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -156,11 +158,19 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
         global.showAlert(NSLocalizedString("allow_notifications_info_title", value: "Allow Notifications", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Allowing notifications means this device will recieve a notification when someone activates the alert button. If you disable this, you will not be notified when someone needs help.\n\nPlease keep in mind how you might feel when you're in need of help and someone has this deactivated.", comment: ""))
     }
     
+    @IBAction func showAvailabilityInformation(_ sender: Any) {
+        global.showAlert(NSLocalizedString("allow_notifications_info_title", value: "Allow Notifications", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Toggling this will set your availability status for responding to alerts.", comment: ""))
+    }
+    
     @IBAction func toggleNewsletterSub(_ sender: Any) {
         newsletterToggleChanged = true
         changed = true
     }
     
+    @IBAction func toggleAvailability(_ sender: Any) {
+        newsletterToggleChanged = true
+        changed = true
+    }
     
 	@IBAction func reportBug(_ sender: AnyObject) {
 		mail = MFMailComposeViewController()
