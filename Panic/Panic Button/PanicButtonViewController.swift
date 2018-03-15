@@ -68,7 +68,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
             viewChat.isHidden = true
         }
         
-        if global.isChatPilot { viewMenuButton.isHidden = true }
+        viewMenuButton.isHidden = true
     }
     
     func styleButton(button: UIButton, shadowView: UIView? = nil) {
@@ -174,7 +174,7 @@ class PanicButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         UIApplication.shared.isIdleTimerDisabled = false
         spinner.stopAnimating()
         
-        if !global.isChatPilot { viewMenuButton.isHidden = false }
+        viewMenuButton.isHidden = true
         
         mainViewController?.tabbarView.isUserInteractionEnabled = true
         UIView.animate(withDuration: 0.3, animations: {

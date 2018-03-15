@@ -90,8 +90,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func configureParse(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         let configuration = ParseClientConfiguration {
-            $0.applicationId = "PANICING-TURTLE"
-            $0.server = "https://panicing-turtle.herokuapp.com/parse"
+            $0.applicationId = "PILOT-PANICING-TURTLE"
+            $0.server = "https://pilot-panicing-turtle.herokuapp.com/parse"
 //            $0.server = "http://192.168.0.103:1337/parse"
         }
         Parse.initialize(with: configuration)

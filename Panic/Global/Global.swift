@@ -110,27 +110,26 @@ class Global: UIViewController {
         return nil
     }
     
-    var isDESPilot: Bool { return betaID == "DTES" }
-    var isChatPilot: Bool { return betaID == "Chat" }
-    
     var isPilot: Bool {
-        if betaID == "DTES" { return true }
-        if betaID == "Testing" { return true }
-        if betaID == "Feedback" { return true }
+        if betaID == "Pilot" { return true }
         
         return false
     }
     
     func joinPilotGroup() {
         groupsHandler.getGroups()
-        if betaID == "DTES" { groupsHandler.addBetaGroup(objectId: "Z7rmGeDACV") }
-        if betaID == "Testing" { groupsHandler.addBetaGroup(objectId: "WwfXIFOeud") }
-        if betaID == "Feedback" { groupsHandler.addBetaGroup(objectId: "O9K1RsGfto") }
+        if betaID == "Pilot" { groupsHandler.addBetaGroup(objectId: "AAen1BrU1l") }
     }
 	
     func getUserInformation(callingVC: AnyObject) -> Bool {
 		
 		if PFUser.current() != nil {
+            guard let verified = PFUser.current()!["emailVerified"] as? Bool, verified else {
+                showAlert("Account Verification", message: "Your account has not yet been verified. Please be patient.")
+                PFUser.logOut()
+                return false
+            }
+            
 			PFUser.current()!.fetchInBackground(block: {
 				(object, error) in
 				if error != nil {
@@ -153,25 +152,25 @@ class Global: UIViewController {
             tutorial.load()
             joinPilotGroup()
             
-            if global.isChatPilot {
+//            if global.isChatPilot {
                 (callingVC as! LoginViewController).present(Main_Tabbar_NC(), animated: true, completion: nil)
-            } else {
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
-                vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-                
-                switch callingVC {
-                case (is LoginViewController):
-                    (callingVC as! LoginViewController).present(vc, animated: true, completion: nil)
-                    break
-                    
-                case (is RegisterViewController):
-                    (callingVC as! RegisterViewController).present(vc, animated: true, completion: nil)
-                    break
-                    
-                default: print("NO TYPE FOUND FOR CALLING VIEW CONRTOLLER"); break
-                }
-            }
+//            } else {
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                let vc: MainViewController = storyboard.instantiateViewController(withIdentifier: "mainViewController") as! MainViewController
+//                vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+//
+//                switch callingVC {
+//                case (is LoginViewController):
+//                    (callingVC as! LoginViewController).present(vc, animated: true, completion: nil)
+//                    break
+//
+//                case (is RegisterViewController):
+//                    (callingVC as! RegisterViewController).present(vc, animated: true, completion: nil)
+//                    break
+//
+//                default: print("NO TYPE FOUND FOR CALLING VIEW CONRTOLLER"); break
+//                }
+//            }
             
             locationHandler
         }

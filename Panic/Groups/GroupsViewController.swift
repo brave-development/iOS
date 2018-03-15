@@ -87,15 +87,6 @@ class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLoc
 	
 	override func viewDidAppear(_ animated: Bool) {
 		checkForGroupDetails()
-//		if groupsHandler.gotGroupDetails {
-//			if groupsHandler.referalGroup != nil {
-//				if PFUser.current()!["numberOfGroups"] as! Int == groupsHandler.joinedGroups.count {
-//					if checkIfAlreadyContainsGroup(groupsHandler.referalGroup!) == false {
-//						registerGroup()
-//					}
-//				}
-//			}
-//		}
 	}
 	
 	func checkForGroupDetails() {
@@ -114,29 +105,8 @@ class GroupsViewController: UIViewController, UIGestureRecognizerDelegate, CLLoc
 		}
 	}
 	
-//	func registerGroup() {
-//		let query = PFQuery(className: "Groups")
-//		query.whereKey("flatValue", equalTo: groupsHandler.referalGroup!.formatGroupForFlatValue())
-//		query.findObjectsInBackground(block: {
-//			(object, error) in
-//			if object!.count > 0 {
-//				let pfObject = object![0] 
-//				DispatchQueue.main.async(execute: {
-//					let name = pfObject["name"] as! String
-//					groupsHandler.addGroup(name)
-//					groupsHandler.joinedGroupsObject[pfObject["flatValue"] as! String] = pfObject
-//					global.showAlert(NSLocalizedString("successful", value: "Successful", comment: ""), message: String(format: NSLocalizedString("joined_group_text", value: "You have joined the group %@", comment: ""), arguments: [name]))
-//					self.tblGroups.reloadData()
-//				})
-//			} else {
-//				global.showAlert("", message: String(format: NSLocalizedString("group_not_exist_text", value: "The group '%@' does not exist. Check the spelling or use the New tab to create it", comment: ""), arguments: [groupsHandler.referalGroup!]))
-//			}
-//		})
-//	}
-	
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		if manager.location!.horizontalAccuracy < 1001 {
-//			groupsHandler.getNearbyGroups(manager.location!)
 			manager.stopUpdatingLocation()
 		}
 	}

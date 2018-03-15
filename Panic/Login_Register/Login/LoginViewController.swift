@@ -64,29 +64,30 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             PFUser.logOut()
         }
         
-        let user = PFUser.current()
-        if user != nil {
-            startLoading()
-            global.getUserInformation(callingVC: self)
-            stopLoading()
-        } else {
+        if PFUser.current() == nil {
             tutorial.reset()
-			if PFInstallation.current()?.objectId == nil {
-				PFInstallation.current()?.saveInBackground(block: {
-					(result, error) in
-					if result == true {
-						PFInstallation.current()?.setObject(["", "not_logged_in"], forKey: "channels")
-						PFInstallation.current()?.badge = 0
-						PFInstallation.current()?.saveInBackground(block: nil)
-						PFInstallation.current()?.saveEventually(nil)
-						print("Created new installation and added groups... \(PFInstallation.current()!)")
-					}
-				})
-			}
+            if PFInstallation.current()?.objectId == nil {
+                PFInstallation.current()?.saveInBackground(block: {
+                    (result, error) in
+                    if result == true {
+                        PFInstallation.current()?.setObject(["", "not_logged_in"], forKey: "channels")
+                        PFInstallation.current()?.badge = 0
+                        PFInstallation.current()?.saveInBackground(block: nil)
+                        PFInstallation.current()?.saveEventually(nil)
+                        print("Created new installation and added groups... \(PFInstallation.current()!)")
+                    }
+                })
+            }
             spinner.stopAnimating()
             
             self.beginBackgroundAnimation()
+            return
         }
+        
+        startLoading()
+        global.getUserInformation(callingVC: self)
+        stopLoading()
+        
     }
     
     @IBAction func login(_ sender: AnyObject) {
@@ -128,10 +129,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func register(_ sender: AnyObject) {
 		let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let vc: RegisterViewController = storyboard.instantiateViewController(withIdentifier: "registerViewController") as! RegisterViewController
         let vc: RegistrationController_VC = storyboard.instantiateViewController(withIdentifier: "registrationController_vc") as! RegistrationController_VC
         vc.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
-//        vc.modalPresentationStyle = .overCurrentContext
         self.present(vc, animated: true, completion: nil)
     }
 	
