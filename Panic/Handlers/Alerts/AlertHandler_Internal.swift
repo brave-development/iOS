@@ -18,18 +18,18 @@ class AlertHandler: NSObject {
     
     var currentAlert: Sub_PFAlert?
     
-    func startAlert(completionHandler handler: @escaping (Bool) -> Void) {
+    func startAlert(drug: String, completionHandler handler: @escaping (Bool) -> Void) {
         
         Locator.currentPosition(accuracy: .block, timeout: Timeout.after(60), onSuccess: {
             location in
             print("Location found: \(location)")
             
             self.currentAlert = Sub_PFAlert(location: location)
+            self.currentAlert?.details = drug
             self.currentAlert?.saveInBackground(block: {
                 (success, error) in
                 
                 if success {
-                    self.addToAlertGroupTable()
                     Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateCurrentAlert), userInfo: nil, repeats: false)
                     handler(true)
                 } else {
@@ -42,6 +42,22 @@ class AlertHandler: NSObject {
             print("Failed to get location: \(error)")
             handler(false)
         }
+    }
+    
+    func pause() {
+        currentAlert?.active = false
+        currentAlert?.saveInBackground()
+    }
+    
+    func resume() {
+        currentAlert?.active = true
+        currentAlert?.saveInBackground()
+    }
+    
+    func end() {
+        currentAlert?.active = true
+        currentAlert?.saveInBackground()
+        currentAlert = nil
     }
     
     func updateDetails(details: String) {
@@ -85,7 +101,7 @@ extension AlertHandler {
             "groups" : groups,
             "panic" : [
                 "__type": "Pointer",
-                "className": "Panics",
+                "className": "Alerts",
                 "objectId": currentAlert!.objectId!
             ]
         ]

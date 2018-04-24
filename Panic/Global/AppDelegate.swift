@@ -8,7 +8,6 @@
 
 import UIKit
 import Parse
-//import ParseFacebookUtilsV4
 import SwiftyJSON
 import Firebase
 import FirebaseCore
@@ -50,13 +49,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         if global.persistantSettings.object(forKey: "panicConfirmation") == nil {
-            global.setPanicNotification(false)
+            global.setAlertNotification(false)
         } else {
             global.panicConfirmation = global.persistantSettings.bool(forKey: "panicConfirmation")
         }
         
-        if global.persistantSettings.object(forKey: "backgroundPanic") != nil {
-            global.backgroundPanic = global.persistantSettings.bool(forKey: "backgroundPanic")
+        if global.persistantSettings.object(forKey: "backgroundAlert") != nil {
+            global.backgroundAlert = global.persistantSettings.bool(forKey: "backgroundAlert")
         }
         
         if JSON(launchOptions)["lat"] != nil {
@@ -190,17 +189,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     
     func applicationDidEnterBackground(_ application: UIApplication) {
-        if global.backgroundPanic == false && panicHandler.panicIsActive == true {
+        if global.backgroundAlert == false && alertHandler.currentAlert?.active == true {
             print("PAUSE")
-            panicHandler.pausePanic(true)
+            alertHandler.pause()
             NotificationCenter.default.post(name: Notification.Name(rawValue: "applicationDidEnterBackground"), object: nil)
         }
     }
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        if global.backgroundPanic == false && panicHandler.panicIsActive == true {
+        if global.backgroundAlert == false && alertHandler.currentAlert?.active == true {
             print("RESUME")
-            panicHandler.resumePanic()
+            alertHandler.resume()
             NotificationCenter.default.post(name: Notification.Name(rawValue: "applicationWillEnterForeground"), object: nil)
         } else if global.openedViaNotification == true {
             NotificationCenter.default.post(name: Notification.Name(rawValue: "openedViaNotification"), object: nil)
@@ -226,7 +225,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func applicationWillTerminate(_ application: UIApplication) {
         global.victimInformation = [:]
-        panicHandler.endPanic()
+        alertHandler.end()
         if global.persistantSettings.object(forKey: "queryObjectId") != nil {
             global.persistantSettings.removeObject(forKey: "queryObjectId")
         }

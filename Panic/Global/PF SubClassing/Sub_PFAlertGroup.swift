@@ -20,6 +20,6 @@ class Sub_PFAlertGroup: PFObject, PFSubclassing {
     }
     
     static func parseClassName() -> String {
-        return "PanicGroup"
+        return "AlertGroup"
     }
 }

@@ -11,33 +11,49 @@ import Parse
 
 extension AlertHandler {
 
-    func getActivePanics(completion: @escaping ([Sub_PFAlert])->Void) {
-        var groups : [[String : Any]] = []
+    func getActiveAlerts(completion: @escaping ([Sub_PFAlert])->Void) {
+        let query = PFQuery(className: "Alerts")
+        query.whereKey("active", equalTo: true)
+        query.whereKeyExists("details")
+        query.includeKey("user")
         
-        for (_, group) in groupsHandler.joinedGroupsObject {
-            if let groupObjectId = group.objectId {
-                groups.append(buildGroupPointer(objectId: groupObjectId))
+        query.findObjectsInBackground {
+            objects, error in
+            
+            if error != nil || objects == nil {
+                completion([])
+                print(error)
+                return
             }
+            
+            completion(objects! as! [Sub_PFAlert])
         }
-        
-        if groups.count > 0 {
-            PFCloud.callFunction(inBackground: "getActiveAlerts", withParameters: [ "groups" : groups ] ) {
-                response, error in
-                
-                if let objects = response as? [PFObject] {
-                    var alerts : [Sub_PFAlert] = []
-                    
-                    for object in objects {
-                        (object["panic"] as! Sub_PFAlert).setObject(object["user"], forKey: "user")
-                        alerts.append(object["panic"] as! Sub_PFAlert)
-                    }
-                    completion(alerts)
-                } else {
-                    completion([])
-                }
-            }
-        } else if groups.count != groupsHandler.joinedGroupsObject.count {
-            completion([])
-        }
+//        var groups : [[String : Any]] = []
+//
+//        for (_, group) in groupsHandler.joinedGroupsObject {
+//            if let groupObjectId = group.objectId {
+//                groups.append(buildGroupPointer(objectId: groupObjectId))
+//            }
+//        }
+//
+//        if groups.count > 0 {
+//            PFCloud.callFunction(inBackground: "getActiveAlerts", withParameters: [ "groups" : groups ] ) {
+//                response, error in
+//
+//                if let objects = response as? [PFObject] {
+//                    var alerts : [Sub_PFAlert] = []
+//
+//                    for object in objects {
+//                        (object["panic"] as! Sub_PFAlert).setObject(object["user"], forKey: "user")
+//                        alerts.append(object["panic"] as! Sub_PFAlert)
+//                    }
+//                    completion(alerts)
+//                } else {
+//                    completion([])
+//                }
+//            }
+//        } else if groups.count != groupsHandler.joinedGroupsObject.count {
+//            completion([])
+//        }
     }
 }

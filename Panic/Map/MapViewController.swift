@@ -40,12 +40,12 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	var victimDetails : [String : PFObject] = [:]
     var timer : Timer!
 	var detailsTimer: Timer!
-    var queryPanicsIsActive = false
+    var queryAlertsIsActive = false
     var selectedVictim : PFObject?
     var viewIsActive = false
 	var dateFormatter = DateFormatter()
     
-    let queryPanics : PFQuery = PFQuery(className: "Panics")
+    let queryAlerts : PFQuery = PFQuery(className: "Alerts")
     var subscription_victim_added : Subscription<PFObject>!
     var subscription_victim_updated : Subscription<PFObject>!
     var subscription_victim_removed : Subscription<PFObject>!
@@ -140,24 +140,25 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     func addSubscriptions() {
-        let query = PFQuery(className: "PanicGroup")
+        let query = PFQuery(className: "Alerts")
         query.includeKey("user")
-        query.includeKey("panic")
-        query.includeKey("group")
-        query.whereKeyExists("group")
-        query.whereKeyExists("user")
-        query.whereKeyExists("panic")
-        query.whereKey("active", equalTo: true)
-        query.whereKey("group", containedIn: groupsHandler.joinedGroupsObject.map {$0.value.pointer()})
+        query.whereKeyExists("details")
+//        query.includeKey("panic")
+//        query.includeKey("group")
+//        query.whereKeyExists("group")
+//        query.whereKeyExists("user")
+//        query.whereKeyExists("panic")
+//        query.whereKey("active", equalTo: true)
+//        query.whereKey("group", containedIn: groupsHandler.joinedGroupsObject.map {$0.value.pointer()})
         
-        subscription_victim_added = Client.shared.subscribe(query).handle(Event.created) { _, alert in self.handleVictomUpdate(alert: alert as! Sub_PFAlertGroup) }
-        subscription_victim_updated = Client.shared.subscribe(query).handle(Event.updated) { _, alert in self.handleVictomUpdate(alert: alert as! Sub_PFAlertGroup) }
-        subscription_victim_removed = Client.shared.subscribe(query).handle(Event.deleted) { _, alert in self.handleVictomUpdate(alert: alert as! Sub_PFAlertGroup, delete: true) }
-        subscription_victim_entered = Client.shared.subscribe(query).handle(Event.entered) { _, alert in self.handleVictomUpdate(alert: alert as! Sub_PFAlertGroup) }
-        subscription_victim_left = Client.shared.subscribe(query).handle(Event.left) { _, alert in self.handleVictomUpdate(alert: alert as! Sub_PFAlertGroup, delete: true) }
+        subscription_victim_added = Client.shared.subscribe(query).handle(Event.created) { _, alert in self.handleVictimUpdate(alert: alert as! Sub_PFAlert) }
+        subscription_victim_updated = Client.shared.subscribe(query).handle(Event.updated) { _, alert in self.handleVictimUpdate(alert: alert as! Sub_PFAlert) }
+        subscription_victim_removed = Client.shared.subscribe(query).handle(Event.deleted) { _, alert in self.handleVictimUpdate(alert: alert as! Sub_PFAlert) }
+        subscription_victim_entered = Client.shared.subscribe(query).handle(Event.entered) { _, alert in self.handleVictimUpdate(alert: alert as! Sub_PFAlert) }
+        subscription_victim_left = Client.shared.subscribe(query).handle(Event.left) { _, alert in self.handleVictimUpdate(alert: alert as! Sub_PFAlert) }
     }
     
-    func handleVictomUpdate(alert: Sub_PFAlertGroup, delete: Bool = false) {
+    func handleVictimUpdate(alert: Sub_PFAlert) {
         
         func update() {
             DispatchQueue.main.async {
@@ -168,11 +169,11 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
         }
         
-        if delete {
-            self.victimDetails[alert.panic.objectId!] = nil
+        if !alert.isActive {
+            self.victimDetails[alert.objectId!] = nil
             update()
         } else {
-            let query = Sub_PFAlert.query()!.whereKey("objectId", equalTo: alert.panic.objectId!)
+            let query = Sub_PFAlert.query()!.whereKey("objectId", equalTo: alert.objectId!)
             query.includeKey("user")
             query.getFirstObjectInBackground(block: {
                 panic, error in
@@ -187,7 +188,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 	
     func getVictims() {
         print("Getting victims from mapViewController") 
-        alertHandler.getActivePanics(completion: {
+        alertHandler.getActiveAlerts(completion: {
             objects in
             
             self.victimDetails = [:]
@@ -209,24 +210,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     
     // Updating annotations
     func updateAnnotations() {
-		var liveAnnotationIds: [String : AnnotationCustom] = [:]
-        for (name, object) in victimDetails {
-            if (object as PFObject)["user"] != nil {
-                var anno: AnnotationCustom!
-                let id = (object as PFObject).objectId
-                let location = CLLocationCoordinate2D(latitude: ((object as PFObject)["location"] as! PFGeoPoint).latitude, longitude: ((object as PFObject)["location"]as! PFGeoPoint).longitude)
-                if (object as PFObject)["details"] != nil {
-                    let details = (object as PFObject)["details"] as! String
-                    anno = AnnotationCustom(coordinate: location, title: name, id: id!, object: (object as PFObject), details: details)
-                } else {
-                    anno = AnnotationCustom(coordinate: location, title: name, id: id!, object: (object as PFObject))
-                }
-                liveAnnotationIds[id!] = anno
+        var liveAnnotationIds: [String : AnnotationCustom] = [:]
+        for (id, object) in victimDetails {
+            let alert = object as! Sub_PFAlert
+            var anno: AnnotationCustom!
+            let location = CLLocationCoordinate2D(latitude: alert.location.latitude, longitude: alert.location.longitude)
+            if let details = alert.details {
+                anno = AnnotationCustom(coordinate: location, title: alert.user["name"] as! String, id: id, object: alert, details: details)
+            } else {
+                anno = AnnotationCustom(coordinate: location, title: alert.user["name"] as! String, id: id, object: alert)
             }
+            liveAnnotationIds[id] = anno
         }
-		addAnnotations(liveAnnotationIds)
+        addAnnotations(liveAnnotationIds)
     }
-	
+    
 	func addAnnotations(_ annotations: [String : AnnotationCustom]) {
 		
 		// Run through current annots on map
@@ -386,7 +384,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-		NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updatedActivePanics"), object: nil)
+		NotificationCenter.default.removeObserver(self, name: NSNotification.Name(rawValue: "updatedActiveAlerts"), object: nil)
         viewIsActive = false
     }
     

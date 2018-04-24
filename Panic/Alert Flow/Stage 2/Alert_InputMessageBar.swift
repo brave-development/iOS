@@ -12,8 +12,13 @@ import ChameleonFramework
 
 class Alert_InputMessageBar: MessageInputBar {
     
-    init() {
+    var alert: Sub_PFAlert!
+    var controller: MessagesController!
+    
+    init(alert: Sub_PFAlert, controller: MessagesController) {
         super.init(frame: .zero)
+        self.alert = alert
+        self.controller = controller
         build()
     }
     
@@ -49,7 +54,7 @@ class Alert_InputMessageBar: MessageInputBar {
 
 extension Alert_InputMessageBar: MessageInputBarDelegate {
     func messageInputBar(_ inputBar: MessageInputBar, didPressSendButtonWith text: String) {
-        messagesController.sendNew(text: inputBar.inputTextView.text)
+        controller.sendNew(text: inputBar.inputTextView.text)
         inputBar.inputTextView.text = ""
     }
 }

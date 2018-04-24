@@ -8,6 +8,7 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - CenteredCollectionView (1.1)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
@@ -113,6 +114,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - BBLocationManager
+  - CenteredCollectionView
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - Crashlytics
   - CustomBadge
@@ -134,6 +136,7 @@ DEPENDENCIES:
   - SCLAlertView
   - SDWebImage
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
+  - SwiftLocation
   - SwiftLocation (~> 3.1.0)
   - SwiftValidate
   - SwiftyJSON
@@ -161,6 +164,7 @@ SPEC CHECKSUMS:
   BBLocationManager: a0ab2f0b31076cae313f874077786b19667c379d
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Bolts-Swift: fa98d1b59fc1acea9b21a21306dcdca1c85e3737
+  CenteredCollectionView: da6b3a5594267097be6080c485f995068819cd99
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   Crashlytics: a989ef242b66605577a425733797f810bd2725eb
   CustomBadge: c60738d213e7ef019b0bf1caa7948333f280ea9b
@@ -200,6 +204,6 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   UIScrollSlidingPages: 92a3ed2c444b31f7f1b259f7b91720b53295346a
 
-PODFILE CHECKSUM: 0a04a831bf2a7d0f9ab6c73c26088734baa5670c
+PODFILE CHECKSUM: b152e1fc0fd1e202fefaa1be6db11b4e6121434f
 
 COCOAPODS: 1.3.1

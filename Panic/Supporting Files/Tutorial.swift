@@ -55,7 +55,7 @@ class Tutorial {
 	}
 	
 	func save() {
-		global.persistantSettings.set(panic, forKey: "Panic")
+		global.persistantSettings.set(panic, forKey: "Alert")
 		global.persistantSettings.set(swipeToOpenMenu, forKey: "swipeToOpenMenu")
 		global.persistantSettings.set(groupsButton, forKey: "groupsButton")
 		global.persistantSettings.set(addNewGroup, forKey: "addNewGroup")

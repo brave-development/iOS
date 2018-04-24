@@ -38,11 +38,10 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
     @IBOutlet weak var txtPasswordConfirm: UITextField!
     @IBOutlet weak var txtBetaCode: UITextField!
     @IBOutlet weak var viewPasswordConfirm: UIView!
-    @IBOutlet weak var switchPanicConfirmation: UISwitch!
+    @IBOutlet weak var switchAlertConfirmation: UISwitch!
 	@IBOutlet weak var switchBackgroundUpdate: UISwitch!
-    @IBOutlet weak var switchAllowNotifications: UISwitch!
-    @IBOutlet weak var switchNewsletter: UISwitch!
     @IBOutlet weak var switchAvailability: UISwitch!
+    @IBOutlet weak var switchNewsletter: UISwitch!
     @IBOutlet weak var btnCountry: UIButton!
     
     var mainViewController : MainViewController?
@@ -80,15 +79,15 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
         }
         
         if global.panicConfirmation == true {
-            switchPanicConfirmation.isOn = true
+            switchAlertConfirmation.isOn = true
         }
-		if global.backgroundPanic == true {
+		if global.backgroundAlert == true {
 			switchBackgroundUpdate.isOn = true
 		}
         if let allowNotifications = (PFInstallation.current()!["allowNotifications"] as? Bool) {
-            switchAllowNotifications.isOn = allowNotifications
+            switchAvailability.isOn = allowNotifications
         } else {
-            switchAllowNotifications.isOn = true
+            switchAvailability.isOn = true
             PFInstallation.current()?.setValue(true, forKey: "allowNotifications")
             PFInstallation.current()?.saveInBackground()
         }
@@ -121,11 +120,11 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
         self.present(vc, animated: true, completion: nil)
     }
 
-    @IBAction func panicConfirmation(_ sender: AnyObject) {
-        if switchPanicConfirmation.isOn == true {
-            global.setPanicNotification(true)
+    @IBAction func alertConfirmation(_ sender: AnyObject) {
+        if switchAlertConfirmation.isOn == true {
+            global.setAlertNotification(true)
         } else {
-            global.setPanicNotification(false)
+            global.setAlertNotification(false)
         }
     }
 	
@@ -154,13 +153,13 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
 		global.showAlert(NSLocalizedString("background_update_info_title", value: "Background Update", comment: ""), message: NSLocalizedString("background_update_info_text", value: "Enabling background updates will let Brave continue to broadcast your location, even when the app is in the background and/or your iPhone is asleep, during activation.\n\nThis is disabled by default as it can be heavy on battery, can use more data then expected if left on for an extended period of time and because of the way iPhone handles background apps, can be unreliable (although rarely)", comment: ""))
 	}
 	
-    @IBAction func showNotificationsInformation(_ sender: Any) {
-        global.showAlert(NSLocalizedString("allow_notifications_info_title", value: "Allow Notifications", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Allowing notifications means this device will recieve a notification when someone activates the alert button. If you disable this, you will not be notified when someone needs help.\n\nPlease keep in mind how you might feel when you're in need of help and someone has this deactivated.", comment: ""))
+    @IBAction func showAvailabilityInformation(_ sender: Any) {
+        global.showAlert(NSLocalizedString("online_availability_info_title", value: "Online Status", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Setting yourself as online means this device will recieve a notification when someone activates the alert button. If you disable this, you will not be notified when someone needs help.\n\nPlease keep in mind how you might feel when you're in need of help and someone has this deactivated.", comment: ""))
     }
     
-    @IBAction func showAvailabilityInformation(_ sender: Any) {
-        global.showAlert(NSLocalizedString("allow_notifications_info_title", value: "Allow Notifications", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Toggling this will set your availability status for responding to alerts.", comment: ""))
-    }
+//    @IBAction func showAvailabilityInformation(_ sender: Any) {
+//        global.showAlert(NSLocalizedString("allow_notifications_info_title", value: "Allow Notifications", comment: ""), message: NSLocalizedString("allow_notifications_info_text", value: "Toggling this will set your availability status for responding to alerts.", comment: ""))
+//    }
     
     @IBAction func toggleNewsletterSub(_ sender: Any) {
         newsletterToggleChanged = true
@@ -226,7 +225,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
             var saveAlert = UIAlertController(title: NSLocalizedString("delete_account_confirmation_2_title", value: "Final Confirmation", comment: ""), message: NSLocalizedString("delete_account_confirmation_2_text", value: "Permenently delete account?", comment: ""), preferredStyle: UIAlertControllerStyle.alert)
             saveAlert.addAction(UIAlertAction(title: NSLocalizedString("yes", value: "Yes", comment: ""), style: .default, handler: { (action: UIAlertAction!) in
                 
-                let queryDeleteAccount = PFQuery(className: "Panics")
+                let queryDeleteAccount = PFQuery(className: "Alerts")
                 queryDeleteAccount.whereKey("user", equalTo: PFUser.current()!)
                 queryDeleteAccount.findObjectsInBackground(block: {
 					(objects, error) in
@@ -340,7 +339,7 @@ class SettingsTableViewController: UITableViewController, UITextFieldDelegate, c
                     self.updateNewsLetterSub()
                 }
                 
-                PFInstallation.current()?.setValue(self.switchAllowNotifications.isOn, forKey: "allowNotifications")
+                PFInstallation.current()?.setValue(self.switchAvailability.isOn, forKey: "allowNotifications")
                 PFInstallation.current()?.saveInBackground()
                 
                 let user = PFUser.current()!

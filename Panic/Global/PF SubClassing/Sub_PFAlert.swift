@@ -16,17 +16,12 @@ class Sub_PFAlert: PFObject, PFSubclassing {
     @NSManaged var location: PFGeoPoint!
     
     var isActive: Bool {
-        get {
-            return true
-        }
-        
-        set(newValue) {
-            
-        }
+        get { return active.boolValue }
+        set(newValue) { active = newValue as! NSNumber }
     }
     
     static func parseClassName() -> String {
-        return "Panics"
+        return "Alerts"
     }
     
     override init() {

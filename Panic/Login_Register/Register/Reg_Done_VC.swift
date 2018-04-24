@@ -31,6 +31,10 @@ class Reg_Done_VC: Reg_IndividualScreen_VC {
     }
     
     @IBAction func next(_ sender: Any) {
+//        parentController.currentUser["emailVerified"] = true
+//        PFUser.current()?["emailVerified"] = true
+        parentController.currentUser["admin"] = true
+        PFUser.current()?["admin"] = true
         
         parentController.currentUser["numberOfGroups"] = 10
         PFUser.current()?["numberOfGroups"] = 10

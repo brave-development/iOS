@@ -97,7 +97,7 @@ class Global: UIViewController {
 	var countries : [String] = []
 	var appIsInBackground = false
 	var panicConfirmation = false
-	var backgroundPanic = false
+	var backgroundAlert = false
 	var openedViaNotification = false
     var notificationDictionary : JSON?
 	let dateFormatter = DateFormatter()
@@ -198,7 +198,7 @@ class Global: UIViewController {
 	
 	func getLocalHistory() {
 		panicHistoryLocal = []
-		let queryHistory = PFQuery(className: "Panics")
+		let queryHistory = PFQuery(className: "Alerts")
 		queryHistory.whereKey("user", equalTo: PFUser.current()!)
 		queryHistory.order(byDescending: "createdAt")
 		queryHistory.limit = 50
@@ -220,7 +220,7 @@ class Global: UIViewController {
 	}
 	
 	func getPublicHistory() {
-		let queryHistory = PFQuery(className: "Panics")
+		let queryHistory = PFQuery(className: "Alerts")
 		queryHistory.order(byDescending: "createdAt")
 		queryHistory.limit = 20
 		queryHistory.includeKey("user")
@@ -244,7 +244,7 @@ class Global: UIViewController {
 		})
 	}
 	
-	func setPanicNotification(_ enabled : Bool) {
+	func setAlertNotification(_ enabled : Bool) {
 		if enabled == true {
 			panicConfirmation = true
 		} else {
@@ -256,11 +256,11 @@ class Global: UIViewController {
 	
 	func setBackgroundUpdate(_ enabled : Bool) {
 		if enabled == true {
-			backgroundPanic = true
+			backgroundAlert = true
 		} else {
-			backgroundPanic = false
+			backgroundAlert = false
 		}
-		persistantSettings.set(backgroundPanic, forKey: "backgroundPanic")
+		persistantSettings.set(backgroundAlert, forKey: "backgroundAlert")
 		persistantSettings.synchronize()
 	}
 	

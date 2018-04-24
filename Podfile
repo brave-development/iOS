@@ -29,6 +29,7 @@ target 'Brave' do
     pod 'pop'
 
     pod 'SwiftyJSON'
+    pod 'SwiftLocation'
     pod 'SDWebImage'
     pod 'Toast'
     pod 'SCLAlertView'
@@ -39,6 +40,7 @@ target 'Brave' do
     pod 'MessageKit', '~> 0.10.2'
     pod 'ESTabBarController-swift'
     pod 'NotificationBannerSwift'
+    pod 'CenteredCollectionView'
 
 end
 

@@ -39,7 +39,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 	// Tutorial Panic Button
 	
 	@IBOutlet weak var viewTutorialPanic: UIVisualEffectView!
-	@IBOutlet weak var btnPanic: UIButton!
+	@IBOutlet weak var btnAlert: UIButton!
 	@IBOutlet weak var lblDescription: UILabel!
 	var descriptionCount = 0
 	
@@ -89,7 +89,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 //        tabbarView.addConstraint(leftConstraint)
 //        tabbarView.addConstraint(bottomConstraint)
 		
-//        panicHandler.getActivePanics()
+//        panicHandler.getActiveAlerts()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -108,7 +108,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 		if PFUser.current()!["name"] != nil {
 			lblName.text = (PFUser.current()!["name"] as! String)
 		} else {
-			lblName.text = "Panic User"
+			lblName.text = "Alert User"
 		}
 		
 		
@@ -424,29 +424,29 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 	// Tutorial Panic
 	
 	func setupTutorial() {
-		btnPanic.setTitle("Activate", for: UIControlState())
+		btnAlert.setTitle("Activate", for: UIControlState())
 		descriptionCount = 0
 		lblDescription.text = NSLocalizedString("main_tut_1", value: "Tap the Activate button. For the duration of this tutorial, it will have no effect but once it's finished, the button is live.", comment: "First part of main tutorial")
 		viewTutorialPanic.isHidden = false
-		btnPanic.layer.cornerRadius = 0.5 * btnPanic.bounds.size.width
-		btnPanic.layer.borderWidth = 2
-		btnPanic.layer.borderColor = UIColor.green.cgColor
+		btnAlert.layer.cornerRadius = 0.5 * btnAlert.bounds.size.width
+		btnAlert.layer.borderWidth = 2
+		btnAlert.layer.borderColor = UIColor.green.cgColor
 		
-		btnPanic.layer.shadowOpacity = 1.0
-		btnPanic.layer.shadowColor = UIColor.green.cgColor
-		btnPanic.layer.shadowRadius = 4.0
-		btnPanic.layer.shadowOffset = CGSize.zero
+		btnAlert.layer.shadowOpacity = 1.0
+		btnAlert.layer.shadowColor = UIColor.green.cgColor
+		btnAlert.layer.shadowRadius = 4.0
+		btnAlert.layer.shadowOffset = CGSize.zero
 	}
 	
 	@IBAction func panicPressed(_ sender: AnyObject) {
-		if (btnPanic.titleLabel?.text == "Activate") {
-			btnPanic.setTitle("Deactivate", for: UIControlState())
-			btnPanic.layer.borderColor = UIColor.red.cgColor
-			btnPanic.layer.shadowColor = UIColor.red.cgColor
+		if (btnAlert.titleLabel?.text == "Activate") {
+			btnAlert.setTitle("Deactivate", for: UIControlState())
+			btnAlert.layer.borderColor = UIColor.red.cgColor
+			btnAlert.layer.shadowColor = UIColor.red.cgColor
 		} else {
-			btnPanic.setTitle("Activate", for: UIControlState())
-			btnPanic.layer.borderColor = UIColor.green.cgColor
-			btnPanic.layer.shadowColor = UIColor.green.cgColor
+			btnAlert.setTitle("Activate", for: UIControlState())
+			btnAlert.layer.borderColor = UIColor.green.cgColor
+			btnAlert.layer.shadowColor = UIColor.green.cgColor
 		}
 		descriptionCount = descriptionCount + 1
 		
@@ -470,7 +470,7 @@ class MainViewController: UIViewController, UIGestureRecognizerDelegate, MFMailC
 					self.viewTutorialPanic.isHidden = true
 					self.viewTutorialPanic.alpha = 1.0
 			})
-			PFAnalytics.trackEvent(inBackground: "Finished_Panic_Tut", dimensions: nil, block: nil)
+			PFAnalytics.trackEvent(inBackground: "Finished_Alert_Tut", dimensions: nil, block: nil)
 			tutorial.panic = true
 			tutorial.save()
 			break;

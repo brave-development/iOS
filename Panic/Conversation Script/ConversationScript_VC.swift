@@ -7,15 +7,45 @@
 //
 
 import UIKit
+import Parse
+import SCLAlertView
 
 class ConversationScript_VC: UIViewController {
 
     @IBOutlet weak var tblScript: UITableView!
     
+    var checkListItems: [PFObject] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tblScript.dataSource = self
-        addFloatingButton()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        view.backgroundColor = UIColor.init(gradientStyle: .topToBottom, withFrame: view.frame, andColors: [UIColor(hex: "34495e"), UIColor(hex: "2c3e50")])
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if alertHandler.currentAlert != nil && checkListItems.count == 0 {
+            getQuestions()
+            addFloatingButton()
+        }
+    }
+    
+    func getQuestions() {
+        if alertHandler.currentAlert == nil { return }
+        let query = PFQuery(className: "CheckListItem")
+        query.order(byAscending: "priority")
+        query.findObjectsInBackground { (items, error) in
+            if error == nil {
+                self.checkListItems = items ?? []
+                self.tblScript.reloadData()
+                
+                self.tblScript.isHidden = items?.count == 0
+            } else {
+                print(error)
+            }
+        }
     }
 
     func callEmergency() {
@@ -28,9 +58,12 @@ class ConversationScript_VC: UIViewController {
     }
 }
 
+
+
+
 extension ConversationScript_VC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return checkListItems.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -38,9 +71,10 @@ extension ConversationScript_VC: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let item = checkListItems[indexPath.row]
         let cell = UITableViewCell()
         cell.selectionStyle = .none
-        cell.textLabel?.text = "Do something, yo! This is your chance to save a life blah blah blah blah blah dead. Some more stuff to write."
+        cell.textLabel?.text = item["item_description"] as! String
         cell.textLabel?.numberOfLines = 3
         return cell
     }
@@ -69,8 +103,8 @@ extension ConversationScript_VC: floatMenuDelegate {
         floatingButton?.delegate = self
         floatingButton?.hideWhileScrolling = true
         
-        let optionsImages: [String] = ["create", "RespondersIcon"]
-        let optionsTitles = [NSLocalizedString("call_911", value: "Call 911", comment: ""), NSLocalizedString("close_case", value: "Close Case", comment: "")]
+        let optionsImages: [String] = ["create", "RespondersIcon", "conversationScript_selected"]
+        let optionsTitles = [NSLocalizedString("call_911", value: "Call 911", comment: ""), NSLocalizedString("close_case", value: "Close Case", comment: ""), NSLocalizedString("reset", value: "Reset Questions", comment: "")]
         floatingButton?.labelArray = optionsTitles
         floatingButton?.imageArray = optionsImages
         
@@ -86,6 +120,10 @@ extension ConversationScript_VC: floatMenuDelegate {
             
         case 3:
             // Showen to admins - close case
+            alertHandler.currentAlert?.active = false
+            alertHandler.currentAlert?.saveInBackground()
+            
+            SCLAlertView().showInfo("Resolved", subTitle: "This alert has been marked as Resolved")
             break
             
         default:

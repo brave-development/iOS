@@ -13,11 +13,17 @@ import Parse
 extension MapViewController {
     
     func showDetailsView() {
-        self.viewDetails.isHidden = false
-        populateDetails()
-        UIView.animate(withDuration: 0.5, animations: {
-            self.viewDetails.alpha = 1.0
-        })
+//        self.viewDetails.isHidden = false
+//        populateDetails()
+//        UIView.animate(withDuration: 0.5, animations: {
+//            self.viewDetails.alpha = 1.0
+//        })
+        
+        let vc = AlertDetails_XIB(nibName: "AlertDetails_XIB", bundle: nil)
+        vc.alert = selectedVictim as! Sub_PFAlert
+        vc.modalPresentationStyle = .overCurrentContext
+        vc.modalTransitionStyle = .crossDissolve
+        self.present(vc, animated: true, completion: nil)
     }
     
     func populateDetails() {
@@ -106,6 +112,7 @@ extension MapViewController {
     
     @IBAction func chat(_ sender: AnyObject) {
         let vc = storyboard!.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
+        vc.alert = alertHandler.currentAlert
         vc.modalTransitionStyle = .crossDissolve
         vc.modalPresentationStyle = .overCurrentContext
         self.present(vc, animated: true, completion: nil)
@@ -114,12 +121,9 @@ extension MapViewController {
     @IBAction func respond(_ sender: AnyObject) {
         if isResponding() == true {
             
-//            selectedVictim!.removeObjects(in: [PFUser.current()!.objectId!], forKey: "responders")
             selectedVictim!.remove(PFUser.current()!.objectId!, forKey: "responders")
             btnRespond.setTitle(NSLocalizedString("respond", value: "Respond", comment: ""), for: UIControlState())
             btnRespond.backgroundColor = UIColor(red:0.18, green:0.8, blue:0.44, alpha:1)
-            panicHandler.respondingAlertObjectId = nil
-            panicHandler.respondingAlertObject = nil
             
             alertHandler.currentAlert!.removeResponder()
             alertHandler.currentAlert = nil
@@ -128,8 +132,6 @@ extension MapViewController {
             selectedVictim!.addUniqueObject(PFUser.current()!.objectId!, forKey: "responders")
             btnRespond.setTitle(NSLocalizedString("stop_responding", value: "Stop Responding", comment: ""), for: UIControlState())
             btnRespond.backgroundColor = UIColor(red:0.91, green:0.3, blue:0.24, alpha:1)
-            panicHandler.respondingAlertObjectId = selectedVictim!.objectId
-            panicHandler.respondingAlertObject = selectedVictim
             
             alertHandler.currentAlert = Sub_PFAlert(parseObject: selectedVictim!)
             alertHandler.currentAlert!.addResponder()

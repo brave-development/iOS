@@ -8,16 +8,22 @@
 
 import UIKit
 import MessageKit
+import SCLAlertView
+import Parse
 
 class AlertStage_2_VC: UIViewController {
 
     @IBOutlet weak var btnBack: UIButton!
+    @IBOutlet weak var btnAdminOptions: UIButton!
     @IBOutlet weak var blur: UIVisualEffectView!
     @IBOutlet weak var viewDetails: UIView!
     @IBOutlet weak var viewContainer: UIView!
     
+    var alert: Sub_PFAlert!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         btnBack.imageEdgeInsets = UIEdgeInsetsMake(10, 8, 6, 8)
         
         self.view.insertSubview(blur, at: 0)
@@ -27,15 +33,37 @@ class AlertStage_2_VC: UIViewController {
         viewDetails.layer.shadowRadius = 3
         viewDetails.layer.shadowOpacity = 0.4
         
-        
         let vc = storyboard!.instantiateViewController(withIdentifier: "alert_Chat_VC") as! Alert_Chat_VC
+        vc.alert = alert
         self.addChildViewController(vc)
         vc.view.frame = CGRect(x: 0, y: 0, width: self.viewContainer.frame.size.width, height: self.viewContainer.frame.size.height)
         viewContainer.addSubview(vc.view)
 
         vc.didMove(toParentViewController: self)
         
-        messagesController.loadExisting()
+        guard let isAdmin = PFUser.current()?["admin"] as? Bool else { return }
+        
+        btnAdminOptions.isHidden = !isAdmin || !alert.isActive
+    }
+    
+    @IBAction func more(_ sender: Any) {
+        let alert = SCLAlertView()
+        alert.addButton("Resolve alert") {
+            self.alert.active = false
+            self.alert.saveInBackground()
+
+            SCLAlertView().showInfo("Resolved", subTitle: "This alert has been marked as Resolved")
+        }
+
+        alert.addButton("Call Alerter") {
+            guard let alerterNumber = (self.alert["user"] as! PFObject)["cellNumber"] as? String else {
+                SCLAlertView().showInfo("Hmm", subTitle: "The alerters number doesn't seem to be valid... Try message them in the chat.")
+                return
+            }
+            guard let number = URL(string: "tel://\(alerterNumber)") else { return }
+            UIApplication.shared.open(number)
+        }
+        alert.showNotice("Admin Options", subTitle: "")
     }
     
     @IBAction func back(_ sender: Any) {

@@ -18,7 +18,7 @@ class CustomNavigationSegue: UIStoryboardSegue {
         switch (destinationController.title!) {
             
         case "Panic":
-            let main = destinationController as! PanicButtonViewController
+            let main = destinationController as! AlertButtonViewController
             main.mainViewController = mainViewController
             mainViewController.showTabbar()
 //			mainViewController.tapRecognizer.enabled = true
