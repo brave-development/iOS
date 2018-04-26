@@ -25,6 +25,7 @@
                 <outlet property="lblDate" destination="z0D-RH-dOX" id="KMf-oK-iRU"/>
                 <outlet property="lblDetails" destination="O0h-vq-7z4" id="15k-YU-Yh1"/>
                 <outlet property="lblName" destination="wzr-UO-rus" id="VMd-XR-a9o"/>
+                <outlet property="lblStatusMessage" destination="iiB-sB-o5l" id="HGF-98-dRa"/>
                 <outlet property="lblTime" destination="OjO-Vv-7q7" id="IgX-wf-taq"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="viewBlur" destination="Qug-O7-gLD" id="BJt-w9-aFP"/>
@@ -264,6 +265,12 @@
                                     <action selector="call:" destination="-1" eventType="touchUpInside" id="SoS-da-UmQ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You are a responder to this alert" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iiB-sB-o5l">
+                                <rect key="frame" x="57.5" y="632.5" width="260.5" height="22.5"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="19"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <constraints>
                             <constraint firstItem="gR0-Mq-o8F" firstAttribute="centerY" secondItem="rf8-6F-xgo" secondAttribute="centerY" id="0g0-hl-TE4"/>
@@ -272,9 +279,11 @@
                             <constraint firstItem="SAK-rY-pqP" firstAttribute="centerX" secondItem="iGT-qU-oK6" secondAttribute="leading" id="8et-Ov-CJZ"/>
                             <constraint firstItem="vip-cw-HAY" firstAttribute="centerY" secondItem="f6C-jZ-q6E" secondAttribute="centerY" id="8wL-hN-fni"/>
                             <constraint firstItem="vip-cw-HAY" firstAttribute="centerX" secondItem="iGT-qU-oK6" secondAttribute="trailing" id="JZ6-51-SZU"/>
+                            <constraint firstAttribute="bottom" secondItem="iiB-sB-o5l" secondAttribute="bottom" constant="12" id="V1k-Ke-0pF"/>
                             <constraint firstItem="gR0-Mq-o8F" firstAttribute="centerX" secondItem="iGT-qU-oK6" secondAttribute="trailing" id="bva-QO-WG9"/>
                             <constraint firstItem="k21-2M-TUS" firstAttribute="centerX" secondItem="iGT-qU-oK6" secondAttribute="trailing" id="byR-ou-x2d"/>
                             <constraint firstItem="iGT-qU-oK6" firstAttribute="centerY" secondItem="JM8-aB-Lhi" secondAttribute="centerY" id="pCP-VZ-hvD"/>
+                            <constraint firstItem="iiB-sB-o5l" firstAttribute="centerX" secondItem="JM8-aB-Lhi" secondAttribute="centerX" id="qBO-8K-Ssc"/>
                             <constraint firstItem="k21-2M-TUS" firstAttribute="centerY" secondItem="vDu-J3-CYz" secondAttribute="centerY" id="r4p-Un-Mew"/>
                         </constraints>
                     </view>

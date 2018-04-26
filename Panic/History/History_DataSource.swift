@@ -30,7 +30,7 @@ extension HistoryViewController {
     
     func fetchAll_remote(completionHandler handler: @escaping (Bool, [Sub_PFAlert]) -> Void) {
         let query = PFQuery(className: "Alerts")
-        query.order(byAscending: "updatedAt")
+        query.order(byDescending: "updatedAt")
         query.includeKey("user")
         query.whereKey("active", equalTo: false)
         query.limit = 20

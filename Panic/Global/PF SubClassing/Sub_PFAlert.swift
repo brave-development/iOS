@@ -60,6 +60,11 @@ class Sub_PFAlert: PFObject, PFSubclassing {
         }
     }
     
+    func isResponding() -> Bool {
+        let currentUserObjectId = PFUser.current()!.objectId
+        return responders.index(of: currentUserObjectId!) != nil
+    }
+    
     override func saveInBackground(block: PFBooleanResultBlock? = nil) {
         self["user"] = self.user
         self["location"] = self.location

@@ -20,6 +20,7 @@ class AlertStage_2_VC: UIViewController {
     @IBOutlet weak var viewContainer: UIView!
     
     var alert: Sub_PFAlert!
+    var chatController: Alert_Chat_VC!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,13 +34,13 @@ class AlertStage_2_VC: UIViewController {
         viewDetails.layer.shadowRadius = 3
         viewDetails.layer.shadowOpacity = 0.4
         
-        let vc = storyboard!.instantiateViewController(withIdentifier: "alert_Chat_VC") as! Alert_Chat_VC
-        vc.alert = alert
-        self.addChildViewController(vc)
-        vc.view.frame = CGRect(x: 0, y: 0, width: self.viewContainer.frame.size.width, height: self.viewContainer.frame.size.height)
-        viewContainer.addSubview(vc.view)
+        chatController = storyboard!.instantiateViewController(withIdentifier: "alert_Chat_VC") as! Alert_Chat_VC
+        chatController.alert = alert
+        self.addChildViewController(chatController)
+        chatController.view.frame = CGRect(x: 0, y: 0, width: self.viewContainer.frame.size.width, height: self.viewContainer.frame.size.height)
+        viewContainer.addSubview(chatController.view)
 
-        vc.didMove(toParentViewController: self)
+        chatController.didMove(toParentViewController: self)
         
         guard let isAdmin = PFUser.current()?["admin"] as? Bool else { return }
         
@@ -53,6 +54,7 @@ class AlertStage_2_VC: UIViewController {
             self.alert.saveInBackground()
 
             SCLAlertView().showInfo("Resolved", subTitle: "This alert has been marked as Resolved")
+            self.btnBack.sendActions(for: .touchUpInside)
         }
 
         alert.addButton("Call Alerter") {
@@ -63,7 +65,12 @@ class AlertStage_2_VC: UIViewController {
             guard let number = URL(string: "tel://\(alerterNumber)") else { return }
             UIApplication.shared.open(number)
         }
-        alert.showNotice("Admin Options", subTitle: "")
+        
+        chatController.messageInputBar.isHidden = true
+        chatController.messageInputBar.resignFirstResponder()
+        alert.showNotice("Admin Options", subTitle: "").setDismissBlock {
+            self.chatController.messageInputBar.isHidden = false
+        }
     }
     
     @IBAction func back(_ sender: Any) {

@@ -16,6 +16,8 @@ import SCLAlertView
 
 class AlertDetails_XIB: UIViewController {
     
+    @IBOutlet weak var lblStatusMessage: UILabel!
+    
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var viewBlur: UIVisualEffectView!
     
@@ -57,6 +59,7 @@ class AlertDetails_XIB: UIViewController {
     
     func setupUI() {
         view.backgroundColor = UIColor.clear
+        lblStatusMessage.text = ""
         
         viewSection_0.backgroundColor = UIColor(gradientStyle: .topToBottom, withFrame: viewSection_0.frame, andColors: [UIColor(hex: "#34495e"), UIColor(hex: "#2c3e50")])
         viewSection_1.backgroundColor = UIColor(gradientStyle: .topToBottom, withFrame: viewSection_0.frame, andColors: [UIColor(hex: "34495e"), UIColor(hex: "#2c3e50")])
@@ -98,6 +101,14 @@ class AlertDetails_XIB: UIViewController {
         setAddress()
         
         lblChatInfo.text = "\(alert.responders.count) responders"
+        lblStatusMessage.text = alert.isResponding() ? "You are a responder to this alert" : ""
+        
+        if !alert.isActive { closeAlert() }
+    }
+    
+    func closeAlert() {
+        lblStatusMessage.text = "This alert is no longer active"
+        btnCall.isHidden = true
     }
     
     func setAddress() {
@@ -116,7 +127,7 @@ class AlertDetails_XIB: UIViewController {
     func setupLiveQuery() {
         let query = Sub_PFAlert.query()!
         query.whereKey("objectId", equalTo: alert.objectId!)
-        subscription_alertChanges = Client.shared.subscribe(query).handle(Event.created) {
+        subscription_alertChanges = Client.shared.subscribe(query).handle(Event.updated) {
             _, alert in
             
             (alert as! Sub_PFAlert).user.fetchIfNeededInBackground(block: {
@@ -130,12 +141,17 @@ class AlertDetails_XIB: UIViewController {
     }
     
     @IBAction func call(_ sender: Any) {
-        guard let alerterNumber = (self.alert["user"] as! PFObject)["cellNumber"] as? String else {
-            SCLAlertView().showInfo("Hmm", subTitle: "The alerters number doesn't seem to be valid... Try message them in the chat.")
-            return
+        shouldBecomeResponder {
+            
+            if $0 {
+                guard let alerterNumber = (self.alert["user"] as! PFObject)["cellNumber"] as? String else {
+                    SCLAlertView().showInfo("Hmm", subTitle: "The alerters number doesn't seem to be valid... Try message them in the chat.")
+                    return
+                }
+                guard let number = URL(string: "tel://\(alerterNumber)") else { return }
+                UIApplication.shared.open(number)
+            }
         }
-        guard let number = URL(string: "tel://\(alerterNumber)") else { return }
-        UIApplication.shared.open(number)
     }
     
     @IBAction func navigate(_ sender: Any) {
@@ -145,16 +161,38 @@ class AlertDetails_XIB: UIViewController {
     }
     
     @IBAction func openChat(_ sender: Any) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
-        vc.modalTransitionStyle = .crossDissolve
-        vc.modalPresentationStyle = .overCurrentContext
-        vc.alert = alert
-        self.present(vc, animated: true, completion: nil)
+        shouldBecomeResponder {
+            
+            if $0 {
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                let vc = storyboard.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
+                vc.modalTransitionStyle = .crossDissolve
+                vc.modalPresentationStyle = .overCurrentContext
+                vc.alert = self.alert
+                self.present(vc, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func shouldBecomeResponder(_ becomeResponder: @escaping (Bool)->Void) {
+        
+        if self.alert.isResponding() {
+            becomeResponder(true)
+            return
+        }
+        
+        let appearance = SCLAlertView.SCLAppearance( showCloseButton: false )
+        let alert = SCLAlertView(appearance: appearance)
+        alert.addButton("Become Responder") {
+            becomeResponder(true)
+            self.alert.addResponder()
+        }
+        
+        alert.addButton("Cancel") { becomeResponder(false) }
+        alert.showWarning("Become a responder", subTitle: "In order to continue, you will need to become a responder for this event.")
     }
     
     @IBAction func close(_ sender: Any) { self.dismiss(animated: true, completion: nil) }
-    
     override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 }
 
