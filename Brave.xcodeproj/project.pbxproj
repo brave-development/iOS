@@ -130,7 +130,6 @@
 		91A40F6A2057D68E000EA18B /* ConversationScript_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A40F692057D68E000EA18B /* ConversationScript_VC.swift */; };
 		91A5F4752056D99400218805 /* LocationSimulation.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 91A5F4742056D99400218805 /* LocationSimulation.gpx */; };
 		91A617E7203AD37C00B4A352 /* Sub_PFAlertGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A617E6203AD37C00B4A352 /* Sub_PFAlertGroup.swift */; };
-		91A617E9203C328E00B4A352 /* Map_Details.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A617E8203C328E00B4A352 /* Map_Details.swift */; };
 		91E656092010D88E001B3F93 /* AlertHandler_Internal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E656082010D88E001B3F93 /* AlertHandler_Internal.swift */; };
 		91E6560B20120EB8001B3F93 /* Sub_PFNeedle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E6560A20120EB8001B3F93 /* Sub_PFNeedle.swift */; };
 /* End PBXBuildFile section */
@@ -299,7 +298,6 @@
 		91A40F692057D68E000EA18B /* ConversationScript_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationScript_VC.swift; sourceTree = "<group>"; };
 		91A5F4742056D99400218805 /* LocationSimulation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocationSimulation.gpx; sourceTree = "<group>"; };
 		91A617E6203AD37C00B4A352 /* Sub_PFAlertGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub_PFAlertGroup.swift; sourceTree = "<group>"; };
-		91A617E8203C328E00B4A352 /* Map_Details.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map_Details.swift; sourceTree = "<group>"; };
 		91E656082010D88E001B3F93 /* AlertHandler_Internal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHandler_Internal.swift; sourceTree = "<group>"; };
 		91E6560A20120EB8001B3F93 /* Sub_PFNeedle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sub_PFNeedle.swift; sourceTree = "<group>"; };
 		BA53505146F08CB3FB4B8662 /* Pods_Brave.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Brave.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -344,7 +342,6 @@
 			children = (
 				9116A017206A3C13004EEAAF /* Alert Details */,
 				7574A5EA1A2DB81F00148645 /* MapViewController.swift */,
-				91A617E8203C328E00B4A352 /* Map_Details.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -1212,7 +1209,6 @@
 				75E91B061F3C642A003C1169 /* Reg_CellNumber_VC.swift in Sources */,
 				752AA7101B98465C005BE9FC /* VCFloatingActionButton.m in Sources */,
 				757DA85F1A3F965D0037995C /* CountriesViewController.swift in Sources */,
-				91A617E9203C328E00B4A352 /* Map_Details.swift in Sources */,
 				754C76DA1A42E9B50007C53B /* RegisterTableViewController.swift in Sources */,
 				750A7D4C1AB6D01D006EAA97 /* TextViewCustom.swift in Sources */,
 				7545A65C1A2C8A3100B19E3E /* CustomNavigationSegue.swift in Sources */,

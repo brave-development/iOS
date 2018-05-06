@@ -263,6 +263,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
             }
 		}
 	}
+    
+        func showDetailsView() {
+            let vc = AlertDetails_XIB(nibName: "AlertDetails_XIB", bundle: nil)
+            vc.alert = selectedVictim as! Sub_PFAlert
+            vc.modalPresentationStyle = .overCurrentContext
+            vc.modalTransitionStyle = .crossDissolve
+            self.present(vc, animated: true, completion: nil)
+        }
 	
     // When the user taps on an annotation
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
@@ -277,12 +285,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, MKMapViewD
 			let btnViewRight: UIButton = UIButton(type: UIButtonType.detailDisclosure)
             btnViewRight.addTarget(self, action: #selector(showDetailsView), for: UIControlEvents.touchUpInside)
 			
-//            let btnViewLeft: UIButton = UIButton(type: UIButtonType.detailDisclosure)
-//            btnViewLeft.setImage(UIImage(named: "call"), for: UIControlState())
-//            btnViewLeft.addTarget(self, action: #selector(callVictim), for: UIControlEvents.touchUpInside)
-			
 			view.rightCalloutAccessoryView = btnViewRight
-//            view.leftCalloutAccessoryView = btnViewLeft
 			
             view.image = UIImage(named: "mapPin")
             view.isEnabled = true
