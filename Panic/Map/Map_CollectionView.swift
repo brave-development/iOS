@@ -1,15 +1,14 @@
 //
-//  History_CollectionView.swift
+//  Map_CollectionView.swift
 //  Brave
 //
-//  Created by Byron Coetsee on 2018/03/26.
+//  Created by Byron Coetsee on 2018/05/06.
 //  Copyright © 2018 Byron Coetsee. All rights reserved.
 //
 
 import UIKit
 
-
-extension HistoryViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension MapViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     
     func initCollectionView() {
         colHistory.dataSource = self
@@ -54,6 +53,7 @@ extension HistoryViewController: UICollectionViewDataSource, UICollectionViewDel
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        map.userTrackingMode = alerts.count == 0 ? .follow : .none
         return alerts.count
     }
     
@@ -63,4 +63,3 @@ extension HistoryViewController: UICollectionViewDataSource, UICollectionViewDel
         return cell
     }
 }
-

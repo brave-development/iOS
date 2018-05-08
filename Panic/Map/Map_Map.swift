@@ -10,21 +10,21 @@ import UIKit
 import Mapbox
 import SwiftLocation
 
-extension HistoryViewController {
+extension MapViewController {
     
     func initMap() {
         
-        map = MGLMapView(frame: self.view.bounds, styleURL: MGLStyle.darkStyleURL(withVersion: 9))
+        map = MGLMapView(frame: self.view.bounds, styleURL: MGLStyle.lightStyleURL(withVersion: 9))
         map.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        map.setCenter(CLLocationCoordinate2DMake(-33, 18), zoomLevel: 4, animated: true)
         map.delegate = self
         map.showsUserLocation = true
         map.isRotateEnabled = false
         view.insertSubview(map, at: 0)
         
+        map.setCenter(CLLocationCoordinate2DMake(-33, 18), zoomLevel: 4, animated: true)
         Locator.currentPosition(accuracy: .house, onSuccess: {
             location in
-            self.map.setCenter(CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude), zoomLevel: 15, animated: true)
+//            self.map.setCenter(CLLocationCoordinate2DMake(location.coordinate.latitude, location.coordinate.longitude), zoomLevel: 15, animated: true)
         }) {
             error, _ in
             print(error)
@@ -45,7 +45,7 @@ extension HistoryViewController {
     }
 }
 
-extension HistoryViewController: MGLMapViewDelegate {
+extension MapViewController: MGLMapViewDelegate {
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool { return true }
     
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {

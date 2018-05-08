@@ -18,9 +18,6 @@ class HistoryViewController: UIViewController {
     let test: String = ""
     var map : MGLMapView!
     
-    // Store a version of the Current Alert (if any) to be re-added into alertHandler when this screen dissapears... Horrible hack :(
-    var previousCurrentAlert: Sub_PFAlert?
-    
     var alerts: [Sub_PFAlert] = []
     
     override func viewDidLoad() {
