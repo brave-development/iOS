@@ -66,8 +66,8 @@ class AlertStage_2_VC: UIViewController {
             UIApplication.shared.open(number)
         }
         
+        chatController.messageInputBar.inputTextView.resignFirstResponder()
         chatController.messageInputBar.isHidden = true
-        chatController.messageInputBar.resignFirstResponder()
         alert.showNotice("Admin Options", subTitle: "").setDismissBlock {
             self.chatController.messageInputBar.isHidden = false
         }

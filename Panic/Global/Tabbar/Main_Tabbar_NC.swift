@@ -23,6 +23,17 @@ class Main_Tabbar_NC: ESTabBarController {
         let v1 = storyboard.instantiateViewController(withIdentifier: "mapViewController") as! MapViewController
         let v2 = storyboard.instantiateViewController(withIdentifier: "historyViewController") as! HistoryViewController
         let v3 = storyboard.instantiateViewController(withIdentifier: "alertViewController") as! AlertButtonViewController
+//            : UIViewController {
+//            get {
+//                if alertHandler.currentAlert == nil {
+//                    return storyboard.instantiateViewController(withIdentifier: "alertViewController") as! AlertButtonViewController
+//                } else {
+//                    let vc = storyboard.instantiateViewController(withIdentifier: "alertStage_2_VC") as! AlertStage_2_VC
+//                    vc.alert = alertHandler.currentAlert
+//                    return vc
+//                }
+//            }
+//        }
         let v4 = storyboard.instantiateViewController(withIdentifier: "conversationScript_vc") as! ConversationScript_VC
         let v5 = storyboard.instantiateViewController(withIdentifier: "settingsViewController") as! SettingsTableViewController
         
