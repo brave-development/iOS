@@ -33,6 +33,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
     
     var facebookButton: LoginButton!
     
+    var backgroundMustContinueAnimating = true
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -80,7 +82,8 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
             }
             spinner.stopAnimating()
             
-            self.beginBackgroundAnimation()
+            backgroundMustContinueAnimating = true
+            beginBackgroundAnimation()
             return
         }
         
@@ -158,6 +161,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
 	}
     
     func beginBackgroundAnimation() {
+        if !backgroundMustContinueAnimating { return }
         // Move right
         layoutBackgroundLeft.constant = -imgBackground.frame.width + UIScreen.main.bounds.width
         UIView.animate(withDuration: 60, animations: {_ in
@@ -231,9 +235,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate {
         })
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+    override func viewWillDisappear(_ animated: Bool) {
+        backgroundMustContinueAnimating = false
     }
+    
+    override func didReceiveMemoryWarning() { super.didReceiveMemoryWarning() }
 }
 
 
