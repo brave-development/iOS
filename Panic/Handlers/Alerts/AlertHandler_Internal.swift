@@ -69,15 +69,21 @@ class AlertHandler: NSObject {
         currentAlert?.fetchInBackground(block: {
             alert, error in
             
-            if self.currentAlert != nil {
-                self.currentAlert = alert as! Sub_PFAlert
-                
-                Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateCurrentAlert), userInfo: nil, repeats: false)
+            if error == nil {
+                if self.currentAlert != nil {
+                    self.currentAlert = alert as! Sub_PFAlert
+                    
+                    Timer.scheduledTimer(timeInterval: 5, target: self, selector: #selector(self.updateCurrentAlert), userInfo: nil, repeats: false)
+                }
             }
         })
     }
     
     func sendPushNotification() {
+//        PFPush.sendDataToChannel(inBackground: "PilotGroup", withData: [
+//            
+//            ])
+        
         PFCloud.callFunction(inBackground: "pushFromId", withParameters: [
             "objectId" : currentAlert!.objectId,
             "installationId" : PFInstallation.current()!.objectId!

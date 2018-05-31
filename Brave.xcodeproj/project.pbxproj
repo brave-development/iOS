@@ -88,7 +88,6 @@
 		75CF75E51BCBA0DD00B18480 /* LaunchImage-750x1334@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E41BCBA0DD00B18480 /* LaunchImage-750x1334@2x.png */; };
 		75CF75E71BCBA1C600B18480 /* LaunchImage-640x1136@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75CF75E61BCBA1C600B18480 /* LaunchImage-640x1136@2x.png */; };
 		75D869F81B29DEE20065DE37 /* GroupsHandler_OLD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75D869F71B29DEE20065DE37 /* GroupsHandler_OLD.swift */; };
-		75D948791ED0539B00A733DA /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75D948781ED0539B00A733DA /* GoogleService-Info.plist */; };
 		75E91B061F3C642A003C1169 /* Reg_CellNumber_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75E91B041F3C642A003C1169 /* Reg_CellNumber_VC.swift */; };
 		75E91B071F3C642A003C1169 /* Reg_CellNumber_VC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75E91B051F3C642A003C1169 /* Reg_CellNumber_VC.xib */; };
 		75EB2A0E1F7D21EB0070D5BC /* SwiftyMD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75EB2A0D1F7D21EA0070D5BC /* SwiftyMD5.swift */; };
@@ -131,6 +130,7 @@
 		917FA4B5201F506100427A96 /* Main_Tabbar_NC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917FA4B4201F506100427A96 /* Main_Tabbar_NC.swift */; };
 		917FA4B7201F721A00427A96 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 917FA4B6201F721A00427A96 /* Images.xcassets */; };
 		917FA4BA20205EAE00427A96 /* AlertHandler_External.swift in Sources */ = {isa = PBXBuildFile; fileRef = 917FA4B920205EAE00427A96 /* AlertHandler_External.swift */; };
+		91900A6B20BC330C001CA7E1 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 91900A6A20BC330C001CA7E1 /* GoogleService-Info.plist */; };
 		919150F9205A9A7800CFB961 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 919150F8205A9A7800CFB961 /* HistoryViewController.swift */; };
 		91A40F6A2057D68E000EA18B /* ConversationScript_VC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A40F692057D68E000EA18B /* ConversationScript_VC.swift */; };
 		91A5F4752056D99400218805 /* LocationSimulation.gpx in Resources */ = {isa = PBXBuildFile; fileRef = 91A5F4742056D99400218805 /* LocationSimulation.gpx */; };
@@ -261,7 +261,6 @@
 		75CF75EA1BCBE04F00B18480 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/Main.storyboard; sourceTree = "<group>"; };
 		75CF75EB1BCBE04F00B18480 /* af */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = af; path = af.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		75D869F71B29DEE20065DE37 /* GroupsHandler_OLD.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GroupsHandler_OLD.swift; sourceTree = "<group>"; };
-		75D948781ED0539B00A733DA /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		75D9487B1ED054A000A733DA /* Panic.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Panic.entitlements; path = ../Panic.entitlements; sourceTree = "<group>"; };
 		75E91B041F3C642A003C1169 /* Reg_CellNumber_VC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reg_CellNumber_VC.swift; sourceTree = "<group>"; };
 		75E91B051F3C642A003C1169 /* Reg_CellNumber_VC.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Reg_CellNumber_VC.xib; sourceTree = "<group>"; };
@@ -304,6 +303,7 @@
 		917FA4B4201F506100427A96 /* Main_Tabbar_NC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Main_Tabbar_NC.swift; sourceTree = "<group>"; };
 		917FA4B6201F721A00427A96 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		917FA4B920205EAE00427A96 /* AlertHandler_External.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHandler_External.swift; sourceTree = "<group>"; };
+		91900A6A20BC330C001CA7E1 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		919150F8205A9A7800CFB961 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		91A40F692057D68E000EA18B /* ConversationScript_VC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversationScript_VC.swift; sourceTree = "<group>"; };
 		91A5F4742056D99400218805 /* LocationSimulation.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LocationSimulation.gpx; sourceTree = "<group>"; };
@@ -575,7 +575,7 @@
 				75109B531EA024CE0056BBCB /* SubClassed */,
 				75109B541EA025090056BBCB /* UI Elements */,
 				755D4ED31AB4760E001F4590 /* Drawing.swift */,
-				75D948781ED0539B00A733DA /* GoogleService-Info.plist */,
+				91900A6A20BC330C001CA7E1 /* GoogleService-Info.plist */,
 				75162DDE1A2B8B3E0094BA31 /* Info.plist */,
 				7551BB691BCD2EE80041A541 /* InfoPlist.strings */,
 				7551BB751BCD52DC0041A541 /* Localizable.strings */,
@@ -929,7 +929,6 @@
 				75352B0C1A558CF5000EEFC2 /* Embed App Extensions */,
 				755F4C891B264A700086CC3E /* ShellScript */,
 				069973847BF7A343FFFC5B6D /* [CP] Embed Pods Frameworks */,
-				2E69E2C40A7C4E8082DDB8C5 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1016,6 +1015,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7574A6021A2E464000148645 /* settings@2x.png in Resources */,
+				91900A6B20BC330C001CA7E1 /* GoogleService-Info.plist in Resources */,
 				917FA4B7201F721A00427A96 /* Images.xcassets in Resources */,
 				75CF75E31BCB9F9200B18480 /* LaunchImage-1242x2208@2x.png in Resources */,
 				754B90251A47707F00BDC20B /* blank.png in Resources */,
@@ -1036,7 +1036,6 @@
 				75CF75E51BCBA0DD00B18480 /* LaunchImage-750x1334@2x.png in Resources */,
 				7551BB671BCD2EE80041A541 /* InfoPlist.strings in Resources */,
 				75EFEFD41F29D1AF0064D76F /* Reg_Name_VC.xib in Resources */,
-				75D948791ED0539B00A733DA /* GoogleService-Info.plist in Resources */,
 				75A875311B340415004A3E17 /* Location.png in Resources */,
 				7574A5FD1A2E425F00148645 /* history@2x.png in Resources */,
 				75CF75E71BCBA1C600B18480 /* LaunchImage-640x1136@2x.png in Resources */,
@@ -1160,21 +1159,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Brave/Pods-Brave-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		2E69E2C40A7C4E8082DDB8C5 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Brave/Pods-Brave-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		52868075765964BE0D7FCAD0 /* [CP] Check Pods Manifest.lock */ = {
@@ -1463,7 +1447,7 @@
 				INFOPLIST_FILE = "Panic/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = SoC.Panic;
+				PRODUCT_BUNDLE_IDENTIFIER = "ly.brave.brave-app";
 				PRODUCT_NAME = Brave;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/byron/Documents/Brave/iOS App/Panic/Supporting Files/Panic-Bridging-Header.h";
@@ -1496,7 +1480,7 @@
 				INFOPLIST_FILE = "Panic/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = SoC.Panic;
+				PRODUCT_BUNDLE_IDENTIFIER = "ly.brave.brave-app";
 				PRODUCT_NAME = Brave;
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "/Users/byron/Documents/Brave/iOS App/Panic/Supporting Files/Panic-Bridging-Header.h";

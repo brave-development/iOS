@@ -9,28 +9,32 @@
 import UIKit
 import Parse
 import SwiftyJSON
-import Firebase
-import FirebaseCore
-import FirebaseMessaging
 import UserNotifications
 import FacebookCore
-import Alamofire
+//import Alamofire
 import NotificationBannerSwift
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     
     var window: UIWindow?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         configureParse(launchOptions: launchOptions)
-        FirebaseApp.configure()
+//        application.registerForRemoteNotifications()
         
-        //        testCrash()
-        
-        application.registerForRemoteNotifications()
-        Messaging.messaging().remoteMessageDelegate = self
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            print("Permission granted: \(granted)")
+            // 1. Check if permission granted
+            guard granted else { return }
+            // 2. Attempt registration for remote notifications on the main thread
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+            }
+        }
         
         // Facebook
         PFFacebookUtils.initializeFacebook(applicationLaunchOptions: launchOptions)
@@ -71,17 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    func application(received remoteMessage: MessagingRemoteMessage) {
-        print(remoteMessage)
-    }
-    
-    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
-        print("Firebase InstanceID token: \(fcmToken)")
-        PFInstallation.current()?.setValue(fcmToken, forKey: "firebaseID")
-        PFInstallation.current()?.saveInBackground()
-    }
-    
-    
     // =============
     // CONFIGURATIONS
     // =============
@@ -91,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let configuration = ParseClientConfiguration {
             $0.applicationId = "PILOT-PANICING-TURTLE"
             $0.server = "https://pilot-panicing-turtle.herokuapp.com/parse"
-//            $0.server = "http://192.168.0.103:1337/parse"
+//            $0.server = "http://192.168.0.171:1337/parse"
         }
         Parse.initialize(with: configuration)
         PFAnalytics.trackAppOpenedWithLaunchOptions(inBackground: launchOptions, block: nil)
@@ -126,15 +119,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                                                      annotation: annotation)
     }
     
-    func application(_ application: UIApplication, didRegister notificationSettings: UIUserNotificationSettings) {
-        UIApplication.shared.registerForRemoteNotifications()
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let deviceTokenString = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        print("Device PUSH TOKEN --  \(deviceTokenString)")
+        
+        PFInstallation.current()?.badge = 0
+        PFInstallation.current()!.deviceToken = ""
+        PFInstallation.current()!.deviceToken = deviceTokenString
+        PFInstallation.current()!.saveInBackground()
     }
     
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        PFInstallation.current()?.setDeviceTokenFrom(deviceToken)
-        PFInstallation.current()?.saveInBackground()
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print(error)
     }
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) { print(error) }
     
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
@@ -229,12 +226,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if global.persistantSettings.object(forKey: "queryObjectId") != nil {
             global.persistantSettings.removeObject(forKey: "queryObjectId")
         }
-        
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "applicationWillTerminate"), object: nil)
-        
-//        if let topVc = global.topMostViewController() as? Reg_IndividualScreen_VC {
-//            Analytics.logEvent("Order_Placed", parameters: ["Registration_Dropoff_Screen": registrationScreenName(screen: topVc)])
-//        }
     }
 }
 

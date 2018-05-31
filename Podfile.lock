@@ -1,5 +1,5 @@
 PODS:
-  - Alamofire (4.6.0)
+  - Alamofire (4.7.2)
   - BBLocationManager (1.1)
   - Bolts (1.9.0):
     - Bolts/AppLinks (= 1.9.0)
@@ -8,15 +8,15 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
-  - CenteredCollectionView (1.1)
+  - CenteredCollectionView (2.0.0)
   - ChameleonFramework/Default (2.1.0)
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
-  - Crashlytics (3.10.0):
-    - Fabric (~> 1.7.3)
+  - Crashlytics (3.10.2):
+    - Fabric (~> 1.7.7)
   - CustomBadge (3.0.0)
-  - ESTabBarController-swift (2.6.1)
-  - Fabric (1.7.3)
+  - ESTabBarController-swift (2.6.2)
+  - Fabric (1.7.7)
   - FacebookCore (0.3.0):
     - Bolts (~> 1.8)
     - FBSDKCoreKit (~> 4.27)
@@ -29,47 +29,48 @@ PODS:
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.28.0):
     - FBSDKCoreKit
-  - Firebase/Core (4.9.0):
-    - FirebaseAnalytics (= 4.0.9)
-    - FirebaseCore (= 4.0.15)
-  - Firebase/Messaging (4.9.0):
+  - Firebase/Core (5.0.1):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.0.0)
+  - Firebase/CoreOnly (5.0.1):
+    - FirebaseCore (= 5.0.1)
+  - Firebase/Messaging (5.0.1):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.0.0)
+  - Firebase/RemoteConfig (5.0.1):
     - Firebase/Core
-    - FirebaseMessaging (= 2.1.0)
-  - Firebase/RemoteConfig (4.9.0):
-    - Firebase/Core
-    - FirebaseRemoteConfig (= 2.1.2)
-  - FirebaseABTesting (1.0.0):
-    - FirebaseCore (~> 4.0)
-    - Protobuf (~> 3.1)
-  - FirebaseAnalytics (4.0.9):
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - FirebaseRemoteConfig (= 3.0.0)
+  - FirebaseABTesting (2.0.0):
+    - FirebaseCore (~> 5.0)
+    - Protobuf (~> 3.5)
+  - FirebaseAnalytics (5.0.0):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
-  - FirebaseCore (4.0.15):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-  - FirebaseInstanceID (2.0.9):
-    - FirebaseCore (~> 4.0)
-  - FirebaseMessaging (2.1.0):
-    - FirebaseAnalytics (~> 4.0)
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
+  - FirebaseCore (5.0.1):
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseInstanceID (3.0.0):
+    - FirebaseCore (~> 5.0)
+  - FirebaseMessaging (3.0.0):
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
     - GoogleToolboxForMac/Logger (~> 2.1)
     - Protobuf (~> 3.1)
-  - FirebaseRemoteConfig (2.1.2):
-    - FirebaseABTesting (~> 1.0)
-    - FirebaseAnalytics (~> 4.0)
-    - FirebaseCore (~> 4.0)
-    - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
-    - Protobuf (~> 3.1)
-  - GoogleToolboxForMac/Defines (2.1.3)
-  - GoogleToolboxForMac/Logger (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - GoogleToolboxForMac/NSData+zlib (2.1.3):
-    - GoogleToolboxForMac/Defines (= 2.1.3)
-  - HMSegmentedControl (1.5.4)
-  - Mapbox-iOS-SDK (3.7.5)
+  - FirebaseRemoteConfig (3.0.0):
+    - FirebaseABTesting (~> 2.0)
+    - FirebaseAnalytics (~> 5.0)
+    - FirebaseCore (~> 5.0)
+    - FirebaseInstanceID (~> 3.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - Protobuf (~> 3.5)
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - GoogleToolboxForMac/Logger (2.1.4):
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - HMSegmentedControl (1.5.5)
+  - Mapbox-iOS-SDK (4.0.1)
   - MarqueeLabel/Swift (3.1.4)
   - MessageKit (0.10.2)
   - nanopb (0.3.8):
@@ -77,32 +78,32 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - NotificationBannerSwift (1.6.1):
+  - NotificationBannerSwift (1.6.3):
     - MarqueeLabel/Swift
     - SnapKit (~> 4.0)
-  - Parse (1.16.0):
-    - Parse/Core (= 1.16.0)
-  - Parse/Core (1.16.0):
+  - Parse (1.17.1):
+    - Parse/Core (= 1.17.1)
+  - Parse/Core (1.17.1):
     - Bolts/Tasks (~> 1.9)
-  - Parse/FacebookUtils (1.16.0):
+  - Parse/FacebookUtils (1.17.1):
     - FBSDKCoreKit (~> 4.28.0)
     - FBSDKLoginKit (~> 4.28.0)
     - FBSDKShareKit (~> 4.28.0)
     - FBSDKTVOSKit (~> 4.28.0)
     - Parse/Core
-  - ParseLiveQuery (2.3.0):
+  - ParseLiveQuery (2.4.0):
     - Bolts-Swift (~> 1.3.0)
-    - Parse (~> 1.16.0)
+    - Parse (~> 1.17.0)
     - Starscream (~> 3.0.4)
   - pop (1.0.10)
   - Protobuf (3.5.0)
-  - SCLAlertView (0.7.0)
-  - SDWebImage (4.3.0):
-    - SDWebImage/Core (= 4.3.0)
-  - SDWebImage/Core (4.3.0)
+  - SCLAlertView (0.8)
+  - SDWebImage (4.3.3):
+    - SDWebImage/Core (= 4.3.3)
+  - SDWebImage/Core (4.3.3)
   - SnapKit (4.0.0)
   - Spring (1.0.3)
-  - Starscream (3.0.4)
+  - Starscream (3.0.5)
   - SwiftLocation (3.1.0):
     - SwiftyJSON (~> 4.0.0-alpha.1)
   - SwiftValidate (2.0.1)
@@ -137,12 +138,55 @@ DEPENDENCIES:
   - SDWebImage
   - Spring (from `https://github.com/MengTo/Spring.git`, branch `swift3`)
   - SwiftLocation
-  - SwiftLocation (~> 3.1.0)
   - SwiftValidate
   - SwiftyJSON
   - SZTextView
   - Toast
   - UIScrollSlidingPages
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - BBLocationManager
+    - Bolts
+    - Bolts-Swift
+    - CenteredCollectionView
+    - Crashlytics
+    - CustomBadge
+    - ESTabBarController-swift
+    - Fabric
+    - FacebookCore
+    - FacebookLogin
+    - FBSDKCoreKit
+    - FBSDKLoginKit
+    - Firebase
+    - FirebaseABTesting
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - FirebaseRemoteConfig
+    - GoogleToolboxForMac
+    - HMSegmentedControl
+    - Mapbox-iOS-SDK
+    - MarqueeLabel
+    - MessageKit
+    - nanopb
+    - NotificationBannerSwift
+    - Parse
+    - ParseLiveQuery
+    - pop
+    - Protobuf
+    - SCLAlertView
+    - SDWebImage
+    - SnapKit
+    - Starscream
+    - SwiftLocation
+    - SwiftValidate
+    - SwiftyJSON
+    - SZTextView
+    - Toast
+    - UIScrollSlidingPages
 
 EXTERNAL SOURCES:
   ChameleonFramework:
@@ -160,43 +204,43 @@ CHECKOUT OPTIONS:
     :git: https://github.com/MengTo/Spring.git
 
 SPEC CHECKSUMS:
-  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
   BBLocationManager: a0ab2f0b31076cae313f874077786b19667c379d
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
   Bolts-Swift: fa98d1b59fc1acea9b21a21306dcdca1c85e3737
-  CenteredCollectionView: da6b3a5594267097be6080c485f995068819cd99
+  CenteredCollectionView: 6548b515645aea6ea89618f4b5ca090191dc8628
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
-  Crashlytics: a989ef242b66605577a425733797f810bd2725eb
+  Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   CustomBadge: c60738d213e7ef019b0bf1caa7948333f280ea9b
-  ESTabBarController-swift: 1e629e60bc6a87c1ea92a5309489b9f8dde15fa2
-  Fabric: bb495bb9a7a7677c6d03a1f8b83d95bc49b47e41
+  ESTabBarController-swift: f0a8679e43df1e60b7b36bbcaf1dc98ba6273c7d
+  Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
   FacebookCore: 3ffa190a3f1f96cec0e44d3fc221bc322c595ffa
   FacebookLogin: 0af839ea858faef99550d16596b87b4a8e8906e6
   FBSDKCoreKit: ca961e279113f691fd83dc634c0bbad9d4e3f370
   FBSDKLoginKit: b077381c27d800f21661757e8140cf2c80a91e4a
-  Firebase: 632216af3ed7f31e3be34776947fdc7546cfb572
-  FirebaseABTesting: d07d0ee833b842d5153549e4c7e2e2cb1c23a3f9
-  FirebaseAnalytics: 388b630c15713f5dbf364071f5f3d6077fb52f4e
-  FirebaseCore: 3bd047463058fa6b5d312c97502c52e45401cdfb
-  FirebaseInstanceID: d2058a35e9bebda1b6dd42486b84917bde552a9d
-  FirebaseMessaging: 2bafab2d0f3ab3dfd753101c2c32995c2051b5da
-  FirebaseRemoteConfig: df64ce784a45e9b9d4988030a59da6baede8bdb0
-  GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
-  HMSegmentedControl: b25bc4ec44766e073d62c473188fb354ee244b76
-  Mapbox-iOS-SDK: 107e331a7ae02e6be902c1557d3454c54e18ce5b
+  Firebase: d6861c2059d8c32d1e6dd8932e22ada346d90a3a
+  FirebaseABTesting: 1f50b8d50f5e3469eea54e7463a7b7fe221d1f5e
+  FirebaseAnalytics: 19812b49fa5f283dd6b23edf8a14b5d477029ab8
+  FirebaseCore: cafc814b2d84fc8733f09e653041cc2165332ad7
+  FirebaseInstanceID: 83e0040351565df711a5db3d8ebe5ea21aca998a
+  FirebaseMessaging: f2360a966ecfb0d14facf0fbdf306efc2df0ddbe
+  FirebaseRemoteConfig: 3c57e4644bd6976b671ae0b725cd709f198bd1f5
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  HMSegmentedControl: f514c6dad47aa3065e0ed2e8046b73efc71221b9
+  Mapbox-iOS-SDK: 09b978be732d753e5c5e2911460fc0a018ce9be6
   MarqueeLabel: bf768455fe88d427f71476ebb23f9092b660f40b
   MessageKit: 2642b9641290691650cfa2612ad672512799a71c
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  NotificationBannerSwift: 1fc2955381e6eb26d958ba32160fc41721b9b689
-  Parse: 5b36dc2c2f0a2fd82a257ae018bc3d68cf2c24e7
-  ParseLiveQuery: 8c7025d6dd4330db29e3ee5c3bc64eff58a80ad2
+  NotificationBannerSwift: b231e4c3244848ef300e1c53ce027b9756b9b06f
+  Parse: d3edaf8c7c722cb33cb83ba7821d015ae32d362d
+  ParseLiveQuery: 0ea078a12015d64070d0ae07da32fae3d3198c42
   pop: 82ca6b068ce9278fd350fd9dd09482a0ce9492e6
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
-  SCLAlertView: 8a14ffc40590c619e183eed2298b854385f30be1
-  SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SDWebImage: de4d90b5bff3571eae7bd16202b1f43135409fa5
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   Spring: 3f02b5dc3308572ef177b3cad0fa7bbc4b0706f7
-  Starscream: f5da93fe6984c77b694366bf7299b7dc63a76f26
+  Starscream: faf918b2f2eff7d5dd21180646bf015a669673bd
   SwiftLocation: 8f5ef4f510a45e43239de57a3145b3669301e898
   SwiftValidate: b25159abe77d99690c628a9060e2f6ac43409cad
   SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
@@ -204,6 +248,6 @@ SPEC CHECKSUMS:
   Toast: 91b396c56ee72a5790816f40d3a94dd357abc196
   UIScrollSlidingPages: 92a3ed2c444b31f7f1b259f7b91720b53295346a
 
-PODFILE CHECKSUM: b152e1fc0fd1e202fefaa1be6db11b4e6121434f
+PODFILE CHECKSUM: cb7a2a9b5a57db09d3caca80f14f5a85c5f1d3b2
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

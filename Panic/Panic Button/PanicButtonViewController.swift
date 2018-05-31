@@ -240,7 +240,7 @@ class AlertButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
         case .deactivate:
             btnAlert.layer.borderColor = UIColor.green.cgColor
             btnAlert.layer.shadowColor = UIColor.green.cgColor
-            btnAlert.setTitle(NSLocalizedString("activate", value: "Overdose Alert", comment: "Button title to activate the Alert button"), for: UIControlState())
+            btnAlert.setTitle(NSLocalizedString("activate", value: "Find a Peer Supporter", comment: "Button title to activate the Alert button"), for: UIControlState())
             btnAlert.tag = 0
             break
         }
@@ -256,7 +256,7 @@ class AlertButtonViewController: UIViewController, UIGestureRecognizerDelegate, 
     }
     
     func prepareForSendNotification() {
-        print("In sendNotificaion method")
+        print("In sendNotification method")
         if pendingPushNotifications == true {
             if allowAddToPushQue == true {
                 allowAddToPushQue = false

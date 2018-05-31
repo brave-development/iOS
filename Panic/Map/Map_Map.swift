@@ -50,6 +50,10 @@ extension MapViewController: MGLMapViewDelegate {
     
     func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
         
+        if annotation is MGLUserLocation && map.userLocation != nil {
+            return MGLUserLocationAnnotationView(annotation: annotation, reuseIdentifier: "userLocationAnnotation")
+        }
+        
         // Assign a reuse identifier to be used by both of the annotation views, taking advantage of their similarities.
         let reuseIdentifier = "reusableDotView"
         
